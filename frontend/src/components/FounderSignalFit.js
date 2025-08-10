@@ -184,6 +184,17 @@ const FounderSignalFit = () => {
     }
   };
 
+  const fetchScoringExplanation = async (deckId) => {
+    try {
+      const response = await axios.get(`${API}/founder-signal/deck/${deckId}/scoring-explanation`);
+      if (response.data.status === 'available') {
+        setScoringExplanation(response.data.scoring_explanation);
+      }
+    } catch (error) {
+      console.error('Error fetching scoring explanation:', error);
+    }
+  };
+
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
