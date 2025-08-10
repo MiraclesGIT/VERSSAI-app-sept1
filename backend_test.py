@@ -15,7 +15,7 @@ import uuid
 import time
 
 # Configuration
-BACKEND_URL = "https://403fd143-1576-4648-a6f7-6d825c1afb74.preview.emergentagent.com/api"
+BACKEND_URL = "https://6ba2da35-de59-4fa1-b62b-c6f198fa8fe5.preview.emergentagent.com/api"
 TEST_TIMEOUT = 60  # Increased for AI processing
 AI_PROCESSING_TIMEOUT = 120  # Extended timeout for AI workflows
 
