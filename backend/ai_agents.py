@@ -359,8 +359,10 @@ Please analyze and respond with valid JSON only."""
             try:
                 analysis_data = json.loads(response_clean)
                 
-                # Add metadata and research backing
-                analysis_data['analysis_timestamp'] = datetime.utcnow().isoformat()
+                # Add metadata and research backing - Use deterministic timestamp
+                import hashlib
+                founder_hash = hashlib.md5(str(founder_data).encode()).hexdigest()
+                analysis_data['analysis_timestamp'] = f"deterministic_hash_{founder_hash}"
                 analysis_data['research_methodology'] = 'verssai_1157_papers_gemini'
                 analysis_data['agent_version'] = '2.0'
                 analysis_data['research_weights'] = self.research_weights
