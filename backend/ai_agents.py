@@ -189,7 +189,7 @@ Content:
 
 Please extract the information and respond with valid JSON only."""
 
-            response = self.call_ai(user_prompt, self.system_prompt, temperature=0.3)
+            response = self.call_ai(user_prompt, self.system_prompt, temperature=0.0)
             
             # Clean response to extract JSON
             response_clean = response.strip()
@@ -202,8 +202,10 @@ Please extract the information and respond with valid JSON only."""
             try:
                 extraction_data = json.loads(response_clean)
                 
-                # Add metadata
-                extraction_data['extracted_at'] = datetime.utcnow().isoformat()
+                # Add metadata - Use deterministic timestamp based on content hash for consistency
+                import hashlib
+                content_hash = hashlib.md5(text_content.encode()).hexdigest()
+                extraction_data['extracted_at'] = f"deterministic_hash_{content_hash}"
                 extraction_data['extraction_method'] = 'ai_agent_gemini'
                 extraction_data['agent_version'] = '2.0'
                 
