@@ -551,8 +551,10 @@ Please evaluate and respond with valid JSON only."""
             try:
                 evaluation_data = json.loads(response_clean)
                 
-                # Add metadata
-                evaluation_data['evaluation_timestamp'] = datetime.utcnow().isoformat()
+                # Add metadata - Use deterministic timestamp
+                import hashlib
+                company_hash = hashlib.md5(str(company_data).encode()).hexdigest()
+                evaluation_data['evaluation_timestamp'] = f"deterministic_hash_{company_hash}"
                 evaluation_data['research_methodology'] = 'verssai_1157_papers_gemini'
                 evaluation_data['agent_version'] = '2.0'
                 evaluation_data['ai_provider'] = 'gemini'
