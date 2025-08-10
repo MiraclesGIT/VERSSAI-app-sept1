@@ -339,18 +339,19 @@ metadata:
 
 test_plan:
   current_focus:
-    - "PostgreSQL database setup and connection"
-    - "File upload with database storage"
-    - "Complete AI workflow end-to-end testing"
+    - "Fix inconsistent scoring bug - Deterministic AI results"
+    - "Test same deck processing for consistent scores"
+    - "Verify caching mechanism works correctly"
   stuck_tasks: []
-  test_all: true
-  test_priority: "ai_integration_verified"
-  backend_testing_complete: true
+  test_all: false
+  test_priority: "critical_bug_fix_verification"
+  backend_testing_complete: false
   backend_test_results: "AI Integration: 6/7 tests passed (85.7% success rate) - REAL AI with Gemini Pro verified"
   frontend_testing_complete: true
   frontend_test_results: "4/4 tests passed (100% success rate) - PRODUCTION READY for VC users"
   phase_2_status: "COMPLETED - AI intelligence fully operational with Gemini Pro"
   ai_integration_status: "PRODUCTION READY - Google Gemini Pro 1.5 configured and working"
+  deterministic_fix_status: "IMPLEMENTED - Needs testing verification"
 
 agent_communication:
   - agent: "main"
