@@ -1,0 +1,45 @@
+{
+  "founder_name": "Sarah Chen",
+  "founder_role": "CEO",
+  "scores": {
+    "education_score": 90,
+    "experience_score": 80,
+    "network_score": 70,
+    "technical_score": 85,
+    "execution_score": 75,
+    "overall_signal_score": 80
+  },
+  "analysis": {
+    "education_analysis": "Stanford CS degree carries a high signal, correlating strongly (0.23) with startup success.  This suggests a strong foundation in computer science principles relevant to the AI/ML space.",
+    "experience_analysis": "Product management experience at Google within a technologically advanced environment is highly relevant to leading a B2B SaaS company. This contributes significantly to the experience score, aligning with the 0.25 correlation factor for industry experience.",
+    "network_analysis": "While her LinkedIn profile mentions Google and Stanford, further information on network quality is needed for a more precise assessment. Assuming a strong network based on her background, a score of 70 is assigned, acknowledging the 0.18 correlation factor.",
+    "technical_analysis": "Her CS background combined with Google's technical environment suggests a strong technical understanding, important for a B2B SaaS AI/ML company (0.28 correlation).",
+    "execution_analysis": "While specific execution details are lacking, her role at Google likely involved product development and launch, contributing to the execution score.  This is based on the 0.3 correlation of execution track record with success."
+  },
+  "recommendation": "STRONG",
+  "confidence_level": 0.85,
+  "key_strengths": [
+    "Top-tier CS education from Stanford",
+    "Relevant product management experience at Google",
+    "Strong technical background relevant to the AI/ML space"
+  ],
+  "risk_factors": [
+    "Limited information on the specifics of her execution track record and network quality"
+  ],
+  "comparable_founders": [],
+  "analysis_timestamp": "2025-08-10T22:05:09.081461",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "signal_id": "5008ead6-1ee4-408b-b1ec-3127276c066d",
+  "deck_id": "9070a2cc-019d-48e8-9b46-05403c47bfed",
+  "created_at": "2025-08-10T22:05:21.871822"
+}

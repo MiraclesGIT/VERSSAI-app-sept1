@@ -1,0 +1,46 @@
+{
+  "founder_name": "Michael Torres",
+  "founder_role": "CTO",
+  "scores": {
+    "education_score": 95,
+    "experience_score": 85,
+    "network_score": 70,
+    "technical_score": 90,
+    "execution_score": 75,
+    "overall_signal_score": 83
+  },
+  "analysis": {
+    "education_analysis": "MIT PhD grants a very high education score, aligning with the 0.23 correlation factor for top-tier education and success.  This is highly relevant for the AI/ML space.",
+    "experience_analysis": "Prior experience as a Facebook engineer demonstrates strong technical expertise and exposure to scaling systems, relevant to a B2B SaaS enterprise model. This aligns with the 0.25 correlation for industry experience and the 0.34 correlation for previous startup exits (assuming Facebook IPO counts as an exit event for employees).",
+    "network_analysis": "While the LinkedIn profile confirms his background, it doesn't provide enough information to fully assess network quality.  A score of 70 assumes a reasonable network based on his experience at Facebook and MIT, but further investigation is needed. This aligns with the 0.18 correlation factor.",
+    "technical_analysis": "PhD in a relevant field (assumed given the AI/ML market) and engineering experience at Facebook strongly suggest high technical proficiency. This aligns with the 0.28 correlation for technical background in B2B SaaS.",
+    "execution_analysis": "While direct execution track record information is lacking, his experience at Facebook likely involved significant project execution.  A score of 75 reflects this assumption, but further information on specific accomplishments would refine this score. This aligns with the 0.3 correlation factor for execution and success."
+  },
+  "recommendation": "STRONG",
+  "confidence_level": 0.85,
+  "key_strengths": [
+    "Top-tier education (MIT PhD)",
+    "Strong technical background (Facebook engineer)",
+    "Relevant industry experience (AI/ML, B2B SaaS)"
+  ],
+  "risk_factors": [
+    "Limited visibility into network quality",
+    "Need more data on specific execution track record"
+  ],
+  "comparable_founders": [],
+  "analysis_timestamp": "2025-08-10T22:16:37.426621",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "signal_id": "c1a6acaa-237e-41fa-a32a-8d580b02fd88",
+  "deck_id": "c86e5c42-e11f-4673-aa4c-4c2242a9d42e",
+  "created_at": "2025-08-10T22:16:42.364118"
+}

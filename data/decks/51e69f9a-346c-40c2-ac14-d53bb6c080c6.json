@@ -1,0 +1,12 @@
+{
+  "company_name": "Test Company",
+  "file_url": "/uploads/98f54965-5d9a-491e-981d-8fd03b542ccd.pdf",
+  "file_path": "/app/uploads/98f54965-5d9a-491e-981d-8fd03b542ccd.pdf",
+  "file_size": 38,
+  "status": "completed",
+  "uploaded_by": "Debug Test",
+  "deck_id": "51e69f9a-346c-40c2-ac14-d53bb6c080c6",
+  "upload_date": "2025-08-10T21:40:53.555177",
+  "created_at": "2025-08-10T21:40:53.555184",
+  "updated_at": "2025-08-10T21:41:09.516217"
+}

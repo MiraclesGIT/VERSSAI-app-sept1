@@ -1,0 +1,273 @@
+{
+  "workflow_id": "9070a2cc-019d-48e8-9b46-05403c47bfed",
+  "deck_id": "9070a2cc-019d-48e8-9b46-05403c47bfed",
+  "company_name": "Stride Seed Deck ",
+  "status": "completed",
+  "stages": {
+    "extraction": {
+      "status": "completed",
+      "extracted_text": "\n                Stride Seed Deck  - Pitch Deck\n                \n                Problem: Large market opportunity in AI/ML space\n                Solution: Revolutionary AI platform for enterprises\n                Market: $50B+ market growing at 25% CAGR\n                Business Model: B2B SaaS with enterprise contracts\n                Traction: $500K ARR, 50+ customers, 200% YoY growth\n                Team: Experienced founders with Stanford/MIT backgrounds\n                Funding: Raising $5M Series A for product development and sales\n                \n                Founders:\n                - Sarah Chen, CEO: Former Google product manager, Stanford CS\n                - Michael Torres, CTO: Ex-Facebook engineer, MIT PhD\n                ",
+      "file_type": ".pdf",
+      "extraction_method": "mock_extractor",
+      "text_length": 749,
+      "confidence": 0.8
+    },
+    "ai_extraction": {
+      "status": "completed",
+      "extraction_data": {
+        "company_name": "Stride",
+        "website": "",
+        "founders": [
+          {
+            "name": "Sarah Chen",
+            "role": "CEO",
+            "linkedin_hint": "Sarah Chen Google product manager Stanford CS",
+            "background": "Former Google product manager, Stanford CS"
+          },
+          {
+            "name": "Michael Torres",
+            "role": "CTO",
+            "linkedin_hint": "Michael Torres Facebook engineer MIT PhD",
+            "background": "Ex-Facebook engineer, MIT PhD"
+          }
+        ],
+        "market": "AI/ML space for enterprises",
+        "market_size": "$50B+",
+        "business_model": "B2B SaaS with enterprise contracts",
+        "traction": {
+          "revenue": "$500K ARR",
+          "customers": "50+",
+          "growth_rate": "200% YoY",
+          "key_metrics": []
+        },
+        "funding_ask": 5000000,
+        "use_of_funds": "product development and sales",
+        "team_size": 0,
+        "stage": "Series A",
+        "confidence_score": 0.95,
+        "extracted_at": "2025-08-10T22:05:21.871478",
+        "extraction_method": "ai_agent_gemini",
+        "agent_version": "2.0",
+        "extraction_id": "40e1a8b2-5504-4d7c-a0ee-ee1967cf2cd8",
+        "deck_id": "9070a2cc-019d-48e8-9b46-05403c47bfed"
+      },
+      "ai_model": "deck_extraction_agent",
+      "confidence": 0.95
+    },
+    "founder_analysis": {
+      "status": "completed",
+      "founder_analyses": [
+        {
+          "founder_name": "Sarah Chen",
+          "founder_role": "CEO",
+          "scores": {
+            "education_score": 90,
+            "experience_score": 80,
+            "network_score": 70,
+            "technical_score": 85,
+            "execution_score": 75,
+            "overall_signal_score": 80
+          },
+          "analysis": {
+            "education_analysis": "Stanford CS degree carries a high signal, correlating strongly (0.23) with startup success.  This suggests a strong foundation in computer science principles relevant to the AI/ML space.",
+            "experience_analysis": "Product management experience at Google within a technologically advanced environment is highly relevant to leading a B2B SaaS company. This contributes significantly to the experience score, aligning with the 0.25 correlation factor for industry experience.",
+            "network_analysis": "While her LinkedIn profile mentions Google and Stanford, further information on network quality is needed for a more precise assessment. Assuming a strong network based on her background, a score of 70 is assigned, acknowledging the 0.18 correlation factor.",
+            "technical_analysis": "Her CS background combined with Google's technical environment suggests a strong technical understanding, important for a B2B SaaS AI/ML company (0.28 correlation).",
+            "execution_analysis": "While specific execution details are lacking, her role at Google likely involved product development and launch, contributing to the execution score.  This is based on the 0.3 correlation of execution track record with success."
+          },
+          "recommendation": "STRONG",
+          "confidence_level": 0.85,
+          "key_strengths": [
+            "Top-tier CS education from Stanford",
+            "Relevant product management experience at Google",
+            "Strong technical background relevant to the AI/ML space"
+          ],
+          "risk_factors": [
+            "Limited information on the specifics of her execution track record and network quality"
+          ],
+          "comparable_founders": [],
+          "analysis_timestamp": "2025-08-10T22:05:09.081461",
+          "research_methodology": "verssai_1157_papers_gemini",
+          "agent_version": "2.0",
+          "research_weights": {
+            "education_quality": 0.23,
+            "previous_exit": 0.34,
+            "technical_background": 0.28,
+            "industry_experience": 0.25,
+            "network_quality": 0.18,
+            "execution_track_record": 0.3
+          },
+          "ai_provider": "gemini",
+          "signal_id": "5008ead6-1ee4-408b-b1ec-3127276c066d",
+          "deck_id": "9070a2cc-019d-48e8-9b46-05403c47bfed",
+          "created_at": "2025-08-10T22:05:21.871822"
+        },
+        {
+          "founder_name": "Michael Torres",
+          "founder_role": "CTO",
+          "scores": {
+            "education_score": 95,
+            "experience_score": 85,
+            "network_score": 70,
+            "technical_score": 90,
+            "execution_score": 75,
+            "overall_signal_score": 83
+          },
+          "analysis": {
+            "education_analysis": "MIT PhD grants a very high education score, aligning with the 0.23 correlation factor for top-tier education and success.",
+            "experience_analysis": "Ex-Facebook engineer experience is highly relevant for a B2B SaaS company in the AI/ML space, especially at the Series A stage. This aligns with the 0.25 correlation for industry experience and the 0.34 correlation for previous startup exits (assuming Facebook IPO participation).",
+            "network_analysis": "Working at Facebook likely provided a strong network, though specific details are limited based on the provided information.  We estimate a score of 70 based on the 0.18 correlation factor.",
+            "technical_analysis": "PhD and Facebook engineering experience demonstrate a strong technical background, highly relevant for a CTO in the AI/ML B2B SaaS space, aligning with the 0.28 correlation factor.",
+            "execution_analysis": "While specific execution track record details are unavailable, his experience at Facebook and pursuit of a PhD suggest strong execution capabilities. We assign a score of 75 based on the 0.3 correlation factor, acknowledging the need for more data."
+          },
+          "recommendation": "STRONG",
+          "confidence_level": 0.85,
+          "key_strengths": [
+            "Top-tier education (MIT PhD)",
+            "Strong technical background (Facebook engineer)",
+            "Relevant industry experience (AI/ML, B2B SaaS)",
+            "Potentially strong network (Facebook)"
+          ],
+          "risk_factors": [
+            "Limited visibility into specific execution track record and network details"
+          ],
+          "comparable_founders": [],
+          "analysis_timestamp": "2025-08-10T22:05:16.855615",
+          "research_methodology": "verssai_1157_papers_gemini",
+          "agent_version": "2.0",
+          "research_weights": {
+            "education_quality": 0.23,
+            "previous_exit": 0.34,
+            "technical_background": 0.28,
+            "industry_experience": 0.25,
+            "network_quality": 0.18,
+            "execution_track_record": 0.3
+          },
+          "ai_provider": "gemini",
+          "signal_id": "b28c5b53-9d68-4ff8-a58d-6cbeb15bb9fd",
+          "deck_id": "9070a2cc-019d-48e8-9b46-05403c47bfed",
+          "created_at": "2025-08-10T22:05:21.872101"
+        }
+      ],
+      "team_overall_score": 81.5,
+      "founder_count": 2
+    },
+    "investment_evaluation": {
+      "status": "completed",
+      "investment_evaluation": {
+        "thesis_match_score": 0.8,
+        "recommendation": "BUY",
+        "market_assessment": {
+          "market_size_score": 0.9,
+          "market_timing_score": 0.8,
+          "competitive_landscape_score": 0.7
+        },
+        "founder_market_fit": {
+          "domain_expertise_score": 0.8,
+          "execution_capability_score": 0.7,
+          "team_quality_score": 0.7
+        },
+        "business_model_assessment": {
+          "scalability_score": 0.8,
+          "unit_economics_score": 0.6,
+          "defensibility_score": 0.7
+        },
+        "key_insights": [
+          "Large and growing market for AI/ML in the enterprise",
+          "Strong revenue growth and customer acquisition",
+          "B2B SaaS model aligns with investor thesis"
+        ],
+        "risk_factors": [
+          "Competition in the AI/ML space is intense",
+          "Need to demonstrate sustainable competitive advantage",
+          "Unit economics need further evaluation"
+        ],
+        "exit_scenarios": [
+          "Acquisition by a larger enterprise software company",
+          "IPO potential in the long term"
+        ],
+        "comparable_investments": [],
+        "confidence_level": 0.85,
+        "evaluation_timestamp": "2025-08-10T22:05:21.536471",
+        "research_methodology": "verssai_1157_papers_gemini",
+        "agent_version": "2.0",
+        "ai_provider": "gemini"
+      },
+      "recommendation": "BUY",
+      "thesis_match_score": 0.8
+    },
+    "rag_integration": {
+      "status": "completed",
+      "rag_document_id": "deck_9070a2cc-019d-48e8-9b46-05403c47bfed",
+      "content_length": 383
+    },
+    "database_storage": {
+      "status": "completed",
+      "storage": "file_system",
+      "records_stored": "extraction + founder_signals",
+      "deck_status": "completed"
+    }
+  },
+  "final_results": {
+    "company": "Stride",
+    "website": "",
+    "market": "AI/ML space for enterprises",
+    "stage": "Series A",
+    "fundingAsk": 5000000,
+    "traction": {
+      "revenue": "$500K ARR",
+      "customers": "50+",
+      "growth_rate": "200% YoY",
+      "key_metrics": []
+    },
+    "teamSize": 0,
+    "founders": [
+      {
+        "name": "Sarah Chen",
+        "role": "CEO",
+        "linkedin_hint": "Sarah Chen Google product manager Stanford CS",
+        "background": "Former Google product manager, Stanford CS"
+      },
+      {
+        "name": "Michael Torres",
+        "role": "CTO",
+        "linkedin_hint": "Michael Torres Facebook engineer MIT PhD",
+        "background": "Ex-Facebook engineer, MIT PhD"
+      }
+    ],
+    "overall_score": 81.5,
+    "components": {
+      "technical": {
+        "score": 0.8,
+        "confidence": 0.85
+      },
+      "market": {
+        "score": 0.9,
+        "confidence": 0.85
+      },
+      "execution": {
+        "score": 0.7,
+        "confidence": 0.85
+      },
+      "team": {
+        "score": 0.7,
+        "confidence": 0.85
+      }
+    },
+    "recommendation": "BUY",
+    "insights": [
+      "Top-tier CS education from Stanford",
+      "Relevant product management experience at Google",
+      "Strong technical background relevant to the AI/ML space",
+      "Top-tier education (MIT PhD)",
+      "Strong technical background (Facebook engineer)"
+    ],
+    "risks": [
+      "Limited information on the specifics of her execution track record and network quality",
+      "Limited visibility into specific execution track record and network details"
+    ]
+  },
+  "started_at": "2025-08-10T22:04:57.712467",
+  "completed_at": "2025-08-10T22:05:21.872562",
+  "saved_at": "2025-08-10T22:05:21.872629"
+}

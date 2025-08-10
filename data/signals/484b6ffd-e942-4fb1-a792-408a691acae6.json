@@ -1,0 +1,46 @@
+{
+  "founder_name": "Michael Torres",
+  "founder_role": "CTO",
+  "scores": {
+    "education_score": 95,
+    "experience_score": 85,
+    "network_score": 70,
+    "technical_score": 90,
+    "execution_score": 0,
+    "overall_signal_score": 82
+  },
+  "analysis": {
+    "education_analysis": "MIT PhD grants a very high education score, aligning with the 0.23 correlation factor for top-tier education and success.",
+    "experience_analysis": "Ex-Facebook engineer experience is highly relevant for an AI/ML B2B SaaS company, especially at the Series A stage. This aligns with the 0.25 correlation for industry experience and the 0.28 correlation for technical background in B2B SaaS.",
+    "network_analysis": "Working at Facebook suggests a strong network, although specific details are lacking. We assign a moderate score based on the 0.18 correlation factor for network quality.",
+    "technical_analysis": "PhD and Facebook engineering experience demonstrate a strong technical background, highly relevant for the CTO role in an AI/ML company. This aligns with the 0.28 correlation factor.",
+    "execution_analysis": "No specific execution track record is available at this stage, thus the score is 0. More data is needed to assess past performance and leadership in achieving milestones."
+  },
+  "recommendation": "STRONG",
+  "confidence_level": 0.85,
+  "key_strengths": [
+    "Top-tier education (MIT PhD)",
+    "Strong technical background (Ex-Facebook engineer)",
+    "Relevant industry experience (AI/ML)",
+    "Potentially strong network (Facebook connection)"
+  ],
+  "risk_factors": [
+    "Lack of visible execution track record"
+  ],
+  "comparable_founders": [],
+  "analysis_timestamp": "2025-08-10T22:06:31.536871",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "signal_id": "484b6ffd-e942-4fb1-a792-408a691acae6",
+  "deck_id": "bf199790-7dae-4b5a-aeb2-15785a52faa2",
+  "created_at": "2025-08-10T22:06:36.566259"
+}

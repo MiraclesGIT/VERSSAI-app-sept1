@@ -1,0 +1,45 @@
+{
+  "founder_name": "Founder",
+  "founder_role": "CEO",
+  "scores": {
+    "education_score": 25,
+    "experience_score": 25,
+    "network_score": 20,
+    "technical_score": 30,
+    "execution_score": 20,
+    "overall_signal_score": 28
+  },
+  "analysis": {
+    "education_analysis": "No information provided on educational background.  A score of 25 reflects the average considering the lack of data which could positively or negatively influence this score.",
+    "experience_analysis": "No prior startup exits or specific industry experience mentioned.  General 'Technology' market experience provides some basis, resulting in a score of 25.  More specific industry experience details would improve this assessment.",
+    "network_analysis": "No information on network quality is available.  A score of 20 represents a baseline assumption in the absence of data.",
+    "technical_analysis": "Given the B2B SaaS context, a technical background is assumed but not explicitly stated.  A score of 30 reflects this assumption with potential for upward revision with more information.",
+    "execution_analysis": "No specific execution track record is provided.  A score of 20 reflects the baseline in the absence of demonstrable achievements."
+  },
+  "recommendation": "NEUTRAL",
+  "confidence_level": 0.5,
+  "key_strengths": [],
+  "risk_factors": [
+    "Lack of information on education",
+    "Unclear industry experience",
+    "Unknown network quality",
+    "Unverified technical background",
+    "No demonstrable execution track record"
+  ],
+  "comparable_founders": [],
+  "analysis_timestamp": "2025-08-10T21:41:03.949116",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "signal_id": "4aa6fa3c-ce72-49a8-b4ae-81f0fba0e863",
+  "deck_id": "51e69f9a-346c-40c2-ac14-d53bb6c080c6",
+  "created_at": "2025-08-10T21:41:09.515833"
+}

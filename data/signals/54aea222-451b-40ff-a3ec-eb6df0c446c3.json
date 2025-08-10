@@ -1,0 +1,45 @@
+{
+  "founder_name": "Founder",
+  "founder_role": "CEO",
+  "scores": {
+    "education_score": 0,
+    "experience_score": 0,
+    "network_score": 0,
+    "technical_score": 0,
+    "execution_score": 0,
+    "overall_signal_score": 0.0
+  },
+  "analysis": {
+    "education_analysis": "No information provided about the founder's education.  Unable to assess impact based on top-tier university correlation factor.",
+    "experience_analysis": "No details on previous startup exits or relevant industry experience.  Unable to quantify experience based on provided correlation factors.",
+    "network_analysis": "No information available regarding the founder's network. Unable to assess the quality and potential impact on success.",
+    "technical_analysis": "No information provided on the founder's technical background.  Given the B2B SaaS context, this is a critical data gap.",
+    "execution_analysis": "Lack of information on the founder's execution track record makes it impossible to assess this crucial aspect."
+  },
+  "recommendation": "NEUTRAL",
+  "confidence_level": 0.1,
+  "key_strengths": [],
+  "risk_factors": [
+    "Lack of information on education",
+    "Lack of information on experience",
+    "Lack of information on network",
+    "Lack of information on technical background",
+    "Lack of information on execution track record"
+  ],
+  "comparable_founders": [],
+  "analysis_timestamp": "2025-08-10T22:15:46.364003",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "signal_id": "54aea222-451b-40ff-a3ec-eb6df0c446c3",
+  "deck_id": "cd09ce01-f9b8-48ee-a072-d4a74a1940ab",
+  "created_at": "2025-08-10T22:15:52.268325"
+}

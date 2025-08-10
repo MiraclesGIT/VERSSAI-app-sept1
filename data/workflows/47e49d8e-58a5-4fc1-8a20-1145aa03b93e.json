@@ -1,0 +1,209 @@
+{
+  "workflow_id": "47e49d8e-58a5-4fc1-8a20-1145aa03b93e",
+  "deck_id": "47e49d8e-58a5-4fc1-8a20-1145aa03b93e",
+  "company_name": "TechVenture AI",
+  "status": "completed",
+  "stages": {
+    "extraction": {
+      "status": "completed",
+      "extracted_text": "\n                TechVenture AI - Pitch Deck\n                \n                Problem: Large market opportunity in AI/ML space\n                Solution: Revolutionary AI platform for enterprises\n                Market: $50B+ market growing at 25% CAGR\n                Business Model: B2B SaaS with enterprise contracts\n                Traction: $500K ARR, 50+ customers, 200% YoY growth\n                Team: Experienced founders with Stanford/MIT backgrounds\n                Funding: Raising $5M Series A for product development and sales\n                \n                Founders:\n                - Sarah Chen, CEO: Former Google product manager, Stanford CS\n                - Michael Torres, CTO: Ex-Facebook engineer, MIT PhD\n                ",
+      "file_type": ".pdf",
+      "extraction_method": "mock_extractor",
+      "text_length": 746,
+      "confidence": 0.8
+    },
+    "ai_extraction": {
+      "status": "completed",
+      "extraction_data": {
+        "company_name": "TechVenture AI",
+        "website": "",
+        "founders": [
+          {
+            "name": "Founder",
+            "role": "CEO",
+            "linkedin_hint": "",
+            "background": ""
+          }
+        ],
+        "market": "Technology",
+        "market_size": "Large market opportunity",
+        "business_model": "B2B SaaS",
+        "traction": {
+          "revenue": "Growing",
+          "customers": "Multiple customers",
+          "growth_rate": "Positive growth",
+          "key_metrics": []
+        },
+        "funding_ask": 1000000,
+        "use_of_funds": "Product development and growth",
+        "team_size": 5,
+        "stage": "Seed",
+        "confidence_score": 0.3,
+        "extracted_at": "2025-08-10T21:42:45.907042",
+        "extraction_method": "fallback",
+        "agent_version": "1.0",
+        "extraction_id": "dd62def5-98a9-4189-9919-6b86a858f362",
+        "deck_id": "47e49d8e-58a5-4fc1-8a20-1145aa03b93e"
+      },
+      "ai_model": "deck_extraction_agent",
+      "confidence": 0.3
+    },
+    "founder_analysis": {
+      "status": "completed",
+      "founder_analyses": [
+        {
+          "founder_name": "Founder",
+          "founder_role": "CEO",
+          "scores": {
+            "education_score": 25,
+            "experience_score": 25,
+            "network_score": 20,
+            "technical_score": 30,
+            "execution_score": 20,
+            "overall_signal_score": 28
+          },
+          "analysis": {
+            "education_analysis": "No information provided about educational background.  A score of 25 represents the average assuming no positive or negative signals.",
+            "experience_analysis": "Lack of specific details regarding prior industry experience or startup exits.  A score of 25 reflects this uncertainty.",
+            "network_analysis": "No information available to assess network quality.  A score of 20 represents a conservative estimate given the lack of data.",
+            "technical_analysis": "B2B SaaS context suggests a technical background may be present.  A score of 30 is assigned assuming some technical proficiency, but lacking specific details, it remains moderate.",
+            "execution_analysis": "No information on past execution track record.  A score of 20 represents the baseline given the absence of data."
+          },
+          "recommendation": "NEUTRAL",
+          "confidence_level": 0.5,
+          "key_strengths": [],
+          "risk_factors": [
+            "Lack of information on education",
+            "Lack of information on prior experience",
+            "Unclear network quality",
+            "Uncertainty about execution capabilities"
+          ],
+          "comparable_founders": [],
+          "analysis_timestamp": "2025-08-10T21:42:40.567106",
+          "research_methodology": "verssai_1157_papers_gemini",
+          "agent_version": "2.0",
+          "research_weights": {
+            "education_quality": 0.23,
+            "previous_exit": 0.34,
+            "technical_background": 0.28,
+            "industry_experience": 0.25,
+            "network_quality": 0.18,
+            "execution_track_record": 0.3
+          },
+          "ai_provider": "gemini",
+          "signal_id": "4ba2a29f-2791-4041-b765-57a95d68b97b",
+          "deck_id": "47e49d8e-58a5-4fc1-8a20-1145aa03b93e",
+          "created_at": "2025-08-10T21:42:45.907374"
+        }
+      ],
+      "team_overall_score": 28.0,
+      "founder_count": 1
+    },
+    "investment_evaluation": {
+      "status": "completed",
+      "investment_evaluation": {
+        "thesis_match_score": 0.6,
+        "recommendation": "BUY",
+        "market_assessment": {
+          "market_size_score": 0.8,
+          "market_timing_score": 0.7,
+          "competitive_landscape_score": 0.5
+        },
+        "founder_market_fit": {
+          "domain_expertise_score": 0.7,
+          "execution_capability_score": 0.6,
+          "team_quality_score": 0.6
+        },
+        "business_model_assessment": {
+          "scalability_score": 0.7,
+          "unit_economics_score": 0.6,
+          "defensibility_score": 0.5
+        },
+        "key_insights": [
+          "B2B SaaS market aligns with investor thesis",
+          "Large market opportunity indicates potential for significant growth",
+          "Positive growth and multiple customers suggest early traction"
+        ],
+        "risk_factors": [
+          "Limited information on competitive landscape and differentiation",
+          "Lack of specific financial data and key metrics makes it difficult to fully assess unit economics and scalability",
+          "Seed stage investment carries inherent risks"
+        ],
+        "exit_scenarios": [
+          "Potential acquisition by a larger SaaS company",
+          "IPO potential if the company achieves significant scale and market leadership"
+        ],
+        "comparable_investments": [],
+        "confidence_level": 0.75,
+        "evaluation_timestamp": "2025-08-10T21:42:45.524721",
+        "research_methodology": "verssai_1157_papers_gemini",
+        "agent_version": "2.0",
+        "ai_provider": "gemini"
+      },
+      "recommendation": "BUY",
+      "thesis_match_score": 0.6
+    },
+    "rag_integration": {
+      "status": "completed",
+      "rag_document_id": "deck_47e49d8e-58a5-4fc1-8a20-1145aa03b93e",
+      "content_length": 339
+    },
+    "database_storage": {
+      "status": "completed",
+      "storage": "file_system",
+      "records_stored": "extraction + founder_signals",
+      "deck_status": "completed"
+    }
+  },
+  "final_results": {
+    "company": "TechVenture AI",
+    "website": "",
+    "market": "Technology",
+    "stage": "Seed",
+    "fundingAsk": 1000000,
+    "traction": {
+      "revenue": "Growing",
+      "customers": "Multiple customers",
+      "growth_rate": "Positive growth",
+      "key_metrics": []
+    },
+    "teamSize": 5,
+    "founders": [
+      {
+        "name": "Founder",
+        "role": "CEO",
+        "linkedin_hint": "",
+        "background": ""
+      }
+    ],
+    "overall_score": 28.0,
+    "components": {
+      "technical": {
+        "score": 0.7,
+        "confidence": 0.75
+      },
+      "market": {
+        "score": 0.8,
+        "confidence": 0.75
+      },
+      "execution": {
+        "score": 0.6,
+        "confidence": 0.75
+      },
+      "team": {
+        "score": 0.6,
+        "confidence": 0.75
+      }
+    },
+    "recommendation": "BUY",
+    "insights": [],
+    "risks": [
+      "Lack of information on education",
+      "Lack of information on prior experience",
+      "Unclear network quality"
+    ]
+  },
+  "started_at": "2025-08-10T21:42:30.694394",
+  "completed_at": "2025-08-10T21:42:45.907880",
+  "saved_at": "2025-08-10T21:42:45.907956"
+}

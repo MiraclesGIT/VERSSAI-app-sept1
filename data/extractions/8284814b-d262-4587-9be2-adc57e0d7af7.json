@@ -1,0 +1,31 @@
+{
+  "company_name": "Test Company",
+  "website": "",
+  "founders": [
+    {
+      "name": "Founder",
+      "role": "CEO",
+      "linkedin_hint": "",
+      "background": ""
+    }
+  ],
+  "market": "Technology",
+  "market_size": "Large market opportunity",
+  "business_model": "B2B SaaS",
+  "traction": {
+    "revenue": "Growing",
+    "customers": "Multiple customers",
+    "growth_rate": "Positive growth",
+    "key_metrics": []
+  },
+  "funding_ask": 1000000,
+  "use_of_funds": "Product development and growth",
+  "team_size": 5,
+  "stage": "Seed",
+  "confidence_score": 0.3,
+  "extracted_at": "2025-08-10T21:41:09.515511",
+  "extraction_method": "fallback",
+  "agent_version": "1.0",
+  "extraction_id": "8284814b-d262-4587-9be2-adc57e0d7af7",
+  "deck_id": "51e69f9a-346c-40c2-ac14-d53bb6c080c6"
+}

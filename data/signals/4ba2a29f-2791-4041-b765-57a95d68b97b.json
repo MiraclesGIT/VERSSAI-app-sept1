@@ -1,0 +1,44 @@
+{
+  "founder_name": "Founder",
+  "founder_role": "CEO",
+  "scores": {
+    "education_score": 25,
+    "experience_score": 25,
+    "network_score": 20,
+    "technical_score": 30,
+    "execution_score": 20,
+    "overall_signal_score": 28
+  },
+  "analysis": {
+    "education_analysis": "No information provided about educational background.  A score of 25 represents the average assuming no positive or negative signals.",
+    "experience_analysis": "Lack of specific details regarding prior industry experience or startup exits.  A score of 25 reflects this uncertainty.",
+    "network_analysis": "No information available to assess network quality.  A score of 20 represents a conservative estimate given the lack of data.",
+    "technical_analysis": "B2B SaaS context suggests a technical background may be present.  A score of 30 is assigned assuming some technical proficiency, but lacking specific details, it remains moderate.",
+    "execution_analysis": "No information on past execution track record.  A score of 20 represents the baseline given the absence of data."
+  },
+  "recommendation": "NEUTRAL",
+  "confidence_level": 0.5,
+  "key_strengths": [],
+  "risk_factors": [
+    "Lack of information on education",
+    "Lack of information on prior experience",
+    "Unclear network quality",
+    "Uncertainty about execution capabilities"
+  ],
+  "comparable_founders": [],
+  "analysis_timestamp": "2025-08-10T21:42:40.567106",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "signal_id": "4ba2a29f-2791-4041-b765-57a95d68b97b",
+  "deck_id": "47e49d8e-58a5-4fc1-8a20-1145aa03b93e",
+  "created_at": "2025-08-10T21:42:45.907374"
+}
