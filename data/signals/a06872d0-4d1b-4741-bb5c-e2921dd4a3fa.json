@@ -1,0 +1,62 @@
+{
+  "founder_name": "Founder",
+  "founder_role": "CEO",
+  "scores": {
+    "education_score": 23,
+    "experience_score": 25,
+    "network_score": 18,
+    "technical_score": 28,
+    "execution_score": 30,
+    "overall_signal_score": 25.6
+  },
+  "score_explanations": {
+    "education_explanation": "The founder's education background is not explicitly stated.  Given the lack of information regarding a top-tier institution like Stanford or MIT, a baseline score of 23 is assigned, reflecting the average correlation factor (0.23) for top-tier education.  If more information becomes available, this score can be adjusted.",
+    "experience_explanation": "With no specific industry experience mentioned, the founder receives a baseline score of 25, reflecting the average correlation factor (0.25) for industry experience. This assumes some level of general business experience relevant to the CEO role.  Additional information about specific industry experience could significantly impact this score.",
+    "network_explanation": "Due to the absence of information regarding the founder's network, a baseline score of 18 is applied, reflecting the average correlation factor (0.18) for network quality.  This score assumes a basic professional network but lacks evidence of a strong, relevant network.  Providing details about the founder's network (investors, advisors, industry connections) would allow for a more accurate assessment.",
+    "technical_explanation": "Given the B2B SaaS context, a technical background is considered beneficial.  Without specific details, a baseline score of 28 is assigned, reflecting the average correlation factor (0.28) for a technical background in B2B SaaS.  Information about the founder's technical skills and experience would allow for a more precise evaluation.",
+    "execution_explanation": "In the absence of information about the founder's execution track record, a baseline score of 30 is assigned, reflecting the average correlation factor (0.3) for execution.  Details about previous projects, successful launches, or demonstrated ability to meet milestones would significantly influence this score.",
+    "overall_explanation": "The overall signal score of 25.6 is a weighted average of the individual scores, based on the correlation factors from the research papers.  Due to the lack of specific information about the founder, this score represents a neutral baseline.  Providing more details about the founder's background and experience would allow for a more accurate and nuanced assessment."
+  },
+  "analysis": {
+    "education_analysis": "No data available to analyze.",
+    "experience_analysis": "No specific experience details available for analysis.",
+    "network_analysis": "Network strength and relevance cannot be analyzed without further information.",
+    "technical_analysis": "Technical proficiency cannot be assessed without specific details.",
+    "execution_analysis": "Execution capabilities cannot be analyzed without information on past performance."
+  },
+  "scoring_methodology": {
+    "weights_used": {
+      "education_quality": 0.23,
+      "previous_exit": 0.34,
+      "technical_background": 0.28,
+      "industry_experience": 0.25,
+      "network_quality": 0.18,
+      "execution_track_record": 0.3
+    },
+    "calculation_method": "Weighted average based on proven correlation factors from 1,157 research papers",
+    "research_basis": "Analysis based on patterns from successful vs failed startups",
+    "confidence_factors": []
+  },
+  "recommendation": "NEUTRAL",
+  "confidence_level": 0.2,
+  "key_strengths": [],
+  "risk_factors": [
+    "Lack of information about founder's background and experience"
+  ],
+  "comparable_founders": [],
+  "analysis_timestamp": "deterministic_hash_bac30890b680d386ce976ed5cc2dea30",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "signal_id": "a06872d0-4d1b-4741-bb5c-e2921dd4a3fa",
+  "deck_id": "d0b885c1-5d76-420e-ab1e-e344e6393ea9",
+  "created_at": "2025-08-10T22:49:35.262723"
+}

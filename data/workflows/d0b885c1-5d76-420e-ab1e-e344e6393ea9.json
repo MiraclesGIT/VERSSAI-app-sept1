@@ -1,0 +1,251 @@
+{
+  "workflow_id": "d0b885c1-5d76-420e-ab1e-e344e6393ea9",
+  "deck_id": "d0b885c1-5d76-420e-ab1e-e344e6393ea9",
+  "company_name": "TechFlow AI",
+  "status": "completed",
+  "stages": {
+    "extraction": {
+      "status": "completed",
+      "extracted_text": "\n                TechFlow AI - Pitch Deck\n                \n                Problem: Large market opportunity in AI/ML space\n                Solution: Revolutionary AI platform for enterprises\n                Market: $50B+ market growing at 25% CAGR\n                Business Model: B2B SaaS with enterprise contracts\n                Traction: $500K ARR, 50+ customers, 200% YoY growth\n                Team: Experienced founders with Stanford/MIT backgrounds\n                Funding: Raising $5M Series A for product development and sales\n                \n                Founders:\n                - Sarah Chen, CEO: Former Google product manager, Stanford CS\n                - Michael Torres, CTO: Ex-Facebook engineer, MIT PhD\n                ",
+      "file_type": ".pdf",
+      "extraction_method": "mock_extractor",
+      "text_length": 743,
+      "confidence": 0.8
+    },
+    "ai_extraction": {
+      "status": "completed",
+      "extraction_data": {
+        "company_name": "TechFlow AI",
+        "website": "",
+        "founders": [
+          {
+            "name": "Founder",
+            "role": "CEO",
+            "linkedin_hint": "",
+            "background": ""
+          }
+        ],
+        "market": "Technology",
+        "market_size": "Large market opportunity",
+        "business_model": "B2B SaaS",
+        "traction": {
+          "revenue": "Growing",
+          "customers": "Multiple customers",
+          "growth_rate": "Positive growth",
+          "key_metrics": []
+        },
+        "funding_ask": 1000000,
+        "use_of_funds": "Product development and growth",
+        "team_size": 5,
+        "stage": "Seed",
+        "confidence_score": 0.3,
+        "extracted_at": "2025-08-10T22:49:35.262396",
+        "extraction_method": "fallback",
+        "agent_version": "1.0",
+        "extraction_id": "58331e66-659b-4cbb-872d-1b222728c845",
+        "deck_id": "d0b885c1-5d76-420e-ab1e-e344e6393ea9"
+      },
+      "ai_model": "deck_extraction_agent",
+      "confidence": 0.3
+    },
+    "founder_analysis": {
+      "status": "completed",
+      "founder_analyses": [
+        {
+          "founder_name": "Founder",
+          "founder_role": "CEO",
+          "scores": {
+            "education_score": 23,
+            "experience_score": 25,
+            "network_score": 18,
+            "technical_score": 28,
+            "execution_score": 30,
+            "overall_signal_score": 25.6
+          },
+          "score_explanations": {
+            "education_explanation": "The founder's education background is not explicitly stated.  Given the lack of information regarding a top-tier institution like Stanford or MIT, a baseline score of 23 is assigned, reflecting the average correlation factor (0.23) for top-tier education.  If more information becomes available, this score can be adjusted.",
+            "experience_explanation": "With no specific industry experience mentioned, the founder receives a baseline score of 25, reflecting the average correlation factor (0.25) for industry experience. This assumes some level of general business experience relevant to the CEO role.  Additional information about specific industry experience could significantly impact this score.",
+            "network_explanation": "Due to the absence of information regarding the founder's network, a baseline score of 18 is applied, reflecting the average correlation factor (0.18) for network quality.  This score assumes a basic professional network but lacks evidence of a strong, relevant network.  Providing details about the founder's network (investors, advisors, industry connections) would allow for a more accurate assessment.",
+            "technical_explanation": "Given the B2B SaaS context, a technical background is considered beneficial.  Without specific details, a baseline score of 28 is assigned, reflecting the average correlation factor (0.28) for a technical background in B2B SaaS.  Information about the founder's technical skills and experience would allow for a more precise evaluation.",
+            "execution_explanation": "In the absence of information about the founder's execution track record, a baseline score of 30 is assigned, reflecting the average correlation factor (0.3) for execution.  Details about previous projects, successful launches, or demonstrated ability to meet milestones would significantly influence this score.",
+            "overall_explanation": "The overall signal score of 25.6 is a weighted average of the individual scores, based on the correlation factors from the research papers.  Due to the lack of specific information about the founder, this score represents a neutral baseline.  Providing more details about the founder's background and experience would allow for a more accurate and nuanced assessment."
+          },
+          "analysis": {
+            "education_analysis": "No data available to analyze.",
+            "experience_analysis": "No specific experience details available for analysis.",
+            "network_analysis": "Network strength and relevance cannot be analyzed without further information.",
+            "technical_analysis": "Technical proficiency cannot be assessed without specific details.",
+            "execution_analysis": "Execution capabilities cannot be analyzed without information on past performance."
+          },
+          "scoring_methodology": {
+            "weights_used": {
+              "education_quality": 0.23,
+              "previous_exit": 0.34,
+              "technical_background": 0.28,
+              "industry_experience": 0.25,
+              "network_quality": 0.18,
+              "execution_track_record": 0.3
+            },
+            "calculation_method": "Weighted average based on proven correlation factors from 1,157 research papers",
+            "research_basis": "Analysis based on patterns from successful vs failed startups",
+            "confidence_factors": []
+          },
+          "recommendation": "NEUTRAL",
+          "confidence_level": 0.2,
+          "key_strengths": [],
+          "risk_factors": [
+            "Lack of information about founder's background and experience"
+          ],
+          "comparable_founders": [],
+          "analysis_timestamp": "deterministic_hash_bac30890b680d386ce976ed5cc2dea30",
+          "research_methodology": "verssai_1157_papers_gemini",
+          "agent_version": "2.0",
+          "research_weights": {
+            "education_quality": 0.23,
+            "previous_exit": 0.34,
+            "technical_background": 0.28,
+            "industry_experience": 0.25,
+            "network_quality": 0.18,
+            "execution_track_record": 0.3
+          },
+          "ai_provider": "gemini",
+          "signal_id": "a06872d0-4d1b-4741-bb5c-e2921dd4a3fa",
+          "deck_id": "d0b885c1-5d76-420e-ab1e-e344e6393ea9",
+          "created_at": "2025-08-10T22:49:35.262723"
+        }
+      ],
+      "team_overall_score": 25.6,
+      "founder_count": 1
+    },
+    "investment_evaluation": {
+      "status": "completed",
+      "investment_evaluation": {
+        "thesis_match_score": 0.6,
+        "recommendation": "BUY",
+        "market_assessment": {
+          "market_size_score": 0.7,
+          "market_timing_score": 0.6,
+          "competitive_landscape_score": 0.5
+        },
+        "founder_market_fit": {
+          "domain_expertise_score": 0.7,
+          "execution_capability_score": 0.6,
+          "team_quality_score": 0.6
+        },
+        "business_model_assessment": {
+          "scalability_score": 0.7,
+          "unit_economics_score": 0.5,
+          "defensibility_score": 0.4
+        },
+        "scoring_explanations": {
+          "thesis_match_explanation": "The company aligns with the B2B SaaS focus and presence of technical founders. However, 'proven traction' needs further quantification.  The 0.6 score reflects partial thesis alignment pending more data.",
+          "market_size_explanation": "Described as a 'Large market opportunity,' suggesting a TAM likely >$1B, warranting a 0.7 score.  Further market sizing data is needed for a more precise score.",
+          "market_timing_explanation": "B2B SaaS adoption continues to grow, suggesting favorable market timing.  However, without specific market trend data, the score is conservatively set at 0.6.",
+          "competitive_landscape_explanation": "No information on competitive differentiation is provided.  A score of 0.5 reflects this uncertainty and assumes a moderately competitive landscape.",
+          "domain_expertise_explanation": "The 'strong technical founders' description suggests relevant domain expertise, resulting in a 0.7 score.  Detailed founder backgrounds are needed for a more accurate assessment.",
+          "execution_capability_explanation": "'Multiple customers' and 'positive growth' indicate some execution capability, justifying a 0.6 score.  More detailed traction metrics are needed to increase this score.",
+          "team_quality_explanation": "Information is limited to 'strong technical founders.'  While this is positive, a comprehensive team assessment requires more data, hence a score of 0.6.",
+          "scalability_explanation": "B2B SaaS inherently offers scalability potential, leading to a 0.7 score.  Specific details on the business model are needed to validate this assumption.",
+          "unit_economics_explanation": "No data on unit economics is provided.  A score of 0.5 reflects this lack of information and assumes average unit economics for a seed-stage SaaS company.",
+          "defensibility_explanation": "No information on defensibility (moats, IP) is available.  A conservative score of 0.4 reflects this uncertainty."
+        },
+        "calculation_methodology": {
+          "overall_scoring_method": "Weighted scoring based on proven investment success factors. Each category (market, founder, business model) contributes equally to the overall score.",
+          "research_papers_basis": "Analysis derived from 1,157 research papers on VC success patterns",
+          "risk_assessment_factors": [
+            "Limited traction data",
+            "Unknown competitive landscape",
+            "Lack of unit economics data"
+          ],
+          "success_correlation_factors": [
+            "Strong technical founders",
+            "B2B SaaS model",
+            "Large market opportunity"
+          ]
+        },
+        "key_insights": [
+          "Potential for strong thesis alignment with further due diligence",
+          "Promising early traction but requires validation",
+          "Experienced technical founders"
+        ],
+        "risk_factors": [
+          "Limited information on competitive landscape and defensibility",
+          "Unclear unit economics",
+          "Early-stage investment with inherent risks"
+        ],
+        "exit_scenarios": [
+          "Acquisition by a larger SaaS company",
+          "IPO (long-term potential)"
+        ],
+        "comparable_investments": [],
+        "confidence_level": 0.65,
+        "evaluation_timestamp": "deterministic_hash_5fe267e04e54888e43735c101b7fa01c",
+        "research_methodology": "verssai_1157_papers_gemini",
+        "agent_version": "2.0",
+        "ai_provider": "gemini"
+      },
+      "recommendation": "BUY",
+      "thesis_match_score": 0.6
+    },
+    "rag_integration": {
+      "status": "completed",
+      "rag_document_id": "deck_d0b885c1-5d76-420e-ab1e-e344e6393ea9",
+      "content_length": 336
+    },
+    "database_storage": {
+      "status": "completed",
+      "storage": "file_system",
+      "records_stored": "extraction + founder_signals",
+      "deck_status": "completed"
+    }
+  },
+  "final_results": {
+    "company": "TechFlow AI",
+    "website": "",
+    "market": "Technology",
+    "stage": "Seed",
+    "fundingAsk": 1000000,
+    "traction": {
+      "revenue": "Growing",
+      "customers": "Multiple customers",
+      "growth_rate": "Positive growth",
+      "key_metrics": []
+    },
+    "teamSize": 5,
+    "founders": [
+      {
+        "name": "Founder",
+        "role": "CEO",
+        "linkedin_hint": "",
+        "background": ""
+      }
+    ],
+    "overall_score": 25.6,
+    "components": {
+      "technical": {
+        "score": 0.7,
+        "confidence": 0.65
+      },
+      "market": {
+        "score": 0.7,
+        "confidence": 0.65
+      },
+      "execution": {
+        "score": 0.6,
+        "confidence": 0.65
+      },
+      "team": {
+        "score": 0.6,
+        "confidence": 0.65
+      }
+    },
+    "recommendation": "BUY",
+    "insights": [],
+    "risks": [
+      "Lack of information about founder's background and experience"
+    ]
+  },
+  "started_at": "2025-08-10T22:49:04.445266",
+  "completed_at": "2025-08-10T22:49:35.263307",
+  "saved_at": "2025-08-10T22:49:35.263380"
+}
