@@ -72,17 +72,19 @@ class VERSSAIAIAgent:
         else:
             return self._mock_response(prompt)
     
-    def _call_gemini(self, prompt: str, system_prompt: str = "", temperature: float = 0.7) -> str:
-        """Call Google Gemini API"""
+    def _call_gemini(self, prompt: str, system_prompt: str = "", temperature: float = 0.0) -> str:
+        """Call Google Gemini API with deterministic settings"""
         try:
             # Combine system prompt and user prompt for Gemini
             full_prompt = f"{system_prompt}\n\n{prompt}" if system_prompt else prompt
             
-            # Configure generation parameters
+            # Configure generation parameters for deterministic results
             generation_config = genai.GenerationConfig(
                 temperature=temperature,
                 max_output_tokens=2000,
-                candidate_count=1
+                candidate_count=1,
+                top_p=1.0,  # Use deterministic sampling
+                top_k=1     # Use deterministic sampling
             )
             
             response = self.gemini_model.generate_content(
