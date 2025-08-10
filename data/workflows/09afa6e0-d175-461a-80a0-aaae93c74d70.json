@@ -1,0 +1,210 @@
+{
+  "workflow_id": "09afa6e0-d175-461a-80a0-aaae93c74d70",
+  "deck_id": "09afa6e0-d175-461a-80a0-aaae93c74d70",
+  "company_name": "DataFlow AI",
+  "status": "completed",
+  "stages": {
+    "extraction": {
+      "status": "completed",
+      "extracted_text": "\n                DataFlow AI - Pitch Deck\n                \n                Problem: Large market opportunity in AI/ML space\n                Solution: Revolutionary AI platform for enterprises\n                Market: $50B+ market growing at 25% CAGR\n                Business Model: B2B SaaS with enterprise contracts\n                Traction: $500K ARR, 50+ customers, 200% YoY growth\n                Team: Experienced founders with Stanford/MIT backgrounds\n                Funding: Raising $5M Series A for product development and sales\n                \n                Founders:\n                - Sarah Chen, CEO: Former Google product manager, Stanford CS\n                - Michael Torres, CTO: Ex-Facebook engineer, MIT PhD\n                ",
+      "file_type": ".pdf",
+      "extraction_method": "mock_extractor",
+      "text_length": 743,
+      "confidence": 0.8
+    },
+    "ai_extraction": {
+      "status": "completed",
+      "extraction_data": {
+        "company_name": "DataFlow AI",
+        "website": "",
+        "founders": [
+          {
+            "name": "Founder",
+            "role": "CEO",
+            "linkedin_hint": "",
+            "background": ""
+          }
+        ],
+        "market": "Technology",
+        "market_size": "Large market opportunity",
+        "business_model": "B2B SaaS",
+        "traction": {
+          "revenue": "Growing",
+          "customers": "Multiple customers",
+          "growth_rate": "Positive growth",
+          "key_metrics": []
+        },
+        "funding_ask": 1000000,
+        "use_of_funds": "Product development and growth",
+        "team_size": 5,
+        "stage": "Seed",
+        "confidence_score": 0.3,
+        "extracted_at": "2025-08-10T22:37:17.658329",
+        "extraction_method": "fallback",
+        "agent_version": "1.0",
+        "extraction_id": "bd66e374-c65a-4793-bab4-86f4ee1a6064",
+        "deck_id": "09afa6e0-d175-461a-80a0-aaae93c74d70"
+      },
+      "ai_model": "deck_extraction_agent",
+      "confidence": 0.3
+    },
+    "founder_analysis": {
+      "status": "completed",
+      "founder_analyses": [
+        {
+          "founder_name": "Founder",
+          "founder_role": "CEO",
+          "scores": {
+            "education_score": 0,
+            "experience_score": 0,
+            "network_score": 0,
+            "technical_score": 0,
+            "execution_score": 0,
+            "overall_signal_score": 0.0
+          },
+          "analysis": {
+            "education_analysis": "No information provided regarding the founder's education.  Unable to assess impact based on top-tier university correlation.",
+            "experience_analysis": "No details on previous startup exits or relevant industry experience were provided.  Unable to quantify experience impact.",
+            "network_analysis": "No information available to assess the founder's network quality.  Network effects are important, especially in the Seed stage.",
+            "technical_analysis": "No information provided on the founder's technical background. This is particularly relevant for a B2B SaaS business where a technical understanding can be crucial.",
+            "execution_analysis": "No information provided on the founder's execution track record.  Unable to assess their ability to deliver on milestones and navigate challenges."
+          },
+          "recommendation": "NEUTRAL",
+          "confidence_level": 0.1,
+          "key_strengths": [],
+          "risk_factors": [
+            "Lack of information on education",
+            "Lack of information on experience",
+            "Lack of information on network",
+            "Lack of information on technical background",
+            "Lack of information on execution track record"
+          ],
+          "comparable_founders": [],
+          "analysis_timestamp": "deterministic_hash_bac30890b680d386ce976ed5cc2dea30",
+          "research_methodology": "verssai_1157_papers_gemini",
+          "agent_version": "2.0",
+          "research_weights": {
+            "education_quality": 0.23,
+            "previous_exit": 0.34,
+            "technical_background": 0.28,
+            "industry_experience": 0.25,
+            "network_quality": 0.18,
+            "execution_track_record": 0.3
+          },
+          "ai_provider": "gemini",
+          "signal_id": "0c5feac0-eb56-44bf-b0fa-0e22af382463",
+          "deck_id": "09afa6e0-d175-461a-80a0-aaae93c74d70",
+          "created_at": "2025-08-10T22:37:17.658626"
+        }
+      ],
+      "team_overall_score": 0.0,
+      "founder_count": 1
+    },
+    "investment_evaluation": {
+      "status": "completed",
+      "investment_evaluation": {
+        "thesis_match_score": 0.6,
+        "recommendation": "BUY",
+        "market_assessment": {
+          "market_size_score": 0.8,
+          "market_timing_score": 0.7,
+          "competitive_landscape_score": 0.5
+        },
+        "founder_market_fit": {
+          "domain_expertise_score": 0.7,
+          "execution_capability_score": 0.6,
+          "team_quality_score": 0.6
+        },
+        "business_model_assessment": {
+          "scalability_score": 0.7,
+          "unit_economics_score": 0.6,
+          "defensibility_score": 0.5
+        },
+        "key_insights": [
+          "DataFlow AI operates in a large and growing market, aligning with the investor thesis.",
+          "The B2B SaaS model offers inherent scalability potential.",
+          "Positive growth and multiple customers indicate early traction."
+        ],
+        "risk_factors": [
+          "Limited information on competitive differentiation and defensibility.",
+          "Lack of specific data on revenue, growth rate, and key metrics makes it difficult to fully assess traction and unit economics.",
+          "Seed stage investment carries inherent risks."
+        ],
+        "exit_scenarios": [
+          "Potential acquisition by a larger technology company.",
+          "IPO in the long term, contingent on achieving significant scale and market leadership."
+        ],
+        "comparable_investments": [],
+        "confidence_level": 0.75,
+        "evaluation_timestamp": "deterministic_hash_bdd02fd2c6b26bd7af190ee5f7efba0f",
+        "research_methodology": "verssai_1157_papers_gemini",
+        "agent_version": "2.0",
+        "ai_provider": "gemini"
+      },
+      "recommendation": "BUY",
+      "thesis_match_score": 0.6
+    },
+    "rag_integration": {
+      "status": "completed",
+      "rag_document_id": "deck_09afa6e0-d175-461a-80a0-aaae93c74d70",
+      "content_length": 336
+    },
+    "database_storage": {
+      "status": "completed",
+      "storage": "file_system",
+      "records_stored": "extraction + founder_signals",
+      "deck_status": "completed"
+    }
+  },
+  "final_results": {
+    "company": "DataFlow AI",
+    "website": "",
+    "market": "Technology",
+    "stage": "Seed",
+    "fundingAsk": 1000000,
+    "traction": {
+      "revenue": "Growing",
+      "customers": "Multiple customers",
+      "growth_rate": "Positive growth",
+      "key_metrics": []
+    },
+    "teamSize": 5,
+    "founders": [
+      {
+        "name": "Founder",
+        "role": "CEO",
+        "linkedin_hint": "",
+        "background": ""
+      }
+    ],
+    "overall_score": 0.0,
+    "components": {
+      "technical": {
+        "score": 0.7,
+        "confidence": 0.75
+      },
+      "market": {
+        "score": 0.8,
+        "confidence": 0.75
+      },
+      "execution": {
+        "score": 0.6,
+        "confidence": 0.75
+      },
+      "team": {
+        "score": 0.6,
+        "confidence": 0.75
+      }
+    },
+    "recommendation": "BUY",
+    "insights": [],
+    "risks": [
+      "Lack of information on education",
+      "Lack of information on experience",
+      "Lack of information on network"
+    ]
+  },
+  "started_at": "2025-08-10T22:37:08.083456",
+  "completed_at": "2025-08-10T22:37:17.659147",
+  "saved_at": "2025-08-10T22:37:17.659218"
+}

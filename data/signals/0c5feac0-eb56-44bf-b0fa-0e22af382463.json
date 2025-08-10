@@ -1,0 +1,45 @@
+{
+  "founder_name": "Founder",
+  "founder_role": "CEO",
+  "scores": {
+    "education_score": 0,
+    "experience_score": 0,
+    "network_score": 0,
+    "technical_score": 0,
+    "execution_score": 0,
+    "overall_signal_score": 0.0
+  },
+  "analysis": {
+    "education_analysis": "No information provided regarding the founder's education.  Unable to assess impact based on top-tier university correlation.",
+    "experience_analysis": "No details on previous startup exits or relevant industry experience were provided.  Unable to quantify experience impact.",
+    "network_analysis": "No information available to assess the founder's network quality.  Network effects are important, especially in the Seed stage.",
+    "technical_analysis": "No information provided on the founder's technical background. This is particularly relevant for a B2B SaaS business where a technical understanding can be crucial.",
+    "execution_analysis": "No information provided on the founder's execution track record.  Unable to assess their ability to deliver on milestones and navigate challenges."
+  },
+  "recommendation": "NEUTRAL",
+  "confidence_level": 0.1,
+  "key_strengths": [],
+  "risk_factors": [
+    "Lack of information on education",
+    "Lack of information on experience",
+    "Lack of information on network",
+    "Lack of information on technical background",
+    "Lack of information on execution track record"
+  ],
+  "comparable_founders": [],
+  "analysis_timestamp": "deterministic_hash_bac30890b680d386ce976ed5cc2dea30",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "signal_id": "0c5feac0-eb56-44bf-b0fa-0e22af382463",
+  "deck_id": "09afa6e0-d175-461a-80a0-aaae93c74d70",
+  "created_at": "2025-08-10T22:37:17.658626"
+}

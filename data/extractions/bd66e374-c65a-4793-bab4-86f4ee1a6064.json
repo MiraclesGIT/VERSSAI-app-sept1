@@ -1,0 +1,31 @@
+{
+  "company_name": "DataFlow AI",
+  "website": "",
+  "founders": [
+    {
+      "name": "Founder",
+      "role": "CEO",
+      "linkedin_hint": "",
+      "background": ""
+    }
+  ],
+  "market": "Technology",
+  "market_size": "Large market opportunity",
+  "business_model": "B2B SaaS",
+  "traction": {
+    "revenue": "Growing",
+    "customers": "Multiple customers",
+    "growth_rate": "Positive growth",
+    "key_metrics": []
+  },
+  "funding_ask": 1000000,
+  "use_of_funds": "Product development and growth",
+  "team_size": 5,
+  "stage": "Seed",
+  "confidence_score": 0.3,
+  "extracted_at": "2025-08-10T22:37:17.658329",
+  "extraction_method": "fallback",
+  "agent_version": "1.0",
+  "extraction_id": "bd66e374-c65a-4793-bab4-86f4ee1a6064",
+  "deck_id": "09afa6e0-d175-461a-80a0-aaae93c74d70"
+}
