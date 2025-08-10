@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Upload, FileText, Linkedin, Globe, Github, TrendingUp, AlertCircle, CheckCircle, Clock, BarChart3, Users, Target, Zap } from 'lucide-react';
+import { Upload, FileText, Linkedin, Globe, Github, TrendingUp, AlertCircle, CheckCircle, Clock, BarChart3, Users, Target, Zap, Info, BookOpen, Calculator, Award } from 'lucide-react';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
