@@ -321,6 +321,7 @@ class FounderSignalAgent(VERSSAIAIAgent):
     def analyze_founder(self, founder_data: Dict[str, Any], company_context: Dict[str, Any] = None) -> Dict[str, Any]:
         """
         Analyze founder signals using research-backed methodology with Gemini
+        Now with caching for deterministic results
         
         Args:
             founder_data: Founder information (name, role, linkedin, background, etc.)
@@ -330,6 +331,14 @@ class FounderSignalAgent(VERSSAIAIAgent):
             Comprehensive founder signal analysis
         """
         try:
+            # Create cache key for deterministic results
+            cache_key = hashlib.md5(f"founder_{json.dumps(founder_data, sort_keys=True)}_{json.dumps(company_context or {}, sort_keys=True)}".encode()).hexdigest()
+            
+            # Check cache first
+            if cache_key in _analysis_cache:
+                logger.info(f"Returning cached founder analysis for {founder_data.get('name', 'Unknown')}")
+                return _analysis_cache[cache_key]
+            
             # Create deterministic RAG context to avoid non-deterministic results
             rag_context = ""
             if company_context:
@@ -375,7 +384,6 @@ Please analyze and respond with valid JSON only."""
                 analysis_data = json.loads(response_clean)
                 
                 # Add metadata and research backing - Use deterministic timestamp
-                import hashlib
                 founder_hash = hashlib.md5(str(founder_data).encode()).hexdigest()
                 analysis_data['analysis_timestamp'] = f"deterministic_hash_{founder_hash}"
                 analysis_data['research_methodology'] = 'verssai_1157_papers_gemini'
@@ -385,6 +393,9 @@ Please analyze and respond with valid JSON only."""
                 
                 # Validate and adjust scores if needed
                 analysis_data = self._validate_founder_scores(analysis_data)
+                
+                # Cache the result
+                _analysis_cache[cache_key] = analysis_data
                 
                 return analysis_data
                 
