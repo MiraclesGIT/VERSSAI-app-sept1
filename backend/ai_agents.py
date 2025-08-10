@@ -11,6 +11,10 @@ import logging
 from datetime import datetime
 import uuid
 from pathlib import Path
+import hashlib
+
+# Cache for deterministic results
+_analysis_cache = {}
 
 # Import for Google Gemini integration
 try:
