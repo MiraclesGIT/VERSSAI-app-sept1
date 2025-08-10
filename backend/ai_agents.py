@@ -654,3 +654,16 @@ def evaluate_investment_opportunity(company_data: Dict[str, Any], founder_analys
                                   investor_thesis: str = None) -> Dict[str, Any]:
     """Evaluate investment opportunity"""
     return investment_thesis_agent.evaluate_investment(company_data, founder_analysis, investor_thesis)
+
+def clear_analysis_cache():
+    """Clear the analysis cache for fresh results - Use only when needed"""
+    global _analysis_cache
+    _analysis_cache.clear()
+    logger.info("Analysis cache cleared - all future analyses will be fresh")
+
+def get_cache_stats():
+    """Get statistics about the current cache"""
+    return {
+        "cached_analyses": len(_analysis_cache),
+        "cache_keys": list(_analysis_cache.keys())[:10]  # Show first 10 keys only
+    }
