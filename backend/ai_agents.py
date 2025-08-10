@@ -63,8 +63,8 @@ class VERSSAIAIAgent:
             logger.warning(f"No AI API configured for {self.agent_name} - using mock responses")
             self.ai_provider = "fallback"
     
-    def call_ai(self, prompt: str, system_prompt: str = "", temperature: float = 0.7) -> str:
-        """Call AI API with Gemini preferred, OpenAI as fallback"""
+    def call_ai(self, prompt: str, system_prompt: str = "", temperature: float = 0.0) -> str:
+        """Call AI API with Gemini preferred, OpenAI as fallback - Default temperature 0.0 for deterministic results"""
         if self.ai_provider == "gemini":
             return self._call_gemini(prompt, system_prompt, temperature)
         elif self.ai_provider == "openai":
