@@ -504,12 +504,15 @@ class InvestmentThesisAgent(VERSSAIAIAgent):
             Comprehensive investment evaluation
         """
         try:
-            # Query RAG for similar successful investments
+            # Query RAG for similar successful investments - Use deterministic approach
             market = company_data.get('market', 'technology')
+            deterministic_query = f"successful_investments_{market}_market_business_model"
             rag_results = rag_service.query_platform_knowledge(
-                f"successful investments {market} market business model", 
+                deterministic_query, 
                 top_k=5
             )
+            # Sort results for consistency
+            rag_results = sorted(rag_results, key=lambda x: x.get('score', 1), reverse=False)
             rag_context = "\n".join([r['content'][:300] for r in rag_results])
             
             user_prompt = f"""Evaluate this investment opportunity:
@@ -523,10 +526,10 @@ Company Information:
 - Market Size: {company_data.get('market_size', 'Unknown')}
 
 Traction Data:
-{json.dumps(company_data.get('traction', {}), indent=2)}
+{json.dumps(company_data.get('traction', {}), indent=2, sort_keys=True)}
 
 Founder Signal Analysis:
-{json.dumps(founder_analysis.get('scores', {}) if founder_analysis else {}, indent=2)}
+{json.dumps(founder_analysis.get('scores', {}) if founder_analysis else {}, indent=2, sort_keys=True)}
 
 Investor Thesis Context:
 {investor_thesis or 'No specific thesis provided'}
@@ -536,7 +539,7 @@ Research Context (Similar Successful Investments):
 
 Please evaluate and respond with valid JSON only."""
             
-            response = self.call_ai(user_prompt, self.system_prompt, temperature=0.5)
+            response = self.call_ai(user_prompt, self.system_prompt, temperature=0.0)
             
             # Clean response to extract JSON
             response_clean = response.strip()
