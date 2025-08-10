@@ -287,7 +287,7 @@ class FounderSignalAgent(VERSSAIAIAgent):
         - Network quality: {self.research_weights['network_quality']} correlation
         - Execution track record: {self.research_weights['execution_track_record']} correlation
         
-        Analyze founder profiles and generate signal scores (0-100) with detailed reasoning.
+        Analyze founder profiles and generate signal scores (0-100) with DETAILED EXPLANATIONS for each score.
         
         Return ONLY valid JSON in this exact format:
         {{
@@ -301,12 +301,26 @@ class FounderSignalAgent(VERSSAIAIAgent):
                 "execution_score": 0,
                 "overall_signal_score": 0
             }},
+            "score_explanations": {{
+                "education_explanation": "DETAILED explanation of why this score was given, including specific factors considered",
+                "experience_explanation": "DETAILED explanation of experience assessment and scoring rationale",
+                "network_explanation": "DETAILED explanation of network quality assessment and scoring",
+                "technical_explanation": "DETAILED explanation of technical background evaluation",
+                "execution_explanation": "DETAILED explanation of execution capability assessment",
+                "overall_explanation": "DETAILED explanation of how overall score was calculated using weighted factors"
+            }},
             "analysis": {{
                 "education_analysis": "",
                 "experience_analysis": "",
                 "network_analysis": "",
                 "technical_analysis": "",
                 "execution_analysis": ""
+            }},
+            "scoring_methodology": {{
+                "weights_used": {json.dumps(self.research_weights)},
+                "calculation_method": "Weighted average based on proven correlation factors from 1,157 research papers",
+                "research_basis": "Analysis based on patterns from successful vs failed startups",
+                "confidence_factors": []
             }},
             "recommendation": "STRONG|POSITIVE|NEUTRAL|NEGATIVE",
             "confidence_level": 0.85,
@@ -315,7 +329,7 @@ class FounderSignalAgent(VERSSAIAIAgent):
             "comparable_founders": []
         }}
         
-        Use research-backed scoring and provide specific reasoning for each score.
+        Provide SPECIFIC, DETAILED reasoning for each score. Explain exactly what factors contributed to each score and why.
         """
     
     def analyze_founder(self, founder_data: Dict[str, Any], company_context: Dict[str, Any] = None) -> Dict[str, Any]:
