@@ -432,7 +432,7 @@ Please analyze and respond with valid JSON only."""
             "key_strengths": ["Requires AI analysis for detailed insights"],
             "risk_factors": ["OpenAI API key needed for comprehensive analysis"],
             "comparable_founders": [],
-            "analysis_timestamp": datetime.utcnow().isoformat(),
+            "analysis_timestamp": f"fallback_{datetime.utcnow().date().isoformat()}",
             "research_methodology": 'fallback_mode',
             "agent_version": '1.0'
         }
