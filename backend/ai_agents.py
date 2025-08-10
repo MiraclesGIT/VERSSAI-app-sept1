@@ -503,7 +503,7 @@ class InvestmentThesisAgent(VERSSAIAIAgent):
         - Capital intensive business models
         - Limited exit opportunities
         
-        Return ONLY valid JSON in this exact format:
+        Return ONLY valid JSON with DETAILED SCORING EXPLANATIONS in this exact format:
         {
             "thesis_match_score": 0,
             "recommendation": "STRONG_BUY|BUY|HOLD|PASS",
@@ -522,12 +522,32 @@ class InvestmentThesisAgent(VERSSAIAIAgent):
                 "unit_economics_score": 0,
                 "defensibility_score": 0
             },
+            "scoring_explanations": {
+                "thesis_match_explanation": "DETAILED explanation of thesis match score calculation",
+                "market_size_explanation": "DETAILED explanation of market size assessment",
+                "market_timing_explanation": "DETAILED explanation of market timing evaluation",
+                "competitive_landscape_explanation": "DETAILED explanation of competitive analysis",
+                "domain_expertise_explanation": "DETAILED explanation of founder domain expertise",
+                "execution_capability_explanation": "DETAILED explanation of execution assessment",
+                "team_quality_explanation": "DETAILED explanation of team evaluation",
+                "scalability_explanation": "DETAILED explanation of business model scalability",
+                "unit_economics_explanation": "DETAILED explanation of unit economics assessment",
+                "defensibility_explanation": "DETAILED explanation of competitive moats"
+            },
+            "calculation_methodology": {
+                "overall_scoring_method": "Weighted scoring based on proven investment success factors",
+                "research_papers_basis": "Analysis derived from 1,157 research papers on VC success patterns",
+                "risk_assessment_factors": [],
+                "success_correlation_factors": []
+            },
             "key_insights": [],
             "risk_factors": [],
             "exit_scenarios": [],
             "comparable_investments": [],
             "confidence_level": 0.85
         }
+        
+        Provide SPECIFIC, DETAILED explanations for each score showing exactly how it was calculated and what factors influenced it.
         """
     
     def evaluate_investment(self, company_data: Dict[str, Any], founder_analysis: Dict[str, Any] = None, 
