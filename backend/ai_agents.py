@@ -315,13 +315,18 @@ class FounderSignalAgent(VERSSAIAIAgent):
             Comprehensive founder signal analysis
         """
         try:
-            # Query RAG for similar founder patterns
+            # Create deterministic RAG context to avoid non-deterministic results
             rag_context = ""
             if company_context:
+                market = company_context.get('market', 'technology')
+                # Use deterministic query for consistent results
+                deterministic_query = f"successful_founders_{market}_market"
                 rag_results = rag_service.query_platform_knowledge(
-                    f"successful founders in {company_context.get('market', 'technology')} market",
+                    deterministic_query,
                     top_k=3
                 )
+                # Sort results by score for consistency
+                rag_results = sorted(rag_results, key=lambda x: x.get('score', 1), reverse=False)
                 rag_context = "\n".join([r['content'][:200] for r in rag_results])
             
             user_prompt = f"""Analyze this founder profile using research-backed methodology:
@@ -342,7 +347,7 @@ Research Context:
 
 Please analyze and respond with valid JSON only."""
             
-            response = self.call_ai(user_prompt, self.system_prompt, temperature=0.4)
+            response = self.call_ai(user_prompt, self.system_prompt, temperature=0.0)
             
             # Clean response to extract JSON
             response_clean = response.strip()
