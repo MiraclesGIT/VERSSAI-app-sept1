@@ -98,8 +98,8 @@ class VERSSAIAIAgent:
             logger.error(f"Gemini API error: {e}")
             return self._mock_response(prompt)
     
-    def _call_openai(self, prompt: str, system_prompt: str = "", temperature: float = 0.7) -> str:
-        """Call OpenAI API as fallback"""
+    def _call_openai(self, prompt: str, system_prompt: str = "", temperature: float = 0.0) -> str:
+        """Call OpenAI API as fallback with deterministic settings"""
         try:
             messages = []
             if system_prompt:
@@ -110,7 +110,10 @@ class VERSSAIAIAgent:
                 model="gpt-4",
                 messages=messages,
                 temperature=temperature,
-                max_tokens=2000
+                max_tokens=2000,
+                top_p=1.0,  # Deterministic sampling
+                frequency_penalty=0,
+                presence_penalty=0
             )
             return response.choices[0].message.content
         except Exception as e:
