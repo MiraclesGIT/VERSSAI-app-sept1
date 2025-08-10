@@ -520,6 +520,7 @@ class InvestmentThesisAgent(VERSSAIAIAgent):
                           investor_thesis: str = None) -> Dict[str, Any]:
         """
         Evaluate investment opportunity against thesis and research patterns using Gemini
+        Now with caching for deterministic results
         
         Args:
             company_data: Company information and metrics
@@ -530,6 +531,14 @@ class InvestmentThesisAgent(VERSSAIAIAgent):
             Comprehensive investment evaluation
         """
         try:
+            # Create cache key for deterministic results
+            cache_key = hashlib.md5(f"investment_{json.dumps(company_data, sort_keys=True)}_{json.dumps(founder_analysis or {}, sort_keys=True)}_{investor_thesis or ''}".encode()).hexdigest()
+            
+            # Check cache first
+            if cache_key in _analysis_cache:
+                logger.info(f"Returning cached investment evaluation for {company_data.get('company_name', 'Unknown')}")
+                return _analysis_cache[cache_key]
+            
             # Query RAG for similar successful investments - Use deterministic approach
             market = company_data.get('market', 'technology')
             deterministic_query = f"successful_investments_{market}_market_business_model"
@@ -578,12 +587,14 @@ Please evaluate and respond with valid JSON only."""
                 evaluation_data = json.loads(response_clean)
                 
                 # Add metadata - Use deterministic timestamp
-                import hashlib
                 company_hash = hashlib.md5(str(company_data).encode()).hexdigest()
                 evaluation_data['evaluation_timestamp'] = f"deterministic_hash_{company_hash}"
                 evaluation_data['research_methodology'] = 'verssai_1157_papers_gemini'
                 evaluation_data['agent_version'] = '2.0'
                 evaluation_data['ai_provider'] = 'gemini'
+                
+                # Cache the result
+                _analysis_cache[cache_key] = evaluation_data
                 
                 return evaluation_data
                 
