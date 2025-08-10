@@ -10,6 +10,8 @@ const FounderSignalFit = () => {
   const [analysisStage, setAnalysisStage] = useState('idle'); // idle, uploading, extracting, enriching, analyzing, complete
   const [extractedData, setExtractedData] = useState(null);
   const [signalScores, setSignalScores] = useState(null);
+  const [scoringExplanation, setScoringExplanation] = useState(null);
+  const [showExplanation, setShowExplanation] = useState(false);
   const [enrichmentProgress, setEnrichmentProgress] = useState({});
   const [uploadProgress, setUploadProgress] = useState(0);
   const [deckId, setDeckId] = useState(null);
