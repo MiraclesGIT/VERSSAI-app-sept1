@@ -483,6 +483,209 @@ const FounderSignalFit = () => {
               </div>
             </div>
 
+            {/* Scoring Explanation Toggle */}
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-lg p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Calculator className="w-6 h-6 text-blue-600" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Scoring Methodology</h3>
+                    <p className="text-gray-600 text-sm">Understand how your scores were calculated</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowExplanation(!showExplanation)}
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  {showExplanation ? 'Hide' : 'Show'} Details
+                </button>
+              </div>
+            </div>
+
+            {/* Detailed Scoring Explanation */}
+            {showExplanation && scoringExplanation && (
+              <div className="bg-white rounded-xl shadow-lg p-8 space-y-8">
+                <div className="border-b border-gray-200 pb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <Award className="w-8 h-8 text-blue-600" />
+                    Comprehensive Scoring Explanation
+                  </h3>
+                  <div className="bg-blue-50 rounded-lg p-4 mb-6">
+                    <p className="text-blue-800 font-medium">
+                      Overall Score: {scoringExplanation.overall_score}% - {scoringExplanation.recommendation}
+                    </p>
+                    <p className="text-blue-700 text-sm mt-1">
+                      Based on analysis of {scoringExplanation.research_basis?.papers_analyzed || 1157} research papers on startup success patterns
+                    </p>
+                  </div>
+                </div>
+
+                {/* Founder Scoring Methodology */}
+                <div className="space-y-6">
+                  <div className="bg-gray-50 rounded-lg p-6">
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                      <Users className="w-5 h-5 text-purple-600" />
+                      Founder Signal Analysis
+                    </h4>
+                    <p className="text-gray-700 mb-4">
+                      {scoringExplanation.founder_scoring?.methodology}
+                    </p>
+                    
+                    {/* Weight Factors */}
+                    <div className="mb-6">
+                      <h5 className="font-semibold text-gray-800 mb-3">Research-Backed Weight Factors:</h5>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        {Object.entries(scoringExplanation.founder_scoring?.weight_factors || {}).map(([factor, weight]) => (
+                          <div key={factor} className="bg-white rounded-lg p-3 border">
+                            <div className="font-medium text-sm text-gray-900 capitalize">
+                              {factor.replace('_', ' ')}
+                            </div>
+                            <div className="text-lg font-bold text-blue-600">
+                              {(weight * 100).toFixed(0)}%
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Detailed Founder Scores */}
+                    {scoringExplanation.founder_scoring?.detailed_scores?.map((founder, idx) => (
+                      <div key={idx} className="border border-gray-200 rounded-lg p-6 mb-4">
+                        <h5 className="font-semibold text-lg text-gray-900 mb-4">
+                          {founder.founder_name} - Detailed Score Breakdown
+                        </h5>
+                        
+                        <div className="space-y-4">
+                          {Object.entries(founder.scores || {}).map(([scoreType, score]) => {
+                            const explanationKey = scoreType.replace('_score', '_explanation');
+                            const explanation = founder.explanations?.[explanationKey];
+                            
+                            return (
+                              <div key={scoreType} className="bg-gray-50 rounded-lg p-4">
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="font-medium text-gray-800 capitalize">
+                                    {scoreType.replace('_', ' ')}
+                                  </span>
+                                  <span className={`px-3 py-1 rounded-full text-sm font-bold ${
+                                    score >= 80 ? 'bg-green-100 text-green-800' :
+                                    score >= 60 ? 'bg-yellow-100 text-yellow-800' :
+                                    'bg-red-100 text-red-800'
+                                  }`}>
+                                    {score}%
+                                  </span>
+                                </div>
+                                {explanation && (
+                                  <p className="text-sm text-gray-600 leading-relaxed">
+                                    {explanation}
+                                  </p>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Investment Scoring Methodology */}
+                  <div className="bg-gray-50 rounded-lg p-6">
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                      <TrendingUp className="w-5 h-5 text-green-600" />
+                      Investment Evaluation Analysis
+                    </h4>
+                    
+                    <div className="mb-4">
+                      <h5 className="font-semibold text-gray-800 mb-3">Key Assessment Factors:</h5>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {scoringExplanation.investment_scoring?.key_factors?.map((factor, idx) => (
+                          <div key={idx} className="bg-white rounded-lg p-3 border flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                            <span className="text-sm text-gray-700">{factor}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Detailed Investment Assessments */}
+                    {Object.entries(scoringExplanation.investment_scoring?.detailed_assessments || {}).map(([assessmentType, explanation]) => (
+                      <div key={assessmentType} className="bg-white rounded-lg p-4 border mb-3">
+                        <h6 className="font-medium text-gray-900 mb-2 capitalize">
+                          {assessmentType.replace('_explanation', '').replace('_', ' ')}
+                        </h6>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {explanation}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Research Basis */}
+                  <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6">
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                      <BookOpen className="w-5 h-5 text-indigo-600" />
+                      Research Foundation
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="bg-white rounded-lg p-4">
+                        <div className="text-2xl font-bold text-indigo-600 mb-1">
+                          {scoringExplanation.research_basis?.papers_analyzed || 1157}
+                        </div>
+                        <div className="text-sm text-gray-600">Research Papers Analyzed</div>
+                      </div>
+                      <div className="bg-white rounded-lg p-4">
+                        <div className="text-2xl font-bold text-indigo-600 mb-1">
+                          {((scoringExplanation.research_basis?.confidence_level || 0.85) * 100).toFixed(0)}%
+                        </div>
+                        <div className="text-sm text-gray-600">Analysis Confidence</div>
+                      </div>
+                    </div>
+                    <div className="mt-4">
+                      <p className="text-gray-700 text-sm">
+                        <strong>Analysis Method:</strong> {scoringExplanation.research_basis?.success_patterns}
+                      </p>
+                      <p className="text-gray-700 text-sm mt-2">
+                        <strong>AI Model:</strong> {scoringExplanation.research_basis?.ai_model}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Insights and Risks */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white rounded-xl shadow-lg p-8">
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-green-500" />
+                  Key Insights
+                </h3>
+                <ul className="space-y-3">
+                  {signalScores.insights.map((insight, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">{insight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-lg p-8">
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-amber-500" />
+                  Risk Factors
+                </h3>
+                <ul className="space-y-3">
+                  {signalScores.risks.map((risk, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <AlertCircle className="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">{risk}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
             {/* Action Buttons */}
             <div className="flex justify-center gap-4">
               <button className="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition">
