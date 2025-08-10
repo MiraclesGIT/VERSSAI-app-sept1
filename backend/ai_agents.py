@@ -239,7 +239,7 @@ Please extract the information and respond with valid JSON only."""
             "team_size": 5,
             "stage": "Seed",
             "confidence_score": 0.3,
-            "extracted_at": datetime.utcnow().isoformat(),
+            "extracted_at": f"fallback_{datetime.utcnow().date().isoformat()}",
             "extraction_method": "fallback",
             "agent_version": "1.0"
         }
