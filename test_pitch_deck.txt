@@ -1,0 +1,37 @@
+TechFlow AI - Series A Pitch Deck
+
+PROBLEM & SOLUTION
+- Large enterprises struggle with data analytics - $2B market pain point
+- TechFlow AI provides real-time ML-powered insights for enterprise data
+- Revolutionary approach using proprietary neural network architecture
+
+FOUNDERS
+- Dr. Sarah Chen, CEO: PhD MIT Computer Science, Former Google Senior Product Manager (5 years), Led 3 product launches generating $100M+ revenue
+- Michael Rodriguez, CTO: Stanford MS AI, Ex-Tesla Senior Engineer (4 years), 15+ patents in ML/AI, Previous startup exit ($50M acquisition)
+- Lisa Wang, COO: Harvard MBA, Former McKinsey Partner (8 years), Scaled 2 startups from seed to Series B
+
+MARKET & TRACTION  
+- Total Addressable Market: $85B (growing 35% CAGR)
+- Current ARR: $4.2M (400% YoY growth)
+- 25 enterprise customers including Fortune 500 companies
+- Average Contract Value: $168K
+- 90% customer retention rate
+- Product-market fit validated with 9.2/10 NPS score
+
+BUSINESS MODEL
+- B2B SaaS with enterprise annual contracts
+- Freemium model with premium AI features
+- Multiple revenue streams: Core platform, Add-ons, Professional services
+- Gross margins: 85% (industry leading)
+
+FUNDING
+- Seeking $12M Series A for product development and sales expansion
+- Previous funding: $2M seed round led by tier-1 VC
+- Strong unit economics: LTV/CAC ratio of 7.2x
+- 18 months runway with current funding
+
+COMPETITIVE ADVANTAGE
+- Proprietary ML algorithms with 40% better accuracy than competitors
+- Strong network effects from data sharing between customers
+- Patent portfolio protecting core IP
+- First-mover advantage in real-time enterprise analytics
