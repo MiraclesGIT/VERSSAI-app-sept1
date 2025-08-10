@@ -1,0 +1,47 @@
+{
+  "founder_name": "Michael Torres",
+  "founder_role": "CTO",
+  "scores": {
+    "education_score": 95,
+    "experience_score": 85,
+    "network_score": 70,
+    "technical_score": 90,
+    "execution_score": 75,
+    "overall_signal_score": 83
+  },
+  "analysis": {
+    "education_analysis": "MIT PhD grants a strong positive signal, aligning with the 0.23 correlation between top-tier education and startup success.  His PhD likely specialized in a relevant field given the AI/ML market focus.",
+    "experience_analysis": "Prior experience as a Facebook engineer demonstrates technical expertise and exposure to scaling systems, relevant for a B2B SaaS company. This aligns with the 0.28 correlation for technical background in B2B SaaS and 0.25 for industry experience.",
+    "network_analysis": "Working at Facebook likely provided a strong network, although specific quality is unknown.  We assign a moderate score based on the 0.18 correlation of network quality with success, assuming access to talent and potential clients within the enterprise AI/ML space.",
+    "technical_analysis": "His role as CTO and background as a Facebook engineer in the AI/ML space suggests a strong technical background, highly relevant for this market. This aligns with the 0.28 correlation factor.",
+    "execution_analysis": "While specific execution track record details are unavailable, his experience at Facebook and current CTO role suggest experience in shipping products and managing teams. We assign a moderate-high score based on the 0.3 correlation of execution with success, assuming involvement in successful projects at Facebook."
+  },
+  "recommendation": "STRONG",
+  "confidence_level": 0.85,
+  "key_strengths": [
+    "Top-tier education (MIT PhD)",
+    "Strong technical background (Ex-Facebook engineer)",
+    "Relevant industry experience (AI/ML)",
+    "Likely strong network from Facebook"
+  ],
+  "risk_factors": [
+    "Limited information on specific execution track record outside of Facebook",
+    "Network quality needs further investigation"
+  ],
+  "comparable_founders": [],
+  "analysis_timestamp": "deterministic_hash_5cc375bcb16e4f017d18386b314975f2",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "signal_id": "d1417bce-a6fd-4b67-a4f8-8b14b764c788",
+  "deck_id": "6e71dc22-eaab-41d5-8dbb-1e518857eb39",
+  "created_at": "2025-08-10T22:41:28.937950"
+}
