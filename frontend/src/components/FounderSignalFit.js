@@ -102,6 +102,9 @@ const FounderSignalFit = () => {
             });
             
             setAnalysisStage('complete');
+            
+            // Fetch detailed scoring explanation
+            fetchScoringExplanation(deckId);
             return;
             
           } else if (analysisData.status === 'failed') {
