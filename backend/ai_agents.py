@@ -175,6 +175,7 @@ class DeckExtractionAgent(VERSSAIAIAgent):
     def extract_from_text(self, text_content: str, company_name_hint: str = None) -> Dict[str, Any]:
         """
         Extract structured information from pitch deck text using Gemini
+        Now with caching for deterministic results
         
         Args:
             text_content: Extracted text from pitch deck
@@ -184,6 +185,14 @@ class DeckExtractionAgent(VERSSAIAIAgent):
             Structured extraction results
         """
         try:
+            # Create cache key for deterministic results
+            cache_key = hashlib.md5(f"extraction_{text_content}_{company_name_hint}".encode()).hexdigest()
+            
+            # Check cache first
+            if cache_key in _analysis_cache:
+                logger.info(f"Returning cached extraction result for {company_name_hint}")
+                return _analysis_cache[cache_key]
+            
             user_prompt = f"""Analyze this pitch deck content and extract key information:
 
 Company hint: {company_name_hint or 'Unknown'}
@@ -207,11 +216,13 @@ Please extract the information and respond with valid JSON only."""
                 extraction_data = json.loads(response_clean)
                 
                 # Add metadata - Use deterministic timestamp based on content hash for consistency
-                import hashlib
                 content_hash = hashlib.md5(text_content.encode()).hexdigest()
                 extraction_data['extracted_at'] = f"deterministic_hash_{content_hash}"
                 extraction_data['extraction_method'] = 'ai_agent_gemini'
                 extraction_data['agent_version'] = '2.0'
+                
+                # Cache the result
+                _analysis_cache[cache_key] = extraction_data
                 
                 return extraction_data
                 
