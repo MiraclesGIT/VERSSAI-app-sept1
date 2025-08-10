@@ -238,6 +238,8 @@ const FounderSignalFit = () => {
     setUploadedFile(null);
     setExtractedData(null);
     setSignalScores(null);
+    setScoringExplanation(null);
+    setShowExplanation(false);
     setEnrichmentProgress({});
     setUploadProgress(0);
     setDeckId(null);
