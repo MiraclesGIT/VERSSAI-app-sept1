@@ -594,7 +594,7 @@ Please evaluate and respond with valid JSON only."""
             "exit_scenarios": ["Analysis requires AI processing"],
             "comparable_investments": [],
             "confidence_level": 0.3,
-            "evaluation_timestamp": datetime.utcnow().isoformat(),
+            "evaluation_timestamp": f"fallback_{datetime.utcnow().date().isoformat()}",
             "research_methodology": 'fallback_mode',
             "agent_version": '1.0'
         }
