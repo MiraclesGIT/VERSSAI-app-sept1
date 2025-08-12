@@ -22,19 +22,6 @@ const API = `${BACKEND_URL}/api`;
 const Header = () => {
   const location = useLocation();
 
-  const getPageTitle = () => {
-    switch (location.pathname) {
-      case '/': return 'Dashboard';
-      case '/founder-signal': return 'Founder Signal Fit';
-      case '/due-diligence': return 'Due Diligence Data Room';
-      case '/portfolio': return 'Portfolio Management';
-      case '/fund-assessment': return 'Fund Assessment';
-      case '/fund-allocation': return 'Fund Allocation';
-      case '/fund-vintage': return 'Fund Vintage Management';
-      default: return 'Dashboard';
-    }
-  };
-
   return (
     <header className="clickup-header">
       <div className="clickup-header-content">
@@ -86,7 +73,7 @@ const Header = () => {
   );
 };
 
-const Home = () => {
+const Dashboard = () => {
   const [systemStats, setSystemStats] = useState({
     totalAnalyses: 1247,
     activeDeals: 18,
@@ -389,7 +376,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/founder-signal" element={<FounderSignalFit />} />
           <Route path="/due-diligence" element={<DueDiligenceDataRoom />} />
           <Route path="/portfolio" element={<PortfolioManagement />} />
