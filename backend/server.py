@@ -898,11 +898,10 @@ async def add_investment_decision_endpoint(decision_data: InvestmentDecisionCrea
 async def add_investment_outcome_endpoint(outcome_data: InvestmentOutcomeCreate):
     """Add investment outcome for backtesting analysis"""
     try:
-        outcome_id = await backtesting_engine.add_investment_outcome(outcome_data.dict())
-        outcome = backtesting_engine.investment_outcomes.get(outcome_data.decision_id)
+        outcome = await backtesting_engine.add_investment_outcome(outcome_data.dict())
         
         return {
-            "outcome_id": outcome_id if isinstance(outcome_id, str) else outcome_data.decision_id,
+            "outcome_id": outcome.decision_id,  # Use decision_id as outcome_id for tracking
             "decision_id": outcome_data.decision_id,
             "company_name": outcome_data.company_name,
             "outcome_type": outcome_data.outcome_type,
