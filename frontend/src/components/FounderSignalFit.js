@@ -4,7 +4,7 @@ import {
   Upload, FileText, Linkedin, Globe, Github, TrendingUp, 
   AlertCircle, CheckCircle, Clock, BarChart3, Users, 
   Target, Zap, Info, BookOpen, Calculator, Award, 
-  ArrowLeft, Brain, Search, Database, Activity 
+  ArrowLeft, Brain, Search, Database, Activity, Download
 } from 'lucide-react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
