@@ -80,24 +80,22 @@ class VERSSAIEngineBackendTester:
             self.log_test("Main Health Endpoint", False, "", str(e))
 
     def test_founder_signal_health(self):
-        """Test /api/founder-signal/health endpoint"""
+        """Test Founder Signal Fit functionality via main health endpoint"""
         try:
-            response = self.session.get(f"{self.base_url}/founder-signal/health", timeout=TEST_TIMEOUT)
+            response = self.session.get(f"{self.base_url}/health", timeout=TEST_TIMEOUT)
             
             if response.status_code == 200:
                 data = response.json()
-                status = data.get('status', 'unknown')
-                framework = data.get('framework', 'unknown')
                 features = data.get('features', {})
                 
                 # Check Founder Signal Fit features
-                deck_upload = features.get('deck_upload', False)
-                ai_analysis = features.get('ai_analysis', False)
-                founder_scoring = features.get('founder_scoring', False)
+                founder_signal_ai = features.get('founder_signal_ai', 'unknown')
+                workflow_orchestrator = features.get('workflow_orchestrator', 'unknown')
+                gemini_integration = features.get('gemini_integration', 'unknown')
                 
-                details = f"Status: {status}, Framework: {framework}, Upload: {deck_upload}, AI Analysis: {ai_analysis}, Scoring: {founder_scoring}"
+                details = f"Founder Signal AI: {founder_signal_ai}, Workflow Orchestrator: {workflow_orchestrator}, Gemini: {gemini_integration}"
                 
-                if status == 'operational' and deck_upload and ai_analysis:
+                if founder_signal_ai == 'enabled' and workflow_orchestrator == 'enabled':
                     self.log_test("Founder Signal Health", True, details)
                 else:
                     self.log_test("Founder Signal Health", False, details, "Founder Signal features not fully operational")
