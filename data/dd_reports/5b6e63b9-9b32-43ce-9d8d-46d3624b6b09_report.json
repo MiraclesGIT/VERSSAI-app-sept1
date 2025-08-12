@@ -1,0 +1,130 @@
+{
+  "company_id": "5b6e63b9-9b32-43ce-9d8d-46d3624b6b09",
+  "company_name": "NeuralTech AI",
+  "analysis_timestamp": "2025-08-12T15:06:22.595778",
+  "document_analyses": [
+    {
+      "document_id": "5b6e63b9-9b32-43ce-9d8d-46d3624b6b09_dd_doc_1",
+      "filename": "5b6e63b9-9b32-43ce-9d8d-46d3624b6b09_doc_1_33c7a6fe-b0b0-4868-8e3c-d28be495bd56.txt",
+      "document_type": "Text Document",
+      "category": "financial",
+      "key_insights": [
+        "NeuralTech AI generated $4.2M in revenue in 2023 with a high gross margin of 87%.",
+        "The company's current burn rate is $400K per month."
+      ],
+      "risk_factors": [
+        "With a $4.2M annual revenue and a $400K monthly burn rate ($4.8M annualized), NeuralTech AI has a negative net burn.  Further investigation is needed to understand their runway and funding sources."
+      ],
+      "completeness_score": 50,
+      "credibility_score": 70,
+      "red_flags": [],
+      "summary": "NeuralTech AI's 2023 financials show promising revenue and gross margin figures. However, the high burn rate relative to revenue raises concerns about financial sustainability.  More detailed financial statements are needed to assess their financial health, including operating expenses, net income/loss, cash reserves, and debt.",
+      "extracted_data": {
+        "revenue_2023": 4200000,
+        "gross_margin_2023": 0.87,
+        "burn_rate_monthly": 400000
+      }
+    },
+    {
+      "document_id": "5b6e63b9-9b32-43ce-9d8d-46d3624b6b09_dd_doc_2",
+      "filename": "5b6e63b9-9b32-43ce-9d8d-46d3624b6b09_doc_2_0ec25046-9195-4765-b993-15e100a2dc59.txt",
+      "document_type": "Text Document",
+      "category": "legal",
+      "key_insights": [
+        "Incorporated as a Delaware C-Corp, which is a standard practice for startups seeking investment.",
+        "Possesses a substantial IP portfolio with 15 patents pending, indicating a focus on innovation and potential competitive advantage.",
+        "Demonstrates commitment to compliance with SOC2 and GDPR, suggesting awareness of data security and privacy regulations."
+      ],
+      "risk_factors": [
+        "While patents pending suggest innovation, it's crucial to assess the strength and defensibility of these patents and the likelihood of them being granted."
+      ],
+      "completeness_score": 50,
+      "credibility_score": 90,
+      "red_flags": [],
+      "summary": "NeuralTech AI is incorporated as a Delaware C-Corp and has a portfolio of 15 patents pending.  Their compliance with SOC2 and GDPR demonstrates a commitment to data security and privacy.  Further investigation is needed regarding the strength and defensibility of the pending patents.",
+      "extracted_data": {
+        "incorporation_state": "Delaware",
+        "incorporation_type": "C-Corp",
+        "patent_status": "Pending",
+        "patent_count": 15,
+        "compliance_certifications": [
+          "SOC2",
+          "GDPR"
+        ]
+      }
+    },
+    {
+      "document_id": "5b6e63b9-9b32-43ce-9d8d-46d3624b6b09_dd_doc_3",
+      "filename": "5b6e63b9-9b32-43ce-9d8d-46d3624b6b09_doc_3_815ae116-b13b-4687-9692-56438fb3ade1.txt",
+      "document_type": "Text Document",
+      "category": "market",
+      "key_insights": [
+        "Large total addressable market ($127B)",
+        "Focus on enterprise sales",
+        "Competitive advantage based on proprietary AI algorithms"
+      ],
+      "risk_factors": [
+        "Market timing risk (AI market is competitive and rapidly evolving)",
+        "Execution risk (enterprise sales can be challenging and require significant resources)"
+      ],
+      "completeness_score": 50,
+      "credibility_score": 70,
+      "red_flags": [],
+      "summary": "NeuralTech AI is targeting a large total addressable market ($127B) in the artificial intelligence industry.  Their competitive advantage is based on proprietary AI algorithms, and they plan to utilize an enterprise sales go-to-market strategy.  While the large market presents a significant opportunity, the competitive landscape and the complexities of enterprise sales pose challenges.",
+      "extracted_data": {
+        "TAM": "$127B",
+        "Competitive Advantage": "Proprietary AI algorithms",
+        "Go-to-Market Strategy": "Enterprise sales"
+      }
+    }
+  ],
+  "cross_document_insights": [
+    "Cross-document analysis: ```json\n[\n  \"Consistency: The company's focus on innovation, highlighted by the substantial IP portfolio in the legal document, aligns with its competitive advantage based on proprietary AI algorithms..."
+  ],
+  "overall_risk_assessment": {
+    "overall_risk": "low",
+    "risk_score": 43.33333333333333,
+    "total_red_flags": 0,
+    "total_risk_factors": 4,
+    "average_credibility": 76.66666666666667
+  },
+  "completeness_assessment": {
+    "completeness_score": 20.0,
+    "categories_covered": 3,
+    "total_categories": 6,
+    "missing_categories": [
+      "legal_documents",
+      "team_information",
+      "market_analysis",
+      "financial_documents",
+      "technical_assets",
+      "operational_details"
+    ],
+    "average_document_completeness": 50.0
+  },
+  "red_flags": [],
+  "recommendations": [
+    "Request additional documentation - only 3/6 categories covered",
+    "Missing legal_documents: Request Corporate structure, Key contracts, IP portfolio, Compliance status",
+    "Missing team_information: Request Management bios, Organizational chart, Key employee contracts",
+    "Missing market_analysis: Request Market research, Competitive analysis, Customer validation",
+    "Missing financial_documents: Request Financial statements, Cash flow, Revenue analysis, Budget/Forecast",
+    "Missing technical_assets: Request Product specs, Technical architecture, Security assessment",
+    "Missing operational_details: Request Business processes, Operational metrics, Vendor relationships"
+  ],
+  "checklist_status": {
+    "completeness_score": 20.0,
+    "categories_covered": 3,
+    "total_categories": 6,
+    "missing_categories": [
+      "legal_documents",
+      "team_information",
+      "market_analysis",
+      "financial_documents",
+      "technical_assets",
+      "operational_details"
+    ],
+    "average_document_completeness": 50.0
+  },
+  "overall_score": 51.7
+}
