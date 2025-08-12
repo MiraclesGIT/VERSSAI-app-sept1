@@ -570,15 +570,18 @@ test_plan:
 
   - task: "Implement missing backend data ingestion endpoints"
     implemented: true
-    working: true
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "🔧 CRITICAL BACKEND ENDPOINTS ADDED - Portfolio, Fund Assessment & Fund Allocation data ingestion endpoints implemented! Added comprehensive API endpoints: (1) /api/portfolio/ingest-data for portfolio company data, meeting notes, and KPI updates, (2) /api/portfolio/add-company, /api/portfolio/board-meeting endpoints for structured data ingestion, (3) /api/fund-assessment/add-investment-decision, /api/fund-assessment/add-investment-outcome for backtesting data, (4) /api/fund-allocation/create-targets, /api/fund-allocation/optimize for fund deployment, (5) /api/fund-allocation/ingest-data for allocation data ingestion. All endpoints include proper error handling, JSON validation, and integrate with existing AI agents. Backend services restarted successfully."
+      - working: false
+        agent: "testing"
+        comment: "🔥 NEW DATA INGESTION ENDPOINTS TESTING COMPLETED - MIXED RESULTS (58.3% success rate, 7/12 tests passed). DETAILED FINDINGS: (1) ✅ PORTFOLIO MANAGEMENT DATA INGESTION: FULLY OPERATIONAL (4/4 tests passed) - /api/portfolio/ingest-data endpoint working perfectly for company data (ingestion ID: 5c1a4812-f5e8-4a15-8ee2-d618f0718904), meeting notes processing (meeting ID: 6767d5f9-90b3-4ccc-bd5f-d01b958613f7), KPI updates (6 KPIs updated successfully), and proper error handling for invalid data types, (2) ❌ FUND ASSESSMENT DATA INGESTION: PARTIAL FAILURE (2/4 tests passed) - /api/fund-assessment/add-investment-decision working (decision ID created successfully), but /api/fund-assessment/add-investment-outcome failing with validation error (expects string decision_id but receives object), /api/fund-assessment/run-backtest failing with missing strategy_config parameter error, (3) ❌ FUND ALLOCATION DATA INGESTION: MAJOR ISSUES (1/4 tests passed) - /api/fund-allocation/create-targets failing with missing targets_data parameter, /api/fund-allocation/optimize failing with missing fund_size and targets_data parameters, /api/fund-allocation/ingest-data failing with same parameter issues. CRITICAL ISSUES IDENTIFIED: Fund Assessment and Fund Allocation endpoints have parameter passing issues in the backend implementation - functions expect different parameter names than what's being sent. Portfolio Management endpoints are production-ready, but Fund Assessment and Fund Allocation need backend fixes for proper parameter handling."
 
 agent_communication:
   - agent: "main"
