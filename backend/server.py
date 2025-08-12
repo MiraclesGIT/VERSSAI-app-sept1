@@ -880,11 +880,10 @@ async def get_portfolio_performance_report(fund_id: Optional[str] = None):
 async def add_investment_decision_endpoint(decision_data: InvestmentDecisionCreate):
     """Add investment decision for backtesting analysis"""
     try:
-        decision_id = await backtesting_engine.add_investment_decision(decision_data.dict())
-        decision = backtesting_engine.investment_decisions.get(decision_id)
+        decision = await backtesting_engine.add_investment_decision(decision_data.dict())
         
         return {
-            "decision_id": decision.decision_id if decision else decision_id,
+            "decision_id": decision.decision_id,
             "company_name": decision_data.company_name,
             "decision_type": decision_data.decision_type,
             "status": "added",
