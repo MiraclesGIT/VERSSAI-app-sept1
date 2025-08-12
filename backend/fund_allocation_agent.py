@@ -98,7 +98,7 @@ class AllocationReport:
 class MonteCarloEngine:
     """Monte Carlo simulation engine for fund allocation optimization"""
     
-    def __init__(self, num_simulations: int = 10000):
+    def __init__(self, num_simulations: int = 500):  # REDUCED for investor demo performance (was 10000)
         self.num_simulations = num_simulations
         self.random_seed = 42  # For reproducible results
         
