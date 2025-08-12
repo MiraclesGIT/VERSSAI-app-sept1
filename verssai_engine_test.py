@@ -50,9 +50,9 @@ class VERSSAIEngineBackendTester:
         print()
 
     def test_main_health_endpoint(self):
-        """Test main /api/ health endpoint"""
+        """Test main /api/health endpoint"""
         try:
-            response = self.session.get(f"{self.base_url}/", timeout=TEST_TIMEOUT)
+            response = self.session.get(f"{self.base_url}/health", timeout=TEST_TIMEOUT)
             
             if response.status_code == 200:
                 data = response.json()
@@ -61,13 +61,14 @@ class VERSSAIEngineBackendTester:
                 features = data.get('features', {})
                 
                 # Check core services
-                database = services.get('database', 'unknown')
+                mongodb = services.get('mongodb', 'unknown')
+                postgresql = services.get('postgresql', 'unknown')
                 rag_system = services.get('rag_system', 'unknown')
                 ai_agents = services.get('ai_agents', 'unknown')
                 
-                details = f"Status: {status}, Database: {database}, RAG: {rag_system}, AI Agents: {ai_agents}"
+                details = f"Status: {status}, MongoDB: {mongodb}, PostgreSQL: {postgresql}, RAG: {rag_system}, AI Agents: {ai_agents}"
                 
-                if status == 'operational' and database in ['connected', 'operational']:
+                if status == 'healthy' and mongodb == 'connected' and rag_system == 'operational':
                     self.log_test("Main Health Endpoint", True, details)
                 else:
                     self.log_test("Main Health Endpoint", False, details, "Core services not fully operational")
