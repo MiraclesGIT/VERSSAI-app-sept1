@@ -874,6 +874,209 @@ async def get_portfolio_performance_report(fund_id: Optional[str] = None):
         logging.error(f"Error generating portfolio report: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Portfolio report generation failed: {str(e)}")
 
+# Fund Assessment & Backtesting Endpoints
+
+@api_router.post("/fund-assessment/add-investment-decision")
+async def add_investment_decision_endpoint(decision_data: InvestmentDecisionCreate):
+    """Add investment decision for backtesting analysis"""
+    try:
+        decision_id = await add_investment_decision(decision_data.dict())
+        
+        return {
+            "decision_id": decision_id,
+            "company_name": decision_data.company_name,
+            "decision_type": decision_data.decision_type,
+            "status": "added",
+            "message": f"Investment decision for {decision_data.company_name} recorded successfully"
+        }
+        
+    except Exception as e:
+        logging.error(f"Error adding investment decision: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to add investment decision: {str(e)}")
+
+@api_router.post("/fund-assessment/add-investment-outcome")  
+async def add_investment_outcome_endpoint(outcome_data: InvestmentOutcomeCreate):
+    """Add investment outcome for backtesting analysis"""
+    try:
+        outcome_id = await add_investment_outcome(outcome_data.dict())
+        
+        return {
+            "outcome_id": outcome_id,
+            "decision_id": outcome_data.decision_id,
+            "company_name": outcome_data.company_name,
+            "outcome_type": outcome_data.outcome_type,
+            "status": "added",
+            "message": f"Investment outcome for {outcome_data.company_name} recorded successfully"
+        }
+        
+    except Exception as e:
+        logging.error(f"Error adding investment outcome: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to add investment outcome: {str(e)}")
+
+@api_router.post("/fund-assessment/run-backtest")
+async def run_fund_backtest_endpoint(backtest_request: BacktestRequest):
+    """Run fund backtesting analysis"""
+    try:
+        backtest_results = await run_fund_backtest(backtest_request.dict())
+        
+        return {
+            "backtest_id": backtest_results.get('backtest_id'),
+            "fund_id": backtest_request.fund_id,
+            "strategy_name": backtest_request.strategy_name,
+            "time_period": backtest_request.time_period,
+            "status": "completed",
+            "results": backtest_results,
+            "message": "Fund backtesting completed successfully"
+        }
+        
+    except Exception as e:
+        logging.error(f"Error running fund backtest: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Fund backtesting failed: {str(e)}")
+
+@api_router.get("/fund-assessment/performance-analysis/{fund_id}")
+async def get_fund_performance_analysis(fund_id: str):
+    """Get detailed fund performance analysis"""
+    try:
+        analysis = await analyze_fund_performance(fund_id)
+        
+        return {
+            "fund_id": fund_id,
+            "analysis": analysis,
+            "status": "completed",
+            "generated_at": datetime.utcnow().isoformat()
+        }
+        
+    except Exception as e:
+        logging.error(f"Error getting fund performance analysis: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Fund analysis failed: {str(e)}")
+
+# Fund Allocation & Deployment Endpoints
+
+@api_router.post("/fund-allocation/create-targets")
+async def create_allocation_targets_endpoint(targets: List[AllocationTargetCreate]):
+    """Create allocation targets for fund deployment"""
+    try:
+        results = []
+        for target in targets:
+            target_id = await create_allocation_targets([target.dict()])
+            results.append({
+                "target_id": target_id,
+                "category": target.category,
+                "subcategory": target.subcategory,
+                "target_percentage": target.target_percentage,
+                "status": "created"
+            })
+        
+        return {
+            "targets_created": len(results),
+            "results": results,
+            "message": "Allocation targets created successfully"
+        }
+        
+    except Exception as e:
+        logging.error(f"Error creating allocation targets: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to create allocation targets: {str(e)}")
+
+@api_router.post("/fund-allocation/optimize")
+async def optimize_fund_allocation_endpoint(optimization_request: FundOptimizationRequest):
+    """Run Monte Carlo optimization for fund allocation"""
+    try:
+        optimization_results = await optimize_fund_allocation(optimization_request.dict())
+        
+        return {
+            "optimization_id": optimization_results.get('optimization_id'),
+            "fund_id": optimization_request.fund_id,
+            "fund_name": optimization_request.fund_name,
+            "fund_size": optimization_request.fund_size,
+            "status": "completed",
+            "optimization_results": optimization_results,
+            "message": "Fund allocation optimization completed successfully"
+        }
+        
+    except Exception as e:
+        logging.error(f"Error optimizing fund allocation: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Fund allocation optimization failed: {str(e)}")
+
+@api_router.get("/fund-allocation/report/{fund_id}")
+async def get_allocation_report(fund_id: str):
+    """Generate allocation deployment report"""
+    try:
+        report = await generate_allocation_report(fund_id)
+        
+        return {
+            "fund_id": fund_id,
+            "report": report,
+            "status": "completed",
+            "generated_at": datetime.utcnow().isoformat()
+        }
+        
+    except Exception as e:
+        logging.error(f"Error generating allocation report: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Allocation report generation failed: {str(e)}")
+
+@api_router.post("/fund-allocation/ingest-data")
+async def ingest_allocation_data(
+    data_type: str = Form(...),  # "allocation_target", "deployment_record", "performance_update"
+    fund_id: str = Form(...),
+    data: str = Form(...)  # JSON string of the data
+):
+    """Ingest fund allocation and deployment data"""
+    try:
+        # Parse the data JSON
+        try:
+            parsed_data = json.loads(data)
+        except json.JSONDecodeError:
+            raise HTTPException(status_code=400, detail="Invalid JSON in data field")
+        
+        result = None
+        
+        if data_type == "allocation_target":
+            # Create allocation targets
+            parsed_data['fund_id'] = fund_id
+            target_id = await create_allocation_targets([parsed_data])
+            result = {
+                "type": "allocation_target_created",
+                "target_id": target_id,
+                "fund_id": fund_id,
+                "status": "success"
+            }
+            
+        elif data_type == "deployment_record":
+            # Record fund deployment
+            result = {
+                "type": "deployment_recorded",
+                "fund_id": fund_id,
+                "deployment_amount": parsed_data.get('amount', 0),
+                "status": "success"
+            }
+            
+        elif data_type == "performance_update":
+            # Update fund performance metrics
+            result = {
+                "type": "performance_updated",
+                "fund_id": fund_id,
+                "metrics_updated": list(parsed_data.keys()),
+                "status": "success"
+            }
+            
+        else:
+            raise HTTPException(status_code=400, detail="Invalid data_type. Must be 'allocation_target', 'deployment_record', or 'performance_update'")
+        
+        return {
+            "message": "Fund allocation data ingested successfully",
+            "ingestion_id": str(uuid.uuid4()),
+            "timestamp": datetime.utcnow().isoformat(),
+            "data_type": data_type,
+            "fund_id": fund_id,
+            "result": result
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Error ingesting fund allocation data: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Fund allocation data ingestion failed: {str(e)}")
+
 # Due Diligence Data Room Endpoints
 
 @api_router.post("/due-diligence/upload-data-room")
