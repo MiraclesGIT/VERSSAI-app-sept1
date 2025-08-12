@@ -1,0 +1,90 @@
+{
+  "executive_summary": "Sarah Chen presents a compelling profile with her Stanford CS background and Google product management experience.  Her experience in enterprise software development at Google suggests a strong foundation for leading a B2B SaaS company. However, her specific experience within the AI/ML domain requires further investigation.  Overall, she demonstrates promising potential but needs further vetting regarding her specific AI/ML expertise and leadership experience scaling a company.",
+  "founder_capability_assessment": {
+    "risk_level": "Medium",
+    "key_team_strengths": [
+      "Stanford CS background",
+      "Google product management experience",
+      "Experience in enterprise software"
+    ],
+    "key_team_gaps": [
+      "Specific AI/ML domain expertise unclear",
+      "Proven leadership experience scaling a company"
+    ],
+    "risk_justification": "While Sarah's background is impressive, her direct experience in the AI/ML space and leading a Series A stage company needs further validation.  Her Google experience likely provided valuable skills, but her specific role and responsibilities within product management need clarification."
+  },
+  "technical_capability_assessment": {
+    "execution_capability_score": 75,
+    "risk_level": "Medium",
+    "risk_justification": "Her Stanford CS background suggests strong technical fundamentals. However, the specific technical challenges of the AI/ML product require deeper understanding of her involvement in its development and her ability to lead a technical team."
+  },
+  "market_position_assessment": {
+    "founder_market_fit_score": 70,
+    "risk_level": "Medium",
+    "risk_justification": "The AI/ML market for enterprises is competitive.  Further assessment is needed to understand Sarah's go-to-market strategy, competitive differentiation, and understanding of the target customer needs."
+  },
+  "network_influence_assessment": {
+    "professional_network_quality": 70,
+    "risk_level": "Medium",
+    "risk_justification": "Her Google and Stanford network is likely valuable, but the specific connections relevant to the AI/ML enterprise space and her ability to leverage them for fundraising, partnerships, and talent acquisition needs further investigation."
+  },
+  "final_recommendation": {
+    "investment_green_flags": [
+      "Strong academic background",
+      "Experience at a leading tech company"
+    ],
+    "investment_red_flags": [
+      "Limited information on specific AI/ML experience",
+      "Unclear leadership experience scaling a startup"
+    ],
+    "critical_questions_for_founders": [
+      "What specific AI/ML experience do you have?",
+      "What is your go-to-market strategy?",
+      "How do you plan to scale the team?"
+    ],
+    "overall_investment_risk_level": "Medium",
+    "recommendation": "HOLD",
+    "confidence_level": 70
+  },
+  "information_gaps": [
+    "Details of her role and responsibilities at Google",
+    "Specific AI/ML expertise and projects",
+    "Go-to-market strategy and competitive analysis",
+    "Team composition and hiring plan"
+  ],
+  "scores": {
+    "education_score": 90,
+    "experience_score": 75,
+    "network_score": 70,
+    "technical_score": 75,
+    "execution_score": 70,
+    "overall_signal_score": 75
+  },
+  "analysis_timestamp": "deterministic_hash_7fa4a14ace5062bb05e1386f940d85f7",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "web_research_insights": [],
+  "social_media_analysis": {
+    "social_influence_score": 0,
+    "engagement_quality": "unknown",
+    "thought_leadership": "unknown",
+    "industry_presence": "unknown",
+    "key_insights": [
+      "Twitter API not configured - unable to analyze Sarah Chen's social presence"
+    ]
+  },
+  "recent_news": [],
+  "social_profiles": [],
+  "signal_id": "c162fdbf-01d0-4a61-89f1-dcab93eefd57",
+  "deck_id": "c3cc8466-5f17-49b6-87ee-ef7f5d603668",
+  "created_at": "2025-08-11T10:56:28.355489"
+}

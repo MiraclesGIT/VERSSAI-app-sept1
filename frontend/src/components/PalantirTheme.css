@@ -1,0 +1,505 @@
+/* 
+===============================================
+VERSSAI TOP DECILE VC INSTITUTIONAL THEME
+===============================================
+Professional, data-dense, Bloomberg Terminal inspired
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+:root {
+  /* === INSTITUTIONAL COLOR PALETTE === */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #151515;
+  --bg-tertiary: #1f1f1f;
+  --bg-panel: #1a1a1a;
+  --bg-elevated: #252525;
+  
+  /* === PROFESSIONAL ACCENTS === */
+  --accent-primary: #1e40af;     /* Institutional blue */
+  --accent-secondary: #0ea5e9;   /* Data blue */
+  --accent-success: #059669;     /* Financial green */
+  --accent-warning: #d97706;     /* Alert amber */
+  --accent-error: #dc2626;       /* Critical red */
+  --accent-neutral: #6b7280;     /* Muted gray */
+  
+  /* === SOPHISTICATED TYPOGRAPHY === */
+  --text-primary: #ffffff;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --text-muted: #6b7280;
+  --text-accent: #3b82f6;
+  
+  /* === INSTITUTIONAL BORDERS === */
+  --border-primary: #2d2d2d;
+  --border-secondary: #404040;
+  --border-accent: #1e40af;
+  --border-success: #059669;
+  --border-warning: #d97706;
+  
+  /* === PROFESSIONAL SHADOWS === */
+  --shadow-minimal: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-moderate: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.6);
+  
+  /* === SOPHISTICATED GRADIENTS === */
+  --gradient-primary: linear-gradient(135deg, #1e40af 0%, #0ea5e9 100%);
+  --gradient-success: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  --gradient-panel: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+}
+
+/* === GLOBAL RESET & BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow-x: hidden;
+  font-feature-settings: 'tnum', 'lnum'; /* Tabular numbers */
+}
+
+/* === INSTITUTIONAL TYPOGRAPHY === */
+.institutional-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.institutional-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  letter-spacing: -0.015em;
+}
+
+.institutional-mono {
+  font-family: 'JetBrains Mono', 'SF Mono', Consolas, Monaco, monospace;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.025em;
+}
+
+.institutional-data {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+/* === PROFESSIONAL PANELS === */
+.institutional-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-primary);
+  border-radius: 0;
+  box-shadow: var(--shadow-minimal);
+  position: relative;
+}
+
+.institutional-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient-primary);
+  opacity: 0.6;
+}
+
+.institutional-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.institutional-card:hover {
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-moderate);
+  transform: translateY(-1px);
+}
+
+/* === DATA VISUALIZATION === */
+.institutional-metric {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.institutional-metric:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-secondary);
+}
+
+.institutional-metric-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.institutional-metric-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+}
+
+.institutional-metric-change {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* === PROFESSIONAL STATUS INDICATORS === */
+.institutional-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0;
+  border: 1px solid;
+}
+
+.institutional-status.operational {
+  color: var(--accent-success);
+  background: rgba(5, 150, 105, 0.1);
+  border-color: var(--accent-success);
+}
+
+.institutional-status.processing {
+  color: var(--accent-secondary);
+  background: rgba(14, 165, 233, 0.1);
+  border-color: var(--accent-secondary);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.institutional-status.warning {
+  color: var(--accent-warning);
+  background: rgba(217, 119, 6, 0.1);
+  border-color: var(--accent-warning);
+}
+
+.institutional-status.critical {
+  color: var(--accent-error);
+  background: rgba(220, 38, 38, 0.1);
+  border-color: var(--accent-error);
+}
+
+/* === BLOOMBERG-STYLE BUTTONS === */
+.institutional-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.institutional-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+  border-color: var(--border-secondary);
+  box-shadow: var(--shadow-minimal);
+}
+
+.institutional-btn-primary {
+  color: var(--text-primary);
+  background: var(--gradient-primary);
+  border-color: var(--accent-primary);
+}
+
+.institutional-btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-moderate);
+}
+
+/* === TERMINAL-STYLE COMMAND BAR === */
+.institutional-command-bar {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  background: var(--bg-primary);
+  border: 2px solid var(--accent-primary);
+  box-shadow: var(--shadow-elevated);
+  z-index: 9999;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.institutional-command-input {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  outline: none;
+}
+
+.institutional-command-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* === ADVANCED DATA TABLES === */
+.institutional-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+.institutional-table thead th {
+  padding: 1rem;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-secondary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.institutional-table tbody td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.institutional-table tbody tr:hover {
+  background: var(--bg-tertiary);
+}
+
+/* === PROFESSIONAL GRID SYSTEMS === */
+.institutional-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.institutional-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.institutional-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.institutional-grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
+
+/* === LIVE DATA FEEDS === */
+.institutional-ticker {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-primary);
+  border-bottom: 1px solid var(--border-primary);
+  padding: 0.75rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.institutional-ticker-content {
+  display: flex;
+  animation: ticker 60s linear infinite;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+}
+
+@keyframes ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* === SOPHISTICATED ANIMATIONS === */
+.institutional-pulse {
+  animation: institutional-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes institutional-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.institutional-fade-in {
+  animation: institutional-fade-in 0.3s ease-out forwards;
+}
+
+@keyframes institutional-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === RESPONSIVE PROFESSIONAL DESIGN === */
+@media (max-width: 1024px) {
+  .institutional-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .institutional-grid-6 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .institutional-grid-2,
+  .institutional-grid-3,
+  .institutional-grid-4,
+  .institutional-grid-6 { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .institutional-title { font-size: 2rem; }
+  .institutional-subtitle { font-size: 1.125rem; }
+  .institutional-data { font-size: 1.25rem; }
+}
+
+/* === FINANCIAL PERFORMANCE INDICATORS === */
+.performance-positive { color: var(--accent-success); }
+.performance-negative { color: var(--accent-error); }
+.performance-neutral { color: var(--text-tertiary); }
+
+.institutional-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0;
+  border: 1px solid;
+}
+
+.institutional-badge.success {
+  color: var(--accent-success);
+  background: rgba(5, 150, 105, 0.1);
+  border-color: var(--accent-success);
+}
+
+.institutional-badge.warning {
+  color: var(--accent-warning);
+  background: rgba(217, 119, 6, 0.1);
+  border-color: var(--accent-warning);
+}
+
+/* === COMMAND PALETTE OVERLAY === */
+.institutional-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 9998;
+}
+
+/* === PROFESSIONAL FORM ELEMENTS === */
+.institutional-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  border-radius: 0;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.institutional-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.2);
+}
+
+.institutional-select {
+  padding: 0.75rem 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  border-radius: 0;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+/* === LOADING STATES === */
+.institutional-skeleton {
+  background: var(--bg-tertiary);
+  background-image: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-elevated) 50%, var(--bg-tertiary) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* === TERMINAL AESTHETICS === */
+.institutional-terminal {
+  background: #000000;
+  color: #00ff00;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 1rem;
+  border: 1px solid #333333;
+  min-height: 200px;
+  overflow-y: auto;
+}
+
+.institutional-terminal-prompt {
+  color: #00ff00;
+}
+
+.institutional-terminal-output {
+  color: #ffffff;
+  margin-left: 2rem;
+}
+
+/* === LEGACY COMPATIBILITY (Remove when fully migrated) === */
+.palantir-panel { @extend .institutional-panel; }
+.palantir-card { @extend .institutional-card; }
+.palantir-btn { @extend .institutional-btn; }
+.palantir-btn-primary { @extend .institutional-btn-primary; }
+.palantir-status { @extend .institutional-status; }
+.palantir-mono { @extend .institutional-mono; }
+.palantir-title { @extend .institutional-title; }
+.palantir-subtitle { @extend .institutional-subtitle; }
+.palantir-metric { @extend .institutional-metric; }
+.palantir-metric-value { @extend .institutional-metric-value; }
+.palantir-metric-label { @extend .institutional-metric-label; }
+.palantir-grid-2 { @extend .institutional-grid-2; }
+.palantir-grid-3 { @extend .institutional-grid-3; }
+.palantir-grid-4 { @extend .institutional-grid-4; }
+.palantir-grid-6 { @extend .institutional-grid-6; }

@@ -12,8 +12,9 @@ import uuid
 from datetime import datetime
 from pydantic import BaseModel, Field
 
-# Database URL from environment
-POSTGRES_URL = os.environ.get('POSTGRES_URL', 'postgresql://postgres@localhost:5432/verssai_vc')
+# Database URL from environment - Temporarily disabled for file storage fallback
+# POSTGRES_URL = os.environ.get('POSTGRES_URL', 'postgresql://postgres@localhost:5432/verssai_vc')
+POSTGRES_URL = "postgresql://disabled:disabled@localhost:5432/disabled"  # Force fallback to file storage
 
 # SQLAlchemy setup
 engine = create_engine(POSTGRES_URL)

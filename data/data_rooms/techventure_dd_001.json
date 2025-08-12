@@ -1,0 +1,33 @@
+{
+  "data_room_id": "techventure_dd_001",
+  "company_name": "TechVenture AI",
+  "company_id": "techventure_dd_001",
+  "industry": "Artificial Intelligence",
+  "uploaded_by": "VC Partner",
+  "upload_timestamp": "2025-08-11T05:05:42.114074",
+  "status": "completed",
+  "files": [
+    {
+      "original_name": "financial_statements.pdf",
+      "file_path": "/app/uploads/techventure_dd_001_doc_1_74704672-c273-4752-bef5-c319249bac11.pdf",
+      "file_size": 762,
+      "document_id": "techventure_dd_001_doc_1"
+    },
+    {
+      "original_name": "legal_documents.txt",
+      "file_path": "/app/uploads/techventure_dd_001_doc_2_1bd449e5-29d6-43fe-b161-9e9867015367.txt",
+      "file_size": 649,
+      "document_id": "techventure_dd_001_doc_2"
+    },
+    {
+      "original_name": "business_plan.txt",
+      "file_path": "/app/uploads/techventure_dd_001_doc_3_a262f996-2a77-4203-9bb8-d2db1a82a5c9.txt",
+      "file_size": 970,
+      "document_id": "techventure_dd_001_doc_3"
+    }
+  ],
+  "total_files": 3,
+  "total_size": 2381,
+  "created_at": "2025-08-11T05:05:42.114088",
+  "updated_at": "2025-08-11T05:06:26.539386"
+}

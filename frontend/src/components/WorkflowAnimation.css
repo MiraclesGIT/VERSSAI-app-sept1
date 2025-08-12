@@ -1,0 +1,144 @@
+/* Enhanced Workflow Animation Styles */
+
+/* Pulse animation for active nodes */
+@keyframes node-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Data flow animation */
+@keyframes data-flow {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -20;
+  }
+}
+
+/* Reasoning text animation */
+@keyframes reasoning-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Node glow effect */
+@keyframes node-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+  }
+}
+
+/* Progress bar animation */
+@keyframes progress-fill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: var(--progress-width);
+  }
+}
+
+/* Architecture status indicator */
+@keyframes status-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0.3;
+  }
+}
+
+/* Custom animations for workflow nodes */
+.workflow-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.active-node {
+  animation: node-pulse 2s ease-in-out infinite;
+}
+
+.active-node::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+  border-radius: inherit;
+  z-index: -1;
+  animation: node-glow 2s ease-in-out infinite;
+}
+
+.data-flow-path {
+  stroke-dasharray: 10, 5;
+  animation: data-flow 2s linear infinite;
+}
+
+.reasoning-text {
+  animation: reasoning-fade 2s ease-in-out;
+}
+
+.architecture-status {
+  transition: all 0.3s ease;
+}
+
+.architecture-status.active {
+  animation: status-blink 1.5s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .workflow-animation {
+    padding: 16px 8px;
+  }
+  
+  .workflow-animation svg {
+    height: 200px;
+  }
+}
+
+/* Performance optimizations */
+.workflow-animation * {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .workflow-animation *,
+  .active-node,
+  .data-flow-path,
+  .reasoning-text {
+    animation: none !important;
+  }
+  
+  .active-node {
+    transform: scale(1.05);
+  }
+}

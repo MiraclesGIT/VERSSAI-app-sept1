@@ -1,0 +1,12 @@
+{
+  "company_name": "TestCompany",
+  "file_url": "/uploads/b673c529-5f11-4174-9971-27880897ead6.pdf",
+  "file_path": "/app/uploads/b673c529-5f11-4174-9971-27880897ead6.pdf",
+  "file_size": 1046,
+  "status": "processing",
+  "uploaded_by": null,
+  "deck_id": "b8c03e5f-34ef-4311-a3b7-31bef5e272fd",
+  "upload_date": "2025-08-11T13:23:40.487423",
+  "created_at": "2025-08-11T13:23:40.487429",
+  "updated_at": "2025-08-11T13:23:40.487430"
+}

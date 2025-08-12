@@ -1,0 +1,87 @@
+{
+  "executive_summary": "The founder demonstrates promising entrepreneurial spirit, but lacks a clearly defined track record and detailed information about their background and experience.  Further investigation is required to assess their leadership capabilities and market understanding.  The early-stage nature of the venture and the competitive SaaS landscape contribute to the overall risk.  A deeper dive into the founder's past achievements and the company's specific value proposition is crucial for a comprehensive investment decision.",
+  "founder_capability_assessment": {
+    "risk_level": "High",
+    "key_team_strengths": [
+      "Entrepreneurial drive"
+    ],
+    "key_team_gaps": [
+      "Lack of demonstrable experience",
+      "Limited information on past achievements"
+    ],
+    "risk_justification": "Limited information available on the founder's background and experience raises concerns about their ability to navigate the challenges of a seed-stage B2B SaaS company.  A clear track record of success in relevant roles is missing."
+  },
+  "technical_capability_assessment": {
+    "execution_capability_score": 50,
+    "risk_level": "Medium",
+    "risk_justification": "The technical feasibility of the B2B SaaS solution is assumed, but without specific details, a thorough assessment is impossible.  The lack of information regarding the technology stack and development roadmap contributes to the medium risk level."
+  },
+  "market_position_assessment": {
+    "founder_market_fit_score": 50,
+    "risk_level": "High",
+    "risk_justification": "The B2B SaaS market is highly competitive.  Without a clear understanding of the company's unique value proposition and target market, it's difficult to assess its potential for success.  Further market research is needed."
+  },
+  "network_influence_assessment": {
+    "professional_network_quality": 50,
+    "risk_level": "Medium",
+    "risk_justification": "No information is available regarding the founder's professional network.  A strong network can be crucial for fundraising, partnerships, and talent acquisition.  The lack of information contributes to the medium risk level."
+  },
+  "final_recommendation": {
+    "investment_green_flags": [],
+    "investment_red_flags": [
+      "Lack of founder experience details",
+      "Limited market information",
+      "No technical details provided"
+    ],
+    "critical_questions_for_founders": [
+      "What specific problem does your SaaS solution solve?",
+      "What is your technical architecture and development roadmap?",
+      "What is your go-to-market strategy and target customer profile?"
+    ],
+    "overall_investment_risk_level": "High",
+    "recommendation": "PASS",
+    "confidence_level": 20
+  },
+  "information_gaps": [
+    "Founder's detailed background and experience",
+    "Company's value proposition and target market",
+    "Technical details of the SaaS solution",
+    "Go-to-market strategy",
+    "Team composition and expertise"
+  ],
+  "scores": {
+    "education_score": 0,
+    "experience_score": 0,
+    "network_score": 0,
+    "technical_score": 0,
+    "execution_score": 0,
+    "overall_signal_score": 10
+  },
+  "analysis_timestamp": "deterministic_hash_bac30890b680d386ce976ed5cc2dea30",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "web_research_insights": [],
+  "social_media_analysis": {
+    "social_influence_score": 0,
+    "engagement_quality": "unknown",
+    "thought_leadership": "unknown",
+    "industry_presence": "unknown",
+    "key_insights": [
+      "Twitter API not configured - unable to analyze Founder's social presence"
+    ]
+  },
+  "recent_news": [],
+  "social_profiles": [],
+  "signal_id": "0438feb2-e2a0-45a0-b0bd-fa8f56f5cfec",
+  "deck_id": "7b611461-3f70-4283-a795-7435b5c68a6a",
+  "created_at": "2025-08-11T13:28:52.228295"
+}

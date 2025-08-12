@@ -1,0 +1,31 @@
+{
+  "company_name": "Neuraltech Professional",
+  "website": "",
+  "founders": [
+    {
+      "name": "Founder",
+      "role": "CEO",
+      "linkedin_hint": "",
+      "background": ""
+    }
+  ],
+  "market": "Technology",
+  "market_size": "Large market opportunity",
+  "business_model": "B2B SaaS",
+  "traction": {
+    "revenue": "Growing",
+    "customers": "Multiple customers",
+    "growth_rate": "Positive growth",
+    "key_metrics": []
+  },
+  "funding_ask": 1000000,
+  "use_of_funds": "Product development and growth",
+  "team_size": 5,
+  "stage": "Seed",
+  "confidence_score": 0.3,
+  "extracted_at": "2025-08-11T10:38:49.934703",
+  "extraction_method": "fallback",
+  "agent_version": "1.0",
+  "extraction_id": "fd41bba2-b66d-420c-875e-7e4e7ecb59c5",
+  "deck_id": "04ddc36f-6967-47e1-9412-d54f39c07b31"
+}

@@ -1,0 +1,31 @@
+{
+  "company_name": "AnimationTest Inc",
+  "website": "",
+  "founders": [
+    {
+      "name": "Founder",
+      "role": "CEO",
+      "linkedin_hint": "",
+      "background": ""
+    }
+  ],
+  "market": "Technology",
+  "market_size": "Large market opportunity",
+  "business_model": "B2B SaaS",
+  "traction": {
+    "revenue": "Growing",
+    "customers": "Multiple customers",
+    "growth_rate": "Positive growth",
+    "key_metrics": []
+  },
+  "funding_ask": 1000000,
+  "use_of_funds": "Product development and growth",
+  "team_size": 5,
+  "stage": "Seed",
+  "confidence_score": 0.3,
+  "extracted_at": "2025-08-11T10:34:46.375847",
+  "extraction_method": "fallback",
+  "agent_version": "1.0",
+  "extraction_id": "edc4bc5f-df88-4df6-ad68-50c8aa4efeba",
+  "deck_id": "5007b623-97fa-4dc1-bc6f-f6ea78d41f5b"
+}

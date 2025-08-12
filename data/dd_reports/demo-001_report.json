@@ -1,0 +1,129 @@
+{
+  "company_id": "demo-001",
+  "company_name": "Demo Company",
+  "analysis_timestamp": "2025-08-12T13:33:35.006208",
+  "document_analyses": [
+    {
+      "document_id": "demo-001_dd_doc_1",
+      "filename": "demo-001_doc_1_c3a3e30d-6968-4f18-9d00-f65f5a9bfab5.pdf",
+      "document_type": "PDF Document",
+      "category": "financial",
+      "key_insights": [
+        "19% QoQ revenue growth",
+        "Positive operating cash flow ($450K)",
+        "18 months of runway",
+        "Healthy LTV:CAC ratio (31:1)",
+        "Net Revenue Retention of 112%"
+      ],
+      "risk_factors": [
+        "High customer concentration risk (65% revenue from top 10 customers)",
+        "Increasing regulatory compliance costs",
+        "Competitive market with new entrants"
+      ],
+      "completeness_score": 80,
+      "credibility_score": 90,
+      "red_flags": [
+        "Significant revenue concentration exceeding acceptable threshold (65% > 30%)"
+      ],
+      "summary": "Demo Company exhibits strong financial performance with positive cash flow, growing revenue, and a healthy LTV:CAC ratio. However, significant revenue concentration in the top 10 customers poses a substantial risk.  The competitive landscape and increasing regulatory costs require further investigation.",
+      "extracted_data": {
+        "q4_2024_arr": 2500000,
+        "q3_2024_arr": 2100000,
+        "qoq_growth_rate": 0.19,
+        "customer_count": 150,
+        "average_contract_value": 16667,
+        "operating_cash_flow": 450000,
+        "burn_rate": 180000,
+        "runway": 18,
+        "last_funding_round": "Series A $5M (Jan 2024)",
+        "customer_churn": 0.032,
+        "net_revenue_retention": 1.12,
+        "gross_margin": 0.78,
+        "customer_acquisition_cost": 2100,
+        "lifetime_value": 65000,
+        "ltv_cac_ratio": 31
+      }
+    },
+    {
+      "document_id": "demo-001_dd_doc_2",
+      "filename": "demo-001_doc_2_e51f8a86-e0c1-4647-b038-4d90503796f9.csv",
+      "document_type": "CSV File",
+      "category": "financial",
+      "key_insights": [
+        "TestCorp shows significantly higher revenue ($1,000,000) and growth (25%) compared to SampleInc ($500,000 revenue and 15% growth).",
+        "The provided data offers a limited snapshot of financial performance.  Further financial documents are needed for comprehensive analysis."
+      ],
+      "risk_factors": [
+        "Limited data provided prevents a thorough assessment of financial health and sustainability.  More detailed financial statements (e.g., Income Statement, Balance Sheet, Cash Flow Statement) are required to evaluate key metrics such as cash flow, burn rate, and revenue quality.",
+        "Without customer concentration details, it's impossible to determine revenue concentration risk."
+      ],
+      "completeness_score": 20,
+      "credibility_score": 70,
+      "red_flags": [],
+      "summary": "This limited financial data provides a glimpse into the revenue and growth of TestCorp and SampleInc. TestCorp exhibits stronger performance in both areas. However, a comprehensive due diligence process requires significantly more financial information to assess the financial health, sustainability, and associated risks of Demo Company.",
+      "extracted_data": {
+        "TestCorp": {
+          "revenue": 1000000,
+          "growth": "25%"
+        },
+        "SampleInc": {
+          "revenue": 500000,
+          "growth": "15%"
+        }
+      }
+    }
+  ],
+  "cross_document_insights": [
+    "Cross-document analysis: ```json\n[\n  \"**Consistency Patterns:**\",\n  \" - Both documents highlight revenue growth as a key aspect of Demo Company's performance, although at slightly different rates (19% QoQ in the PDF and varyi..."
+  ],
+  "overall_risk_assessment": {
+    "overall_risk": "medium",
+    "risk_score": 60.0,
+    "total_red_flags": 1,
+    "total_risk_factors": 5,
+    "average_credibility": 80.0
+  },
+  "completeness_assessment": {
+    "completeness_score": 20.0,
+    "categories_covered": 1,
+    "total_categories": 6,
+    "missing_categories": [
+      "operational_details",
+      "legal_documents",
+      "market_analysis",
+      "financial_documents",
+      "team_information",
+      "technical_assets"
+    ],
+    "average_document_completeness": 50.0
+  },
+  "red_flags": [
+    "Significant revenue concentration exceeding acceptable threshold (65% > 30%) (Source: demo-001_doc_1_c3a3e30d-6968-4f18-9d00-f65f5a9bfab5.pdf)"
+  ],
+  "recommendations": [
+    "Moderate risk identified - additional due diligence recommended",
+    "Request additional documentation - only 1/6 categories covered",
+    "Missing operational_details: Request Business processes, Operational metrics, Vendor relationships",
+    "Missing legal_documents: Request Corporate structure, Key contracts, IP portfolio, Compliance status",
+    "Missing market_analysis: Request Market research, Competitive analysis, Customer validation",
+    "Missing financial_documents: Request Financial statements, Cash flow, Revenue analysis, Budget/Forecast",
+    "Missing team_information: Request Management bios, Organizational chart, Key employee contracts",
+    "Missing technical_assets: Request Product specs, Technical architecture, Security assessment",
+    "Address red flags in demo-001_doc_1_c3a3e30d-6968-4f18-9d00-f65f5a9bfab5.pdf: Significant revenue concentration exceeding acceptable threshold (65% > 30%)"
+  ],
+  "checklist_status": {
+    "completeness_score": 20.0,
+    "categories_covered": 1,
+    "total_categories": 6,
+    "missing_categories": [
+      "operational_details",
+      "legal_documents",
+      "market_analysis",
+      "financial_documents",
+      "team_information",
+      "technical_assets"
+    ],
+    "average_document_completeness": 50.0
+  },
+  "overall_score": 46.0
+}

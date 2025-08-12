@@ -277,59 +277,53 @@ class FounderSignalAgent(VERSSAIAIAgent):
         }
         
         self.system_prompt = f"""
-        You are a senior VC partner AI with expertise in founder assessment, trained on 1,157 research papers analyzing successful and failed startups.
+        You are an ELITE VC PARTNER conducting PROFESSIONAL DUE DILIGENCE analysis.
         
-        Your analysis is based on proven correlation factors:
-        - Top-tier education (Stanford/MIT): {self.research_weights['education_quality']} correlation with success
-        - Previous startup exits: {self.research_weights['previous_exit']} correlation with success  
-        - Technical background: {self.research_weights['technical_background']} correlation for B2B SaaS
-        - Industry experience: {self.research_weights['industry_experience']} correlation
-        - Network quality: {self.research_weights['network_quality']} correlation
-        - Execution track record: {self.research_weights['execution_track_record']} correlation
+        CRITICAL: You MUST return EXACTLY this JSON structure - no exceptions:
         
-        Analyze founder profiles and generate signal scores (0-100) with DETAILED EXPLANATIONS for each score.
-        
-        Return ONLY valid JSON in this exact format:
         {{
-            "founder_name": "",
-            "founder_role": "",
+            "executive_summary": "3-5 sentence professional investment assessment of this founder",
+            "founder_capability_assessment": {{
+                "risk_level": "Low|Medium|High",
+                "key_team_strengths": ["Specific strength 1", "Specific strength 2", "Specific strength 3"],
+                "key_team_gaps": ["Specific gap 1", "Specific gap 2"],
+                "risk_justification": "Professional justification for risk level assignment"
+            }},
+            "technical_capability_assessment": {{
+                "execution_capability_score": 0-100,
+                "risk_level": "Low|Medium|High",
+                "risk_justification": "Detailed justification for technical risk assessment"
+            }},
+            "market_position_assessment": {{
+                "founder_market_fit_score": 0-100,
+                "risk_level": "Low|Medium|High",
+                "risk_justification": "Professional market risk assessment justification"
+            }},
+            "network_influence_assessment": {{
+                "professional_network_quality": 0-100,
+                "risk_level": "Low|Medium|High",
+                "risk_justification": "Network-related risk assessment"
+            }},
+            "final_recommendation": {{
+                "investment_green_flags": ["Specific positive indicator with evidence", "Another strong positive signal"],
+                "investment_red_flags": ["Specific concern with reasoning", "Another risk factor to consider"],
+                "critical_questions_for_founders": ["Strategic question", "Technical question", "Financial question"],
+                "overall_investment_risk_level": "Low|Medium|High",
+                "recommendation": "STRONG_BUY|BUY|HOLD|PASS",
+                "confidence_level": 0-100
+            }},
+            "information_gaps": ["Specific missing information needed"],
             "scores": {{
-                "education_score": 0,
-                "experience_score": 0,
-                "network_score": 0,
-                "technical_score": 0,
-                "execution_score": 0,
-                "overall_signal_score": 0
-            }},
-            "score_explanations": {{
-                "education_explanation": "DETAILED explanation of why this score was given, including specific factors considered",
-                "experience_explanation": "DETAILED explanation of experience assessment and scoring rationale",
-                "network_explanation": "DETAILED explanation of network quality assessment and scoring",
-                "technical_explanation": "DETAILED explanation of technical background evaluation",
-                "execution_explanation": "DETAILED explanation of execution capability assessment",
-                "overall_explanation": "DETAILED explanation of how overall score was calculated using weighted factors"
-            }},
-            "analysis": {{
-                "education_analysis": "",
-                "experience_analysis": "",
-                "network_analysis": "",
-                "technical_analysis": "",
-                "execution_analysis": ""
-            }},
-            "scoring_methodology": {{
-                "weights_used": {json.dumps(self.research_weights)},
-                "calculation_method": "Weighted average based on proven correlation factors from 1,157 research papers",
-                "research_basis": "Analysis based on patterns from successful vs failed startups",
-                "confidence_factors": []
-            }},
-            "recommendation": "STRONG|POSITIVE|NEUTRAL|NEGATIVE",
-            "confidence_level": 0.85,
-            "key_strengths": [],
-            "risk_factors": [],
-            "comparable_founders": []
+                "education_score": 0-100,
+                "experience_score": 0-100,
+                "network_score": 0-100,
+                "technical_score": 0-100,
+                "execution_score": 0-100,
+                "overall_signal_score": 0-100
+            }}
         }}
         
-        Provide SPECIFIC, DETAILED reasoning for each score. Explain exactly what factors contributed to each score and why.
+        MANDATORY: Return ONLY this JSON structure. No additional text.
         """
     
     def analyze_founder(self, founder_data: Dict[str, Any], company_context: Dict[str, Any] = None) -> Dict[str, Any]:

@@ -1,0 +1,89 @@
+{
+  "executive_summary": "Michael Torres presents a compelling profile with his strong technical background at Facebook and MIT PhD.  His experience in AI/ML positions him well for the enterprise SaaS market. However, his CTO role raises questions about his broader leadership and business acumen, requiring further investigation.  Overall, he appears promising but needs further vetting to assess his suitability as a core leadership team member for a Series A company.",
+  "founder_capability_assessment": {
+    "risk_level": "Medium",
+    "key_team_strengths": [
+      "Deep technical expertise in AI/ML",
+      "Experience at a leading tech company (Facebook)",
+      "Strong academic credentials (MIT PhD)"
+    ],
+    "key_team_gaps": [
+      "Limited evidence of leadership experience beyond the CTO role",
+      "Unclear understanding of business development and sales"
+    ],
+    "risk_justification": "While technically strong, Michael's leadership experience and business acumen are uncertain.  His CTO background may limit his broader strategic vision and ability to scale a company at the Series A stage."
+  },
+  "technical_capability_assessment": {
+    "execution_capability_score": 85,
+    "risk_level": "Low",
+    "risk_justification": "Michael's Facebook engineering experience and MIT PhD in a relevant field suggest a high level of technical competence and execution capability in AI/ML."
+  },
+  "market_position_assessment": {
+    "founder_market_fit_score": 75,
+    "risk_level": "Medium",
+    "risk_justification": "The AI/ML enterprise market is competitive. While Michael's background is relevant, further assessment of his understanding of the specific target market and competitive landscape is needed."
+  },
+  "network_influence_assessment": {
+    "professional_network_quality": 70,
+    "risk_level": "Medium",
+    "risk_justification": "His Facebook experience suggests a reasonable network, but the quality and relevance to the enterprise SaaS space require further investigation.  The provided information doesn't offer enough detail to assess his network's influence within the target market."
+  },
+  "final_recommendation": {
+    "investment_green_flags": [
+      "Strong technical background",
+      "Experience at a recognized tech company"
+    ],
+    "investment_red_flags": [
+      "Limited demonstrable leadership experience outside of a technical role",
+      "Unclear business acumen"
+    ],
+    "critical_questions_for_founders": [
+      "What is your vision for scaling the company beyond the current stage?",
+      "How do you plan to navigate the competitive landscape in the enterprise AI/ML market?",
+      "What are your key sales and go-to-market strategies?"
+    ],
+    "overall_investment_risk_level": "Medium",
+    "recommendation": "HOLD",
+    "confidence_level": 70
+  },
+  "information_gaps": [
+    "Details on Michael's leadership experience",
+    "Information about the company's go-to-market strategy",
+    "Detailed understanding of the competitive landscape"
+  ],
+  "scores": {
+    "education_score": 95,
+    "experience_score": 80,
+    "network_score": 70,
+    "technical_score": 90,
+    "execution_score": 85,
+    "overall_signal_score": 80
+  },
+  "analysis_timestamp": "deterministic_hash_5cc375bcb16e4f017d18386b314975f2",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "web_research_insights": [],
+  "social_media_analysis": {
+    "social_influence_score": 0,
+    "engagement_quality": "unknown",
+    "thought_leadership": "unknown",
+    "industry_presence": "unknown",
+    "key_insights": [
+      "Twitter API not configured - unable to analyze Michael Torres's social presence"
+    ]
+  },
+  "recent_news": [],
+  "social_profiles": [],
+  "signal_id": "9f2503ce-401b-406a-a80b-9c328b7118ea",
+  "deck_id": "8c4198c1-cd58-4074-b19d-421da76e9bee",
+  "created_at": "2025-08-11T10:38:06.535679"
+}

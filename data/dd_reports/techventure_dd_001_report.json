@@ -1,0 +1,178 @@
+{
+  "company_id": "techventure_dd_001",
+  "company_name": "TechVenture AI",
+  "analysis_timestamp": "2025-08-11T05:06:26.538425",
+  "document_analyses": [
+    {
+      "document_id": "techventure_dd_001_dd_doc_1",
+      "filename": "techventure_dd_001_doc_1_74704672-c273-4752-bef5-c319249bac11.pdf",
+      "document_type": "PDF Document",
+      "category": "financial",
+      "key_insights": [
+        "19% QoQ revenue growth suggests strong momentum.",
+        "Positive operating cash flow is a positive indicator.",
+        "High LTV:CAC ratio (31:1) demonstrates efficient customer acquisition.",
+        "Net Revenue Retention of 112% indicates successful upselling and cross-selling.",
+        "18 months of runway provides sufficient time to achieve milestones before needing additional funding."
+      ],
+      "risk_factors": [
+        "High revenue concentration (65% from top 10 customers) poses a significant risk.",
+        "Increasing regulatory compliance costs could impact profitability.",
+        "Competition from new entrants in the market requires continuous innovation and differentiation."
+      ],
+      "completeness_score": 80,
+      "credibility_score": 90,
+      "red_flags": [
+        "Revenue concentration exceeding 30% warrants immediate attention and mitigation strategies."
+      ],
+      "summary": "TechVenture AI demonstrates strong financial performance with growing revenue, positive cash flow, and efficient customer acquisition. However, high revenue concentration from top 10 customers poses a significant risk.  The company has a healthy runway and good unit economics, but needs to address customer diversification to mitigate potential revenue instability.",
+      "extracted_data": {
+        "q4_2024_arr": 2500000,
+        "q3_2024_arr": 2100000,
+        "qoq_growth_rate": 0.19,
+        "customer_count": 150,
+        "average_contract_value": 16667,
+        "operating_cash_flow": 450000,
+        "burn_rate": 180000,
+        "runway": 18,
+        "last_funding_round": "Series A $5M (Jan 2024)",
+        "customer_churn": 0.032,
+        "net_revenue_retention": 1.12,
+        "gross_margin": 0.78,
+        "customer_acquisition_cost": 2100,
+        "lifetime_value": 65000,
+        "ltv_cac_ratio": 31,
+        "revenue_concentration_top_10": 0.65
+      }
+    },
+    {
+      "document_id": "techventure_dd_001_dd_doc_2",
+      "filename": "techventure_dd_001_doc_2_1bd449e5-29d6-43fe-b161-9e9867015367.txt",
+      "document_type": "Text Document",
+      "category": "legal",
+      "key_insights": [
+        "TechVenture AI is a Delaware C-Corp incorporated on January 15, 2022.",
+        "The company has a substantial employee option pool (15%), indicating a focus on attracting and retaining talent.",
+        "Strong IP portfolio with 3 patents filed and 15 trademarks registered, suggesting a focus on innovation and brand protection.",
+        "Demonstrates commitment to security and compliance with SOC 2 Type II, GDPR, and ISO 27001 certifications."
+      ],
+      "risk_factors": [],
+      "completeness_score": 70,
+      "credibility_score": 90,
+      "red_flags": [],
+      "summary": "TechVenture AI's incorporation documents demonstrate a well-structured legal foundation and a commitment to compliance.  The company has a robust IP portfolio and a clear governance structure.  Further due diligence is required to understand the details of the patents filed, the nature of the trademarks, and the agreements related to the proprietary technology stack.  Financial information is needed to assess the company's financial health and sustainability.",
+      "extracted_data": {
+        "incorporation_date": "January 15, 2022",
+        "entity_type": "C-Corporation",
+        "jurisdiction": "Delaware",
+        "ein": "88-1234567",
+        "authorized_common_stock": 8000000,
+        "authorized_preferred_stock": 2000000,
+        "outstanding_common_stock": 6500000,
+        "employee_option_pool": 1200000,
+        "board_members": [
+          "Sarah Chen (CEO & Founder)",
+          "Michael Rodriguez (CTO & Co-Founder)",
+          "Jennifer Walsh (Independent Director)"
+        ],
+        "patents_filed": 3,
+        "trademarks_registered": 15,
+        "certifications": [
+          "SOC 2 Type II",
+          "GDPR",
+          "ISO 27001"
+        ]
+      }
+    },
+    {
+      "document_id": "techventure_dd_001_dd_doc_3",
+      "filename": "techventure_dd_001_doc_3_a262f996-2a77-4203-9bb8-d2db1a82a5c9.txt",
+      "document_type": "Text Document",
+      "category": "strategic",
+      "key_insights": [
+        "TechVenture AI targets a large addressable market ($50B TAM, $12B SAM) with low current penetration (0.02%).",
+        "The company claims a strong competitive advantage with its proprietary no-code AI platform, faster implementation, high customer satisfaction, and patent-pending algorithms.",
+        "Financial projections show aggressive growth targets, aiming for $150M ARR within 5 years.",
+        "The company seeks $10M Series A funding for product development, sales & marketing, team expansion, and operations.",
+        "Key metrics suggest a healthy business model with a high LTV/CAC ratio (12:1) and strong net revenue retention (125%)."
+      ],
+      "risk_factors": [
+        "Aggressive revenue projections need further validation and market analysis.",
+        "Limited information on current financials (only Year 1 ARR provided).  Need more detailed financial statements.",
+        "The 'patent-pending' status of algorithms needs verification.  Success hinges on securing the patent.",
+        "High reliance on successful product development and market penetration to achieve projected growth."
+      ],
+      "completeness_score": 50,
+      "credibility_score": 70,
+      "red_flags": [],
+      "summary": "TechVenture AI presents a compelling investment opportunity in the growing enterprise AI market.  The company's claimed competitive advantages and strong projected growth are attractive. However, further due diligence is required to validate the aggressive financial projections, verify the technical claims, and assess the team's ability to execute.  Detailed financial statements, customer references, and technical documentation are needed for a comprehensive assessment.",
+      "extracted_data": {
+        "company_name": "TechVenture AI",
+        "total_addressable_market": "$50B",
+        "serviceable_addressable_market": "$12B",
+        "market_penetration": "0.02%",
+        "year_1_arr": "$2.5M",
+        "year_5_arr": "$150M",
+        "funding_required": "$10M",
+        "customer_acquisition_cost": "$15K",
+        "lifetime_value": "$180K",
+        "ltv_cac_ratio": "12:1",
+        "monthly_churn": "2%",
+        "net_revenue_retention": "125%"
+      }
+    }
+  ],
+  "cross_document_insights": [
+    "Cross-document analysis: ```json\n[\n  \"Consistency Pattern: Strong IP portfolio (legal) aligns with the claim of a proprietary no-code AI platform (strategic) and contributes to the high LTV:CAC ratio (financial) by potentiall..."
+  ],
+  "overall_risk_assessment": {
+    "overall_risk": "medium",
+    "risk_score": 66.66666666666667,
+    "total_red_flags": 1,
+    "total_risk_factors": 7,
+    "average_credibility": 83.33333333333333
+  },
+  "completeness_assessment": {
+    "completeness_score": 26.66666666666667,
+    "categories_covered": 3,
+    "total_categories": 6,
+    "missing_categories": [
+      "operational_details",
+      "financial_documents",
+      "market_analysis",
+      "team_information",
+      "technical_assets",
+      "legal_documents"
+    ],
+    "average_document_completeness": 66.66666666666667
+  },
+  "red_flags": [
+    "Revenue concentration exceeding 30% warrants immediate attention and mitigation strategies. (Source: techventure_dd_001_doc_1_74704672-c273-4752-bef5-c319249bac11.pdf)"
+  ],
+  "recommendations": [
+    "Moderate risk identified - additional due diligence recommended",
+    "Request additional documentation - only 3/6 categories covered",
+    "Missing operational_details: Request Business processes, Operational metrics, Vendor relationships",
+    "Missing financial_documents: Request Financial statements, Cash flow, Revenue analysis, Budget/Forecast",
+    "Missing market_analysis: Request Market research, Competitive analysis, Customer validation",
+    "Missing team_information: Request Management bios, Organizational chart, Key employee contracts",
+    "Missing technical_assets: Request Product specs, Technical architecture, Security assessment",
+    "Missing legal_documents: Request Corporate structure, Key contracts, IP portfolio, Compliance status",
+    "Address red flags in techventure_dd_001_doc_1_74704672-c273-4752-bef5-c319249bac11.pdf: Revenue concentration exceeding 30% warrants immediate attention and mitigation strategies."
+  ],
+  "checklist_status": {
+    "completeness_score": 26.66666666666667,
+    "categories_covered": 3,
+    "total_categories": 6,
+    "missing_categories": [
+      "operational_details",
+      "financial_documents",
+      "market_analysis",
+      "team_information",
+      "technical_assets",
+      "legal_documents"
+    ],
+    "average_document_completeness": 66.66666666666667
+  },
+  "overall_score": 46.3
+}

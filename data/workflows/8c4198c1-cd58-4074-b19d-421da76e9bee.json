@@ -1,0 +1,688 @@
+{
+  "workflow_id": "8c4198c1-cd58-4074-b19d-421da76e9bee",
+  "deck_id": "8c4198c1-cd58-4074-b19d-421da76e9bee",
+  "company_name": "Neuraltech Ai Pitch",
+  "status": "completed",
+  "stages": {
+    "extraction": {
+      "status": "completed",
+      "extracted_text": "\n                Neuraltech Ai Pitch - Pitch Deck\n                \n                Problem: Large market opportunity in AI/ML space\n                Solution: Revolutionary AI platform for enterprises\n                Market: $50B+ market growing at 25% CAGR\n                Business Model: B2B SaaS with enterprise contracts\n                Traction: $500K ARR, 50+ customers, 200% YoY growth\n                Team: Experienced founders with Stanford/MIT backgrounds\n                Funding: Raising $5M Series A for product development and sales\n                \n                Founders:\n                - Sarah Chen, CEO: Former Google product manager, Stanford CS\n                - Michael Torres, CTO: Ex-Facebook engineer, MIT PhD\n                ",
+      "file_type": ".pdf",
+      "extraction_method": "mock_extractor",
+      "text_length": 751,
+      "confidence": 0.8
+    },
+    "ai_extraction": {
+      "status": "completed",
+      "extraction_data": {
+        "company_name": "Neuraltech Ai",
+        "website": "",
+        "founders": [
+          {
+            "name": "Sarah Chen",
+            "role": "CEO",
+            "linkedin_hint": "Sarah Chen Google product manager Stanford CS",
+            "background": "Former Google product manager, Stanford CS"
+          },
+          {
+            "name": "Michael Torres",
+            "role": "CTO",
+            "linkedin_hint": "Michael Torres Facebook engineer MIT PhD",
+            "background": "Ex-Facebook engineer, MIT PhD"
+          }
+        ],
+        "market": "AI/ML space for enterprises",
+        "market_size": "$50B+",
+        "business_model": "B2B SaaS with enterprise contracts",
+        "traction": {
+          "revenue": "$500K ARR",
+          "customers": "50+",
+          "growth_rate": "200% YoY",
+          "key_metrics": []
+        },
+        "funding_ask": 5000000,
+        "use_of_funds": "product development and sales",
+        "team_size": 0,
+        "stage": "Series A",
+        "confidence_score": 0.95,
+        "extracted_at": "2025-08-11T10:38:06.535007",
+        "extraction_method": "ai_agent_gemini",
+        "agent_version": "2.0",
+        "extraction_id": "233d8629-01a9-4d91-816b-c25c43a36a46",
+        "deck_id": "8c4198c1-cd58-4074-b19d-421da76e9bee"
+      },
+      "ai_model": "deck_extraction_agent",
+      "confidence": 0.95
+    },
+    "web_research": {
+      "company_research": {
+        "company_name": "Neuraltech Ai",
+        "industry": "AI/ML space for enterprises",
+        "search_timestamp": "2025-08-11T10:37:26.645301",
+        "intelligence_categories": {
+          "primary": {
+            "search_type": "primary",
+            "query": "\"Neuraltech Ai\" AI/ML space for enterprises",
+            "total_results": 0,
+            "search_time": 0.265062,
+            "results": []
+          },
+          "financials": {
+            "search_type": "financials",
+            "query": "\"Neuraltech Ai\" funding investment Series A B C valuation revenue",
+            "total_results": 0,
+            "search_time": 0.269555,
+            "results": []
+          },
+          "news": {
+            "search_type": "news",
+            "query": "\"Neuraltech Ai\" news announcement launch product",
+            "total_results": 0,
+            "search_time": 0.240283,
+            "results": []
+          },
+          "competitors": {
+            "search_type": "competitors",
+            "query": "\"Neuraltech Ai\" competitors alternative vs comparison",
+            "total_results": 0,
+            "search_time": 0.264387,
+            "results": []
+          },
+          "industry": {
+            "search_type": "industry",
+            "query": "AI/ML space for enterprises market analysis trends \"Neuraltech Ai\"",
+            "total_results": 0,
+            "search_time": 0.290506,
+            "results": []
+          }
+        },
+        "key_insights": [],
+        "all_sources": [],
+        "funding_information": [],
+        "recent_developments": [],
+        "competitive_analysis": []
+      },
+      "founder_research": [
+        {
+          "founder_name": "Sarah Chen",
+          "company_name": "Neuraltech Ai",
+          "search_timestamp": "2025-08-11T10:37:26.937918",
+          "results_by_category": {
+            "primary": {
+              "search_type": "primary",
+              "query": "\"Sarah Chen\" \"Neuraltech Ai\"",
+              "total_results": 0,
+              "search_time": 0.244124,
+              "results": []
+            },
+            "professional": {
+              "search_type": "professional",
+              "query": "\"Sarah Chen\" CEO founder executive biography \"Neuraltech Ai\"",
+              "total_results": 0,
+              "search_time": 0.244214,
+              "results": []
+            },
+            "social": {
+              "search_type": "social",
+              "query": "\"Sarah Chen\" LinkedIn Twitter site:linkedin.com OR site:twitter.com",
+              "total_results": 0,
+              "search_time": 0.205098,
+              "results": []
+            },
+            "news": {
+              "search_type": "news",
+              "query": "\"Sarah Chen\" news interview article \"Neuraltech Ai\"",
+              "total_results": 0,
+              "search_time": 0.240128,
+              "results": []
+            }
+          },
+          "consolidated_results": [],
+          "key_insights": [],
+          "social_profiles": [],
+          "recent_news": []
+        },
+        {
+          "founder_name": "Michael Torres",
+          "company_name": "Neuraltech Ai",
+          "search_timestamp": "2025-08-11T10:37:27.165713",
+          "results_by_category": {
+            "primary": {
+              "search_type": "primary",
+              "query": "\"Michael Torres\" \"Neuraltech Ai\"",
+              "total_results": 0,
+              "search_time": 0.215993,
+              "results": []
+            },
+            "professional": {
+              "search_type": "professional",
+              "query": "\"Michael Torres\" CEO founder executive biography \"Neuraltech Ai\"",
+              "total_results": 0,
+              "search_time": 0.22685,
+              "results": []
+            },
+            "social": {
+              "search_type": "social",
+              "query": "\"Michael Torres\" LinkedIn Twitter site:linkedin.com OR site:twitter.com",
+              "total_results": 0,
+              "search_time": 0.224497,
+              "results": []
+            },
+            "news": {
+              "search_type": "news",
+              "query": "\"Michael Torres\" news interview article \"Neuraltech Ai\"",
+              "total_results": 0,
+              "search_time": 0.22296,
+              "results": []
+            }
+          },
+          "consolidated_results": [],
+          "key_insights": [],
+          "social_profiles": [],
+          "recent_news": []
+        }
+      ],
+      "status": "completed"
+    },
+    "social_research": {
+      "company_social": {
+        "company_name": "Neuraltech Ai",
+        "search_timestamp": "2025-08-11T10:37:27.165862",
+        "mentions": {
+          "mentions": [],
+          "total_mentions": 0,
+          "query_used": ""
+        },
+        "sentiment_analysis": {
+          "overall_sentiment": "neutral",
+          "sentiment_distribution": {
+            "positive": 0,
+            "neutral": 0,
+            "negative": 0
+          },
+          "total_analyzed": 0
+        },
+        "api_status": "not_configured"
+      },
+      "founder_social": [
+        {
+          "founder_name": "Sarah Chen",
+          "company_name": "Neuraltech Ai",
+          "search_timestamp": "2025-08-11T10:37:27.165871",
+          "profile_data": {
+            "primary_profile": null,
+            "additional_candidates": [],
+            "total_candidates": 0
+          },
+          "recent_activity": {
+            "recent_tweets": [],
+            "total_tweets_found": 0,
+            "query_used": ""
+          },
+          "social_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Sarah Chen's social presence"
+            ]
+          },
+          "api_status": "not_configured"
+        },
+        {
+          "founder_name": "Michael Torres",
+          "company_name": "Neuraltech Ai",
+          "search_timestamp": "2025-08-11T10:37:27.165878",
+          "profile_data": {
+            "primary_profile": null,
+            "additional_candidates": [],
+            "total_candidates": 0
+          },
+          "recent_activity": {
+            "recent_tweets": [],
+            "total_tweets_found": 0,
+            "query_used": ""
+          },
+          "social_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Michael Torres's social presence"
+            ]
+          },
+          "api_status": "not_configured"
+        }
+      ],
+      "status": "completed"
+    },
+    "founder_analysis": {
+      "status": "completed",
+      "founder_analyses": [
+        {
+          "executive_summary": "Sarah Chen presents a compelling profile with her Stanford CS background and Google product management experience.  Her experience in enterprise software development at Google suggests a strong foundation for leading a B2B SaaS company. However, her specific experience within the AI/ML domain requires further investigation.  Overall, she demonstrates promising potential but needs further vetting regarding her specific AI/ML expertise and leadership experience scaling a company.",
+          "founder_capability_assessment": {
+            "risk_level": "Medium",
+            "key_team_strengths": [
+              "Stanford CS background",
+              "Google product management experience",
+              "Experience in enterprise software"
+            ],
+            "key_team_gaps": [
+              "Specific AI/ML domain expertise unclear",
+              "Proven leadership scaling a company"
+            ],
+            "risk_justification": "While Sarah's background is impressive, her direct experience in the AI/ML space and leading a Series A stage company needs further validation.  Her Google experience likely provided valuable skills, but the specific application to this venture requires deeper analysis."
+          },
+          "technical_capability_assessment": {
+            "execution_capability_score": 75,
+            "risk_level": "Medium",
+            "risk_justification": "Her Stanford CS background suggests strong technical fundamentals. However, the specific technical execution capabilities within AI/ML require further assessment.  Her product management role at Google may not translate directly to leading AI/ML development."
+          },
+          "market_position_assessment": {
+            "founder_market_fit_score": 70,
+            "risk_level": "Medium",
+            "risk_justification": "The AI/ML market for enterprises is competitive.  While Sarah's background positions her well to understand enterprise needs, the specific market dynamics and competitive landscape require further analysis to assess her ability to navigate this space effectively."
+          },
+          "network_influence_assessment": {
+            "professional_network_quality": 80,
+            "risk_level": "Low",
+            "risk_justification": "Her Stanford and Google affiliations likely provide a strong professional network, potentially beneficial for talent acquisition, fundraising, and partnerships.  However, the specific relevance of her network to the AI/ML enterprise space needs further investigation."
+          },
+          "final_recommendation": {
+            "investment_green_flags": [
+              "Strong academic credentials",
+              "Experience at a leading tech company"
+            ],
+            "investment_red_flags": [
+              "Limited demonstrable experience in AI/ML",
+              "Unproven leadership at Series A stage"
+            ],
+            "critical_questions_for_founders": [
+              "What specific AI/ML expertise do you bring to this venture?",
+              "How will you scale the team and manage growth at this stage?",
+              "What is your go-to-market strategy in this competitive landscape?"
+            ],
+            "overall_investment_risk_level": "Medium",
+            "recommendation": "HOLD",
+            "confidence_level": 70
+          },
+          "information_gaps": [
+            "Detailed information on Sarah's specific AI/ML experience",
+            "Evidence of leadership experience in scaling a company",
+            "Clear understanding of the company's competitive differentiation"
+          ],
+          "scores": {
+            "education_score": 90,
+            "experience_score": 75,
+            "network_score": 80,
+            "technical_score": 70,
+            "execution_score": 70,
+            "overall_signal_score": 75
+          },
+          "analysis_timestamp": "deterministic_hash_7fa4a14ace5062bb05e1386f940d85f7",
+          "research_methodology": "verssai_1157_papers_gemini",
+          "agent_version": "2.0",
+          "research_weights": {
+            "education_quality": 0.23,
+            "previous_exit": 0.34,
+            "technical_background": 0.28,
+            "industry_experience": 0.25,
+            "network_quality": 0.18,
+            "execution_track_record": 0.3
+          },
+          "ai_provider": "gemini",
+          "web_research_insights": [],
+          "social_media_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Sarah Chen's social presence"
+            ]
+          },
+          "recent_news": [],
+          "social_profiles": [],
+          "signal_id": "5c136037-0b21-49de-abc9-7257a4492d08",
+          "deck_id": "8c4198c1-cd58-4074-b19d-421da76e9bee",
+          "created_at": "2025-08-11T10:38:06.535365"
+        },
+        {
+          "executive_summary": "Michael Torres presents a compelling profile with his strong technical background at Facebook and MIT PhD.  His experience in AI/ML positions him well for the enterprise SaaS market. However, his CTO role raises questions about his broader leadership and business acumen, requiring further investigation.  Overall, he appears promising but needs further vetting to assess his suitability as a core leadership team member for a Series A company.",
+          "founder_capability_assessment": {
+            "risk_level": "Medium",
+            "key_team_strengths": [
+              "Deep technical expertise in AI/ML",
+              "Experience at a leading tech company (Facebook)",
+              "Strong academic credentials (MIT PhD)"
+            ],
+            "key_team_gaps": [
+              "Limited evidence of leadership experience beyond the CTO role",
+              "Unclear understanding of business development and sales"
+            ],
+            "risk_justification": "While technically strong, Michael's leadership experience and business acumen are uncertain.  His CTO background may limit his broader strategic vision and ability to scale a company at the Series A stage."
+          },
+          "technical_capability_assessment": {
+            "execution_capability_score": 85,
+            "risk_level": "Low",
+            "risk_justification": "Michael's Facebook engineering experience and MIT PhD in a relevant field suggest a high level of technical competence and execution capability in AI/ML."
+          },
+          "market_position_assessment": {
+            "founder_market_fit_score": 75,
+            "risk_level": "Medium",
+            "risk_justification": "The AI/ML enterprise market is competitive. While Michael's background is relevant, further assessment of his understanding of the specific target market and competitive landscape is needed."
+          },
+          "network_influence_assessment": {
+            "professional_network_quality": 70,
+            "risk_level": "Medium",
+            "risk_justification": "His Facebook experience suggests a reasonable network, but the quality and relevance to the enterprise SaaS space require further investigation.  The provided information doesn't offer enough detail to assess his network's influence within the target market."
+          },
+          "final_recommendation": {
+            "investment_green_flags": [
+              "Strong technical background",
+              "Experience at a recognized tech company"
+            ],
+            "investment_red_flags": [
+              "Limited demonstrable leadership experience outside of a technical role",
+              "Unclear business acumen"
+            ],
+            "critical_questions_for_founders": [
+              "What is your vision for scaling the company beyond the current stage?",
+              "How do you plan to navigate the competitive landscape in the enterprise AI/ML market?",
+              "What are your key sales and go-to-market strategies?"
+            ],
+            "overall_investment_risk_level": "Medium",
+            "recommendation": "HOLD",
+            "confidence_level": 70
+          },
+          "information_gaps": [
+            "Details on Michael's leadership experience",
+            "Information about the company's go-to-market strategy",
+            "Detailed understanding of the competitive landscape"
+          ],
+          "scores": {
+            "education_score": 95,
+            "experience_score": 80,
+            "network_score": 70,
+            "technical_score": 90,
+            "execution_score": 85,
+            "overall_signal_score": 80
+          },
+          "analysis_timestamp": "deterministic_hash_5cc375bcb16e4f017d18386b314975f2",
+          "research_methodology": "verssai_1157_papers_gemini",
+          "agent_version": "2.0",
+          "research_weights": {
+            "education_quality": 0.23,
+            "previous_exit": 0.34,
+            "technical_background": 0.28,
+            "industry_experience": 0.25,
+            "network_quality": 0.18,
+            "execution_track_record": 0.3
+          },
+          "ai_provider": "gemini",
+          "web_research_insights": [],
+          "social_media_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Michael Torres's social presence"
+            ]
+          },
+          "recent_news": [],
+          "social_profiles": [],
+          "signal_id": "9f2503ce-401b-406a-a80b-9c328b7118ea",
+          "deck_id": "8c4198c1-cd58-4074-b19d-421da76e9bee",
+          "created_at": "2025-08-11T10:38:06.535679"
+        }
+      ],
+      "team_overall_score": 77.5,
+      "founder_count": 2
+    },
+    "investment_evaluation": {
+      "status": "completed",
+      "investment_evaluation": {
+        "thesis_match_score": 8.5,
+        "recommendation": "BUY",
+        "market_assessment": {
+          "market_size_score": 9,
+          "market_timing_score": 8,
+          "competitive_landscape_score": 7
+        },
+        "founder_market_fit": {
+          "domain_expertise_score": 7,
+          "execution_capability_score": 8,
+          "team_quality_score": 7
+        },
+        "business_model_assessment": {
+          "scalability_score": 8,
+          "unit_economics_score": 7,
+          "defensibility_score": 6
+        },
+        "scoring_explanations": {
+          "thesis_match_explanation": "High thesis match due to B2B SaaS model, operation in a large and growing AI/ML market, and implied strong technical founders based on the company's focus.  Traction metrics further strengthen the alignment.",
+          "market_size_explanation": "The AI/ML market for enterprises is estimated at $50B+, representing a significant market opportunity. This warrants a high score.",
+          "market_timing_explanation": "AI/ML adoption is accelerating across enterprises, indicating favorable market timing. However, the competitive landscape is intensifying, slightly lowering the score.",
+          "competitive_landscape_explanation": "The AI/ML space is highly competitive.  While Neuraltech Ai operates in a large market, the lack of specific differentiation details lowers this score. Further competitive analysis is needed.",
+          "domain_expertise_explanation": "While the prompt lacks specific details on founder expertise, the company's operation in the AI/ML space suggests a degree of technical proficiency.  More information is needed for a higher score.",
+          "execution_capability_explanation": "200% YoY growth with 50+ customers demonstrates strong execution capability, especially at the Series A stage.",
+          "team_quality_explanation": "Team quality is inferred from the execution capability.  However, more detailed information on team composition and experience is needed for a more accurate assessment.",
+          "scalability_explanation": "B2B SaaS models are inherently scalable, and the company's existing traction supports this.  However, maintaining this growth rate will be key.",
+          "unit_economics_explanation": "The provided data doesn't offer insights into unit economics (e.g., CAC, LTV).  The score reflects this lack of information.  $500K ARR on 50+ customers suggests a potentially healthy average contract value.",
+          "defensibility_explanation": "No information on specific defensibility mechanisms (e.g., IP, network effects) is provided. This warrants a lower score.  Further investigation is required."
+        },
+        "calculation_methodology": {
+          "overall_scoring_method": "Weighted scoring based on proven investment success factors, with emphasis on market size, founder-market fit, and business model scalability.",
+          "research_papers_basis": "Analysis derived from 1,157 research papers on VC success patterns, focusing on B2B SaaS investments.",
+          "risk_assessment_factors": [
+            "Competition in the AI/ML market",
+            "Lack of detailed information on unit economics and defensibility"
+          ],
+          "success_correlation_factors": [
+            "Strong traction metrics",
+            "Large and growing market",
+            "B2B SaaS business model"
+          ]
+        },
+        "key_insights": [
+          "Strong early traction suggests product-market fit.",
+          "Large market opportunity in the AI/ML space.",
+          "Need for further due diligence on competitive differentiation and unit economics."
+        ],
+        "risk_factors": [
+          "Competition in the AI/ML market could hinder growth.",
+          "Lack of clear defensibility strategy.",
+          "Potential challenges in scaling while maintaining unit economics."
+        ],
+        "exit_scenarios": [
+          "Acquisition by a larger enterprise software company.",
+          "IPO potential given the large market size, but further growth and profitability are required."
+        ],
+        "comparable_investments": [],
+        "confidence_level": 0.75,
+        "evaluation_timestamp": "deterministic_hash_d941a651e80387a499432641e60f9423",
+        "research_methodology": "verssai_1157_papers_gemini",
+        "agent_version": "2.0",
+        "ai_provider": "gemini",
+        "enhanced_insights": {
+          "web_research_summary": {
+            "company_insights": [],
+            "funding_information": 0,
+            "recent_developments": 0,
+            "founder_insights": []
+          },
+          "social_signals_summary": {
+            "company_sentiment": "neutral",
+            "company_mentions": 0,
+            "founder_social_influence": 0,
+            "founder_count_analyzed": 0
+          },
+          "market_validation": {
+            "validation_score": 5,
+            "validation_level": "weak",
+            "key_factors": []
+          }
+        }
+      },
+      "recommendation": "BUY",
+      "thesis_match_score": 8.5,
+      "enhanced_research_applied": true
+    },
+    "rag_integration": {
+      "status": "completed",
+      "rag_document_id": "deck_8c4198c1-cd58-4074-b19d-421da76e9bee",
+      "content_length": 390
+    },
+    "database_storage": {
+      "status": "completed",
+      "storage": "file_system",
+      "records_stored": "extraction + founder_signals",
+      "deck_status": "completed"
+    }
+  },
+  "final_results": {
+    "company": "Neuraltech Ai",
+    "website": "",
+    "market": "AI/ML space for enterprises",
+    "stage": "Series A",
+    "fundingAsk": 5000000,
+    "traction": {
+      "revenue": "$500K ARR",
+      "customers": "50+",
+      "growth_rate": "200% YoY",
+      "key_metrics": []
+    },
+    "teamSize": 0,
+    "founders": [
+      {
+        "name": "Sarah Chen",
+        "role": "CEO",
+        "linkedin_hint": "Sarah Chen Google product manager Stanford CS",
+        "background": "Former Google product manager, Stanford CS"
+      },
+      {
+        "name": "Michael Torres",
+        "role": "CTO",
+        "linkedin_hint": "Michael Torres Facebook engineer MIT PhD",
+        "background": "Ex-Facebook engineer, MIT PhD"
+      }
+    ],
+    "overall_score": 77.5,
+    "components": {
+      "technical": {
+        "score": 7,
+        "confidence": 0.75
+      },
+      "market": {
+        "score": 9,
+        "confidence": 0.75
+      },
+      "execution": {
+        "score": 8,
+        "confidence": 0.75
+      },
+      "team": {
+        "score": 7,
+        "confidence": 0.75
+      }
+    },
+    "recommendation": "BUY",
+    "insights": [
+      "Twitter API not configured - unable to analyze Sarah Chen's social presence",
+      "Twitter API not configured - unable to analyze Michael Torres's social presence"
+    ],
+    "risks": [],
+    "research_enhancement": {
+      "web_research_applied": true,
+      "social_research_applied": true,
+      "company_web_insights": [],
+      "founder_web_insights": [],
+      "social_signals": {
+        "overall_sentiment": "neutral",
+        "sentiment_distribution": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 0
+        },
+        "total_analyzed": 0
+      },
+      "market_validation": {
+        "validation_score": 5,
+        "validation_level": "weak",
+        "key_factors": []
+      },
+      "enhanced_analysis_applied": true
+    },
+    "professional_analysis": {
+      "executive_summary": "Michael Torres presents a compelling profile with his strong technical background at Facebook and MIT PhD.  His experience in AI/ML positions him well for the enterprise SaaS market. However, his CTO role raises questions about his broader leadership and business acumen, requiring further investigation.  Overall, he appears promising but needs further vetting to assess his suitability as a core leadership team member for a Series A company.",
+      "founder_capability_assessment": {
+        "risk_level": "Medium",
+        "key_team_strengths": [
+          "Deep technical expertise in AI/ML",
+          "Experience at a leading tech company (Facebook)",
+          "Strong academic credentials (MIT PhD)"
+        ],
+        "key_team_gaps": [
+          "Limited evidence of leadership experience beyond the CTO role",
+          "Unclear understanding of business development and sales"
+        ],
+        "risk_justification": "While technically strong, Michael's leadership experience and business acumen are uncertain.  His CTO background may limit his broader strategic vision and ability to scale a company at the Series A stage."
+      },
+      "technical_capability_assessment": {
+        "execution_capability_score": 85,
+        "risk_level": "Low",
+        "risk_justification": "Michael's Facebook engineering experience and MIT PhD in a relevant field suggest a high level of technical competence and execution capability in AI/ML."
+      },
+      "market_position_assessment": {
+        "founder_market_fit_score": 75,
+        "risk_level": "Medium",
+        "risk_justification": "The AI/ML enterprise market is competitive. While Michael's background is relevant, further assessment of his understanding of the specific target market and competitive landscape is needed."
+      },
+      "network_influence_assessment": {
+        "professional_network_quality": 70,
+        "risk_level": "Medium",
+        "risk_justification": "His Facebook experience suggests a reasonable network, but the quality and relevance to the enterprise SaaS space require further investigation.  The provided information doesn't offer enough detail to assess his network's influence within the target market."
+      },
+      "final_recommendation": {
+        "investment_green_flags": [
+          "Strong academic credentials",
+          "Experience at a leading tech company",
+          "Strong technical background",
+          "Experience at a recognized tech company"
+        ],
+        "investment_red_flags": [
+          "Limited demonstrable experience in AI/ML",
+          "Unproven leadership at Series A stage",
+          "Limited demonstrable leadership experience outside of a technical role",
+          "Unclear business acumen"
+        ],
+        "critical_questions_for_founders": [
+          "What specific AI/ML expertise do you bring to this venture?",
+          "How will you scale the team and manage growth at this stage?",
+          "What is your go-to-market strategy in this competitive landscape?",
+          "What is your vision for scaling the company beyond the current stage?",
+          "How do you plan to navigate the competitive landscape in the enterprise AI/ML market?",
+          "What are your key sales and go-to-market strategies?"
+        ],
+        "overall_investment_risk_level": "Medium",
+        "recommendation": "HOLD",
+        "confidence_level": 70
+      },
+      "information_gaps": [
+        "Detailed information on Sarah's specific AI/ML experience",
+        "Evidence of leadership experience in scaling a company",
+        "Clear understanding of the company's competitive differentiation",
+        "Details on Michael's leadership experience",
+        "Information about the company's go-to-market strategy",
+        "Detailed understanding of the competitive landscape"
+      ]
+    }
+  },
+  "started_at": "2025-08-11T10:37:22.698783",
+  "completed_at": "2025-08-11T10:38:06.537067",
+  "saved_at": "2025-08-11T10:38:06.537104"
+}

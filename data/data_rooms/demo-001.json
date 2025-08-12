@@ -1,0 +1,27 @@
+{
+  "data_room_id": "demo-001",
+  "company_name": "Demo Company",
+  "company_id": "demo-001",
+  "industry": "Technology",
+  "uploaded_by": "VC Partner",
+  "upload_timestamp": "2025-08-12T13:33:07.619038",
+  "status": "completed",
+  "files": [
+    {
+      "original_name": "financial_statements.pdf",
+      "file_path": "/app/uploads/demo-001_doc_1_c3a3e30d-6968-4f18-9d00-f65f5a9bfab5.pdf",
+      "file_size": 328,
+      "document_id": "demo-001_doc_1"
+    },
+    {
+      "original_name": "market_analysis.csv",
+      "file_path": "/app/uploads/demo-001_doc_2_e51f8a86-e0c1-4647-b038-4d90503796f9.csv",
+      "file_size": 64,
+      "document_id": "demo-001_doc_2"
+    }
+  ],
+  "total_files": 2,
+  "total_size": 392,
+  "created_at": "2025-08-12T13:33:07.619050",
+  "updated_at": "2025-08-12T13:33:35.006931"
+}

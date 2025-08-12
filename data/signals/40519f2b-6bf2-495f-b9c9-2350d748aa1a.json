@@ -1,0 +1,90 @@
+{
+  "executive_summary": "Sarah Chen presents a compelling profile with her Stanford CS background and Google product management experience.  Her experience in enterprise software development at Google suggests a strong foundation for leading an AI/ML B2B SaaS company. However, further investigation is needed regarding her specific experience with AI/ML technologies and enterprise sales.  Overall, she demonstrates promising potential but requires deeper due diligence.",
+  "founder_capability_assessment": {
+    "risk_level": "Medium",
+    "key_team_strengths": [
+      "Stanford CS background",
+      "Google product management experience",
+      "Experience in enterprise software development"
+    ],
+    "key_team_gaps": [
+      "Specific AI/ML expertise depth",
+      "Proven enterprise sales leadership"
+    ],
+    "risk_justification": "While Sarah's background is impressive, her direct experience with AI/ML and enterprise sales at the leadership level needs further validation.  Her Google experience likely provided exposure to these areas, but her direct contribution and leadership within those domains require clarification."
+  },
+  "technical_capability_assessment": {
+    "execution_capability_score": 75,
+    "risk_level": "Medium",
+    "risk_justification": "Her Stanford CS background suggests strong technical fundamentals. However, the specific technical challenges of AI/ML require specialized expertise.  Further assessment of her technical team and their capabilities is crucial."
+  },
+  "market_position_assessment": {
+    "founder_market_fit_score": 70,
+    "risk_level": "Medium",
+    "risk_justification": "The AI/ML market for enterprises is competitive and requires a deep understanding of customer needs and pain points.  While Sarah's product management experience is valuable, her specific understanding of this niche market needs further investigation."
+  },
+  "network_influence_assessment": {
+    "professional_network_quality": 75,
+    "risk_level": "Medium",
+    "risk_justification": "Her Google and Stanford network likely provides valuable connections.  However, the depth and relevance of her network within the enterprise AI/ML space require further assessment.  Understanding her ability to leverage this network for customer acquisition and partnerships is crucial."
+  },
+  "final_recommendation": {
+    "investment_green_flags": [
+      "Strong academic background",
+      "Relevant product management experience at Google"
+    ],
+    "investment_red_flags": [
+      "Limited demonstrable experience in AI/ML specifically",
+      "Unclear enterprise sales leadership experience"
+    ],
+    "critical_questions_for_founders": [
+      "What is your specific experience leading AI/ML development teams?",
+      "What is your go-to-market strategy for acquiring enterprise clients?",
+      "What are your key financial projections and underlying assumptions?"
+    ],
+    "overall_investment_risk_level": "Medium",
+    "recommendation": "BUY",
+    "confidence_level": 70
+  },
+  "information_gaps": [
+    "Detailed information on the technical team",
+    "Specific examples of AI/ML product development experience",
+    "Go-to-market strategy and sales pipeline details",
+    "Financial projections and key performance indicators"
+  ],
+  "scores": {
+    "education_score": 90,
+    "experience_score": 80,
+    "network_score": 75,
+    "technical_score": 70,
+    "execution_score": 75,
+    "overall_signal_score": 78
+  },
+  "analysis_timestamp": "deterministic_hash_7fa4a14ace5062bb05e1386f940d85f7",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "web_research_insights": [],
+  "social_media_analysis": {
+    "social_influence_score": 0,
+    "engagement_quality": "unknown",
+    "thought_leadership": "unknown",
+    "industry_presence": "unknown",
+    "key_insights": [
+      "Twitter API not configured - unable to analyze Sarah Chen's social presence"
+    ]
+  },
+  "recent_news": [],
+  "social_profiles": [],
+  "signal_id": "40519f2b-6bf2-495f-b9c9-2350d748aa1a",
+  "deck_id": "9db400d9-bd91-404b-afdf-149e540d7cb4",
+  "created_at": "2025-08-11T10:21:42.877342"
+}

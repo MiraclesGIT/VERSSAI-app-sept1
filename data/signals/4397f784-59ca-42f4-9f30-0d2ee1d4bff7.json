@@ -1,0 +1,90 @@
+{
+  "executive_summary": "Michael Torres presents a compelling profile with strong technical credentials and experience at Facebook.  His MIT PhD and engineering background suggest a high technical capability. However, his CTO role raises questions about his broader leadership and business acumen, requiring further assessment.  The AI/ML enterprise market is competitive, necessitating a strong go-to-market strategy.  Overall, Michael appears promising but requires deeper due diligence.",
+  "founder_capability_assessment": {
+    "risk_level": "Medium",
+    "key_team_strengths": [
+      "Strong technical expertise",
+      "Experience at a leading tech company (Facebook)",
+      "Advanced education (MIT PhD)"
+    ],
+    "key_team_gaps": [
+      "Limited information on leadership experience",
+      "Unclear business acumen and go-to-market strategy experience"
+    ],
+    "risk_justification": "While technically strong, Michael's leadership and business development skills are unknown.  Success in the competitive AI/ML market requires more than technical proficiency."
+  },
+  "technical_capability_assessment": {
+    "execution_capability_score": 85,
+    "risk_level": "Low",
+    "risk_justification": "Michael's Facebook engineering experience and MIT PhD in a relevant field suggest a high likelihood of technical execution capability."
+  },
+  "market_position_assessment": {
+    "founder_market_fit_score": 70,
+    "risk_level": "Medium",
+    "risk_justification": "The AI/ML enterprise market is attractive but highly competitive.  Further assessment of the company's differentiation and go-to-market strategy is crucial."
+  },
+  "network_influence_assessment": {
+    "professional_network_quality": 75,
+    "risk_level": "Medium",
+    "risk_justification": "Experience at Facebook suggests a reasonable network, but the quality and relevance to the enterprise AI/ML space need further investigation."
+  },
+  "final_recommendation": {
+    "investment_green_flags": [
+      "Strong technical background",
+      "Experience at Facebook"
+    ],
+    "investment_red_flags": [
+      "Limited information on leadership experience",
+      "Unclear go-to-market strategy"
+    ],
+    "critical_questions_for_founders": [
+      "What is your leadership experience and approach?",
+      "What is your go-to-market strategy for this competitive market?",
+      "What are your key financial projections and unit economics?"
+    ],
+    "overall_investment_risk_level": "Medium",
+    "recommendation": "HOLD",
+    "confidence_level": 70
+  },
+  "information_gaps": [
+    "Details on leadership experience",
+    "Go-to-market strategy specifics",
+    "Financial projections",
+    "Team composition beyond the CTO"
+  ],
+  "scores": {
+    "education_score": 95,
+    "experience_score": 80,
+    "network_score": 75,
+    "technical_score": 90,
+    "execution_score": 85,
+    "overall_signal_score": 80
+  },
+  "analysis_timestamp": "deterministic_hash_5cc375bcb16e4f017d18386b314975f2",
+  "research_methodology": "verssai_1157_papers_gemini",
+  "agent_version": "2.0",
+  "research_weights": {
+    "education_quality": 0.23,
+    "previous_exit": 0.34,
+    "technical_background": 0.28,
+    "industry_experience": 0.25,
+    "network_quality": 0.18,
+    "execution_track_record": 0.3
+  },
+  "ai_provider": "gemini",
+  "web_research_insights": [],
+  "social_media_analysis": {
+    "social_influence_score": 0,
+    "engagement_quality": "unknown",
+    "thought_leadership": "unknown",
+    "industry_presence": "unknown",
+    "key_insights": [
+      "Twitter API not configured - unable to analyze Michael Torres's social presence"
+    ]
+  },
+  "recent_news": [],
+  "social_profiles": [],
+  "signal_id": "4397f784-59ca-42f4-9f30-0d2ee1d4bff7",
+  "deck_id": "ddbfdd16-0567-4864-9918-f6f2ac17176d",
+  "created_at": "2025-08-11T14:21:23.433322"
+}

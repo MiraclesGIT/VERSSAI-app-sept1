@@ -1,0 +1,504 @@
+{
+  "workflow_id": "04ddc36f-6967-47e1-9412-d54f39c07b31",
+  "deck_id": "04ddc36f-6967-47e1-9412-d54f39c07b31",
+  "company_name": "Neuraltech Professional",
+  "status": "completed",
+  "stages": {
+    "extraction": {
+      "status": "completed",
+      "extracted_text": "\n                Neuraltech Professional - Pitch Deck\n                \n                Problem: Large market opportunity in AI/ML space\n                Solution: Revolutionary AI platform for enterprises\n                Market: $50B+ market growing at 25% CAGR\n                Business Model: B2B SaaS with enterprise contracts\n                Traction: $500K ARR, 50+ customers, 200% YoY growth\n                Team: Experienced founders with Stanford/MIT backgrounds\n                Funding: Raising $5M Series A for product development and sales\n                \n                Founders:\n                - Sarah Chen, CEO: Former Google product manager, Stanford CS\n                - Michael Torres, CTO: Ex-Facebook engineer, MIT PhD\n                ",
+      "file_type": ".pdf",
+      "extraction_method": "mock_extractor",
+      "text_length": 755,
+      "confidence": 0.8
+    },
+    "ai_extraction": {
+      "status": "completed",
+      "extraction_data": {
+        "company_name": "Neuraltech Professional",
+        "website": "",
+        "founders": [
+          {
+            "name": "Founder",
+            "role": "CEO",
+            "linkedin_hint": "",
+            "background": ""
+          }
+        ],
+        "market": "Technology",
+        "market_size": "Large market opportunity",
+        "business_model": "B2B SaaS",
+        "traction": {
+          "revenue": "Growing",
+          "customers": "Multiple customers",
+          "growth_rate": "Positive growth",
+          "key_metrics": []
+        },
+        "funding_ask": 1000000,
+        "use_of_funds": "Product development and growth",
+        "team_size": 5,
+        "stage": "Seed",
+        "confidence_score": 0.3,
+        "extracted_at": "2025-08-11T10:38:49.934703",
+        "extraction_method": "fallback",
+        "agent_version": "1.0",
+        "extraction_id": "fd41bba2-b66d-420c-875e-7e4e7ecb59c5",
+        "deck_id": "04ddc36f-6967-47e1-9412-d54f39c07b31"
+      },
+      "ai_model": "deck_extraction_agent",
+      "confidence": 0.3
+    },
+    "web_research": {
+      "company_research": {
+        "company_name": "Neuraltech Professional",
+        "industry": "Technology",
+        "search_timestamp": "2025-08-11T10:38:34.159819",
+        "intelligence_categories": {
+          "primary": {
+            "search_type": "primary",
+            "query": "\"Neuraltech Professional\" Technology",
+            "total_results": 0,
+            "search_time": 0.248821,
+            "results": []
+          },
+          "financials": {
+            "search_type": "financials",
+            "query": "\"Neuraltech Professional\" funding investment Series A B C valuation revenue",
+            "total_results": 0,
+            "search_time": 0.406964,
+            "results": []
+          },
+          "news": {
+            "search_type": "news",
+            "query": "\"Neuraltech Professional\" news announcement launch product",
+            "total_results": 0,
+            "search_time": 0.250026,
+            "results": []
+          },
+          "competitors": {
+            "search_type": "competitors",
+            "query": "\"Neuraltech Professional\" competitors alternative vs comparison",
+            "total_results": 0,
+            "search_time": 0.268392,
+            "results": []
+          },
+          "industry": {
+            "search_type": "industry",
+            "query": "Technology market analysis trends \"Neuraltech Professional\"",
+            "total_results": 0,
+            "search_time": 0.34216,
+            "results": []
+          }
+        },
+        "key_insights": [],
+        "all_sources": [],
+        "funding_information": [],
+        "recent_developments": [],
+        "competitive_analysis": []
+      },
+      "founder_research": [
+        {
+          "founder_name": "Founder",
+          "company_name": "Neuraltech Professional",
+          "search_timestamp": "2025-08-11T10:38:34.389712",
+          "results_by_category": {
+            "primary": {
+              "search_type": "primary",
+              "query": "\"Founder\" \"Neuraltech Professional\"",
+              "total_results": 0,
+              "search_time": 0.20657,
+              "results": []
+            },
+            "professional": {
+              "search_type": "professional",
+              "query": "\"Founder\" CEO founder executive biography \"Neuraltech Professional\"",
+              "total_results": 0,
+              "search_time": 0.209485,
+              "results": []
+            },
+            "social": {
+              "search_type": "social",
+              "query": "\"Founder\" LinkedIn Twitter site:linkedin.com OR site:twitter.com",
+              "total_results": 0,
+              "search_time": 0.233996,
+              "results": []
+            },
+            "news": {
+              "search_type": "news",
+              "query": "\"Founder\" news interview article \"Neuraltech Professional\"",
+              "total_results": 0,
+              "search_time": 0.22842,
+              "results": []
+            }
+          },
+          "consolidated_results": [],
+          "key_insights": [],
+          "social_profiles": [],
+          "recent_news": []
+        }
+      ],
+      "status": "completed"
+    },
+    "social_research": {
+      "company_social": {
+        "company_name": "Neuraltech Professional",
+        "search_timestamp": "2025-08-11T10:38:34.389867",
+        "mentions": {
+          "mentions": [],
+          "total_mentions": 0,
+          "query_used": ""
+        },
+        "sentiment_analysis": {
+          "overall_sentiment": "neutral",
+          "sentiment_distribution": {
+            "positive": 0,
+            "neutral": 0,
+            "negative": 0
+          },
+          "total_analyzed": 0
+        },
+        "api_status": "not_configured"
+      },
+      "founder_social": [
+        {
+          "founder_name": "Founder",
+          "company_name": "Neuraltech Professional",
+          "search_timestamp": "2025-08-11T10:38:34.389876",
+          "profile_data": {
+            "primary_profile": null,
+            "additional_candidates": [],
+            "total_candidates": 0
+          },
+          "recent_activity": {
+            "recent_tweets": [],
+            "total_tweets_found": 0,
+            "query_used": ""
+          },
+          "social_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Founder's social presence"
+            ]
+          },
+          "api_status": "not_configured"
+        }
+      ],
+      "status": "completed"
+    },
+    "founder_analysis": {
+      "status": "completed",
+      "founder_analyses": [
+        {
+          "executive_summary": "The founder's profile lacks crucial details for a comprehensive assessment.  While the B2B SaaS market presents opportunities, the absence of background information, LinkedIn profile, and specific company details makes it impossible to evaluate their capabilities and potential. Further investigation is required to determine the founder's experience, expertise, and overall fit for the role.  Without more data, it's premature to assess the viability of the venture.",
+          "founder_capability_assessment": {
+            "risk_level": "High",
+            "key_team_strengths": [],
+            "key_team_gaps": [
+              "Lack of information on founder's background and experience",
+              "No details on team composition and expertise"
+            ],
+            "risk_justification": "The complete absence of background information on the founder raises significant concerns about their capabilities and experience.  Without a LinkedIn profile or other details, it's impossible to assess their track record, skills, and suitability for leading a B2B SaaS startup."
+          },
+          "technical_capability_assessment": {
+            "execution_capability_score": 0,
+            "risk_level": "High",
+            "risk_justification": "No information is available to assess the technical capabilities of the founder or the company.  The lack of details about the product, technology stack, and development process makes it impossible to evaluate their technical execution potential."
+          },
+          "market_position_assessment": {
+            "founder_market_fit_score": 0,
+            "risk_level": "High",
+            "risk_justification": "While the B2B SaaS market offers potential, the lack of information about the specific product and target market makes it impossible to assess the founder's understanding of the market landscape, competitive dynamics, and customer needs."
+          },
+          "network_influence_assessment": {
+            "professional_network_quality": 0,
+            "risk_level": "High",
+            "risk_justification": "Without a LinkedIn profile or other information about the founder's network, it's impossible to gauge the quality and extent of their professional connections.  A strong network is crucial for accessing resources, mentorship, and potential customers, especially in the early stages of a startup."
+          },
+          "final_recommendation": {
+            "investment_green_flags": [],
+            "investment_red_flags": [
+              "Lack of founder information",
+              "No company details",
+              "Absence of technical and market information"
+            ],
+            "critical_questions_for_founders": [
+              "What is your background and experience in the B2B SaaS space?",
+              "What is the core technology behind your product and how is it differentiated?",
+              "What is your go-to-market strategy and how will you acquire customers?"
+            ],
+            "overall_investment_risk_level": "High",
+            "recommendation": "PASS",
+            "confidence_level": 0
+          },
+          "information_gaps": [
+            "Founder's background and experience",
+            "Company details (product, team, traction)",
+            "Technical details about the product",
+            "Target market and go-to-market strategy",
+            "Founder's LinkedIn profile"
+          ],
+          "scores": {
+            "education_score": 0,
+            "experience_score": 0,
+            "network_score": 0,
+            "technical_score": 0,
+            "execution_score": 0,
+            "overall_signal_score": 0.0
+          },
+          "analysis_timestamp": "deterministic_hash_bac30890b680d386ce976ed5cc2dea30",
+          "research_methodology": "verssai_1157_papers_gemini",
+          "agent_version": "2.0",
+          "research_weights": {
+            "education_quality": 0.23,
+            "previous_exit": 0.34,
+            "technical_background": 0.28,
+            "industry_experience": 0.25,
+            "network_quality": 0.18,
+            "execution_track_record": 0.3
+          },
+          "ai_provider": "gemini",
+          "web_research_insights": [],
+          "social_media_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Founder's social presence"
+            ]
+          },
+          "recent_news": [],
+          "social_profiles": [],
+          "signal_id": "c6876bc6-5d41-4e09-b412-f712915f8622",
+          "deck_id": "04ddc36f-6967-47e1-9412-d54f39c07b31",
+          "created_at": "2025-08-11T10:38:49.935107"
+        }
+      ],
+      "team_overall_score": 0.0,
+      "founder_count": 1
+    },
+    "investment_evaluation": {
+      "status": "completed",
+      "investment_evaluation": {
+        "thesis_match_score": 0.6,
+        "recommendation": "BUY",
+        "market_assessment": {
+          "market_size_score": 0.7,
+          "market_timing_score": 0.6,
+          "competitive_landscape_score": 0.5
+        },
+        "founder_market_fit": {
+          "domain_expertise_score": 0.7,
+          "execution_capability_score": 0.6,
+          "team_quality_score": 0.6
+        },
+        "business_model_assessment": {
+          "scalability_score": 0.7,
+          "unit_economics_score": 0.5,
+          "defensibility_score": 0.4
+        },
+        "scoring_explanations": {
+          "thesis_match_explanation": "The company partially aligns with the investment thesis. While it is a B2B SaaS company with seemingly strong technical founders, 'proven traction' and 'positive market signals' are vaguely defined and require further investigation. The 0.6 score reflects this partial alignment pending further due diligence.",
+          "market_size_explanation": "The 'large market opportunity' suggests a market size exceeding $1B, warranting a 0.7 score.  However, lacking specific figures prevents a higher score. Further research is needed to quantify the TAM and its growth rate.",
+          "market_timing_explanation": "The market timing is assumed to be moderately favorable (0.6) given the general positive sentiment towards B2B SaaS.  However, without specific data on market trends and adoption rates, a higher score is not justified.",
+          "competitive_landscape_explanation": "The competitive landscape is unclear.  A score of 0.5 reflects this uncertainty.  Detailed competitive analysis is required to understand the company's differentiation and defensibility.",
+          "domain_expertise_explanation": "The description mentions 'strong technical founders,' suggesting relevant domain expertise.  A score of 0.7 reflects this positive signal.  However, further assessment of their specific experience and track record is needed.",
+          "execution_capability_explanation": "Early-stage companies often lack extensive execution history. The 0.6 score reflects the limited information available.  Traction data suggests some execution capability, but more data is needed to assess their ability to scale.",
+          "team_quality_explanation": "Similar to execution capability, the team quality score is 0.6 due to limited information.  While 'strong technical founders' is positive, a comprehensive team assessment is required.",
+          "scalability_explanation": "B2B SaaS inherently offers scalability potential.  The 0.7 score reflects this inherent advantage.  However, the actual scalability depends on the specific business model and needs further validation.",
+          "unit_economics_explanation": "Unit economics are unknown.  The 0.5 score reflects this lack of information.  Detailed financial projections and customer acquisition cost analysis are crucial.",
+          "defensibility_explanation": "Defensibility is currently unclear.  The 0.4 score reflects this uncertainty and the need to identify potential moats, IP, or network effects."
+        },
+        "calculation_methodology": {
+          "overall_scoring_method": "Weighted scoring based on proven investment success factors",
+          "research_papers_basis": "Analysis derived from 1,157 research papers on VC success patterns",
+          "risk_assessment_factors": [
+            "Limited traction data",
+            "Unclear competitive landscape",
+            "Unknown unit economics"
+          ],
+          "success_correlation_factors": [
+            "Strong technical founders",
+            "B2B SaaS business model",
+            "Potential for scalability"
+          ]
+        },
+        "key_insights": [
+          "Potential for strong market fit given the B2B SaaS model and experienced technical founders",
+          "Need for further due diligence to validate market size, competitive landscape, and unit economics"
+        ],
+        "risk_factors": [
+          "Early-stage investment with inherent risks",
+          "Limited information on competitive landscape and defensibility",
+          "Unclear unit economics"
+        ],
+        "exit_scenarios": [
+          "Potential acquisition by a larger technology company",
+          "IPO potential if the company achieves significant scale and market leadership"
+        ],
+        "comparable_investments": [],
+        "confidence_level": 0.65,
+        "evaluation_timestamp": "deterministic_hash_64ca1f5104a12e9753501d180ac8f03c",
+        "research_methodology": "verssai_1157_papers_gemini",
+        "agent_version": "2.0",
+        "ai_provider": "gemini",
+        "enhanced_insights": {
+          "web_research_summary": {
+            "company_insights": [],
+            "funding_information": 0,
+            "recent_developments": 0,
+            "founder_insights": []
+          },
+          "social_signals_summary": {
+            "company_sentiment": "neutral",
+            "company_mentions": 0,
+            "founder_social_influence": 0,
+            "founder_count_analyzed": 0
+          },
+          "market_validation": {
+            "validation_score": 5,
+            "validation_level": "weak",
+            "key_factors": []
+          }
+        }
+      },
+      "recommendation": "BUY",
+      "thesis_match_score": 0.6,
+      "enhanced_research_applied": true
+    },
+    "rag_integration": {
+      "status": "completed",
+      "rag_document_id": "deck_04ddc36f-6967-47e1-9412-d54f39c07b31",
+      "content_length": 348
+    },
+    "database_storage": {
+      "status": "completed",
+      "storage": "file_system",
+      "records_stored": "extraction + founder_signals",
+      "deck_status": "completed"
+    }
+  },
+  "final_results": {
+    "company": "Neuraltech Professional",
+    "website": "",
+    "market": "Technology",
+    "stage": "Seed",
+    "fundingAsk": 1000000,
+    "traction": {
+      "revenue": "Growing",
+      "customers": "Multiple customers",
+      "growth_rate": "Positive growth",
+      "key_metrics": []
+    },
+    "teamSize": 5,
+    "founders": [
+      {
+        "name": "Founder",
+        "role": "CEO",
+        "linkedin_hint": "",
+        "background": ""
+      }
+    ],
+    "overall_score": 0.0,
+    "components": {
+      "technical": {
+        "score": 0.7,
+        "confidence": 0.65
+      },
+      "market": {
+        "score": 0.7,
+        "confidence": 0.65
+      },
+      "execution": {
+        "score": 0.6,
+        "confidence": 0.65
+      },
+      "team": {
+        "score": 0.6,
+        "confidence": 0.65
+      }
+    },
+    "recommendation": "BUY",
+    "insights": [
+      "Twitter API not configured - unable to analyze Founder's social presence"
+    ],
+    "risks": [],
+    "research_enhancement": {
+      "web_research_applied": true,
+      "social_research_applied": true,
+      "company_web_insights": [],
+      "founder_web_insights": [],
+      "social_signals": {
+        "overall_sentiment": "neutral",
+        "sentiment_distribution": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 0
+        },
+        "total_analyzed": 0
+      },
+      "market_validation": {
+        "validation_score": 5,
+        "validation_level": "weak",
+        "key_factors": []
+      },
+      "enhanced_analysis_applied": true
+    },
+    "professional_analysis": {
+      "executive_summary": "The founder's profile lacks crucial details for a comprehensive assessment.  While the B2B SaaS market presents opportunities, the absence of background information, LinkedIn profile, and specific company details makes it impossible to evaluate their capabilities and potential. Further investigation is required to determine the founder's experience, expertise, and overall fit for the role.  Without more data, it's premature to assess the viability of the venture.",
+      "founder_capability_assessment": {
+        "risk_level": "High",
+        "key_team_strengths": [],
+        "key_team_gaps": [
+          "Lack of information on founder's background and experience",
+          "No details on team composition and expertise"
+        ],
+        "risk_justification": "The complete absence of background information on the founder raises significant concerns about their capabilities and experience.  Without a LinkedIn profile or other details, it's impossible to assess their track record, skills, and suitability for leading a B2B SaaS startup."
+      },
+      "technical_capability_assessment": {
+        "execution_capability_score": 0,
+        "risk_level": "High",
+        "risk_justification": "No information is available to assess the technical capabilities of the founder or the company.  The lack of details about the product, technology stack, and development process makes it impossible to evaluate their technical execution potential."
+      },
+      "market_position_assessment": {
+        "founder_market_fit_score": 0,
+        "risk_level": "High",
+        "risk_justification": "While the B2B SaaS market offers potential, the lack of information about the specific product and target market makes it impossible to assess the founder's understanding of the market landscape, competitive dynamics, and customer needs."
+      },
+      "network_influence_assessment": {
+        "professional_network_quality": 0,
+        "risk_level": "High",
+        "risk_justification": "Without a LinkedIn profile or other information about the founder's network, it's impossible to gauge the quality and extent of their professional connections.  A strong network is crucial for accessing resources, mentorship, and potential customers, especially in the early stages of a startup."
+      },
+      "final_recommendation": {
+        "investment_green_flags": [],
+        "investment_red_flags": [
+          "Lack of founder information",
+          "No company details",
+          "Absence of technical and market information"
+        ],
+        "critical_questions_for_founders": [
+          "What is your background and experience in the B2B SaaS space?",
+          "What is the core technology behind your product and how is it differentiated?",
+          "What is your go-to-market strategy and how will you acquire customers?"
+        ],
+        "overall_investment_risk_level": "High",
+        "recommendation": "PASS",
+        "confidence_level": 70
+      },
+      "information_gaps": [
+        "Founder's background and experience",
+        "Company details (product, team, traction)",
+        "Technical details about the product",
+        "Target market and go-to-market strategy",
+        "Founder's LinkedIn profile"
+      ]
+    }
+  },
+  "started_at": "2025-08-11T10:38:29.825397",
+  "completed_at": "2025-08-11T10:38:49.936014",
+  "saved_at": "2025-08-11T10:38:49.936056"
+}

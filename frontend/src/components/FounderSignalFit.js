@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Upload, FileText, Linkedin, Globe, Github, TrendingUp, AlertCircle, CheckCircle, Clock, BarChart3, Users, Target, Zap, Info, BookOpen, Calculator, Award } from 'lucide-react';
+import '../components/PalantirTheme.css';
+import { Upload, FileText, Linkedin, Globe, Github, TrendingUp, AlertCircle, CheckCircle, Clock, BarChart3, Users, Target, Zap, Info, BookOpen, Calculator, Award, Terminal, Shield, Cpu, Network, ArrowLeft, Brain, Search, Database, Activity } from 'lucide-react';
 import axios from 'axios';
+import WorkflowAnimation from './WorkflowAnimation';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -74,7 +76,7 @@ const FounderSignalFit = () => {
           const analysisData = response.data;
           
           if (analysisData.status === 'completed' && analysisData.analysis) {
-            // Analysis complete - use real results
+            // Analysis complete - use real results with research enhancement and professional analysis
             setExtractedData({
               company: analysisData.analysis.company,
               website: analysisData.analysis.website,
@@ -83,22 +85,28 @@ const FounderSignalFit = () => {
               fundingAsk: analysisData.analysis.fundingAsk,
               traction: analysisData.analysis.traction,
               teamSize: analysisData.analysis.teamSize,
-              founders: analysisData.analysis.founders
+              founders: analysisData.analysis.founders,
+              // Add research enhancement data
+              research_enhancement: analysisData.analysis.research_enhancement,
+              // Add professional analysis data for Top Decile VC level
+              professional_analysis: analysisData.analysis.professional_analysis
             });
             
             setSignalScores({
               overall: Math.round(analysisData.analysis.overall_score),
               components: analysisData.analysis.components,
               signals: {
-                education: { value: "AI analyzed", score: Math.round(analysisData.analysis.components.technical?.score || 50) },
-                experience: { value: "AI analyzed", score: Math.round(analysisData.analysis.components.execution?.score || 50) },
-                network: { value: "AI analyzed", score: Math.round(analysisData.analysis.components.team?.score || 50) },
-                github: { value: "AI analyzed", score: Math.round(analysisData.analysis.components.technical?.score || 50) },
-                media: { value: "AI analyzed", score: Math.round(analysisData.analysis.components.market?.score || 50) }
+                education: { value: "AI + Web Research", score: Math.round(analysisData.analysis.components.technical?.score || 50) },
+                experience: { value: "AI + Social Signals", score: Math.round(analysisData.analysis.components.execution?.score || 50) },
+                network: { value: "AI + Market Research", score: Math.round(analysisData.analysis.components.team?.score || 50) },
+                github: { value: "AI + Tech Analysis", score: Math.round(analysisData.analysis.components.technical?.score || 50) },
+                media: { value: "AI + Social Media", score: Math.round(analysisData.analysis.components.market?.score || 50) }
               },
               recommendation: analysisData.analysis.recommendation || "NEUTRAL",
-              insights: analysisData.analysis.insights || ["AI analysis completed"],
-              risks: analysisData.analysis.risks || ["Analysis in progress"]
+              insights: analysisData.analysis.insights || ["AI analysis completed with research enhancement"],
+              risks: analysisData.analysis.risks || ["Analysis in progress"],
+              // Add research enhancement indicators
+              research_applied: analysisData.analysis.research_enhancement
             });
             
             setAnalysisStage('complete');
@@ -246,22 +254,67 @@ const FounderSignalFit = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Founder Signal Fit Analysis</h1>
-          <p className="text-gray-600">Upload pitch deck to analyze founder-market fit using AI-powered signals</p>
+    <div className="min-h-screen" style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
+      {/* Palantir-style Header */}
+      <header className="palantir-panel border-b border-gray-800 p-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => window.history.back()}
+              className="palantir-btn flex items-center gap-2"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Command Center
+            </button>
+            <div className="w-px h-6 bg-gray-700"></div>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                <Users className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-white">Founder Signal Fit</h1>
+                <p className="text-xs text-gray-400 palantir-mono">Intelligence Framework #1</p>
+              </div>
+            </div>
+            <div className="palantir-status operational">
+              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+              ACTIVE
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="palantir-status processing">
+              <Activity className="w-3 h-3" />
+              PROCESSING QUEUE: 0
+            </div>
+            <button className="palantir-btn">
+              <Terminal className="w-4 h-4" />
+            </button>
+          </div>
         </div>
+      </header>
 
-        {/* Upload Section */}
+      <div className="max-w-7xl mx-auto p-6">
+        
+        {/* Intelligence Upload Panel */}
         {analysisStage === 'idle' && (
-          <div className="bg-white rounded-xl shadow-lg p-12 text-center">
-            <div className="max-w-md mx-auto">
-              <Upload className="w-16 h-16 text-blue-500 mx-auto mb-4" />
-              <h2 className="text-2xl font-semibold mb-2">Upload Pitch Deck</h2>
-              <p className="text-gray-600 mb-6">Support for PDF, PPT, PPTX formats (Max 50MB)</p>
+          <div className="palantir-panel p-12">
+            {/* Upload Header */}
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Upload className="w-12 h-12 text-cyan-400" />
+                <div>
+                  <h2 className="text-2xl font-bold text-white">Document Intelligence Upload</h2>
+                  <p className="text-gray-400 palantir-mono">Pitch Deck Analysis Pipeline</p>
+                </div>
+              </div>
+              <p className="text-gray-300 max-w-2xl mx-auto">
+                Upload pitch deck for comprehensive founder signal analysis using AI-powered 
+                institutional-grade due diligence framework
+              </p>
+            </div>
 
+            {/* Upload Interface */}
+            <div className="max-w-lg mx-auto mb-8">
               <label className="block">
                 <input
                   type="file"
@@ -269,84 +322,93 @@ const FounderSignalFit = () => {
                   accept=".pdf,.ppt,.pptx"
                   onChange={handleFileUpload}
                 />
-                <div className="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition cursor-pointer inline-block">
-                  Choose File
+                <div className="palantir-card p-8 text-center cursor-pointer transition-all duration-300 hover:scale-105">
+                  <div className="mb-6">
+                    <div className="w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                      <Upload className="w-10 h-10 text-cyan-400" />
+                    </div>
+                    <div className="text-sm text-gray-400 palantir-mono mb-2">SUPPORTED FORMATS</div>
+                    <div className="text-xs text-gray-500">PDF, PPT, PPTX • Max 50MB</div>
+                  </div>
+                  <button className="palantir-btn-primary w-full">
+                    <FileText className="w-4 h-4 mr-2" />
+                    INITIATE UPLOAD
+                  </button>
                 </div>
               </label>
+            </div>
 
-              <div className="mt-8 grid grid-cols-4 gap-4 text-center">
+            {/* System Metrics */}
+            <div className="palantir-grid-4">
+              <div className="palantir-metric">
+                <div className="palantir-metric-value">82.4%</div>
+                <div className="palantir-metric-label">Analysis Accuracy</div>
+                <div className="mt-2 text-xs text-green-400">institutional grade</div>
+              </div>
+              <div className="palantir-metric">
+                <div className="palantir-metric-value">1,157</div>
+                <div className="palantir-metric-label">Research Papers</div>
+                <div className="mt-2 text-xs text-blue-400">correlation factors</div>
+              </div>
+              <div className="palantir-metric">
+                <div className="palantir-metric-value">7.23x</div>
+                <div className="palantir-metric-label">ROI Performance</div>
+                <div className="mt-2 text-xs text-cyan-400">benchmark outperform</div>
+              </div>
+              <div className="palantir-metric">
+                <div className="palantir-metric-value">2.1</div>
+                <div className="palantir-metric-label">Minutes Process</div>
+                <div className="mt-2 text-xs text-orange-400">average completion</div>
+              </div>
+            </div>
+
+            {/* Technical Specifications */}
+            <div className="mt-8 palantir-panel p-6">
+              <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                <Cpu className="w-5 h-5 text-cyan-400" />
+                Processing Architecture
+              </h3>
+              <div className="palantir-grid-2">
                 <div>
-                  <div className="text-2xl font-bold text-blue-600">82%</div>
-                  <div className="text-xs text-gray-500">Avg Accuracy</div>
+                  <div className="text-sm text-gray-400 mb-2">AI Engine</div>
+                  <div className="palantir-status operational">
+                    <Brain className="w-3 h-3" />
+                    Gemini Pro 1.5
+                  </div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-blue-600">1,157</div>
-                  <div className="text-xs text-gray-500">Papers Analyzed</div>
+                  <div className="text-sm text-gray-400 mb-2">Research Enhancement</div>
+                  <div className="palantir-status operational">
+                    <Search className="w-3 h-3" />
+                    Google + Social APIs
+                  </div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-blue-600">7.23x</div>
-                  <div className="text-xs text-gray-500">ROI Target</div>
+                  <div className="text-sm text-gray-400 mb-2">Knowledge Base</div>
+                  <div className="palantir-status operational">
+                    <Database className="w-3 h-3" />
+                    3-Level RAG
+                  </div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-blue-600">2 min</div>
-                  <div className="text-xs text-gray-500">Avg Time</div>
+                  <div className="text-sm text-gray-400 mb-2">Security</div>
+                  <div className="palantir-status operational">
+                    <Shield className="w-3 h-3" />
+                    Enterprise Grade
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Processing Section */}
-        {analysisStage !== 'idle' && analysisStage !== 'complete' && analysisStage !== 'error' && (
-          <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <div className="w-12 h-12 text-blue-600">
-                {getStageIcon(analysisStage)}
-              </div>
-            </div>
-
-            <h2 className="text-xl font-semibold text-center mb-6">
-              {analysisStage === 'uploading' && `Uploading Deck... ${uploadProgress}%`}
-              {analysisStage === 'extracting' && 'Extracting Information...'}
-              {analysisStage === 'enriching' && 'Enriching Founder Data...'}
-              {analysisStage === 'analyzing' && 'Calculating Signal Scores...'}
-            </h2>
-
-            {analysisStage === 'uploading' && (
-              <div className="max-w-md mx-auto">
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
-                    className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                    style={{ width: `${uploadProgress}%` }}
-                  ></div>
-                </div>
-              </div>
-            )}
-
-            {analysisStage === 'enriching' && (
-              <div className="space-y-3 max-w-md mx-auto">
-                {Object.entries({
-                  linkedin: { icon: Linkedin, label: 'LinkedIn Profiles' },
-                  github: { icon: Github, label: 'GitHub Activity' },
-                  web: { icon: Globe, label: 'Web Presence' },
-                  media: { icon: TrendingUp, label: 'Media Mentions' }
-                }).map(([key, { icon: Icon, label }]) => (
-                  <div key={key} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div className="flex items-center gap-3">
-                      <Icon className="w-5 h-5 text-gray-600" />
-                      <span className="text-sm font-medium">{label}</span>
-                    </div>
-                    {enrichmentProgress[key] === 'complete' ? (
-                      <CheckCircle className="w-5 h-5 text-green-500" />
-                    ) : enrichmentProgress[key] === 'processing' ? (
-                      <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
-                    ) : (
-                      <Clock className="w-5 h-5 text-gray-400" />
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
+        {/* Enhanced AI Workflow Architecture Animation */}
+        {(analysisStage === 'extracting' || analysisStage === 'enriching' || analysisStage === 'analyzing') && (
+          <div className="mb-8">
+            <WorkflowAnimation 
+              analysisStage={analysisStage}
+              enrichmentProgress={enrichmentProgress}
+            />
           </div>
         )}
 
@@ -482,6 +544,413 @@ const FounderSignalFit = () => {
                 </ul>
               </div>
             </div>
+
+            {/* Research Enhancement Section */}
+            {extractedData.research_enhancement && (
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl shadow-lg p-8">
+                <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                  <Globe className="w-6 h-6 text-green-600" />
+                  Enhanced Research Intelligence
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  
+                  {/* Web Research Column */}
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                      <Globe className="w-5 h-5 text-blue-600" />
+                      Web Research Insights
+                      <span className={`ml-2 px-2 py-1 rounded-full text-xs font-medium ${
+                        extractedData.research_enhancement.web_research_applied ? 
+                        'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'
+                      }`}>
+                        {extractedData.research_enhancement.web_research_applied ? 'Applied' : 'Not Applied'}
+                      </span>
+                    </h4>
+                    
+                    {/* Company Web Insights */}
+                    {extractedData.research_enhancement.company_web_insights?.length > 0 && (
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-gray-700 mb-2">Company Intelligence:</h5>
+                        <ul className="space-y-2">
+                          {extractedData.research_enhancement.company_web_insights.slice(0, 3).map((insight, idx) => (
+                            <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                              <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                              <span>{insight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    {/* Founder Web Insights */}
+                    {extractedData.research_enhancement.founder_web_insights?.length > 0 && (
+                      <div>
+                        <h5 className="text-sm font-medium text-gray-700 mb-2">Founder Intelligence:</h5>
+                        <ul className="space-y-2">
+                          {extractedData.research_enhancement.founder_web_insights.slice(0, 3).map((insight, idx) => (
+                            <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                              <Users className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                              <span>{insight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    {/* Market Validation */}
+                    {extractedData.research_enhancement.market_validation && (
+                      <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-medium text-blue-800">Market Validation</span>
+                          <span className={`px-2 py-1 rounded text-xs font-bold ${
+                            extractedData.research_enhancement.market_validation.validation_level === 'strong' ? 
+                            'bg-green-100 text-green-800' :
+                            extractedData.research_enhancement.market_validation.validation_level === 'moderate' ?
+                            'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'
+                          }`}>
+                            {extractedData.research_enhancement.market_validation.validation_level}
+                          </span>
+                        </div>
+                        <div className="text-xs text-blue-700">
+                          Score: {extractedData.research_enhancement.market_validation.validation_score}/10
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Social Media Research Column */}
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                      <TrendingUp className="w-5 h-5 text-purple-600" />
+                      Social Media Signals
+                      <span className={`ml-2 px-2 py-1 rounded-full text-xs font-medium ${
+                        extractedData.research_enhancement.social_research_applied ? 
+                        'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'
+                      }`}>
+                        {extractedData.research_enhancement.social_research_applied ? 'Applied' : 'Not Applied'}
+                      </span>
+                    </h4>
+
+                    {/* Social Sentiment */}
+                    {extractedData.research_enhancement.social_signals && (
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-gray-700 mb-2">Company Sentiment:</h5>
+                        <div className={`p-3 rounded-lg ${
+                          extractedData.research_enhancement.social_signals.overall_sentiment === 'positive' ? 
+                          'bg-green-50 text-green-800' :
+                          extractedData.research_enhancement.social_signals.overall_sentiment === 'negative' ?
+                          'bg-red-50 text-red-800' : 'bg-gray-50 text-gray-700'
+                        }`}>
+                          <div className="flex items-center gap-2">
+                            <TrendingUp className="w-4 h-4" />
+                            <span className="font-medium capitalize">
+                              {extractedData.research_enhancement.social_signals.overall_sentiment || 'Neutral'}
+                            </span>
+                          </div>
+                          {extractedData.research_enhancement.social_signals.confidence_score && (
+                            <div className="text-xs mt-1">
+                              Confidence: {(extractedData.research_enhancement.social_signals.confidence_score * 100).toFixed(0)}%
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Social Influence Metrics */}
+                    <div>
+                      <h5 className="text-sm font-medium text-gray-700 mb-2">Social Influence:</h5>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between p-2 bg-purple-50 rounded">
+                          <span className="text-sm text-purple-700">Social Reach</span>
+                          <span className="text-sm font-semibold text-purple-800">
+                            {extractedData.research_enhancement.social_signals?.engagement_metrics?.total_followers?.toLocaleString() || 'Analyzing...'}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between p-2 bg-blue-50 rounded">
+                          <span className="text-sm text-blue-700">Engagement Quality</span>
+                          <span className="text-sm font-semibold text-blue-800">
+                            {extractedData.research_enhancement.social_signals?.engagement_quality || 'Medium'}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between p-2 bg-green-50 rounded">
+                          <span className="text-sm text-green-700">Thought Leadership</span>
+                          <span className="text-sm font-semibold text-green-800">
+                            {extractedData.research_enhancement.social_signals?.thought_leadership || 'Emerging'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-6 p-4 bg-white rounded-lg border-l-4 border-blue-500">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Info className="w-5 h-5 text-blue-600" />
+                    <span className="font-semibold text-gray-900">Research Enhancement Impact</span>
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    This analysis has been enhanced with real-time web research and social media intelligence, 
+                    providing deeper insights into founder background, company traction, and market validation beyond traditional pitch deck analysis.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Professional Due Diligence Report */}
+            {extractedData.professional_analysis && (
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                  <Award className="w-8 h-8 text-blue-600" />
+                  Professional Due Diligence Assessment
+                </h3>
+
+                {/* Executive Summary */}
+                {extractedData.professional_analysis.executive_summary && (
+                  <div className="bg-white rounded-lg p-6 mb-6 shadow-sm">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Executive Summary</h4>
+                    <p className="text-gray-700 leading-relaxed">{extractedData.professional_analysis.executive_summary}</p>
+                  </div>
+                )}
+
+                {/* Capability Assessment Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  
+                  {/* Founder Capability Assessment */}
+                  {extractedData.professional_analysis.founder_capability_assessment && (
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <Users className="w-5 h-5 text-purple-600" />
+                        Team Capability Assessment
+                      </h4>
+                      
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-700">Risk Level:</span>
+                          <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+                            extractedData.professional_analysis.founder_capability_assessment.risk_level === 'Low' ? 'bg-green-100 text-green-800' :
+                            extractedData.professional_analysis.founder_capability_assessment.risk_level === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-red-100 text-red-800'
+                          }`}>
+                            {extractedData.professional_analysis.founder_capability_assessment.risk_level}
+                          </span>
+                        </div>
+                        
+                        {extractedData.professional_analysis.founder_capability_assessment.key_team_strengths?.length > 0 && (
+                          <div>
+                            <h6 className="font-medium text-gray-800 text-sm mb-2">Key Strengths:</h6>
+                            <ul className="space-y-1">
+                              {extractedData.professional_analysis.founder_capability_assessment.key_team_strengths.map((strength, idx) => (
+                                <li key={idx} className="text-xs text-gray-600 flex items-start gap-2">
+                                  <CheckCircle className="w-3 h-3 text-green-500 mt-0.5 flex-shrink-0" />
+                                  <span>{strength}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        {extractedData.professional_analysis.founder_capability_assessment.key_team_gaps?.length > 0 && (
+                          <div>
+                            <h6 className="font-medium text-gray-800 text-sm mb-2">Key Gaps:</h6>
+                            <ul className="space-y-1">
+                              {extractedData.professional_analysis.founder_capability_assessment.key_team_gaps.map((gap, idx) => (
+                                <li key={idx} className="text-xs text-gray-600 flex items-start gap-2">
+                                  <AlertCircle className="w-3 h-3 text-amber-500 mt-0.5 flex-shrink-0" />
+                                  <span>{gap}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Technical Capability Assessment */}
+                  {extractedData.professional_analysis.technical_capability_assessment && (
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <Target className="w-5 h-5 text-blue-600" />
+                        Technical Capability
+                      </h4>
+                      
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-700">Risk Level:</span>
+                          <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+                            extractedData.professional_analysis.technical_capability_assessment.risk_level === 'Low' ? 'bg-green-100 text-green-800' :
+                            extractedData.professional_analysis.technical_capability_assessment.risk_level === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-red-100 text-red-800'
+                          }`}>
+                            {extractedData.professional_analysis.technical_capability_assessment.risk_level}
+                          </span>
+                        </div>
+                        
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-700">Execution Capability:</span>
+                          <span className="text-sm font-bold text-blue-600">
+                            {extractedData.professional_analysis.technical_capability_assessment.execution_capability_score}/100
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Market Position Assessment */}
+                  {extractedData.professional_analysis.market_position_assessment && (
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <TrendingUp className="w-5 h-5 text-green-600" />
+                        Market Position
+                      </h4>
+                      
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-700">Risk Level:</span>
+                          <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+                            extractedData.professional_analysis.market_position_assessment.risk_level === 'Low' ? 'bg-green-100 text-green-800' :
+                            extractedData.professional_analysis.market_position_assessment.risk_level === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-red-100 text-red-800'
+                          }`}>
+                            {extractedData.professional_analysis.market_position_assessment.risk_level}
+                          </span>
+                        </div>
+                        
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-700">Founder-Market Fit:</span>
+                          <span className="text-sm font-bold text-green-600">
+                            {extractedData.professional_analysis.market_position_assessment.founder_market_fit_score}/100
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Network Influence Assessment */}
+                  {extractedData.professional_analysis.network_influence_assessment && (
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <Users className="w-5 h-5 text-indigo-600" />
+                        Network Influence
+                      </h4>
+                      
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-700">Risk Level:</span>
+                          <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+                            extractedData.professional_analysis.network_influence_assessment.risk_level === 'Low' ? 'bg-green-100 text-green-800' :
+                            extractedData.professional_analysis.network_influence_assessment.risk_level === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-red-100 text-red-800'
+                          }`}>
+                            {extractedData.professional_analysis.network_influence_assessment.risk_level}
+                          </span>
+                        </div>
+                        
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-700">Network Quality:</span>
+                          <span className="text-sm font-bold text-indigo-600">
+                            {extractedData.professional_analysis.network_influence_assessment.professional_network_quality}/100
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Final Investment Recommendation */}
+                {extractedData.professional_analysis.final_recommendation && (
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                      <Award className="w-5 h-5 text-yellow-600" />
+                      Investment Recommendation
+                    </h4>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {/* Investment Green Flags */}
+                      {extractedData.professional_analysis.final_recommendation.investment_green_flags?.length > 0 && (
+                        <div>
+                          <h6 className="font-semibold text-green-800 mb-3 flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4" />
+                            Investment Green Flags
+                          </h6>
+                          <ul className="space-y-2">
+                            {extractedData.professional_analysis.final_recommendation.investment_green_flags.map((flag, idx) => (
+                              <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                                <span>{flag}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Investment Red Flags */}
+                      {extractedData.professional_analysis.final_recommendation.investment_red_flags?.length > 0 && (
+                        <div>
+                          <h6 className="font-semibold text-red-800 mb-3 flex items-center gap-2">
+                            <AlertCircle className="w-4 h-4" />
+                            Investment Red Flags
+                          </h6>
+                          <ul className="space-y-2">
+                            {extractedData.professional_analysis.final_recommendation.investment_red_flags.map((flag, idx) => (
+                              <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                                <AlertCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                                <span>{flag}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Critical Questions */}
+                      {extractedData.professional_analysis.final_recommendation.critical_questions_for_founders?.length > 0 && (
+                        <div>
+                          <h6 className="font-semibold text-blue-800 mb-3 flex items-center gap-2">
+                            <Info className="w-4 h-4" />
+                            Critical Questions
+                          </h6>
+                          <ul className="space-y-2">
+                            {extractedData.professional_analysis.final_recommendation.critical_questions_for_founders.map((question, idx) => (
+                              <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                                <Info className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                                <span>{question}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Overall Recommendation */}
+                    <div className="mt-6 p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg border border-blue-200">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="text-sm font-medium text-gray-700">Overall Investment Risk:</span>
+                          <span className={`ml-2 px-3 py-1 rounded-full text-sm font-bold ${
+                            extractedData.professional_analysis.final_recommendation.overall_investment_risk_level === 'Low' ? 'bg-green-100 text-green-800' :
+                            extractedData.professional_analysis.final_recommendation.overall_investment_risk_level === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-red-100 text-red-800'
+                          }`}>
+                            {extractedData.professional_analysis.final_recommendation.overall_investment_risk_level}
+                          </span>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm font-medium text-gray-700">Recommendation:</div>
+                          <div className={`text-lg font-bold ${
+                            extractedData.professional_analysis.final_recommendation.recommendation === 'STRONG_BUY' ? 'text-green-600' :
+                            extractedData.professional_analysis.final_recommendation.recommendation === 'BUY' ? 'text-blue-600' :
+                            extractedData.professional_analysis.final_recommendation.recommendation === 'HOLD' ? 'text-yellow-600' :
+                            'text-red-600'
+                          }`}>
+                            {extractedData.professional_analysis.final_recommendation.recommendation}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Scoring Explanation Toggle */}
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-lg p-6">

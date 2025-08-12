@@ -23,8 +23,11 @@ class FileBasedStorage:
         self.extractions_path = self.storage_path / "extractions"
         self.signals_path = self.storage_path / "signals"
         self.workflows_path = self.storage_path / "workflows"
+        self.data_rooms_path = self.storage_path / "data_rooms"
+        self.dd_reports_path = self.storage_path / "dd_reports"
         
-        for path in [self.decks_path, self.extractions_path, self.signals_path, self.workflows_path]:
+        for path in [self.decks_path, self.extractions_path, self.signals_path, 
+                     self.workflows_path, self.data_rooms_path, self.dd_reports_path]:
             path.mkdir(exist_ok=True)
     
     def save_deck(self, deck_data: Dict[str, Any]) -> str:
@@ -76,6 +79,180 @@ class FileBasedStorage:
         except Exception as e:
             logger.error(f"Error updating deck status: {e}")
             return False
+    
+    # Due Diligence Data Room Methods
+    
+    def save_data_room(self, data_room_id: str, data_room_data: Dict[str, Any]) -> str:
+        """Save data room information to file"""
+        try:
+            data_room_data['data_room_id'] = data_room_id
+            data_room_data['created_at'] = datetime.utcnow().isoformat()
+            data_room_data['updated_at'] = datetime.utcnow().isoformat()
+            
+            data_room_file = self.data_rooms_path / f"{data_room_id}.json"
+            with open(data_room_file, 'w') as f:
+                json.dump(data_room_data, f, indent=2, default=str)
+            
+            logger.info(f"Saved data room {data_room_id} to file storage")
+            return data_room_id
+            
+        except Exception as e:
+            logger.error(f"Error saving data room: {e}")
+            raise
+    
+    def get_data_room(self, data_room_id: str) -> Optional[Dict[str, Any]]:
+        """Get data room information from file"""
+        try:
+            data_room_file = self.data_rooms_path / f"{data_room_id}.json"
+            if data_room_file.exists():
+                with open(data_room_file, 'r') as f:
+                    return json.load(f)
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error getting data room {data_room_id}: {e}")
+            return None
+    
+    def get_all_data_rooms(self, limit: int = 50, offset: int = 0, 
+                          status: Optional[str] = None) -> List[Dict[str, Any]]:
+        """Get all data rooms with pagination and optional status filtering"""
+        try:
+            data_rooms = []
+            
+            for data_room_file in self.data_rooms_path.glob("*.json"):
+                try:
+                    with open(data_room_file, 'r') as f:
+                        data_room = json.load(f)
+                        
+                    # Filter by status if provided
+                    if status and data_room.get('status') != status:
+                        continue
+                        
+                    # Add summary info only
+                    data_room_summary = {
+                        'data_room_id': data_room.get('data_room_id'),
+                        'company_name': data_room.get('company_name'),
+                        'status': data_room.get('status'),
+                        'total_files': data_room.get('total_files', 0),
+                        'upload_timestamp': data_room.get('upload_timestamp'),
+                        'uploaded_by': data_room.get('uploaded_by')
+                    }
+                    data_rooms.append(data_room_summary)
+                    
+                except Exception as e:
+                    logger.error(f"Error reading data room file {data_room_file}: {e}")
+                    continue
+            
+            # Sort by upload timestamp (newest first)
+            data_rooms.sort(key=lambda x: x.get('upload_timestamp', ''), reverse=True)
+            
+            # Apply pagination
+            start = offset
+            end = offset + limit
+            return data_rooms[start:end]
+            
+        except Exception as e:
+            logger.error(f"Error getting all data rooms: {e}")
+            return []
+    
+    def update_data_room_status(self, data_room_id: str, status: str):
+        """Update data room status"""
+        try:
+            data_room_file = self.data_rooms_path / f"{data_room_id}.json"
+            if data_room_file.exists():
+                with open(data_room_file, 'r') as f:
+                    data_room = json.load(f)
+                
+                data_room['status'] = status
+                data_room['updated_at'] = datetime.utcnow().isoformat()
+                
+                with open(data_room_file, 'w') as f:
+                    json.dump(data_room, f, indent=2, default=str)
+                
+                logger.info(f"Updated data room {data_room_id} status to {status}")
+            
+        except Exception as e:
+            logger.error(f"Error updating data room status: {e}")
+    
+    def save_dd_report(self, data_room_id: str, dd_report: Any):
+        """Save due diligence report to file"""
+        try:
+            # Convert dataclass or object to dict if needed
+            if hasattr(dd_report, '__dict__'):
+                report_data = self._serialize_dd_report(dd_report)
+            else:
+                report_data = dd_report
+            
+            report_file = self.dd_reports_path / f"{data_room_id}_report.json"
+            with open(report_file, 'w') as f:
+                json.dump(report_data, f, indent=2, default=str)
+            
+            logger.info(f"Saved DD report for data room {data_room_id}")
+            
+        except Exception as e:
+            logger.error(f"Error saving DD report: {e}")
+    
+    def get_dd_report(self, data_room_id: str) -> Optional[Any]:
+        """Get due diligence report from file"""
+        try:
+            report_file = self.dd_reports_path / f"{data_room_id}_report.json"
+            if report_file.exists():
+                with open(report_file, 'r') as f:
+                    report_data = json.load(f)
+                
+                # Convert back to DueDiligenceReport-like object
+                return self._deserialize_dd_report(report_data)
+            
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error getting DD report {data_room_id}: {e}")
+            return None
+    
+    def _serialize_dd_report(self, dd_report) -> Dict[str, Any]:
+        """Convert DueDiligenceReport object to serializable dict"""
+        try:
+            return {
+                'company_id': dd_report.company_id,
+                'company_name': dd_report.company_name,
+                'analysis_timestamp': dd_report.analysis_timestamp,
+                'document_analyses': [
+                    {
+                        'document_id': doc.document_id,
+                        'filename': doc.filename,
+                        'document_type': doc.document_type,
+                        'category': doc.category,
+                        'key_insights': doc.key_insights,
+                        'risk_factors': doc.risk_factors,
+                        'completeness_score': doc.completeness_score,
+                        'credibility_score': doc.credibility_score,
+                        'red_flags': doc.red_flags,
+                        'summary': doc.summary,
+                        'extracted_data': doc.extracted_data
+                    }
+                    for doc in dd_report.document_analyses
+                ],
+                'cross_document_insights': dd_report.cross_document_insights,
+                'overall_risk_assessment': dd_report.overall_risk_assessment,
+                'completeness_assessment': dd_report.completeness_assessment,
+                'red_flags': dd_report.red_flags,
+                'recommendations': dd_report.recommendations,
+                'checklist_status': dd_report.checklist_status,
+                'overall_score': dd_report.overall_score
+            }
+        except Exception as e:
+            logger.error(f"Error serializing DD report: {e}")
+            return dd_report if isinstance(dd_report, dict) else {}
+    
+    def _deserialize_dd_report(self, report_data: Dict[str, Any]):
+        """Convert serialized dict back to DueDiligenceReport-like object"""
+        # For simplicity, return a mock object with attributes
+        class MockDDReport:
+            def __init__(self, data):
+                for key, value in data.items():
+                    setattr(self, key, value)
+        
+        return MockDDReport(report_data)
     
     def get_all_decks(self, limit: int = 50, offset: int = 0, status: str = None) -> List[Dict[str, Any]]:
         """Get all decks with pagination and filtering"""

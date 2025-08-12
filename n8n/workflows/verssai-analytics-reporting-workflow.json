@@ -1,0 +1,417 @@
+{
+  "name": "VERSSAI Analytics & Reporting Dashboard Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "name": "Schedule - Every 6 Hours",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "id": "schedule-analytics-update"
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8001/api/research/status",
+        "options": {}
+      },
+      "name": "Get API Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "id": "get-api-status"
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8001/api/workflows/status",
+        "options": {}
+      },
+      "name": "Get Workflow Statistics",
+      "type": "n8n-nodes-base.httpRequest", 
+      "typeVersion": 1,
+      "position": [460, 480],
+      "id": "get-workflow-statistics"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "google_api_status",
+              "value": "={{ $node['Get API Status'].json.google_search_api?.status || 'unknown' }}"
+            },
+            {
+              "name": "twitter_api_status",
+              "value": "={{ $node['Get API Status'].json.twitter_api?.status || 'unknown' }}"
+            },
+            {
+              "name": "system_health",
+              "value": "={{ ($node['Get API Status'].json.google_search_api?.status === 'configured' && $node['Get API Status'].json.twitter_api?.status === 'configured') ? 'excellent' : 'good' }}"
+            }
+          ],
+          "number": [
+            {
+              "name": "google_cache_entries",
+              "value": "={{ $node['Get API Status'].json.cache_stats?.google_cache_entries || 0 }}"
+            },
+            {
+              "name": "twitter_cache_entries", 
+              "value": "={{ $node['Get API Status'].json.cache_stats?.twitter_cache_entries || 0 }}"
+            },
+            {
+              "name": "total_cache_efficiency",
+              "value": "={{ ($node['Get API Status'].json.cache_stats?.google_cache_entries || 0) + ($node['Get API Status'].json.cache_stats?.twitter_cache_entries || 0) }}"
+            },
+            {
+              "name": "report_timestamp",
+              "value": "={{ Date.now() }}"
+            }
+          ]
+        }
+      },
+      "name": "System Performance Metrics",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [680, 390],
+      "id": "system-performance-metrics"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node['System Performance Metrics'].json.system_health }}",
+              "operation": "equal", 
+              "value2": "excellent"
+            }
+          ]
+        }
+      },
+      "name": "System Health Check",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [900, 390],
+      "id": "system-health-check"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "alert_level",
+              "value": "success"
+            },
+            {
+              "name": "alert_message",
+              "value": "VERSSAI Platform Operating at Peak Performance"
+            },
+            {
+              "name": "system_status",
+              "value": "All research APIs configured and operational"
+            },
+            {
+              "name": "performance_summary",
+              "value": "={{ 'Google API: ' + $node['System Performance Metrics'].json.google_api_status + ', Twitter API: ' + $node['System Performance Metrics'].json.twitter_api_status + ', Cache Efficiency: ' + $node['System Performance Metrics'].json.total_cache_efficiency + ' entries' }}"
+            }
+          ]
+        }
+      },
+      "name": "Excellence Alert",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1120, 300],
+      "id": "excellence-alert"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "alert_level",
+              "value": "warning"
+            },
+            {
+              "name": "alert_message", 
+              "value": "VERSSAI Platform Performance Degradation Detected"
+            },
+            {
+              "name": "system_status",
+              "value": "Some research APIs may not be fully configured"
+            },
+            {
+              "name": "recommended_actions",
+              "value": "Check API configurations and verify connectivity"
+            }
+          ]
+        }
+      },
+      "name": "Performance Warning",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1120, 480],
+      "id": "performance-warning"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "report_title",
+              "value": "VERSSAI VC Intelligence Platform - System Analytics Report"
+            },
+            {
+              "name": "generated_by",
+              "value": "n8n Automated Analytics Workflow"
+            },
+            {
+              "name": "report_type",
+              "value": "system_health_analytics"
+            },
+            {
+              "name": "current_alert_level",
+              "value": "={{ $node['Excellence Alert'].json.alert_level || $node['Performance Warning'].json.alert_level }}"
+            },
+            {
+              "name": "system_summary",
+              "value": "={{ $node['Excellence Alert'].json.performance_summary || $node['Performance Warning'].json.recommended_actions }}"
+            }
+          ],
+          "number": [
+            {
+              "name": "report_generation_timestamp",
+              "value": "={{ Date.now() }}"
+            },
+            {
+              "name": "next_report_due",
+              "value": "={{ Date.now() + (6 * 60 * 60 * 1000) }}"
+            }
+          ]
+        }
+      },
+      "name": "Generate Analytics Report",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1340, 390],
+      "id": "generate-analytics-report"
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8001/api/workflows/analytics",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "json",
+        "jsonParameters": {
+          "parameters": [
+            {
+              "name": "analytics_report",
+              "value": "={{ $node['Generate Analytics Report'].json }}"
+            },
+            {
+              "name": "performance_metrics",
+              "value": "={{ $node['System Performance Metrics'].json }}"
+            },
+            {
+              "name": "alert_details",
+              "value": "={{ $node['Excellence Alert'].json || $node['Performance Warning'].json }}"
+            },
+            {
+              "name": "raw_data",
+              "value": "={{ {\n  api_status: $node['Get API Status'].json,\n  workflow_stats: $node['Get Workflow Statistics'].json\n} }}"
+            }
+          ]
+        }
+      },
+      "name": "Store Analytics Report", 
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [1560, 390],
+      "id": "store-analytics-report",
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "name": "Webhook - Manual Analytics Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 600],
+      "id": "webhook-manual-analytics",
+      "webhookId": "verssai-manual-analytics"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "trigger_source",
+              "value": "manual_request"
+            },
+            {
+              "name": "requested_by",
+              "value": "={{ $node['Webhook - Manual Analytics Trigger'].json.user || 'anonymous' }}"
+            }
+          ]
+        }
+      },
+      "name": "Manual Analytics Request",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [460, 600],
+      "id": "manual-analytics-request"
+    }
+  ],
+  "connections": {
+    "Schedule - Every 6 Hours": {
+      "main": [
+        [
+          {
+            "node": "Get API Status",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Workflow Statistics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get API Status": {
+      "main": [
+        [
+          {
+            "node": "System Performance Metrics", 
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Workflow Statistics": {
+      "main": [
+        [
+          {
+            "node": "System Performance Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "System Performance Metrics": {
+      "main": [
+        [
+          {
+            "node": "System Health Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "System Health Check": {
+      "main": [
+        [
+          {
+            "node": "Excellence Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Performance Warning",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Excellence Alert": {
+      "main": [
+        [
+          {
+            "node": "Generate Analytics Report",
+            "type": "main", 
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Performance Warning": {
+      "main": [
+        [
+          {
+            "node": "Generate Analytics Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Analytics Report": {
+      "main": [
+        [
+          {
+            "node": "Store Analytics Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook - Manual Analytics Trigger": {
+      "main": [
+        [
+          {
+            "node": "Manual Analytics Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual Analytics Request": {
+      "main": [
+        [
+          {
+            "node": "Get API Status",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Workflow Statistics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "3",
+  "tags": []
+}

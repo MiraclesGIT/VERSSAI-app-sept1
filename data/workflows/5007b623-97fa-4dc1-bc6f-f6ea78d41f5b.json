@@ -1,0 +1,501 @@
+{
+  "workflow_id": "5007b623-97fa-4dc1-bc6f-f6ea78d41f5b",
+  "deck_id": "5007b623-97fa-4dc1-bc6f-f6ea78d41f5b",
+  "company_name": "AnimationTest Inc",
+  "status": "completed",
+  "stages": {
+    "extraction": {
+      "status": "completed",
+      "extracted_text": "\n                AnimationTest Inc - Pitch Deck\n                \n                Problem: Large market opportunity in AI/ML space\n                Solution: Revolutionary AI platform for enterprises\n                Market: $50B+ market growing at 25% CAGR\n                Business Model: B2B SaaS with enterprise contracts\n                Traction: $500K ARR, 50+ customers, 200% YoY growth\n                Team: Experienced founders with Stanford/MIT backgrounds\n                Funding: Raising $5M Series A for product development and sales\n                \n                Founders:\n                - Sarah Chen, CEO: Former Google product manager, Stanford CS\n                - Michael Torres, CTO: Ex-Facebook engineer, MIT PhD\n                ",
+      "file_type": ".pdf",
+      "extraction_method": "mock_extractor",
+      "text_length": 749,
+      "confidence": 0.8
+    },
+    "ai_extraction": {
+      "status": "completed",
+      "extraction_data": {
+        "company_name": "AnimationTest Inc",
+        "website": "",
+        "founders": [
+          {
+            "name": "Founder",
+            "role": "CEO",
+            "linkedin_hint": "",
+            "background": ""
+          }
+        ],
+        "market": "Technology",
+        "market_size": "Large market opportunity",
+        "business_model": "B2B SaaS",
+        "traction": {
+          "revenue": "Growing",
+          "customers": "Multiple customers",
+          "growth_rate": "Positive growth",
+          "key_metrics": []
+        },
+        "funding_ask": 1000000,
+        "use_of_funds": "Product development and growth",
+        "team_size": 5,
+        "stage": "Seed",
+        "confidence_score": 0.3,
+        "extracted_at": "2025-08-11T10:34:46.375847",
+        "extraction_method": "fallback",
+        "agent_version": "1.0",
+        "extraction_id": "edc4bc5f-df88-4df6-ad68-50c8aa4efeba",
+        "deck_id": "5007b623-97fa-4dc1-bc6f-f6ea78d41f5b"
+      },
+      "ai_model": "deck_extraction_agent",
+      "confidence": 0.3
+    },
+    "web_research": {
+      "company_research": {
+        "company_name": "AnimationTest Inc",
+        "industry": "Technology",
+        "search_timestamp": "2025-08-11T10:34:19.909908",
+        "intelligence_categories": {
+          "primary": {
+            "search_type": "primary",
+            "query": "\"AnimationTest Inc\" Technology",
+            "total_results": 0,
+            "search_time": 0.269399,
+            "results": []
+          },
+          "financials": {
+            "search_type": "financials",
+            "query": "\"AnimationTest Inc\" funding investment Series A B C valuation revenue",
+            "total_results": 0,
+            "search_time": 0.231587,
+            "results": []
+          },
+          "news": {
+            "search_type": "news",
+            "query": "\"AnimationTest Inc\" news announcement launch product",
+            "total_results": 0,
+            "search_time": 0.26711,
+            "results": []
+          },
+          "competitors": {
+            "search_type": "competitors",
+            "query": "\"AnimationTest Inc\" competitors alternative vs comparison",
+            "total_results": 0,
+            "search_time": 0.409121,
+            "results": []
+          },
+          "industry": {
+            "search_type": "industry",
+            "query": "Technology market analysis trends \"AnimationTest Inc\"",
+            "total_results": 0,
+            "search_time": 0.217083,
+            "results": []
+          }
+        },
+        "key_insights": [],
+        "all_sources": [],
+        "funding_information": [],
+        "recent_developments": [],
+        "competitive_analysis": []
+      },
+      "founder_research": [
+        {
+          "founder_name": "Founder",
+          "company_name": "AnimationTest Inc",
+          "search_timestamp": "2025-08-11T10:34:20.294677",
+          "results_by_category": {
+            "primary": {
+              "search_type": "primary",
+              "query": "\"Founder\" \"AnimationTest Inc\"",
+              "total_results": 0,
+              "search_time": 0.196553,
+              "results": []
+            },
+            "professional": {
+              "search_type": "professional",
+              "query": "\"Founder\" CEO founder executive biography \"AnimationTest Inc\"",
+              "total_results": 0,
+              "search_time": 0.383667,
+              "results": []
+            },
+            "social": {
+              "search_type": "social",
+              "query": "\"Founder\" LinkedIn Twitter site:linkedin.com OR site:twitter.com",
+              "total_results": 0,
+              "search_time": 0.233996,
+              "results": []
+            },
+            "news": {
+              "search_type": "news",
+              "query": "\"Founder\" news interview article \"AnimationTest Inc\"",
+              "total_results": 0,
+              "search_time": 0.23452,
+              "results": []
+            }
+          },
+          "consolidated_results": [],
+          "key_insights": [],
+          "social_profiles": [],
+          "recent_news": []
+        }
+      ],
+      "status": "completed"
+    },
+    "social_research": {
+      "company_social": {
+        "company_name": "AnimationTest Inc",
+        "search_timestamp": "2025-08-11T10:34:20.294854",
+        "mentions": {
+          "mentions": [],
+          "total_mentions": 0,
+          "query_used": ""
+        },
+        "sentiment_analysis": {
+          "overall_sentiment": "neutral",
+          "sentiment_distribution": {
+            "positive": 0,
+            "neutral": 0,
+            "negative": 0
+          },
+          "total_analyzed": 0
+        },
+        "api_status": "not_configured"
+      },
+      "founder_social": [
+        {
+          "founder_name": "Founder",
+          "company_name": "AnimationTest Inc",
+          "search_timestamp": "2025-08-11T10:34:20.294864",
+          "profile_data": {
+            "primary_profile": null,
+            "additional_candidates": [],
+            "total_candidates": 0
+          },
+          "recent_activity": {
+            "recent_tweets": [],
+            "total_tweets_found": 0,
+            "query_used": ""
+          },
+          "social_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Founder's social presence"
+            ]
+          },
+          "api_status": "not_configured"
+        }
+      ],
+      "status": "completed"
+    },
+    "founder_analysis": {
+      "status": "completed",
+      "founder_analyses": [
+        {
+          "executive_summary": "The founder's profile lacks crucial details for a comprehensive assessment.  While the B2B SaaS market presents opportunities, the absence of background information, LinkedIn profile, and specific company details makes it impossible to evaluate their capabilities and potential. Further investigation is required to determine the founder's experience, expertise, and overall fit for the role.  Without more data, it's premature to assess the viability of the venture.",
+          "founder_capability_assessment": {
+            "risk_level": "High",
+            "key_team_strengths": [],
+            "key_team_gaps": [
+              "Lack of information on founder's background and experience",
+              "No details on team composition and expertise"
+            ],
+            "risk_justification": "The complete absence of background information on the founder raises significant concerns about their capabilities and experience.  Without a LinkedIn profile or other details, it's impossible to assess their track record, skills, and suitability for leading a B2B SaaS startup."
+          },
+          "technical_capability_assessment": {
+            "execution_capability_score": 0,
+            "risk_level": "High",
+            "risk_justification": "No information is available to assess the technical capabilities of the founder or the company.  The lack of details about the product, technology stack, and development process makes it impossible to evaluate their technical execution potential."
+          },
+          "market_position_assessment": {
+            "founder_market_fit_score": 0,
+            "risk_level": "High",
+            "risk_justification": "While the B2B SaaS market offers potential, the lack of information about the specific product and target market makes it impossible to assess the founder's understanding of the market landscape, competitive dynamics, and customer needs."
+          },
+          "network_influence_assessment": {
+            "professional_network_quality": 0,
+            "risk_level": "High",
+            "risk_justification": "Without a LinkedIn profile or other information about the founder's network, it's impossible to gauge the quality and extent of their professional connections.  A strong network is crucial for accessing resources, mentorship, and potential customers, especially in the early stages of a startup."
+          },
+          "final_recommendation": {
+            "investment_green_flags": [],
+            "investment_red_flags": [
+              "Lack of founder information",
+              "No company details",
+              "Absence of technical and market information"
+            ],
+            "critical_questions_for_founders": [
+              "What is your background and experience in the B2B SaaS space?",
+              "What is the core technology behind your product and how is it differentiated?",
+              "What is your go-to-market strategy and how will you acquire customers?"
+            ],
+            "overall_investment_risk_level": "High",
+            "recommendation": "PASS",
+            "confidence_level": 0
+          },
+          "information_gaps": [
+            "Founder's background and experience",
+            "Company details (product, team, traction)",
+            "Technical details about the product",
+            "Target market and go-to-market strategy",
+            "Founder's LinkedIn profile"
+          ],
+          "scores": {
+            "education_score": 0,
+            "experience_score": 0,
+            "network_score": 0,
+            "technical_score": 0,
+            "execution_score": 0,
+            "overall_signal_score": 0.0
+          },
+          "analysis_timestamp": "deterministic_hash_bac30890b680d386ce976ed5cc2dea30",
+          "research_methodology": "verssai_1157_papers_gemini",
+          "agent_version": "2.0",
+          "research_weights": {
+            "education_quality": 0.23,
+            "previous_exit": 0.34,
+            "technical_background": 0.28,
+            "industry_experience": 0.25,
+            "network_quality": 0.18,
+            "execution_track_record": 0.3
+          },
+          "ai_provider": "gemini",
+          "web_research_insights": [],
+          "social_media_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Founder's social presence"
+            ]
+          },
+          "recent_news": [],
+          "social_profiles": [],
+          "signal_id": "e04b6f04-3584-42fb-a4cd-6467682a3cae",
+          "deck_id": "5007b623-97fa-4dc1-bc6f-f6ea78d41f5b",
+          "created_at": "2025-08-11T10:34:46.376195"
+        }
+      ],
+      "team_overall_score": 0.0,
+      "founder_count": 1
+    },
+    "investment_evaluation": {
+      "status": "completed",
+      "investment_evaluation": {
+        "thesis_match_score": 0.6,
+        "recommendation": "BUY",
+        "market_assessment": {
+          "market_size_score": 0.7,
+          "market_timing_score": 0.6,
+          "competitive_landscape_score": 0.5
+        },
+        "founder_market_fit": {
+          "domain_expertise_score": 0.5,
+          "execution_capability_score": 0.6,
+          "team_quality_score": 0.5
+        },
+        "business_model_assessment": {
+          "scalability_score": 0.7,
+          "unit_economics_score": 0.5,
+          "defensibility_score": 0.4
+        },
+        "scoring_explanations": {
+          "thesis_match_explanation": "The company partially aligns with the investor thesis. While it is a B2B SaaS company with 'multiple customers' indicating some traction, the information provided lacks detail on the founders' technical expertise and the strength of market signals.  The 0.6 score reflects this partial fit.",
+          "market_size_explanation": "The 'large market opportunity' statement suggests a sizable TAM, warranting a 0.7 score. However, more specific data is needed for a more precise assessment.",
+          "market_timing_explanation": "The market timing is assumed to be moderately favorable (0.6) given the general positive sentiment towards B2B SaaS.  Lacking specific market trend data limits a higher score.",
+          "competitive_landscape_explanation": "The competitive landscape is unknown.  A score of 0.5 reflects a neutral stance due to insufficient information.  Further competitive analysis is crucial.",
+          "domain_expertise_explanation": "Founder signal analysis is empty, thus domain expertise is unknown.  A neutral score of 0.5 is assigned pending further information.",
+          "execution_capability_explanation": "'Multiple customers' and 'positive growth' suggest some execution capability, resulting in a 0.6 score.  More detailed traction metrics are needed for a better assessment.",
+          "team_quality_explanation": "No information on team quality is provided.  A neutral score of 0.5 is assigned.",
+          "scalability_explanation": "B2B SaaS inherently offers scalability potential, hence a 0.7 score.  However, the specific scalability characteristics of this company's business model are unknown.",
+          "unit_economics_explanation": "No data on unit economics is available.  A neutral score of 0.5 is assigned.",
+          "defensibility_explanation": "No information on defensibility is provided.  A lower score of 0.4 reflects the risk associated with a lack of clear competitive advantages."
+        },
+        "calculation_methodology": {
+          "overall_scoring_method": "Weighted scoring based on proven investment success factors. Each category (market, founder, business model) contributes equally to the overall score.",
+          "research_papers_basis": "Analysis derived from 1,157 research papers on VC success patterns",
+          "risk_assessment_factors": [
+            "Limited information on competitive landscape",
+            "Lack of detail on founder background and team",
+            "No data on unit economics and defensibility"
+          ],
+          "success_correlation_factors": [
+            "B2B SaaS business model",
+            "Positive growth",
+            "Multiple customers"
+          ]
+        },
+        "key_insights": [
+          "Potential for strong thesis match with more data",
+          "Scalability potential inherent in the B2B SaaS model"
+        ],
+        "risk_factors": [
+          "Limited information on competitive landscape and defensibility",
+          "Lack of detail on team and founders",
+          "No data on unit economics"
+        ],
+        "exit_scenarios": [],
+        "comparable_investments": [],
+        "confidence_level": 0.5,
+        "evaluation_timestamp": "deterministic_hash_28086ad4b7849e5669a25398a21069dd",
+        "research_methodology": "verssai_1157_papers_gemini",
+        "agent_version": "2.0",
+        "ai_provider": "gemini",
+        "enhanced_insights": {
+          "web_research_summary": {
+            "company_insights": [],
+            "funding_information": 0,
+            "recent_developments": 0,
+            "founder_insights": []
+          },
+          "social_signals_summary": {
+            "company_sentiment": "neutral",
+            "company_mentions": 0,
+            "founder_social_influence": 0,
+            "founder_count_analyzed": 0
+          },
+          "market_validation": {
+            "validation_score": 5,
+            "validation_level": "weak",
+            "key_factors": []
+          }
+        }
+      },
+      "recommendation": "BUY",
+      "thesis_match_score": 0.6,
+      "enhanced_research_applied": true
+    },
+    "rag_integration": {
+      "status": "completed",
+      "rag_document_id": "deck_5007b623-97fa-4dc1-bc6f-f6ea78d41f5b",
+      "content_length": 342
+    },
+    "database_storage": {
+      "status": "completed",
+      "storage": "file_system",
+      "records_stored": "extraction + founder_signals",
+      "deck_status": "completed"
+    }
+  },
+  "final_results": {
+    "company": "AnimationTest Inc",
+    "website": "",
+    "market": "Technology",
+    "stage": "Seed",
+    "fundingAsk": 1000000,
+    "traction": {
+      "revenue": "Growing",
+      "customers": "Multiple customers",
+      "growth_rate": "Positive growth",
+      "key_metrics": []
+    },
+    "teamSize": 5,
+    "founders": [
+      {
+        "name": "Founder",
+        "role": "CEO",
+        "linkedin_hint": "",
+        "background": ""
+      }
+    ],
+    "overall_score": 0.0,
+    "components": {
+      "technical": {
+        "score": 0.5,
+        "confidence": 0.5
+      },
+      "market": {
+        "score": 0.7,
+        "confidence": 0.5
+      },
+      "execution": {
+        "score": 0.6,
+        "confidence": 0.5
+      },
+      "team": {
+        "score": 0.5,
+        "confidence": 0.5
+      }
+    },
+    "recommendation": "BUY",
+    "insights": [
+      "Twitter API not configured - unable to analyze Founder's social presence"
+    ],
+    "risks": [],
+    "research_enhancement": {
+      "web_research_applied": true,
+      "social_research_applied": true,
+      "company_web_insights": [],
+      "founder_web_insights": [],
+      "social_signals": {
+        "overall_sentiment": "neutral",
+        "sentiment_distribution": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 0
+        },
+        "total_analyzed": 0
+      },
+      "market_validation": {
+        "validation_score": 5,
+        "validation_level": "weak",
+        "key_factors": []
+      },
+      "enhanced_analysis_applied": true
+    },
+    "professional_analysis": {
+      "executive_summary": "The founder's profile lacks crucial details for a comprehensive assessment.  While the B2B SaaS market presents opportunities, the absence of background information, LinkedIn profile, and specific company details makes it impossible to evaluate their capabilities and potential. Further investigation is required to determine the founder's experience, expertise, and overall fit for the role.  Without more data, it's premature to assess the viability of the venture.",
+      "founder_capability_assessment": {
+        "risk_level": "High",
+        "key_team_strengths": [],
+        "key_team_gaps": [
+          "Lack of information on founder's background and experience",
+          "No details on team composition and expertise"
+        ],
+        "risk_justification": "The complete absence of background information on the founder raises significant concerns about their capabilities and experience.  Without a LinkedIn profile or other details, it's impossible to assess their track record, skills, and suitability for leading a B2B SaaS startup."
+      },
+      "technical_capability_assessment": {
+        "execution_capability_score": 0,
+        "risk_level": "High",
+        "risk_justification": "No information is available to assess the technical capabilities of the founder or the company.  The lack of details about the product, technology stack, and development process makes it impossible to evaluate their technical execution potential."
+      },
+      "market_position_assessment": {
+        "founder_market_fit_score": 0,
+        "risk_level": "High",
+        "risk_justification": "While the B2B SaaS market offers potential, the lack of information about the specific product and target market makes it impossible to assess the founder's understanding of the market landscape, competitive dynamics, and customer needs."
+      },
+      "network_influence_assessment": {
+        "professional_network_quality": 0,
+        "risk_level": "High",
+        "risk_justification": "Without a LinkedIn profile or other information about the founder's network, it's impossible to gauge the quality and extent of their professional connections.  A strong network is crucial for accessing resources, mentorship, and potential customers, especially in the early stages of a startup."
+      },
+      "final_recommendation": {
+        "investment_green_flags": [],
+        "investment_red_flags": [
+          "Lack of founder information",
+          "No company details",
+          "Absence of technical and market information"
+        ],
+        "critical_questions_for_founders": [
+          "What is your background and experience in the B2B SaaS space?",
+          "What is the core technology behind your product and how is it differentiated?",
+          "What is your go-to-market strategy and how will you acquire customers?"
+        ],
+        "overall_investment_risk_level": "High",
+        "recommendation": "PASS",
+        "confidence_level": 70
+      },
+      "information_gaps": [
+        "Founder's background and experience",
+        "Company details (product, team, traction)",
+        "Technical details about the product",
+        "Target market and go-to-market strategy",
+        "Founder's LinkedIn profile"
+      ]
+    }
+  },
+  "started_at": "2025-08-11T10:34:15.452957",
+  "completed_at": "2025-08-11T10:34:46.377024",
+  "saved_at": "2025-08-11T10:34:46.377059"
+}
