@@ -692,6 +692,188 @@ async def get_research_status():
         logging.error(f"Error getting research status: {str(e)}")
         return {"error": str(e)}
 
+# Portfolio Management Endpoints
+
+@api_router.post("/portfolio/add-company")
+async def add_portfolio_company_endpoint(company_data: PortfolioCompanyCreate):
+    """Add a new portfolio company"""
+    try:
+        company = await add_portfolio_company(company_data.dict())
+        
+        return {
+            "company_id": company.company_id,
+            "company_name": company.company_name,
+            "status": "added",
+            "message": f"Portfolio company {company.company_name} added successfully",
+            "initial_investment": company.initial_investment,
+            "current_valuation": company.current_valuation,
+            "stage": company.stage,
+            "industry": company.industry
+        }
+        
+    except Exception as e:
+        logging.error(f"Error adding portfolio company: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to add portfolio company: {str(e)}")
+
+@api_router.post("/portfolio/ingest-data")
+async def ingest_portfolio_data(
+    background_tasks: BackgroundTasks,
+    data_type: str = Form(...),  # "company", "meeting_notes", "kpi_update"
+    company_id: str = Form(...),
+    data: str = Form(...)  # JSON string of the data
+):
+    """Ingest various types of portfolio data"""
+    try:
+        # Parse the data JSON
+        try:
+            parsed_data = json.loads(data)
+        except json.JSONDecodeError:
+            raise HTTPException(status_code=400, detail="Invalid JSON in data field")
+        
+        result = None
+        
+        if data_type == "company":
+            # Add new portfolio company
+            parsed_data['company_id'] = company_id
+            company = await add_portfolio_company(parsed_data)
+            result = {
+                "type": "company_added",
+                "company_id": company.company_id,
+                "company_name": company.company_name,
+                "status": "success"
+            }
+            
+        elif data_type == "meeting_notes":
+            # Process board meeting notes
+            parsed_data['company_id'] = company_id
+            meeting_result = await process_board_meeting(parsed_data)
+            result = {
+                "type": "meeting_processed",
+                "meeting_id": meeting_result.get('meeting_id'),
+                "company_id": company_id,
+                "status": meeting_result.get('status'),
+                "analysis_available": meeting_result.get('status') == 'completed'
+            }
+            
+        elif data_type == "kpi_update":
+            # Update KPIs through a mock meeting
+            mock_meeting_data = {
+                'company_id': company_id,
+                'meeting_date': datetime.utcnow().isoformat(),
+                'attendees': ['Portfolio Manager'],
+                'agenda_items': ['KPI Update'],
+                'key_decisions': [],
+                'kpi_updates': parsed_data,
+                'meeting_notes': f"Automated KPI update for {company_id}",
+                'action_items': [],
+                'financial_updates': {},
+                'risks_discussed': []
+            }
+            
+            meeting_result = await process_board_meeting(mock_meeting_data)
+            result = {
+                "type": "kpi_updated",
+                "company_id": company_id,
+                "kpis_updated": list(parsed_data.keys()),
+                "status": "success"
+            }
+            
+        else:
+            raise HTTPException(status_code=400, detail="Invalid data_type. Must be 'company', 'meeting_notes', or 'kpi_update'")
+        
+        return {
+            "message": "Portfolio data ingested successfully",
+            "ingestion_id": str(uuid.uuid4()),
+            "timestamp": datetime.utcnow().isoformat(),
+            "data_type": data_type,
+            "company_id": company_id,
+            "result": result
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Error ingesting portfolio data: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Data ingestion failed: {str(e)}")
+
+@api_router.post("/portfolio/board-meeting")
+async def process_board_meeting_endpoint(meeting_data: BoardMeetingCreate):
+    """Process board meeting notes and generate AI insights"""
+    try:
+        result = await process_board_meeting(meeting_data.dict())
+        
+        return {
+            "meeting_id": result.get('meeting_id'),
+            "company_id": meeting_data.company_id,
+            "status": result.get('status'),
+            "message": "Board meeting processed successfully",
+            "analysis_available": result.get('status') == 'completed',
+            "processed_at": result.get('processed_at')
+        }
+        
+    except Exception as e:
+        logging.error(f"Error processing board meeting: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Board meeting processing failed: {str(e)}")
+
+@api_router.get("/portfolio/companies")
+async def get_portfolio_companies():
+    """Get list of portfolio companies"""
+    try:
+        companies = list(portfolio_orchestrator.portfolio_companies.values())
+        
+        return {
+            "total_companies": len(companies),
+            "companies": [
+                {
+                    "company_id": company.company_id,
+                    "company_name": company.company_name,
+                    "investment_date": company.investment_date,
+                    "initial_investment": company.initial_investment,
+                    "current_valuation": company.current_valuation,
+                    "stage": company.stage,
+                    "industry": company.industry,
+                    "founders": company.founders,
+                    "last_update": company.last_update
+                } for company in companies
+            ]
+        }
+        
+    except Exception as e:
+        logging.error(f"Error getting portfolio companies: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/portfolio/performance-report")
+async def get_portfolio_performance_report(fund_id: Optional[str] = None):
+    """Generate comprehensive portfolio performance report"""
+    try:
+        report = await analyze_portfolio_performance(fund_id)
+        
+        return {
+            "report_id": report.report_id,
+            "generated_at": report.generated_at,
+            "portfolio_summary": report.portfolio_summary,
+            "company_performances": report.company_performances,
+            "key_insights": [
+                {
+                    "insight_id": insight.insight_id,
+                    "company_id": insight.company_id,
+                    "insight_type": insight.insight_type,
+                    "title": insight.title,
+                    "description": insight.description,
+                    "confidence_score": insight.confidence_score,
+                    "urgency": insight.urgency,
+                    "recommended_actions": insight.recommended_actions
+                } for insight in report.key_insights
+            ],
+            "risk_alerts": report.risk_alerts,
+            "recommendations": report.recommendations,
+            "overall_health_score": report.overall_health_score
+        }
+        
+    except Exception as e:
+        logging.error(f"Error generating portfolio report: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Portfolio report generation failed: {str(e)}")
+
 # Due Diligence Data Room Endpoints
 
 @api_router.post("/due-diligence/upload-data-room")
