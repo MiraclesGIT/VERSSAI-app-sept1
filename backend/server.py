@@ -880,10 +880,11 @@ async def get_portfolio_performance_report(fund_id: Optional[str] = None):
 async def add_investment_decision_endpoint(decision_data: InvestmentDecisionCreate):
     """Add investment decision for backtesting analysis"""
     try:
-        decision_id = await add_investment_decision(decision_data.dict())
+        decision_id = await backtesting_engine.add_investment_decision(decision_data.dict())
+        decision = backtesting_engine.investment_decisions.get(decision_id)
         
         return {
-            "decision_id": decision_id,
+            "decision_id": decision.decision_id if decision else decision_id,
             "company_name": decision_data.company_name,
             "decision_type": decision_data.decision_type,
             "status": "added",
@@ -898,10 +899,11 @@ async def add_investment_decision_endpoint(decision_data: InvestmentDecisionCrea
 async def add_investment_outcome_endpoint(outcome_data: InvestmentOutcomeCreate):
     """Add investment outcome for backtesting analysis"""
     try:
-        outcome_id = await add_investment_outcome(outcome_data.dict())
+        outcome_id = await backtesting_engine.add_investment_outcome(outcome_data.dict())
+        outcome = backtesting_engine.investment_outcomes.get(outcome_data.decision_id)
         
         return {
-            "outcome_id": outcome_id,
+            "outcome_id": outcome_id if isinstance(outcome_id, str) else outcome_data.decision_id,
             "decision_id": outcome_data.decision_id,
             "company_name": outcome_data.company_name,
             "outcome_type": outcome_data.outcome_type,
@@ -917,15 +919,28 @@ async def add_investment_outcome_endpoint(outcome_data: InvestmentOutcomeCreate)
 async def run_fund_backtest_endpoint(backtest_request: BacktestRequest):
     """Run fund backtesting analysis"""
     try:
-        backtest_results = await run_fund_backtest(backtest_request.dict())
+        backtest_results = await backtesting_engine.run_backtest(
+            backtest_request.fund_id, 
+            backtest_request.strategy_config, 
+            backtest_request.time_period
+        )
         
         return {
-            "backtest_id": backtest_results.get('backtest_id'),
+            "backtest_id": backtest_results.backtest_id,
             "fund_id": backtest_request.fund_id,
             "strategy_name": backtest_request.strategy_name,
             "time_period": backtest_request.time_period,
             "status": "completed",
-            "results": backtest_results,
+            "results": {
+                "success_rate": backtest_results.success_rate,
+                "average_multiple": backtest_results.average_multiple,
+                "total_return": backtest_results.total_return,
+                "total_decisions": backtest_results.total_decisions,
+                "invested_count": backtest_results.invested_count,
+                "passed_count": backtest_results.passed_count,
+                "missed_opportunities": len(backtest_results.missed_opportunities),
+                "false_positives": len(backtest_results.false_positives)
+            },
             "message": "Fund backtesting completed successfully"
         }
         
@@ -937,11 +952,23 @@ async def run_fund_backtest_endpoint(backtest_request: BacktestRequest):
 async def get_fund_performance_analysis(fund_id: str):
     """Get detailed fund performance analysis"""
     try:
-        analysis = await analyze_fund_performance(fund_id)
+        analysis = await backtesting_engine.analyze_fund_performance(fund_id)
         
         return {
             "fund_id": fund_id,
-            "analysis": analysis,
+            "analysis": {
+                "report_id": analysis.report_id,
+                "fund_name": analysis.fund_name,
+                "analysis_period": analysis.analysis_period,
+                "investment_summary": analysis.investment_summary,
+                "performance_metrics": analysis.performance_metrics,
+                "decision_patterns": analysis.decision_patterns,
+                "missed_opportunities_count": len(analysis.missed_opportunities_analysis),
+                "success_factor_analysis": analysis.success_factor_analysis,
+                "backtest_results_count": len(analysis.backtest_results),
+                "overall_assessment_score": analysis.overall_assessment_score,
+                "recommendations": analysis.recommendations[:5]  # Top 5 recommendations
+            },
             "status": "completed",
             "generated_at": datetime.utcnow().isoformat()
         }
@@ -956,11 +983,16 @@ async def get_fund_performance_analysis(fund_id: str):
 async def create_allocation_targets_endpoint(targets: List[AllocationTargetCreate]):
     """Create allocation targets for fund deployment"""
     try:
+        # Use a default fund_id for creating targets (in real app, would be from request)
+        fund_id = "default_fund_" + str(uuid.uuid4())[:8]
+        
         results = []
-        for target in targets:
-            target_id = await create_allocation_targets([target.dict()])
+        targets_data = [target.dict() for target in targets]
+        created_targets = await allocation_orchestrator.create_allocation_targets(fund_id, targets_data)
+        
+        for i, target in enumerate(created_targets):
             results.append({
-                "target_id": target_id,
+                "target_id": target.target_id,
                 "category": target.category,
                 "subcategory": target.subcategory,
                 "target_percentage": target.target_percentage,
@@ -968,6 +1000,7 @@ async def create_allocation_targets_endpoint(targets: List[AllocationTargetCreat
             })
         
         return {
+            "fund_id": fund_id,
             "targets_created": len(results),
             "results": results,
             "message": "Allocation targets created successfully"
@@ -981,15 +1014,28 @@ async def create_allocation_targets_endpoint(targets: List[AllocationTargetCreat
 async def optimize_fund_allocation_endpoint(optimization_request: FundOptimizationRequest):
     """Run Monte Carlo optimization for fund allocation"""
     try:
-        optimization_results = await optimize_fund_allocation(optimization_request.dict())
+        optimization_results = await allocation_orchestrator.optimize_fund_allocation(
+            optimization_request.fund_id,
+            optimization_request.fund_size,
+            optimization_request.allocation_targets,
+            optimization_request.current_allocations,
+            optimization_request.market_conditions
+        )
         
         return {
-            "optimization_id": optimization_results.get('optimization_id'),
+            "optimization_id": optimization_results.optimization_id,
             "fund_id": optimization_request.fund_id,
             "fund_name": optimization_request.fund_name,
             "fund_size": optimization_request.fund_size,
             "status": "completed",
-            "optimization_results": optimization_results,
+            "optimization_results": {
+                "expected_multiple": optimization_results.expected_outcomes.get('expected_multiple'),
+                "expected_irr": optimization_results.expected_outcomes.get('expected_irr'),
+                "risk_adjusted_return": optimization_results.expected_outcomes.get('risk_adjusted_return'),
+                "confidence_score": optimization_results.confidence_score,
+                "recommendations_count": len(optimization_results.recommendations),
+                "monte_carlo_simulations": optimization_results.monte_carlo_results.get('total_simulations', 0)
+            },
             "message": "Fund allocation optimization completed successfully"
         }
         
@@ -1001,11 +1047,20 @@ async def optimize_fund_allocation_endpoint(optimization_request: FundOptimizati
 async def get_allocation_report(fund_id: str):
     """Generate allocation deployment report"""
     try:
-        report = await generate_allocation_report(fund_id)
+        report = await allocation_orchestrator.generate_allocation_report(fund_id)
         
         return {
             "fund_id": fund_id,
-            "report": report,
+            "report": {
+                "report_id": report.report_id,
+                "fund_name": report.fund_name,
+                "generated_at": report.generated_at,
+                "current_allocations": report.current_allocations,
+                "deployment_progress": report.deployment_progress,
+                "optimization_recommendations": report.optimization_recommendations[:5],
+                "overall_allocation_score": report.overall_allocation_score,
+                "rebalancing_suggestions": report.rebalancing_suggestions[:3]
+            },
             "status": "completed",
             "generated_at": datetime.utcnow().isoformat()
         }
@@ -1032,17 +1087,18 @@ async def ingest_allocation_data(
         
         if data_type == "allocation_target":
             # Create allocation targets
-            parsed_data['fund_id'] = fund_id
-            target_id = await create_allocation_targets([parsed_data])
+            targets_data = [parsed_data] if isinstance(parsed_data, dict) else parsed_data
+            created_targets = await allocation_orchestrator.create_allocation_targets(fund_id, targets_data)
+            
             result = {
-                "type": "allocation_target_created",
-                "target_id": target_id,
+                "type": "allocation_targets_created",
+                "targets_created": len(created_targets),
                 "fund_id": fund_id,
                 "status": "success"
             }
             
         elif data_type == "deployment_record":
-            # Record fund deployment
+            # Record fund deployment (simplified for demo)
             result = {
                 "type": "deployment_recorded",
                 "fund_id": fund_id,
@@ -1051,7 +1107,7 @@ async def ingest_allocation_data(
             }
             
         elif data_type == "performance_update":
-            # Update fund performance metrics
+            # Update fund performance metrics (simplified for demo)
             result = {
                 "type": "performance_updated",
                 "fund_id": fund_id,
