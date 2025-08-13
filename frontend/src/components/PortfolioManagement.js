@@ -226,9 +226,10 @@ const PortfolioManagement = () => {
     }
   };
 
-  useEffect(() => {
-    fetchPortfolioCompanies();
-  }, []);
+  // Commented out for demo - keeps demo data instead of fetching empty API data
+  // useEffect(() => {
+  //   fetchPortfolioCompanies();
+  // }, []);
 
   const filteredCompanies = portfolioCompanies.filter(company => {
     const matchesSearch = company.company_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
