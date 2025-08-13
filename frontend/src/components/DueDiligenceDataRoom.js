@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../components/PalantirTheme.css';
+import '../components/ClickUpTheme.css';
 import {
   Upload, FileText, Folder, Search, AlertCircle, CheckCircle, 
   ArrowLeft, Terminal, Activity, Shield, Database, Brain,
@@ -20,12 +20,12 @@ const DueDiligenceDataRoom = () => {
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   const documentTypes = {
-    'financial': { icon: BarChart3, color: 'text-green-400', label: 'Financial' },
-    'legal': { icon: Shield, color: 'text-blue-400', label: 'Legal' },
-    'technical': { icon: Database, color: 'text-purple-400', label: 'Technical' },
-    'market': { icon: TrendingUp, color: 'text-cyan-400', label: 'Market' },
-    'team': { icon: Users, color: 'text-orange-400', label: 'Team' },
-    'other': { icon: FileText, color: 'text-gray-400', label: 'Other' }
+    'financial': { icon: BarChart3, color: 'clickup-text-success', label: 'Financial' },
+    'legal': { icon: Shield, color: 'clickup-text-info', label: 'Legal' },
+    'technical': { icon: Database, color: 'clickup-text-brand', label: 'Technical' },
+    'market': { icon: TrendingUp, color: 'clickup-text-secondary', label: 'Market' },
+    'team': { icon: Users, color: 'clickup-text-warning', label: 'Team' },
+    'other': { icon: FileText, color: 'clickup-text-tertiary', label: 'Other' }
   };
 
   const handleFileUpload = async (event) => {
@@ -150,8 +150,8 @@ const DueDiligenceDataRoom = () => {
 
     return (
       <div 
-        className={`palantir-card p-4 cursor-pointer transition-all duration-300 ${
-          isSelected ? 'border-cyan-400 bg-cyan-400/10' : ''
+        className={`clickup-card cursor-pointer transition-all duration-300 ${
+          isSelected ? 'border-primary bg-primary/10' : ''
         }`}
         onClick={() => {
           setSelectedDocuments(prev => 
@@ -161,87 +161,69 @@ const DueDiligenceDataRoom = () => {
           );
         }}
       >
-        <div className="flex items-start gap-3">
-          <div className={`p-2 rounded-lg bg-gray-800 ${documentTypes[document.type]?.color}`}>
-            <DocIcon className="w-5 h-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h4 className="text-white font-medium truncate">{document.name}</h4>
-            <div className="flex items-center gap-4 mt-2 text-xs text-gray-400">
-              <span className="palantir-mono">{(document.size / 1024).toFixed(1)} KB</span>
-              <span>{document.pages} pages</span>
-              <span className="capitalize">{documentTypes[document.type]?.label}</span>
+        <div className="clickup-card-body">
+          <div className="flex items-start gap-3">
+            <div className={`w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center ${documentTypes[document.type]?.color}`}>
+              <DocIcon className="w-5 h-5" />
             </div>
-            <div className="mt-2">
-              <span className={`palantir-status ${document.status === 'uploaded' ? 'operational' : 'processing'}`}>
-                {document.status.toUpperCase()}
-              </span>
+            <div className="flex-1 min-w-0">
+              <h4 className="clickup-font-medium truncate">{document.name}</h4>
+              <div className="flex items-center gap-4 mt-2 clickup-text-sm clickup-text-secondary">
+                <span>{(document.size / 1024).toFixed(1)} KB</span>
+                <span>{document.pages} pages</span>
+                <span className="capitalize">{documentTypes[document.type]?.label}</span>
+              </div>
+              <div className="mt-2">
+                <span className={`clickup-status ${document.status === 'uploaded' ? 'clickup-status-success' : 'clickup-status-primary'}`}>
+                  {document.status.toUpperCase()}
+                </span>
+              </div>
             </div>
+            {isSelected && (
+              <CheckCircle className="w-5 h-5 clickup-text-success" />
+            )}
           </div>
-          {isSelected && (
-            <CheckCircle className="w-5 h-5 text-cyan-400" />
-          )}
         </div>
       </div>
     );
   };
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
-      {/* Palantir Header */}
-      <header className="palantir-panel border-b border-gray-800 p-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={() => window.history.back()}
-              className="palantir-btn flex items-center gap-2"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Command Center
-            </button>
-            <div className="w-px h-6 bg-gray-700"></div>
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
-                <Folder className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-white">Due Diligence Data Room</h1>
-                <p className="text-xs text-gray-400 palantir-mono">Intelligence Framework #2</p>
-              </div>
-            </div>
-            <div className="palantir-status operational">
-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-              ACTIVE
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="palantir-status processing">
-              <Activity className="w-3 h-3" />
-              DOCUMENTS: {uploadedDocuments.length}
-            </div>
-            <button className="palantir-btn">
-              <Terminal className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </header>
+    <div className="clickup-main">
+      {/* Breadcrumb */}
+      <div className="clickup-mb-lg">
+        <a href="/" className="clickup-text-secondary hover:clickup-text-primary text-sm">
+          Dashboard
+        </a>
+        <span className="clickup-text-tertiary mx-2">/</span>
+        <span className="clickup-text-primary text-sm font-medium">Due Diligence Data Room</span>
+      </div>
 
-      <div className="max-w-7xl mx-auto p-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Document Upload Panel */}
-          <div className="lg:col-span-2">
-            <div className="palantir-panel p-6 mb-6">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                  <Upload className="w-6 h-6 text-cyan-400" />
-                  Document Intelligence Upload
-                </h2>
-                <div className="palantir-mono text-sm text-gray-400">
-                  ROOM ID: {roomId || 'PENDING'}
+      <div className="clickup-page-header">
+        <h1 className="clickup-page-title">Due Diligence Data Room</h1>
+        <p className="clickup-page-subtitle">
+          Multi-document RAG analysis with comprehensive risk assessment
+        </p>
+      </div>
+
+      <div className="clickup-grid clickup-grid-3" style={{ gap: '2rem' }}>
+        {/* Document Upload Panel */}
+        <div className="clickup-grid-2">
+          <div className="clickup-card">
+            <div className="clickup-card-header">
+              <h3 className="clickup-card-title">
+                <Upload className="w-5 h-5" />
+                Document Intelligence Upload
+              </h3>
+            </div>
+            <div className="clickup-card-body">
+              <div className="clickup-mb-md">
+                <div className="clickup-text-sm clickup-text-secondary clickup-mb-sm">
+                  Room ID: {roomId || 'PENDING'}
                 </div>
               </div>
 
-              <label className="block mb-6">
+              <label className="block clickup-mb-lg">
                 <input
                   type="file"
                   multiple
@@ -249,35 +231,41 @@ const DueDiligenceDataRoom = () => {
                   accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx"
                   onChange={handleFileUpload}
                 />
-                <div className="palantir-card p-8 text-center cursor-pointer hover:scale-105 transition-all duration-300">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-400/20 to-indigo-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Folder className="w-8 h-8 text-blue-400" />
+                <div className="clickup-file-upload">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <Folder className="w-8 h-8 clickup-text-info" />
+                    </div>
+                    <div className="text-center">
+                      <div className="clickup-font-medium clickup-mb-sm">Multi-Document Upload</div>
+                      <div className="clickup-text-secondary clickup-text-sm">
+                        PDF, DOC, PPT, XLS files • Enterprise Grade
+                      </div>
+                    </div>
+                    <button className="clickup-btn clickup-btn-primary">
+                      <Upload className="w-4 h-4" />
+                      Upload Documents
+                    </button>
                   </div>
-                  <div className="text-sm text-gray-400 palantir-mono mb-2">MULTI-DOCUMENT UPLOAD</div>
-                  <div className="text-xs text-gray-500 mb-4">PDF, DOC, PPT, XLS • Enterprise Grade</div>
-                  <button className="palantir-btn-primary">
-                    <Upload className="w-4 h-4 mr-2" />
-                    UPLOAD DOCUMENTS
-                  </button>
                 </div>
               </label>
 
               {/* Document Search & Filter */}
               {uploadedDocuments.length > 0 && (
-                <div className="flex gap-4 mb-6">
+                <div className="flex gap-4 clickup-mb-lg">
                   <div className="flex-1">
                     <input
                       type="text"
                       placeholder="Search documents..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:border-cyan-400 focus:outline-none"
+                      className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none"
                     />
                   </div>
                   <select
                     value={filterType}
                     onChange={(e) => setFilterType(e.target.value)}
-                    className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:border-cyan-400 focus:outline-none"
+                    className="bg-white border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none"
                   >
                     <option value="all">All Types</option>
                     {Object.entries(documentTypes).map(([key, { label }]) => (
@@ -288,7 +276,7 @@ const DueDiligenceDataRoom = () => {
               )}
 
               {/* Document Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="clickup-grid clickup-grid-2">
                 {filteredDocuments.map(doc => (
                   <DocumentCard key={doc.id} document={doc} />
                 ))}
@@ -296,121 +284,134 @@ const DueDiligenceDataRoom = () => {
 
               {/* Analysis Controls */}
               {uploadedDocuments.length > 0 && (
-                <div className="mt-6 p-4 palantir-panel">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-white font-medium">
-                        {selectedDocuments.length > 0 ? `${selectedDocuments.length} selected` : 'All documents'}
+                <div className="clickup-mt-lg clickup-card">
+                  <div className="clickup-card-body">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="clickup-font-medium">
+                          {selectedDocuments.length > 0 ? `${selectedDocuments.length} selected` : 'All documents'}
+                        </div>
+                        <div className="clickup-text-sm clickup-text-secondary">
+                          Ready for cross-document analysis
+                        </div>
                       </div>
-                      <div className="text-xs text-gray-400 palantir-mono">
-                        Ready for cross-document analysis
-                      </div>
+                      <button
+                        onClick={startAnalysis}
+                        disabled={isAnalyzing}
+                        className="clickup-btn clickup-btn-primary"
+                      >
+                        {isAnalyzing ? (
+                          <>
+                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                            Analyzing
+                          </>
+                        ) : (
+                          <>
+                            <Brain className="w-4 h-4" />
+                            Initiate Analysis
+                          </>
+                        )}
+                      </button>
                     </div>
-                    <button
-                      onClick={startAnalysis}
-                      disabled={isAnalyzing}
-                      className="palantir-btn-primary flex items-center gap-2"
-                    >
-                      {isAnalyzing ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          ANALYZING
-                        </>
-                      ) : (
-                        <>
-                          <Brain className="w-4 h-4" />
-                          INITIATE ANALYSIS
-                        </>
-                      )}
-                    </button>
                   </div>
                 </div>
               )}
             </div>
           </div>
+        </div>
 
-          {/* Analysis Results Panel */}
-          <div className="lg:col-span-1">
-            <div className="palantir-panel p-6">
-              <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                <Brain className="w-5 h-5 text-purple-400" />
-                Analysis Intelligence
-              </h3>
-
-              {!analysisResults ? (
-                <div className="text-center py-8">
-                  <Database className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                  <div className="text-gray-400 text-sm">Upload documents to begin analysis</div>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {/* Risk Assessment */}
-                  <div className="palantir-card p-4">
-                    <h4 className="font-semibold text-white mb-2 flex items-center gap-2">
-                      <AlertCircle className="w-4 h-4 text-red-400" />
+        {/* Analysis Results Panel */}
+        <div className="clickup-card">
+          <div className="clickup-card-header">
+            <h3 className="clickup-card-title">
+              <Brain className="w-5 h-5" />
+              Analysis Intelligence
+            </h3>
+          </div>
+          <div className="clickup-card-body">
+            {!analysisResults ? (
+              <div className="text-center py-8">
+                <Database className="w-12 h-12 clickup-text-tertiary mx-auto mb-4" />
+                <div className="clickup-text-secondary clickup-text-sm">Upload documents to begin analysis</div>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {/* Risk Assessment */}
+                <div className="clickup-card">
+                  <div className="clickup-card-body">
+                    <h4 className="clickup-font-semibold clickup-mb-sm flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 clickup-text-warning" />
                       Risk Assessment
                     </h4>
-                    <div className={`palantir-status ${
-                      analysisResults.overall_risk === 'Low' ? 'operational' :
-                      analysisResults.overall_risk === 'Medium' ? 'warning' : 'error'
+                    <div className={`clickup-status ${
+                      analysisResults.overall_risk === 'Low' ? 'clickup-status-success' :
+                      analysisResults.overall_risk === 'Medium' ? 'clickup-status-warning' : 'clickup-status-danger'
                     }`}>
-                      {analysisResults.overall_risk} RISK
+                      {analysisResults.overall_risk} Risk
                     </div>
-                    <div className="mt-2 text-xs text-gray-400 palantir-mono">
+                    <div className="clickup-mt-sm clickup-text-xs clickup-text-secondary">
                       Score: {analysisResults.risk_score}/100
                     </div>
                   </div>
+                </div>
 
-                  {/* Key Findings */}
-                  <div className="palantir-card p-4">
-                    <h4 className="font-semibold text-white mb-3">Key Findings</h4>
-                    <div className="space-y-2 text-sm">
+                {/* Key Findings */}
+                <div className="clickup-card">
+                  <div className="clickup-card-body">
+                    <h4 className="clickup-font-semibold clickup-mb-md">Key Findings</h4>
+                    <div className="space-y-2 clickup-text-sm">
                       {analysisResults.key_findings?.slice(0, 3).map((finding, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-gray-300">
-                          <Target className="w-3 h-3 text-cyan-400 mt-1 flex-shrink-0" />
+                        <div key={idx} className="flex items-start gap-2">
+                          <Target className="w-3 h-3 clickup-text-info mt-1 flex-shrink-0" />
                           <span>{finding}</span>
                         </div>
                       ))}
                     </div>
                   </div>
+                </div>
 
-                  {/* Flags */}
-                  {analysisResults.red_flags?.length > 0 && (
-                    <div className="palantir-card p-4">
-                      <h4 className="font-semibold text-white mb-3 flex items-center gap-2">
-                        <AlertCircle className="w-4 h-4 text-red-400" />
+                {/* Flags */}
+                {analysisResults.red_flags?.length > 0 && (
+                  <div className="clickup-card">
+                    <div className="clickup-card-body">
+                      <h4 className="clickup-font-semibold clickup-mb-md flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4 clickup-text-danger" />
                         Red Flags
                       </h4>
-                      <div className="space-y-2 text-sm">
+                      <div className="space-y-2 clickup-text-sm">
                         {analysisResults.red_flags.map((flag, idx) => (
-                          <div key={idx} className="text-red-300 text-xs">{flag}</div>
+                          <div key={idx} className="clickup-text-danger clickup-text-xs">{flag}</div>
                         ))}
                       </div>
                     </div>
-                  )}
+                  </div>
+                )}
 
-                  <div className="palantir-card p-4">
-                    <h4 className="font-semibold text-white mb-3 flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-400" />
+                <div className="clickup-card">
+                  <div className="clickup-card-body">
+                    <h4 className="clickup-font-semibold clickup-mb-md flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 clickup-text-success" />
                       Green Flags
                     </h4>
-                    <div className="space-y-2 text-sm">
+                    <div className="space-y-2 clickup-text-sm">
                       {analysisResults.green_flags?.slice(0, 2).map((flag, idx) => (
-                        <div key={idx} className="text-green-300 text-xs">{flag}</div>
+                        <div key={idx} className="clickup-text-success clickup-text-xs">{flag}</div>
                       ))}
                     </div>
                   </div>
+                </div>
 
-                  {/* Cross-References */}
-                  <div className="palantir-card p-4">
-                    <h4 className="font-semibold text-white mb-3">Cross-References</h4>
-                    <div className="text-xs text-gray-400 palantir-mono">
+                {/* Cross-References */}
+                <div className="clickup-card">
+                  <div className="clickup-card-body">
+                    <h4 className="clickup-font-semibold clickup-mb-md">Cross-References</h4>
+                    <div className="clickup-text-xs clickup-text-secondary">
                       {analysisResults.cross_references?.length || 0} connections found
                     </div>
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
