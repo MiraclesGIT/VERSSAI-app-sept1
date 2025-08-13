@@ -323,7 +323,7 @@ const PortfolioManagement = () => {
         <div className="clickup-card">
           <div className="clickup-card-body clickup-metric">
             <div className="clickup-metric-value clickup-text-info">
-              $2.8B
+              ${(kpiData.total_portfolio_value / 1000000).toFixed(0)}M
             </div>
             <div className="clickup-metric-label">Total Portfolio Value</div>
           </div>
@@ -331,17 +331,17 @@ const PortfolioManagement = () => {
         <div className="clickup-card">
           <div className="clickup-card-body clickup-metric">
             <div className="clickup-metric-value clickup-text-brand">
-              34.7%
+              {(kpiData.avg_growth_rate * 100).toFixed(1)}%
             </div>
-            <div className="clickup-metric-label">Average IRR</div>
+            <div className="clickup-metric-label">Average Growth Rate</div>
           </div>
         </div>
         <div className="clickup-card">
           <div className="clickup-card-body clickup-metric">
             <div className="clickup-metric-value clickup-text-warning">
-              18
+              {kpiData.board_meetings_this_month}
             </div>
-            <div className="clickup-metric-label">Active Deals</div>
+            <div className="clickup-metric-label">Board Meetings/Month</div>
           </div>
         </div>
       </div>
