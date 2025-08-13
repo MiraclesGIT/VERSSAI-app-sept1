@@ -9,13 +9,66 @@ import {
 import axios from 'axios';
 
 const DueDiligenceDataRoom = () => {
-  const [uploadedDocuments, setUploadedDocuments] = useState([]);
+  // Demo data for impressive display
+  const [uploadedDocuments, setUploadedDocuments] = useState([
+    {
+      id: '1',
+      name: 'Financial_Projections_2024-2027.pdf',
+      type: 'financial',
+      size: 2340000,
+      pages: 24,
+      status: 'analyzed',
+      uploadDate: '2024-12-10',
+      insights: ['Revenue growth projected at 45% YoY', 'Strong unit economics', 'Conservative burn rate']
+    },
+    {
+      id: '2', 
+      name: 'Legal_Corporate_Structure.pdf',
+      type: 'legal',
+      size: 890000,
+      pages: 12,
+      status: 'analyzed',
+      uploadDate: '2024-12-10',
+      insights: ['Clean cap table', 'Standard investor rights', 'No major legal risks']
+    },
+    {
+      id: '3',
+      name: 'Technical_Architecture_Overview.pdf',
+      type: 'technical',
+      size: 1560000,
+      pages: 18,
+      status: 'analyzed',
+      uploadDate: '2024-12-09',
+      insights: ['Scalable cloud architecture', 'Strong security framework', 'Modern tech stack']
+    },
+    {
+      id: '4',
+      name: 'Market_Analysis_TAM_SAM.pdf',
+      type: 'market',
+      size: 3200000,
+      pages: 32,
+      status: 'analyzed',
+      uploadDate: '2024-12-09',
+      insights: ['$50B TAM in AI healthcare', 'Growing 25% annually', 'Limited direct competition']
+    },
+    {
+      id: '5',
+      name: 'Team_Backgrounds_References.pdf',
+      type: 'team',
+      size: 780000,
+      pages: 8,
+      status: 'analyzed', 
+      uploadDate: '2024-12-08',
+      insights: ['Strong technical leadership', 'Previous startup exits', 'Complete team assembled']
+    }
+  ]);
+  
   const [analysisResults, setAnalysisResults] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [selectedDocuments, setSelectedDocuments] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState('all');
-  const [roomId, setRoomId] = useState(null);
+  const [roomId, setRoomId] = useState('demo-room-001');
 
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
