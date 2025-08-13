@@ -9,10 +9,136 @@ import {
 import axios from 'axios';
 
 const PortfolioManagement = () => {
-  const [portfolioCompanies, setPortfolioCompanies] = useState([]);
+  // Demo data for impressive display
+  const [portfolioCompanies, setPortfolioCompanies] = useState([
+    {
+      id: '1',
+      company_name: 'TechFlow AI',
+      industry: 'Artificial Intelligence',
+      stage: 'series-a',
+      investment_amount: 8500000,
+      current_valuation: 45000000,
+      board_seat: true,
+      investment_date: '2024-02-15',
+      lead_partner: 'Sarah Chen',
+      key_metrics: {
+        revenue: 4200000,
+        growth_rate: 0.28,
+        burn_rate: 180000,
+        runway_months: 22
+      },
+      last_board_meeting: '2024-12-10',
+      status: 'performing'
+    },
+    {
+      id: '2',
+      company_name: 'HealthTech Solutions',
+      industry: 'Healthcare Technology',
+      stage: 'series-b',
+      investment_amount: 12000000,
+      current_valuation: 85000000,
+      board_seat: true,
+      investment_date: '2023-08-22',
+      lead_partner: 'Michael Torres',
+      key_metrics: {
+        revenue: 7800000,
+        growth_rate: 0.35,
+        burn_rate: 220000,
+        runway_months: 28
+      },
+      last_board_meeting: '2024-12-05',
+      status: 'outperforming'
+    },
+    {
+      id: '3',
+      company_name: 'GreenEnergy Dynamics',
+      industry: 'Clean Technology',
+      stage: 'series-c',
+      investment_amount: 18000000,
+      current_valuation: 125000000,
+      board_seat: false,
+      investment_date: '2023-03-10',
+      lead_partner: 'David Kim',
+      key_metrics: {
+        revenue: 12500000,
+        growth_rate: 0.42,
+        burn_rate: 280000,
+        runway_months: 32
+      },
+      last_board_meeting: '2024-11-28',
+      status: 'outperforming'
+    },
+    {
+      id: '4',
+      company_name: 'CyberSec Pro',
+      industry: 'Cybersecurity',
+      stage: 'seed',
+      investment_amount: 3500000,
+      current_valuation: 12000000,
+      board_seat: true,
+      investment_date: '2024-06-12',
+      lead_partner: 'Emma Rodriguez',
+      key_metrics: {
+        revenue: 850000,
+        growth_rate: 0.18,
+        burn_rate: 120000,
+        runway_months: 16
+      },
+      last_board_meeting: '2024-12-08',
+      status: 'watch'
+    },
+    {
+      id: '5',
+      company_name: 'DataFlow Analytics',
+      industry: 'Data & Analytics',
+      stage: 'series-a',
+      investment_amount: 6500000,
+      current_valuation: 32000000,
+      board_seat: true,
+      investment_date: '2024-01-20',
+      lead_partner: 'Alex Johnson',
+      key_metrics: {
+        revenue: 3200000,
+        growth_rate: 0.22,
+        burn_rate: 165000,
+        runway_months: 24
+      },
+      last_board_meeting: '2024-12-12',
+      status: 'performing'
+    }
+  ]);
+
   const [selectedCompany, setSelectedCompany] = useState(null);
-  const [boardMeetings, setBoardMeetings] = useState([]);
-  const [kpiData, setKpiData] = useState({});
+  const [boardMeetings, setBoardMeetings] = useState([
+    {
+      id: '1',
+      company_id: '1',
+      company_name: 'TechFlow AI',
+      meeting_date: '2024-12-10',
+      attendees: ['Sarah Chen', 'CEO John Smith', 'CTO Alice Wang'],
+      key_decisions: ['Approved Series B preparation', 'New hire authorization'],
+      next_milestone: 'Product launch Q1 2025'
+    },
+    {
+      id: '2', 
+      company_id: '2',
+      company_name: 'HealthTech Solutions',
+      meeting_date: '2024-12-05',
+      attendees: ['Michael Torres', 'CEO Maria Garcia', 'VP Sales Tom Wilson'],
+      key_decisions: ['Expansion to European market', 'Partnership with MedTech Corp'],
+      next_milestone: 'FDA approval Q2 2025'
+    }
+  ]);
+
+  const [kpiData, setKpiData] = useState({
+    total_portfolio_value: 299000000,
+    total_companies: 5,
+    avg_growth_rate: 0.29,
+    active_deals: 3,
+    board_meetings_this_month: 12,
+    revenue_growth: 0.31
+  });
+
   const [isLoading, setIsLoading] = useState(false);
   const [filterStage, setFilterStage] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
