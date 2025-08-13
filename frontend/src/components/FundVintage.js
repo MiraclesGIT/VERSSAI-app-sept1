@@ -9,8 +9,76 @@ import {
 import axios from 'axios';
 
 const FundVintage = () => {
-  const [funds, setFunds] = useState([]);
-  const [vintageAnalysis, setVintageAnalysis] = useState(null);
+  // Demo data for impressive display
+  const [funds, setFunds] = useState([
+    {
+      fund_id: '1',
+      fund_name: 'VERSSAI Growth Fund I',
+      vintage_year: 2022,
+      fund_size: 100000000,
+      fund_type: 'Growth',
+      current_nav: 125000000,
+      total_investments: 18,
+      realized_returns: 32000000,
+      unrealized_value: 93000000,
+      irr: 0.287,
+      tvpi: 2.45,
+      dpi: 1.32,
+      status: 'active',
+      deployment_status: 85
+    },
+    {
+      fund_id: '2', 
+      fund_name: 'VERSSAI Seed Fund II',
+      vintage_year: 2023,
+      fund_size: 75000000,
+      fund_type: 'Seed',
+      current_nav: 78000000,
+      total_investments: 32,
+      realized_returns: 8500000,
+      unrealized_value: 69500000,
+      irr: 0.192,
+      tvpi: 1.84,
+      dpi: 0.41,
+      status: 'active',
+      deployment_status: 67
+    },
+    {
+      fund_id: '3',
+      fund_name: 'VERSSAI Growth Fund II', 
+      vintage_year: 2024,
+      fund_size: 150000000,
+      fund_type: 'Growth',
+      current_nav: 145000000,
+      total_investments: 12,
+      realized_returns: 0,
+      unrealized_value: 145000000,
+      irr: 0.034,
+      tvpi: 1.12,
+      dpi: 0.0,
+      status: 'deploying',
+      deployment_status: 32
+    }
+  ]);
+  
+  const [vintageAnalysis, setVintageAnalysis] = useState({
+    total_funds: 3,
+    total_aum: 325000000,
+    weighted_avg_irr: 0.245,
+    weighted_avg_tvpi: 2.18,
+    best_performing_vintage: 2022,
+    quartile_ranking: 'Top Decile',
+    benchmark_comparison: {
+      industry_avg_irr: 0.187,
+      outperformance: 0.058
+    },
+    vintage_trends: {
+      '2022': { irr: 0.287, tvpi: 2.45, fund_count: 1 },
+      '2023': { irr: 0.192, tvpi: 1.84, fund_count: 1 },
+      '2024': { irr: 0.034, tvpi: 1.12, fund_count: 1 }
+    }
+  });
+  
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [selectedVintages, setSelectedVintages] = useState([]);
   const [filterYear, setFilterYear] = useState('all');
