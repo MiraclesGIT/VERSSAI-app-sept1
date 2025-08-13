@@ -147,9 +147,10 @@ const FundVintage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchFunds();
-  }, []);
+  // Commented out for demo - keeps demo data instead of fetching empty API data
+  // useEffect(() => {
+  //   fetchFunds();
+  // }, []);
 
   const filteredFunds = funds.filter(fund => {
     return filterYear === 'all' || fund.vintage_year?.toString() === filterYear;
