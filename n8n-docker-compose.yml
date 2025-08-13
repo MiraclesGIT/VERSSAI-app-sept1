@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: verssai_n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=verssai
+      - N8N_BASIC_AUTH_PASSWORD=verssai2024!
+      - N8N_HOST=0.0.0.0
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=localhost
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=n8npass
+      - EXECUTIONS_DATA_SAVE_ON_ERROR=all
+      - EXECUTIONS_DATA_SAVE_ON_SUCCESS=all
+      - EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS=true
+      - N8N_SECURE_COOKIE=false
+      - N8N_COOKIES_SECURE=false
+      - WEBHOOK_URL=https://6ba2da35-de59-4fa1-b62b-c6f198fa8fe5.preview.emergentagent.com/webhook/
+      - GENERIC_TIMEZONE=UTC
+    volumes:
+      - ./n8n-data:/home/node/.n8n
+      - ./n8n/workflows:/home/node/.n8n/workflows
+    restart: unless-stopped
+    networks:
+      - verssai_network
+
+networks:
+  verssai_network:
+    driver: bridge
