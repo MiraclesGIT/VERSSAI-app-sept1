@@ -9,6 +9,7 @@ import PortfolioManagement from "./components/PortfolioManagement";
 import FundAssessment from "./components/FundAssessment";
 import FundAllocation from "./components/FundAllocation";
 import FundVintage from "./components/FundVintage";
+import StyleComparison from "./components/StyleComparison";
 import { 
   Activity, Search, Brain, Shield, 
   TrendingUp, BarChart3, Target, Award, 
