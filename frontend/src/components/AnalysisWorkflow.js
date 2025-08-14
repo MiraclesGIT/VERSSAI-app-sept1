@@ -268,7 +268,7 @@ const AnalysisWorkflow = () => {
             {/* Framework Content */}
             <div className={`${showNotes ? 'flex-1' : 'w-full'} overflow-y-auto`}>
               <div className="p-6">
-                {renderFrameworkComponent()}
+                {renderFrameworkComponent}
               </div>
             </div>
 
