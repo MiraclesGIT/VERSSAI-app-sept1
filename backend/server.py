@@ -70,6 +70,9 @@ app = FastAPI(title="VERSSAI VC Intelligence Platform", version="2.0.0")
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
+# Add N8N-style workflow routes to the API router
+api_router.include_router(workflow_router)
+
 # Existing models for backward compatibility
 class StatusCheck(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
