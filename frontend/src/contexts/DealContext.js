@@ -175,26 +175,26 @@ export const DealProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dealReducer, initialState);
 
   // Actions
-  const setDeals = (deals) => dispatch({ type: 'SET_DEALS', payload: deals });
+  const setDeals = useCallback((deals) => dispatch({ type: 'SET_DEALS', payload: deals }), []);
   
-  const setCurrentDeal = (deal) => dispatch({ type: 'SET_CURRENT_DEAL', payload: deal });
+  const setCurrentDeal = useCallback((deal) => dispatch({ type: 'SET_CURRENT_DEAL', payload: deal }), []);
   
-  const updateDeal = (deal) => dispatch({ type: 'UPDATE_DEAL', payload: deal });
+  const updateDeal = useCallback((deal) => dispatch({ type: 'UPDATE_DEAL', payload: deal }), []);
   
-  const updateFrameworkStatus = (dealId, framework, status, score = null, recommendation = null) => {
+  const updateFrameworkStatus = useCallback((dealId, framework, status, score = null, recommendation = null) => {
     dispatch({ 
       type: 'UPDATE_FRAMEWORK_STATUS', 
       payload: { dealId, framework, status, score, recommendation } 
     });
-  };
+  }, []);
   
-  const addTeamNote = (dealId, note) => {
+  const addTeamNote = useCallback((dealId, note) => {
     dispatch({ type: 'ADD_TEAM_NOTE', payload: { dealId, note } });
-  };
+  }, []);
   
-  const setCurrentFramework = (framework) => dispatch({ type: 'SET_CURRENT_FRAMEWORK', payload: framework });
+  const setCurrentFramework = useCallback((framework) => dispatch({ type: 'SET_CURRENT_FRAMEWORK', payload: framework }), []);
   
-  const setViewMode = (mode) => dispatch({ type: 'SET_VIEW_MODE', payload: mode });
+  const setViewMode = useCallback((mode) => dispatch({ type: 'SET_VIEW_MODE', payload: mode }), []);
 
   // Computed values
   const getFrameworkProgress = (dealId) => {
