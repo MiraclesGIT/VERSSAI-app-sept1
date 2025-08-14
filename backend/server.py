@@ -67,8 +67,8 @@ UPLOAD_PATH.mkdir(exist_ok=True)
 # Create the main app without a prefix
 app = FastAPI(title="VERSSAI VC Intelligence Platform", version="2.0.0")
 
-# Create a router with the /api prefix
-api_router = APIRouter(prefix="/api")
+# Create a router WITHOUT prefix (prefix will be added when including in app)
+api_router = APIRouter()
 
 # Add N8N-style workflow routes to the API router
 api_router.include_router(workflow_router)
