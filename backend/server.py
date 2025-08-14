@@ -3127,6 +3127,7 @@ async def test_enhanced_research_pipeline(
 
 # Include the router in the main app
 app.include_router(api_router)
+app.include_router(workflow_router)  # N8N-style workflows on /webhook routes
 
 app.add_middleware(
     CORSMiddleware,
