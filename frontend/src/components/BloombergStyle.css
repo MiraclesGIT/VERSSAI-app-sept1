@@ -1,0 +1,264 @@
+/* Bloomberg Terminal Style - Dark theme with high contrast */
+:root {
+  --bloomberg-bg: #0a0a0b;
+  --bloomberg-surface: #1a1a1d;
+  --bloomberg-border: #2d2d30;
+  --bloomberg-text: #f0f0f0;
+  --bloomberg-text-muted: #b0b0b0;
+  --bloomberg-accent: #ff6b35;
+  --bloomberg-success: #00ff88;
+  --bloomberg-warning: #ffdd00;
+  --bloomberg-error: #ff4444;
+  --bloomberg-blue: #00aaff;
+  --bloomberg-purple: #bb86fc;
+}
+
+body {
+  background-color: var(--bloomberg-bg);
+  color: var(--bloomberg-text);
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  margin: 0;
+  padding: 0;
+}
+
+.bloomberg-container {
+  background-color: var(--bloomberg-bg);
+  color: var(--bloomberg-text);
+  min-height: 100vh;
+}
+
+/* Header */
+.bloomberg-header {
+  background-color: var(--bloomberg-surface);
+  border-bottom: 2px solid var(--bloomberg-accent);
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bloomberg-logo {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--bloomberg-accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.bloomberg-nav {
+  display: flex;
+  gap: 0;
+}
+
+.bloomberg-nav-item {
+  background: transparent;
+  border: 1px solid var(--bloomberg-border);
+  color: var(--bloomberg-text);
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.bloomberg-nav-item:hover,
+.bloomberg-nav-item.active {
+  background-color: var(--bloomberg-accent);
+  color: var(--bloomberg-bg);
+}
+
+.bloomberg-status-bar {
+  display: flex;
+  gap: 15px;
+  font-size: 10px;
+  color: var(--bloomberg-text-muted);
+}
+
+/* Main Content */
+.bloomberg-main {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  height: calc(100vh - 60px);
+}
+
+.bloomberg-panel {
+  background-color: var(--bloomberg-surface);
+  border: 1px solid var(--bloomberg-border);
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.bloomberg-panel-header {
+  color: var(--bloomberg-accent);
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--bloomberg-border);
+}
+
+/* Data Display */
+.bloomberg-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.bloomberg-metric {
+  text-align: center;
+}
+
+.bloomberg-metric-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--bloomberg-success);
+  font-family: 'Consolas', monospace;
+}
+
+.bloomberg-metric-label {
+  font-size: 10px;
+  color: var(--bloomberg-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+.bloomberg-metric-change {
+  font-size: 9px;
+  margin-top: 2px;
+}
+
+.bloomberg-metric-change.positive {
+  color: var(--bloomberg-success);
+}
+
+.bloomberg-metric-change.negative {
+  color: var(--bloomberg-error);
+}
+
+/* Tables */
+.bloomberg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.bloomberg-table th {
+  background-color: var(--bloomberg-border);
+  color: var(--bloomberg-text);
+  padding: 6px 8px;
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bloomberg-table td {
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--bloomberg-border);
+  color: var(--bloomberg-text-muted);
+}
+
+.bloomberg-table tr:hover {
+  background-color: rgba(255, 107, 53, 0.1);
+}
+
+/* Status Indicators */
+.bloomberg-status {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.bloomberg-status.operational {
+  background-color: var(--bloomberg-success);
+}
+
+.bloomberg-status.warning {
+  background-color: var(--bloomberg-warning);
+}
+
+.bloomberg-status.error {
+  background-color: var(--bloomberg-error);
+}
+
+/* Upload Area */
+.bloomberg-upload {
+  border: 2px dashed var(--bloomberg-border);
+  background-color: rgba(255, 107, 53, 0.05);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.bloomberg-upload-button {
+  background-color: var(--bloomberg-accent);
+  color: var(--bloomberg-bg);
+  border: none;
+  padding: 8px 16px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.bloomberg-upload-button:hover {
+  background-color: #e55a2b;
+}
+
+/* Analysis Features */
+.bloomberg-features {
+  display: grid;
+  gap: 8px;
+}
+
+.bloomberg-feature {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--bloomberg-border);
+}
+
+.bloomberg-feature-icon {
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+.bloomberg-feature-text {
+  font-size: 11px;
+}
+
+.bloomberg-feature-description {
+  font-size: 9px;
+  color: var(--bloomberg-text-muted);
+  margin-top: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bloomberg-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bloomberg-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bloomberg-accent);
+}
