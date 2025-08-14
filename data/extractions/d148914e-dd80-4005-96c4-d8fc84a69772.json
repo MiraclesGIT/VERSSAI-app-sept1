@@ -1,0 +1,37 @@
+{
+  "company_name": "Stride",
+  "website": "",
+  "founders": [
+    {
+      "name": "Sarah Chen",
+      "role": "CEO",
+      "linkedin_hint": "Sarah Chen Google product manager Stanford CS",
+      "background": "Former Google product manager, Stanford CS"
+    },
+    {
+      "name": "Michael Torres",
+      "role": "CTO",
+      "linkedin_hint": "Michael Torres Facebook engineer MIT PhD",
+      "background": "Ex-Facebook engineer, MIT PhD"
+    }
+  ],
+  "market": "AI/ML space for enterprises",
+  "market_size": "$50B+",
+  "business_model": "B2B SaaS with enterprise contracts",
+  "traction": {
+    "revenue": "$500K ARR",
+    "customers": "50+",
+    "growth_rate": "200% YoY",
+    "key_metrics": []
+  },
+  "funding_ask": 5000000,
+  "use_of_funds": "product development and sales",
+  "team_size": 0,
+  "stage": "Series A",
+  "confidence_score": 0.95,
+  "extracted_at": "2025-08-14T11:57:24.917945",
+  "extraction_method": "ai_agent_gemini",
+  "agent_version": "2.0",
+  "extraction_id": "d148914e-dd80-4005-96c4-d8fc84a69772",
+  "deck_id": "8042f4df-a0e3-47c6-8c27-8db18541a0f7"
+}

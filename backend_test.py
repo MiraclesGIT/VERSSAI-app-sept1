@@ -30,7 +30,7 @@ import io
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Configuration
-BACKEND_URL = "https://6ba2da35-de59-4fa1-b62b-c6f198fa8fe5.preview.emergentagent.com/api"
+BACKEND_URL = "https://vc-intelligence-1.preview.emergentagent.com/api"
 TEST_TIMEOUT = 30
 AI_PROCESSING_TIMEOUT = 90
 INVESTOR_DEMO_TIMEOUT = 10  # 10 seconds max response time for investor demo

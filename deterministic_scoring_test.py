@@ -24,7 +24,7 @@ from datetime import datetime
 from typing import Dict, List, Any
 
 # Configuration
-BACKEND_URL = "https://6ba2da35-de59-4fa1-b62b-c6f198fa8fe5.preview.emergentagent.com/api"
+BACKEND_URL = "https://vc-intelligence-1.preview.emergentagent.com/api"
 TEST_TIMEOUT = 120
 DETERMINISTIC_TEST_RUNS = 3  # Number of times to run same deck
 

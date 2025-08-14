@@ -1,0 +1,691 @@
+{
+  "workflow_id": "8042f4df-a0e3-47c6-8c27-8db18541a0f7",
+  "deck_id": "8042f4df-a0e3-47c6-8c27-8db18541a0f7",
+  "company_name": "Stride Seed Deck ",
+  "status": "completed",
+  "stages": {
+    "extraction": {
+      "status": "completed",
+      "extracted_text": "\n                Stride Seed Deck  - Pitch Deck\n                \n                Problem: Large market opportunity in AI/ML space\n                Solution: Revolutionary AI platform for enterprises\n                Market: $50B+ market growing at 25% CAGR\n                Business Model: B2B SaaS with enterprise contracts\n                Traction: $500K ARR, 50+ customers, 200% YoY growth\n                Team: Experienced founders with Stanford/MIT backgrounds\n                Funding: Raising $5M Series A for product development and sales\n                \n                Founders:\n                - Sarah Chen, CEO: Former Google product manager, Stanford CS\n                - Michael Torres, CTO: Ex-Facebook engineer, MIT PhD\n                ",
+      "file_type": ".pdf",
+      "extraction_method": "mock_extractor",
+      "text_length": 749,
+      "confidence": 0.8
+    },
+    "ai_extraction": {
+      "status": "completed",
+      "extraction_data": {
+        "company_name": "Stride",
+        "website": "",
+        "founders": [
+          {
+            "name": "Sarah Chen",
+            "role": "CEO",
+            "linkedin_hint": "Sarah Chen Google product manager Stanford CS",
+            "background": "Former Google product manager, Stanford CS"
+          },
+          {
+            "name": "Michael Torres",
+            "role": "CTO",
+            "linkedin_hint": "Michael Torres Facebook engineer MIT PhD",
+            "background": "Ex-Facebook engineer, MIT PhD"
+          }
+        ],
+        "market": "AI/ML space for enterprises",
+        "market_size": "$50B+",
+        "business_model": "B2B SaaS with enterprise contracts",
+        "traction": {
+          "revenue": "$500K ARR",
+          "customers": "50+",
+          "growth_rate": "200% YoY",
+          "key_metrics": []
+        },
+        "funding_ask": 5000000,
+        "use_of_funds": "product development and sales",
+        "team_size": 0,
+        "stage": "Series A",
+        "confidence_score": 0.95,
+        "extracted_at": "2025-08-14T11:57:24.917945",
+        "extraction_method": "ai_agent_gemini",
+        "agent_version": "2.0",
+        "extraction_id": "d148914e-dd80-4005-96c4-d8fc84a69772",
+        "deck_id": "8042f4df-a0e3-47c6-8c27-8db18541a0f7"
+      },
+      "ai_model": "deck_extraction_agent",
+      "confidence": 0.95
+    },
+    "web_research": {
+      "company_research": {
+        "company_name": "Stride",
+        "industry": "AI/ML space for enterprises",
+        "search_timestamp": "2025-08-14T11:56:44.545837",
+        "intelligence_categories": {
+          "primary": {
+            "search_type": "primary",
+            "query": "\"Stride\" AI/ML space for enterprises",
+            "total_results": 0,
+            "search_time": 0.378932,
+            "results": []
+          },
+          "financials": {
+            "search_type": "financials",
+            "query": "\"Stride\" funding investment Series A B C valuation revenue",
+            "total_results": 0,
+            "search_time": 0.344247,
+            "results": []
+          },
+          "news": {
+            "search_type": "news",
+            "query": "\"Stride\" news announcement launch product",
+            "total_results": 0,
+            "search_time": 0.728303,
+            "results": []
+          },
+          "competitors": {
+            "search_type": "competitors",
+            "query": "\"Stride\" competitors alternative vs comparison",
+            "total_results": 0,
+            "search_time": 0.434634,
+            "results": []
+          },
+          "industry": {
+            "search_type": "industry",
+            "query": "AI/ML space for enterprises market analysis trends \"Stride\"",
+            "total_results": 0,
+            "search_time": 0.454096,
+            "results": []
+          }
+        },
+        "key_insights": [],
+        "all_sources": [],
+        "funding_information": [],
+        "recent_developments": [],
+        "competitive_analysis": []
+      },
+      "founder_research": [
+        {
+          "founder_name": "Sarah Chen",
+          "company_name": "Stride",
+          "search_timestamp": "2025-08-14T11:56:44.809263",
+          "results_by_category": {
+            "primary": {
+              "search_type": "primary",
+              "query": "\"Sarah Chen\" \"Stride\"",
+              "total_results": 0,
+              "search_time": 0.233989,
+              "results": []
+            },
+            "professional": {
+              "search_type": "professional",
+              "query": "\"Sarah Chen\" CEO founder executive biography \"Stride\"",
+              "total_results": 0,
+              "search_time": 0.262305,
+              "results": []
+            },
+            "social": {
+              "search_type": "social",
+              "query": "\"Sarah Chen\" LinkedIn Twitter site:linkedin.com OR site:twitter.com",
+              "total_results": 0,
+              "search_time": 0.205121,
+              "results": []
+            },
+            "news": {
+              "search_type": "news",
+              "query": "\"Sarah Chen\" news interview article \"Stride\"",
+              "total_results": 0,
+              "search_time": 0.186092,
+              "results": []
+            }
+          },
+          "consolidated_results": [],
+          "key_insights": [],
+          "social_profiles": [],
+          "recent_news": []
+        },
+        {
+          "founder_name": "Michael Torres",
+          "company_name": "Stride",
+          "search_timestamp": "2025-08-14T11:56:45.062783",
+          "results_by_category": {
+            "primary": {
+              "search_type": "primary",
+              "query": "\"Michael Torres\" \"Stride\"",
+              "total_results": 0,
+              "search_time": 0.183754,
+              "results": []
+            },
+            "professional": {
+              "search_type": "professional",
+              "query": "\"Michael Torres\" CEO founder executive biography \"Stride\"",
+              "total_results": 0,
+              "search_time": 0.252535,
+              "results": []
+            },
+            "social": {
+              "search_type": "social",
+              "query": "\"Michael Torres\" LinkedIn Twitter site:linkedin.com OR site:twitter.com",
+              "total_results": 0,
+              "search_time": 0.199314,
+              "results": []
+            },
+            "news": {
+              "search_type": "news",
+              "query": "\"Michael Torres\" news interview article \"Stride\"",
+              "total_results": 0,
+              "search_time": 0.199813,
+              "results": []
+            }
+          },
+          "consolidated_results": [],
+          "key_insights": [],
+          "social_profiles": [],
+          "recent_news": []
+        }
+      ],
+      "status": "completed"
+    },
+    "social_research": {
+      "company_social": {
+        "company_name": "Stride",
+        "search_timestamp": "2025-08-14T11:56:45.062943",
+        "mentions": {
+          "mentions": [],
+          "total_mentions": 0,
+          "query_used": ""
+        },
+        "sentiment_analysis": {
+          "overall_sentiment": "neutral",
+          "sentiment_distribution": {
+            "positive": 0,
+            "neutral": 0,
+            "negative": 0
+          },
+          "total_analyzed": 0
+        },
+        "api_status": "not_configured"
+      },
+      "founder_social": [
+        {
+          "founder_name": "Sarah Chen",
+          "company_name": "Stride",
+          "search_timestamp": "2025-08-14T11:56:45.062977",
+          "profile_data": {
+            "primary_profile": null,
+            "additional_candidates": [],
+            "total_candidates": 0
+          },
+          "recent_activity": {
+            "recent_tweets": [],
+            "total_tweets_found": 0,
+            "query_used": ""
+          },
+          "social_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Sarah Chen's social presence"
+            ]
+          },
+          "api_status": "not_configured"
+        },
+        {
+          "founder_name": "Michael Torres",
+          "company_name": "Stride",
+          "search_timestamp": "2025-08-14T11:56:45.063001",
+          "profile_data": {
+            "primary_profile": null,
+            "additional_candidates": [],
+            "total_candidates": 0
+          },
+          "recent_activity": {
+            "recent_tweets": [],
+            "total_tweets_found": 0,
+            "query_used": ""
+          },
+          "social_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Michael Torres's social presence"
+            ]
+          },
+          "api_status": "not_configured"
+        }
+      ],
+      "status": "completed"
+    },
+    "founder_analysis": {
+      "status": "completed",
+      "founder_analyses": [
+        {
+          "executive_summary": "Sarah Chen presents a compelling profile with her Stanford CS background and Google product management experience, suggesting a strong foundation for leading an AI/ML SaaS startup.  However, her specific experience within the enterprise AI/ML space needs further investigation.  While her background signals technical proficiency and product sense, her leadership experience scaling a Series A company requires validation.  Overall, she demonstrates promising potential but requires deeper due diligence.",
+          "founder_capability_assessment": {
+            "risk_level": "Medium",
+            "key_team_strengths": [
+              "Stanford CS background",
+              "Google product management experience",
+              "Likely strong technical understanding"
+            ],
+            "key_team_gaps": [
+              "Proven leadership experience scaling a Series A company",
+              "Direct experience in the enterprise AI/ML market"
+            ],
+            "risk_justification": "While Sarah's background is impressive, her lack of explicit experience leading a rapidly scaling startup and direct enterprise AI/ML experience introduces moderate risk."
+          },
+          "technical_capability_assessment": {
+            "execution_capability_score": 75,
+            "risk_level": "Medium",
+            "risk_justification": "Her Stanford CS and Google background suggest strong technical competence. However, the specific technical challenges of enterprise AI/ML require further assessment of her expertise in this niche."
+          },
+          "market_position_assessment": {
+            "founder_market_fit_score": 70,
+            "risk_level": "Medium",
+            "risk_justification": "The enterprise AI/ML market is competitive.  While Sarah's background positions her well, a deeper understanding of her go-to-market strategy and competitive differentiation is needed."
+          },
+          "network_influence_assessment": {
+            "professional_network_quality": 70,
+            "risk_level": "Medium",
+            "risk_justification": "Her Google and Stanford affiliations likely provide a strong network, but the relevance of this network to the specific needs of enterprise AI/ML sales and partnerships requires further investigation."
+          },
+          "final_recommendation": {
+            "investment_green_flags": [
+              "Strong academic credentials",
+              "Prior experience at Google"
+            ],
+            "investment_red_flags": [
+              "Limited demonstrable experience in enterprise AI/ML",
+              "Unproven ability to scale a Series A company"
+            ],
+            "critical_questions_for_founders": [
+              "What is your specific experience with enterprise AI/ML clients?",
+              "How do you plan to scale the team and operations post-Series A?",
+              "What is your go-to-market strategy and competitive differentiation?"
+            ],
+            "overall_investment_risk_level": "Medium",
+            "recommendation": "HOLD",
+            "confidence_level": 70
+          },
+          "information_gaps": [
+            "Details on her specific role and accomplishments at Google",
+            "Evidence of her leadership abilities and experience building and managing teams",
+            "Go-to-market strategy and understanding of the competitive landscape",
+            "Details on the current team composition and any advisors"
+          ],
+          "scores": {
+            "education_score": 90,
+            "experience_score": 70,
+            "network_score": 70,
+            "technical_score": 80,
+            "execution_score": 65,
+            "overall_signal_score": 75
+          },
+          "analysis_timestamp": "deterministic_hash_7fa4a14ace5062bb05e1386f940d85f7",
+          "research_methodology": "verssai_1157_papers_gemini",
+          "agent_version": "2.0",
+          "research_weights": {
+            "education_quality": 0.23,
+            "previous_exit": 0.34,
+            "technical_background": 0.28,
+            "industry_experience": 0.25,
+            "network_quality": 0.18,
+            "execution_track_record": 0.3
+          },
+          "ai_provider": "gemini",
+          "web_research_insights": [],
+          "social_media_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Sarah Chen's social presence"
+            ]
+          },
+          "recent_news": [],
+          "social_profiles": [],
+          "signal_id": "8566331e-c100-4d85-b368-e7ff1566031a",
+          "deck_id": "8042f4df-a0e3-47c6-8c27-8db18541a0f7",
+          "created_at": "2025-08-14T11:57:24.918328"
+        },
+        {
+          "executive_summary": "Michael Torres presents a compelling profile with his strong technical background at Facebook and MIT PhD.  His experience in AI/ML positions him well for the enterprise market. However, his CTO role raises questions about his broader leadership and business acumen, requiring further investigation.  While his credentials suggest a strong technical foundation, his ability to translate that into a successful B2B SaaS business needs validation.  Overall, he appears promising but requires deeper due diligence.",
+          "founder_capability_assessment": {
+            "risk_level": "Medium",
+            "key_team_strengths": [
+              "Deep technical expertise in AI/ML",
+              "Experience at a leading tech company (Facebook)",
+              "Strong academic credentials (MIT PhD)"
+            ],
+            "key_team_gaps": [
+              "Limited evidence of leadership experience beyond CTO role",
+              "Unclear business acumen and go-to-market strategy experience"
+            ],
+            "risk_justification": "While technically strong, Michael's leadership and business development skills are unproven in this context.  His experience at Facebook provides valuable technical insight, but his ability to navigate the complexities of enterprise sales and scale a B2B SaaS business requires further assessment."
+          },
+          "technical_capability_assessment": {
+            "execution_capability_score": 85,
+            "risk_level": "Low",
+            "risk_justification": "Michael's MIT PhD and Facebook engineering experience demonstrate a high level of technical competence in AI/ML.  This suggests a strong ability to execute on the technical aspects of the business."
+          },
+          "market_position_assessment": {
+            "founder_market_fit_score": 70,
+            "risk_level": "Medium",
+            "risk_justification": "The AI/ML space for enterprises is competitive. While Michael's background aligns with market needs, the company's differentiation and go-to-market strategy require further scrutiny to assess their ability to capture market share."
+          },
+          "network_influence_assessment": {
+            "professional_network_quality": 75,
+            "risk_level": "Medium",
+            "risk_justification": "Working at Facebook suggests a reasonable professional network. However, the specific relevance of his network to enterprise sales and the AI/ML B2B landscape needs further investigation."
+          },
+          "final_recommendation": {
+            "investment_green_flags": [
+              "Strong technical background and experience",
+              "Targeting a large and growing market"
+            ],
+            "investment_red_flags": [
+              "Limited demonstrated leadership experience outside of a technical role",
+              "Unclear go-to-market strategy and competitive differentiation"
+            ],
+            "critical_questions_for_founders": [
+              "What is your go-to-market strategy for acquiring enterprise clients?",
+              "How do you differentiate your AI/ML solution from competitors?",
+              "What key metrics are you tracking to measure business success?"
+            ],
+            "overall_investment_risk_level": "Medium",
+            "recommendation": "HOLD",
+            "confidence_level": 70
+          },
+          "information_gaps": [
+            "Details on the company's go-to-market strategy",
+            "Information on the founding team beyond the CTO",
+            "Detailed financial projections and key performance indicators"
+          ],
+          "scores": {
+            "education_score": 95,
+            "experience_score": 80,
+            "network_score": 75,
+            "technical_score": 90,
+            "execution_score": 85,
+            "overall_signal_score": 80
+          },
+          "analysis_timestamp": "deterministic_hash_5cc375bcb16e4f017d18386b314975f2",
+          "research_methodology": "verssai_1157_papers_gemini",
+          "agent_version": "2.0",
+          "research_weights": {
+            "education_quality": 0.23,
+            "previous_exit": 0.34,
+            "technical_background": 0.28,
+            "industry_experience": 0.25,
+            "network_quality": 0.18,
+            "execution_track_record": 0.3
+          },
+          "ai_provider": "gemini",
+          "web_research_insights": [],
+          "social_media_analysis": {
+            "social_influence_score": 0,
+            "engagement_quality": "unknown",
+            "thought_leadership": "unknown",
+            "industry_presence": "unknown",
+            "key_insights": [
+              "Twitter API not configured - unable to analyze Michael Torres's social presence"
+            ]
+          },
+          "recent_news": [],
+          "social_profiles": [],
+          "signal_id": "1519a1ff-4a8e-4fb2-88f8-33d94f607822",
+          "deck_id": "8042f4df-a0e3-47c6-8c27-8db18541a0f7",
+          "created_at": "2025-08-14T11:57:24.918673"
+        }
+      ],
+      "team_overall_score": 77.5,
+      "founder_count": 2
+    },
+    "investment_evaluation": {
+      "status": "completed",
+      "investment_evaluation": {
+        "thesis_match_score": 8.5,
+        "recommendation": "BUY",
+        "market_assessment": {
+          "market_size_score": 9,
+          "market_timing_score": 8,
+          "competitive_landscape_score": 7
+        },
+        "founder_market_fit": {
+          "domain_expertise_score": 7,
+          "execution_capability_score": 8,
+          "team_quality_score": 7
+        },
+        "business_model_assessment": {
+          "scalability_score": 8,
+          "unit_economics_score": 7,
+          "defensibility_score": 6
+        },
+        "scoring_explanations": {
+          "thesis_match_explanation": "High thesis match due to B2B SaaS model, operation in a large and growing AI/ML market, and implied strong technical founders based on the nature of the business.  Traction metrics further strengthen the alignment.",
+          "market_size_explanation": "The AI/ML market for enterprises is estimated at $50B+, representing a significant market opportunity. This warrants a high score.",
+          "market_timing_explanation": "AI/ML adoption is accelerating in the enterprise, indicating favorable market timing. However, the competitive landscape is intensifying, slightly lowering the score.",
+          "competitive_landscape_explanation": "The AI/ML space is competitive.  While Stride's specific offering isn't detailed, the general market competitiveness necessitates a moderate score.  Further due diligence is required to assess their differentiation.",
+          "domain_expertise_explanation": "The nature of the business (AI/ML) suggests technical founders, but this needs further validation.  A moderate score is assigned pending more information.",
+          "execution_capability_explanation": "200% YoY growth with 50+ customers demonstrates strong execution capability, justifying a high score.",
+          "team_quality_explanation": "Team quality is inferred from the execution capability, but further assessment is needed.  A moderate score is assigned pending more detailed team information.",
+          "scalability_explanation": "B2B SaaS models are inherently scalable, and the company's growth trajectory supports this.  However, maintaining this growth at scale needs to be evaluated.",
+          "unit_economics_explanation": "Information on customer acquisition cost, lifetime value, and other key SaaS metrics is missing.  A moderate score is assigned pending further data.  $500k ARR on 50+ customers suggests potential for healthy unit economics.",
+          "defensibility_explanation": "Defensibility is unclear without details on Stride's specific IP, network effects, or other moats.  A moderate-low score reflects this uncertainty."
+        },
+        "calculation_methodology": {
+          "overall_scoring_method": "Weighted scoring based on proven investment success factors. Weights are assigned based on the stage of the company and market dynamics.",
+          "research_papers_basis": "Analysis derived from 1,157 research papers on VC success patterns, focusing on B2B SaaS investments.",
+          "risk_assessment_factors": [
+            "Competition in the AI/ML market",
+            "Need to demonstrate sustained scalability",
+            "Unclear defensibility strategy"
+          ],
+          "success_correlation_factors": [
+            "Strong market growth",
+            "Demonstrated traction",
+            "Potential for scalable business model"
+          ]
+        },
+        "key_insights": [
+          "Stride operates in a large and growing market.",
+          "The company demonstrates strong traction metrics.",
+          "Further due diligence is required to assess team, defensibility, and unit economics."
+        ],
+        "risk_factors": [
+          "Competition in the AI/ML market could limit growth.",
+          "Maintaining the current growth rate at scale might be challenging.",
+          "Lack of clarity on defensibility strategy poses a risk."
+        ],
+        "exit_scenarios": [
+          "Acquisition by a larger enterprise software company.",
+          "IPO potential given the large market size."
+        ],
+        "comparable_investments": [],
+        "confidence_level": 0.75,
+        "evaluation_timestamp": "deterministic_hash_da5ba3db08951e0f307b7f7144378b27",
+        "research_methodology": "verssai_1157_papers_gemini",
+        "agent_version": "2.0",
+        "ai_provider": "gemini",
+        "enhanced_insights": {
+          "web_research_summary": {
+            "company_insights": [],
+            "funding_information": 0,
+            "recent_developments": 0,
+            "founder_insights": []
+          },
+          "social_signals_summary": {
+            "company_sentiment": "neutral",
+            "company_mentions": 0,
+            "founder_social_influence": 0,
+            "founder_count_analyzed": 0
+          },
+          "market_validation": {
+            "validation_score": 5,
+            "validation_level": "weak",
+            "key_factors": []
+          }
+        }
+      },
+      "recommendation": "BUY",
+      "thesis_match_score": 8.5,
+      "enhanced_research_applied": true
+    },
+    "rag_integration": {
+      "status": "completed",
+      "rag_document_id": "deck_8042f4df-a0e3-47c6-8c27-8db18541a0f7",
+      "content_length": 383
+    },
+    "database_storage": {
+      "status": "completed",
+      "storage": "file_system",
+      "records_stored": "extraction + founder_signals",
+      "deck_status": "completed"
+    }
+  },
+  "final_results": {
+    "company": "Stride",
+    "website": "",
+    "market": "AI/ML space for enterprises",
+    "stage": "Series A",
+    "fundingAsk": 5000000,
+    "traction": {
+      "revenue": "$500K ARR",
+      "customers": "50+",
+      "growth_rate": "200% YoY",
+      "key_metrics": []
+    },
+    "teamSize": 0,
+    "founders": [
+      {
+        "name": "Sarah Chen",
+        "role": "CEO",
+        "linkedin_hint": "Sarah Chen Google product manager Stanford CS",
+        "background": "Former Google product manager, Stanford CS"
+      },
+      {
+        "name": "Michael Torres",
+        "role": "CTO",
+        "linkedin_hint": "Michael Torres Facebook engineer MIT PhD",
+        "background": "Ex-Facebook engineer, MIT PhD"
+      }
+    ],
+    "overall_score": 77.5,
+    "components": {
+      "technical": {
+        "score": 7,
+        "confidence": 0.75
+      },
+      "market": {
+        "score": 9,
+        "confidence": 0.75
+      },
+      "execution": {
+        "score": 8,
+        "confidence": 0.75
+      },
+      "team": {
+        "score": 7,
+        "confidence": 0.75
+      }
+    },
+    "recommendation": "BUY",
+    "insights": [
+      "Twitter API not configured - unable to analyze Sarah Chen's social presence",
+      "Twitter API not configured - unable to analyze Michael Torres's social presence"
+    ],
+    "risks": [],
+    "research_enhancement": {
+      "web_research_applied": true,
+      "social_research_applied": true,
+      "company_web_insights": [],
+      "founder_web_insights": [],
+      "social_signals": {
+        "overall_sentiment": "neutral",
+        "sentiment_distribution": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 0
+        },
+        "total_analyzed": 0
+      },
+      "market_validation": {
+        "validation_score": 5,
+        "validation_level": "weak",
+        "key_factors": []
+      },
+      "enhanced_analysis_applied": true
+    },
+    "professional_analysis": {
+      "executive_summary": "Michael Torres presents a compelling profile with his strong technical background at Facebook and MIT PhD.  His experience in AI/ML positions him well for the enterprise market. However, his CTO role raises questions about his broader leadership and business acumen, requiring further investigation.  While his credentials suggest a strong technical foundation, his ability to translate that into a successful B2B SaaS business needs validation.  Overall, he appears promising but requires deeper due diligence.",
+      "founder_capability_assessment": {
+        "risk_level": "Medium",
+        "key_team_strengths": [
+          "Deep technical expertise in AI/ML",
+          "Experience at a leading tech company (Facebook)",
+          "Strong academic credentials (MIT PhD)"
+        ],
+        "key_team_gaps": [
+          "Limited evidence of leadership experience beyond CTO role",
+          "Unclear business acumen and go-to-market strategy experience"
+        ],
+        "risk_justification": "While technically strong, Michael's leadership and business development skills are unproven in this context.  His experience at Facebook provides valuable technical insight, but his ability to navigate the complexities of enterprise sales and scale a B2B SaaS business requires further assessment."
+      },
+      "technical_capability_assessment": {
+        "execution_capability_score": 85,
+        "risk_level": "Low",
+        "risk_justification": "Michael's MIT PhD and Facebook engineering experience demonstrate a high level of technical competence in AI/ML.  This suggests a strong ability to execute on the technical aspects of the business."
+      },
+      "market_position_assessment": {
+        "founder_market_fit_score": 70,
+        "risk_level": "Medium",
+        "risk_justification": "The AI/ML space for enterprises is competitive. While Michael's background aligns with market needs, the company's differentiation and go-to-market strategy require further scrutiny to assess their ability to capture market share."
+      },
+      "network_influence_assessment": {
+        "professional_network_quality": 75,
+        "risk_level": "Medium",
+        "risk_justification": "Working at Facebook suggests a reasonable professional network. However, the specific relevance of his network to enterprise sales and the AI/ML B2B landscape needs further investigation."
+      },
+      "final_recommendation": {
+        "investment_green_flags": [
+          "Strong academic credentials",
+          "Prior experience at Google",
+          "Strong technical background and experience",
+          "Targeting a large and growing market"
+        ],
+        "investment_red_flags": [
+          "Limited demonstrable experience in enterprise AI/ML",
+          "Unproven ability to scale a Series A company",
+          "Limited demonstrated leadership experience outside of a technical role",
+          "Unclear go-to-market strategy and competitive differentiation"
+        ],
+        "critical_questions_for_founders": [
+          "What is your specific experience with enterprise AI/ML clients?",
+          "How do you plan to scale the team and operations post-Series A?",
+          "What is your go-to-market strategy and competitive differentiation?",
+          "What is your go-to-market strategy for acquiring enterprise clients?",
+          "How do you differentiate your AI/ML solution from competitors?",
+          "What key metrics are you tracking to measure business success?"
+        ],
+        "overall_investment_risk_level": "Medium",
+        "recommendation": "HOLD",
+        "confidence_level": 70
+      },
+      "information_gaps": [
+        "Details on her specific role and accomplishments at Google",
+        "Evidence of her leadership abilities and experience building and managing teams",
+        "Go-to-market strategy and understanding of the competitive landscape",
+        "Details on the current team composition and any advisors",
+        "Details on the company's go-to-market strategy",
+        "Information on the founding team beyond the CTO",
+        "Detailed financial projections and key performance indicators"
+      ]
+    }
+  },
+  "started_at": "2025-08-14T11:56:39.937714",
+  "completed_at": "2025-08-14T11:57:24.919562",
+  "saved_at": "2025-08-14T11:57:24.919600"
+}

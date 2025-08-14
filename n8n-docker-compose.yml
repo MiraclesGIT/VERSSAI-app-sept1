@@ -24,7 +24,7 @@ services:
       - EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS=true
       - N8N_SECURE_COOKIE=false
       - N8N_COOKIES_SECURE=false
-      - WEBHOOK_URL=https://6ba2da35-de59-4fa1-b62b-c6f198fa8fe5.preview.emergentagent.com/webhook/
+      - WEBHOOK_URL=https://vc-intelligence-1.preview.emergentagent.com/webhook/
       - GENERIC_TIMEZONE=UTC
     volumes:
       - ./n8n-data:/home/node/.n8n
