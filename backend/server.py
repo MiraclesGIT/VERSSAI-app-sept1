@@ -3125,9 +3125,9 @@ async def test_enhanced_research_pipeline(
             "timestamp": datetime.utcnow().isoformat()
         }
 
-# Include the router in the main app
-app.include_router(api_router)
-app.include_router(workflow_router)  # N8N-style workflows on /webhook routes
+# Include all routers
+app.include_router(api_router, prefix="/api")
+# N8N-style workflows are included in the API router
 
 app.add_middleware(
     CORSMiddleware,
