@@ -197,15 +197,15 @@ export const DealProvider = ({ children }) => {
   const setViewMode = useCallback((mode) => dispatch({ type: 'SET_VIEW_MODE', payload: mode }), []);
 
   // Computed values
-  const getFrameworkProgress = (dealId) => {
+  const getFrameworkProgress = useCallback((dealId) => {
     const deal = state.deals.find(d => d.id === dealId);
     if (!deal) return { completed: 0, total: 6 };
     
     const completed = Object.values(deal.frameworks).filter(f => f.status === 'completed').length;
     return { completed, total: 6 };
-  };
+  }, [state.deals]);
 
-  const getOverallScore = (dealId) => {
+  const getOverallScore = useCallback((dealId) => {
     const deal = state.deals.find(d => d.id === dealId);
     if (!deal) return null;
     
@@ -215,9 +215,9 @@ export const DealProvider = ({ children }) => {
     
     if (scores.length === 0) return null;
     return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
-  };
+  }, [state.deals]);
 
-  const getNextFramework = (dealId) => {
+  const getNextFramework = useCallback((dealId) => {
     const deal = state.deals.find(d => d.id === dealId);
     if (!deal) return null;
     
@@ -227,7 +227,7 @@ export const DealProvider = ({ children }) => {
     );
     
     return nextFramework ? nextFramework[0] : null;
-  };
+  }, [state.deals]);
 
   const value = {
     ...state,
