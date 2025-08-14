@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
-import "./components/ClickUpTheme.css";
-import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
-import axios from "axios";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { DealProvider } from "./contexts/DealContext";
+import WorkspaceHeader from "./components/WorkspaceHeader";
+import DealPipeline from "./components/DealPipeline";
+import AnalysisWorkflow from "./components/AnalysisWorkflow";
+// Keep legacy components for backward compatibility
 import FounderSignalFit from "./components/FounderSignalFit";
 import DueDiligenceDataRoom from "./components/DueDiligenceDataRoom";
 import PortfolioManagement from "./components/PortfolioManagement";
 import FundAssessment from "./components/FundAssessment";
 import FundAllocation from "./components/FundAllocation";
 import FundVintage from "./components/FundVintage";
-import StyleComparison from "./components/StyleComparison";
 import { 
   Activity, Search, Brain, Shield, 
   TrendingUp, BarChart3, Target, Award, 
