@@ -52,8 +52,8 @@ from fund_assessment_agent import backtesting_engine, add_investment_decision, a
 from fund_allocation_agent import allocation_orchestrator, create_allocation_targets, optimize_fund_allocation, generate_allocation_report
 from fund_vintage_agent import fund_vintage_orchestrator, add_fund, update_fund_performance, generate_vintage_report, generate_lp_report, compare_funds_across_vintages
 
-# Import N8N-style workflow integration
-from n8n_workflow_integration import workflow_router
+# Import N8N-style workflow integration  
+# from n8n_workflow_integration import workflow_router  # TEMPORARILY DISABLED FOR DEBUGGING
 
 # MongoDB connection (keeping existing functionality)
 mongo_url = os.environ['MONGO_URL']
@@ -71,7 +71,7 @@ app = FastAPI(title="VERSSAI VC Intelligence Platform", version="2.0.0")
 api_router = APIRouter()
 
 # Add N8N-style workflow routes to the API router
-api_router.include_router(workflow_router)
+# api_router.include_router(workflow_router)  # TEMPORARILY DISABLED FOR DEBUGGING
 
 # Existing models for backward compatibility
 class StatusCheck(BaseModel):
