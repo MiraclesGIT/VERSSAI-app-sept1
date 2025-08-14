@@ -377,7 +377,8 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<StyleComparison />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/founder-signal" element={<FounderSignalFit />} />
           <Route path="/due-diligence" element={<DueDiligenceDataRoom />} />
           <Route path="/portfolio" element={<PortfolioManagement />} />
