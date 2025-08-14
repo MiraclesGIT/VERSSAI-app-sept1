@@ -9,9 +9,9 @@ import AnalysisWorkflow from "./components/AnalysisWorkflow";
 import FounderSignalFit from "./components/FounderSignalFit";
 import DueDiligenceDataRoom from "./components/DueDiligenceDataRoom";
 import PortfolioManagement from "./components/PortfolioManagement";
-import FundAssessment from "./components/FundAssessment";
-import FundAllocation from "./components/FundAllocation";
-import FundVintage from "./components/FundVintage";
+import FundAssessment from "./FundAssessment";
+import FundAllocation from "./FundAllocation";
+import FundVintage from "./FundVintage";
 
 function App() {
   return (
