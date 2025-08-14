@@ -1,0 +1,33 @@
+{
+  "data_room_id": "5be51b76-589f-4dc3-834a-e1fbc0097503",
+  "company_name": "NeuralTech AI",
+  "company_id": "5be51b76-589f-4dc3-834a-e1fbc0097503",
+  "industry": "Artificial Intelligence",
+  "uploaded_by": "Due Diligence Team",
+  "upload_timestamp": "2025-08-14T12:42:28.198563",
+  "status": "completed",
+  "files": [
+    {
+      "original_name": "financials_2023.txt",
+      "file_path": "/app/uploads/5be51b76-589f-4dc3-834a-e1fbc0097503_doc_1_38bd5fa7-c5fa-46cf-b0aa-a9af48532df4.txt",
+      "file_size": 81,
+      "document_id": "5be51b76-589f-4dc3-834a-e1fbc0097503_doc_1"
+    },
+    {
+      "original_name": "legal_summary.txt",
+      "file_path": "/app/uploads/5be51b76-589f-4dc3-834a-e1fbc0097503_doc_2_42343b47-aaa3-4b79-9cbc-2a573e43a54a.txt",
+      "file_size": 102,
+      "document_id": "5be51b76-589f-4dc3-834a-e1fbc0097503_doc_2"
+    },
+    {
+      "original_name": "business_plan.txt",
+      "file_path": "/app/uploads/5be51b76-589f-4dc3-834a-e1fbc0097503_doc_3_61addabd-7282-4fdc-8ac4-f48f8a6dc628.txt",
+      "file_size": 134,
+      "document_id": "5be51b76-589f-4dc3-834a-e1fbc0097503_doc_3"
+    }
+  ],
+  "total_files": 3,
+  "total_size": 317,
+  "created_at": "2025-08-14T12:42:28.198575",
+  "updated_at": "2025-08-14T12:43:11.123115"
+}

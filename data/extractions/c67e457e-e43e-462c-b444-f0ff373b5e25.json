@@ -1,0 +1,31 @@
+{
+  "company_name": "NeuralTech AI",
+  "website": "",
+  "founders": [
+    {
+      "name": "Founder",
+      "role": "CEO",
+      "linkedin_hint": "",
+      "background": ""
+    }
+  ],
+  "market": "Technology",
+  "market_size": "Large market opportunity",
+  "business_model": "B2B SaaS",
+  "traction": {
+    "revenue": "Growing",
+    "customers": "Multiple customers",
+    "growth_rate": "Positive growth",
+    "key_metrics": []
+  },
+  "funding_ask": 1000000,
+  "use_of_funds": "Product development and growth",
+  "team_size": 5,
+  "stage": "Seed",
+  "confidence_score": 0.3,
+  "extracted_at": "2025-08-14T12:42:28.012840",
+  "extraction_method": "fallback",
+  "agent_version": "1.0",
+  "extraction_id": "c67e457e-e43e-462c-b444-f0ff373b5e25",
+  "deck_id": "b6f879cf-f878-4cc5-b4c0-4b8082e58c6b"
+}

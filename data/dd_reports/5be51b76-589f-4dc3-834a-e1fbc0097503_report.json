@@ -1,0 +1,132 @@
+{
+  "company_id": "5be51b76-589f-4dc3-834a-e1fbc0097503",
+  "company_name": "NeuralTech AI",
+  "analysis_timestamp": "2025-08-14T12:43:11.122354",
+  "document_analyses": [
+    {
+      "document_id": "5be51b76-589f-4dc3-834a-e1fbc0097503_dd_doc_1",
+      "filename": "5be51b76-589f-4dc3-834a-e1fbc0097503_doc_1_38bd5fa7-c5fa-46cf-b0aa-a9af48532df4.txt",
+      "document_type": "Text Document",
+      "category": "financial",
+      "key_insights": [
+        "NeuralTech AI generated $4.2M in revenue in 2023 with a high gross margin of 87%.",
+        "The company's current burn rate is $400K per month."
+      ],
+      "risk_factors": [
+        "With a $4.2M annual revenue and a $400K monthly burn rate, NeuralTech AI has a runway of approximately 10.5 months.  This is a significant risk factor if further funding is not secured."
+      ],
+      "completeness_score": 50,
+      "credibility_score": 70,
+      "red_flags": [],
+      "summary": "NeuralTech AI's 2023 financials show promising revenue and gross margin figures. However, the high burn rate coupled with limited runway presents a significant risk. Further investigation is needed into the drivers of the burn rate, revenue growth projections, and fundraising plans to assess the long-term financial sustainability.",
+      "extracted_data": {
+        "revenue_2023": "$4.2M",
+        "gross_margin_2023": "87%",
+        "burn_rate": "$400K/month"
+      }
+    },
+    {
+      "document_id": "5be51b76-589f-4dc3-834a-e1fbc0097503_dd_doc_2",
+      "filename": "5be51b76-589f-4dc3-834a-e1fbc0097503_doc_2_42343b47-aaa3-4b79-9cbc-2a573e43a54a.txt",
+      "document_type": "Text Document",
+      "category": "legal",
+      "key_insights": [
+        "Incorporated as a Delaware C-Corp, which is a standard practice for startups seeking investment.",
+        "Claims a substantial IP portfolio with 15 patents pending. This could be a significant competitive advantage if granted.",
+        "Compliance with SOC2 and GDPR suggests a focus on data security and privacy, which is crucial for AI companies."
+      ],
+      "risk_factors": [
+        "The patents are pending, not granted.  The actual value of the IP portfolio is uncertain until patents are issued.",
+        "While SOC2 and GDPR compliance are positive, the scope and effectiveness of implementation need further investigation."
+      ],
+      "completeness_score": 50,
+      "credibility_score": 70,
+      "red_flags": [],
+      "summary": "NeuralTech AI is incorporated as a Delaware C-Corp and claims a portfolio of 15 pending patents.  They state compliance with SOC2 and GDPR.  Further investigation is needed to verify the status and value of the IP portfolio and the robustness of their compliance practices.",
+      "extracted_data": {
+        "incorporation_state": "Delaware",
+        "incorporation_type": "C-Corp",
+        "patent_status": "pending",
+        "patent_count": 15,
+        "compliance_certifications": [
+          "SOC2",
+          "GDPR"
+        ]
+      }
+    },
+    {
+      "document_id": "5be51b76-589f-4dc3-834a-e1fbc0097503_dd_doc_3",
+      "filename": "5be51b76-589f-4dc3-834a-e1fbc0097503_doc_3_61addabd-7282-4fdc-8ac4-f48f8a6dc628.txt",
+      "document_type": "Text Document",
+      "category": "market",
+      "key_insights": [
+        "Total Addressable Market (TAM) is estimated at $127 billion.",
+        "The company's competitive advantage is based on proprietary AI algorithms.",
+        "The go-to-market strategy is focused on enterprise sales."
+      ],
+      "risk_factors": [
+        "Market timing risk:  Need to assess if the market is ready for this technology and if the company can effectively reach enterprise clients.",
+        "Competitive risk:  While proprietary AI algorithms are mentioned, the document lacks details about the specific competitive landscape and how defensible these algorithms are."
+      ],
+      "completeness_score": 50,
+      "credibility_score": 70,
+      "red_flags": [],
+      "summary": "NeuralTech AI is targeting a large market ($127B TAM) in the Artificial Intelligence industry.  They plan to leverage proprietary AI algorithms as their competitive advantage and focus on enterprise sales.  Further investigation is needed to validate the competitive landscape and the defensibility of their technology, as well as the feasibility of their go-to-market strategy.",
+      "extracted_data": {
+        "TAM": "$127B",
+        "Competitive Advantage": "Proprietary AI algorithms",
+        "Go-to-Market Strategy": "Enterprise sales"
+      }
+    }
+  ],
+  "cross_document_insights": [
+    "Cross-document analysis: ```json\n[\n  \"Consistency: The company's focus on data security and privacy, evidenced by SOC2 and GDPR compliance (legal), aligns with the enterprise sales go-to-market strategy (market), suggesting a..."
+  ],
+  "overall_risk_assessment": {
+    "overall_risk": "medium",
+    "risk_score": 55.0,
+    "total_red_flags": 0,
+    "total_risk_factors": 5,
+    "average_credibility": 70.0
+  },
+  "completeness_assessment": {
+    "completeness_score": 20.0,
+    "categories_covered": 3,
+    "total_categories": 6,
+    "missing_categories": [
+      "legal_documents",
+      "operational_details",
+      "team_information",
+      "market_analysis",
+      "technical_assets",
+      "financial_documents"
+    ],
+    "average_document_completeness": 50.0
+  },
+  "red_flags": [],
+  "recommendations": [
+    "Moderate risk identified - additional due diligence recommended",
+    "Request additional documentation - only 3/6 categories covered",
+    "Missing legal_documents: Request Corporate structure, Key contracts, IP portfolio, Compliance status",
+    "Missing operational_details: Request Business processes, Operational metrics, Vendor relationships",
+    "Missing team_information: Request Management bios, Organizational chart, Key employee contracts",
+    "Missing market_analysis: Request Market research, Competitive analysis, Customer validation",
+    "Missing technical_assets: Request Product specs, Technical architecture, Security assessment",
+    "Missing financial_documents: Request Financial statements, Cash flow, Revenue analysis, Budget/Forecast"
+  ],
+  "checklist_status": {
+    "completeness_score": 20.0,
+    "categories_covered": 3,
+    "total_categories": 6,
+    "missing_categories": [
+      "legal_documents",
+      "operational_details",
+      "team_information",
+      "market_analysis",
+      "technical_assets",
+      "financial_documents"
+    ],
+    "average_document_completeness": 50.0
+  },
+  "overall_score": 45.0
+}
