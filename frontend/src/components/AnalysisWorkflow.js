@@ -11,9 +11,9 @@ import {
 import FounderSignalFit from './FounderSignalFit';
 import DueDiligenceDataRoom from './DueDiligenceDataRoom';
 import PortfolioManagement from './PortfolioManagement';
-import FundAssessment from '../FundAssessment';
-import FundAllocation from '../FundAllocation';
-import FundVintage from '../FundVintage';
+import FundAssessment from './FundAssessment';
+import FundAllocation from './FundAllocation'; 
+import FundVintage from './FundVintage';
 
 const AnalysisWorkflow = () => {
   const { dealId } = useParams();
