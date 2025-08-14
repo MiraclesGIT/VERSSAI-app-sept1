@@ -36,15 +36,18 @@ const AnalysisWorkflow = () => {
   useEffect(() => {
     if (deal) {
       setCurrentDeal(deal);
-      // Set initial framework if none selected
-      if (!currentFramework) {
-        const frameworkKeys = Object.keys(frameworkConfig).sort((a, b) => 
-          frameworkConfig[a].order - frameworkConfig[b].order
-        );
-        setCurrentFramework(frameworkKeys[0]);
-      }
     }
-  }, [deal, currentFramework, setCurrentDeal, setCurrentFramework, frameworkConfig]);
+  }, [deal, setCurrentDeal]);
+
+  useEffect(() => {
+    // Set initial framework if none selected
+    if (!currentFramework && frameworkConfig) {
+      const frameworkKeys = Object.keys(frameworkConfig).sort((a, b) => 
+        frameworkConfig[a].order - frameworkConfig[b].order
+      );
+      setCurrentFramework(frameworkKeys[0]);
+    }
+  }, [currentFramework, setCurrentFramework]);
 
   if (!deal) {
     return (
