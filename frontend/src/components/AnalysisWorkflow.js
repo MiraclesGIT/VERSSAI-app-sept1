@@ -97,7 +97,7 @@ const AnalysisWorkflow = () => {
     }
   };
 
-  const renderFrameworkComponent = () => {
+  const renderFrameworkComponent = useMemo(() => {
     const props = { dealId, deal };
     
     switch (currentFramework) {
@@ -116,7 +116,7 @@ const AnalysisWorkflow = () => {
       default:
         return <div>Framework not found</div>;
     }
-  };
+  }, [currentFramework, dealId, deal]);
 
   const frameworkNotes = deal.teamNotes.filter(note => note.framework === currentFramework);
 
