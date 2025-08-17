@@ -8,10 +8,10 @@ services:
     image: postgres:15
     container_name: verssai_postgres
     environment:
-      POSTGRES_DB: verssai_vc
-      POSTGRES_USER: verssai_user
-      POSTGRES_PASSWORD: verssai_secure_password_2024
-      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: ${POSTGRES_DB:-verssai_vc}
+      POSTGRES_USER: ${POSTGRES_USER:-verssai_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-verssai_secure_password_2024}
+      POSTGRES_HOST_AUTH_METHOD: ${POSTGRES_HOST_AUTH_METHOD:-md5}
     ports:
       - "5432:5432"
     volumes:
@@ -29,8 +29,8 @@ services:
       - "5678:5678"
     environment:
       - N8N_BASIC_AUTH_ACTIVE=true
-      - N8N_BASIC_AUTH_USER=verssai_admin
-      - N8N_BASIC_AUTH_PASSWORD=verssai_n8n_2024
+      - N8N_BASIC_AUTH_USER=${N8N_BASIC_AUTH_USER:-verssai_admin}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD:-verssai_n8n_2024}
       - N8N_HOST=0.0.0.0
       - N8N_PORT=5678
       - N8N_PROTOCOL=http
@@ -43,8 +43,8 @@ services:
       - DB_POSTGRESDB_HOST=postgres
       - DB_POSTGRESDB_PORT=5432
       - DB_POSTGRESDB_DATABASE=verssai_vc
-      - DB_POSTGRESDB_USER=verssai_user
-      - DB_POSTGRESDB_PASSWORD=verssai_secure_password_2024
+      - DB_POSTGRESDB_USER=${POSTGRES_USER:-verssai_user}
+      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD:-verssai_secure_password_2024}
     volumes:
       - n8n_data:/home/node/.n8n
       - ./n8n/workflows:/home/node/.n8n/workflows:ro
@@ -59,7 +59,7 @@ services:
     image: chromadb/chroma:latest
     container_name: verssai_chromadb
     ports:
-      - "8000:8000"
+      - "8000:8000"  # Map host port 8000 to container port 8000
     environment:
       - CHROMA_SERVER_HOST=0.0.0.0
       - CHROMA_SERVER_HTTP_PORT=8000

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, Depends, HTTPException, UploadFile, File, Form, BackgroundTasks
+from fastapi import FastAPI, APIRouter, Depends, HTTPException, UploadFile, File, Form, BackgroundTasks, WebSocket, Request
 from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
@@ -15,6 +15,7 @@ import uuid
 from datetime import datetime
 import aiofiles
 import statistics
+import httpx
 # import magic  # Temporarily disabled
 import json
 import asyncio
@@ -53,16 +54,31 @@ from fund_allocation_agent import allocation_orchestrator, create_allocation_tar
 from fund_vintage_agent import fund_vintage_orchestrator, add_fund, update_fund_performance, generate_vintage_report, generate_lp_report, compare_funds_across_vintages
 
 # Import N8N-style workflow integration  
-# from n8n_workflow_integration import workflow_router  # TEMPORARILY DISABLED FOR DEBUGGING
+# from n8n_workhook_endpoints import workflow_router  # TEMPORARILY DISABLED FOR DEBUGGING
+
+# Import N8N webhook functions
+from n8n_webhook_endpoints import (
+    n8n_trigger,
+    founder_signal_webhook,
+    due_diligence_webhook,
+    portfolio_webhook,
+    competitive_intel_webhook,
+    fund_allocation_webhook,
+    lp_communication_webhook,
+    test_n8n_connection
+)
 
 # MongoDB connection (keeping existing functionality)
-mongo_url = os.environ['MONGO_URL']
+mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017/verssai')
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+db = client[os.environ.get('DB_NAME', 'verssai')]
 
 # Create upload directory
-UPLOAD_PATH = Path(os.environ.get('UPLOAD_PATH', '/app/uploads'))
+UPLOAD_PATH = Path(os.environ.get('UPLOAD_PATH', './uploads'))
 UPLOAD_PATH.mkdir(exist_ok=True)
+
+# Add environment variable for N8N URL
+N8N_URL = os.getenv("N8N_URL", "http://localhost:5678")
 
 # Create the main app without a prefix
 app = FastAPI(title="VERSSAI VC Intelligence Platform", version="2.0.0")
@@ -2932,9 +2948,16 @@ async def get_workflow_status(execution_id: str, db_session: Session = Depends(g
 # Health check endpoint
 @api_router.get("/health")
 async def health_check():
-    """Health check endpoint with AI services status"""
+    """Enhanced health check including N8N status"""
     try:
         rag_status = rag_service.get_system_status()
+        
+        # Check N8N connectivity
+        try:
+            n8n_status = await test_n8n_connection()
+            n8n_healthy = n8n_status["status"] == "connected"
+        except:
+            n8n_healthy = False
         
         return {
             "status": "healthy",
@@ -2945,7 +2968,8 @@ async def health_check():
                 "postgresql": "connected",
                 "api": "running",
                 "rag_system": rag_status.get('rag_system', 'unknown'),
-                "ai_agents": "operational"
+                "ai_agents": "operational",
+                "n8n": "connected" if n8n_healthy else "disconnected"
             },
             "features": {
                 "founder_signal_ai": "enabled",
@@ -2962,7 +2986,13 @@ async def health_check():
                 "openai_integration": "configured" if os.environ.get('OPENAI_API_KEY') else "fallback_available",
                 "google_search_api": "configured" if os.environ.get('GOOGLE_API_KEY') else "not_configured",
                 "twitter_api": "configured" if os.environ.get('TWITTER_BEARER_TOKEN') else "not_configured",
-                "enhanced_research": "enabled" if (os.environ.get('GOOGLE_API_KEY') or os.environ.get('TWITTER_BEARER_TOKEN')) else "limited"
+                "enhanced_research": "enabled" if (os.environ.get('GOOGLE_API_KEY') or os.environ.get('TWITTER_BEARER_TOKEN')) else "limited",
+                "n8n_workflows": "available" if n8n_healthy else "unavailable"
+            },
+            "n8n": {
+                "status": "connected" if n8n_healthy else "disconnected",
+                "url": "http://localhost:5678",
+                "workflows_available": len(n8n_trigger.workflow_mapping) if n8n_healthy else 0
             }
         }
     except Exception as e:
@@ -3254,11 +3284,83 @@ async def n8n_integration_status():
 app.include_router(api_router, prefix="/api")
 # N8N-style workflows are included in the API router
 
+# Import MCP N8N service for WebSocket integration
+from mcp_n8n_service import mcp_manager, websocket_endpoint
+
+# N8N Webhook Endpoints - Connect Linear UI to N8N Workflows
+@app.post("/webhook/founder-signal-webhook")
+async def api_founder_signal_webhook(request: Request):
+    """Founder Signal Assessment - Triggers N8N founder intelligence workflow"""
+    return await founder_signal_webhook(request)
+
+@app.post("/webhook/due-diligence-webhook") 
+async def api_due_diligence_webhook(request: Request):
+    """Due Diligence Automation - Triggers N8N company intelligence workflow"""
+    return await due_diligence_webhook(request)
+
+@app.post("/webhook/portfolio-webhook")
+async def api_portfolio_webhook(request: Request):
+    """Portfolio Management - Triggers N8N analytics reporting workflow"""
+    return await portfolio_webhook(request)
+
+@app.post("/webhook/competitive-intel-webhook")
+async def api_competitive_intel_webhook(request: Request):
+    """Competitive Intelligence - Triggers N8N company intelligence workflow"""
+    return await competitive_intel_webhook(request)
+
+@app.post("/webhook/fund-allocation-webhook")
+async def api_fund_allocation_webhook(request: Request):
+    """Fund Allocation Optimization - Triggers N8N analytics workflow"""
+    return await fund_allocation_webhook(request)
+
+@app.post("/webhook/lp-communication-webhook")
+async def api_lp_communication_webhook(request: Request):
+    """LP Communication Automation - Triggers N8N analytics workflow"""
+    return await lp_communication_webhook(request)
+
+# N8N Status and Testing Endpoints
+@app.get("/api/v1/n8n/status")
+async def get_n8n_status():
+    """Check N8N connectivity and available workflows"""
+    return await test_n8n_connection()
+
+@app.get("/api/v1/n8n/workflows")
+async def list_n8n_workflows():
+    """List all available N8N workflow mappings"""
+    return {
+        "available_workflows": list(n8n_trigger.workflow_mapping.keys()),
+        "workflow_details": n8n_trigger.workflow_mapping
+    }
+
+# Add WebSocket endpoint for MCP N8N integration
+@app.websocket("/ws/mcp")
+async def mcp_websocket(websocket: WebSocket):
+    """WebSocket endpoint for MCP N8N integration"""
+    await websocket_endpoint(websocket)
+
+# Add MCP test endpoint
+@app.get("/api/mcp/status")
+async def mcp_status():
+    """Check MCP N8N service status"""
+    return {
+        "mcp_service": "active",
+        "websocket_endpoint": "/ws/mcp",
+        "workflows_available": 6,
+        "workflow_types": [
+            "founder_signal", "due_diligence", "portfolio_management",
+            "competitive_intelligence", "fund_allocation", "lp_communication"
+        ],
+        "status": "MCP N8N integration ready"
+    }
+
+# Get CORS origins from environment, default to localhost for development
+cors_origins = os.environ.get('CORS_ORIGINS', 'http://localhost:3000,http://localhost:3001').split(',')
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
-    allow_methods=["*"],
+    allow_origins=cors_origins,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -3271,12 +3373,38 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("startup")
 async def startup_event():
+    """Enhanced startup with N8N connectivity check"""
     logger.info("VERSSAI VC Intelligence Platform v2.0 starting up...")
     logger.info(f"Upload directory: {UPLOAD_PATH}")
     logger.info("AI-powered analysis enabled")
     logger.info("3-level RAG system initialized")
+    
+    # Check N8N connectivity
+    try:
+        n8n_status = await test_n8n_connection()
+        if n8n_status["status"] == "connected":
+            logger.info(f"✅ N8N connected successfully at http://localhost:5678")
+            logger.info(f"Available workflows: {list(n8n_trigger.workflow_mapping.keys())}")
+        else:
+            logger.warning(f"⚠️ N8N connection issue: {n8n_status.get('error', 'Unknown error')}")
+    except Exception as e:
+        logger.error(f"❌ Failed to check N8N connectivity: {e}")
+    
+    logger.info("✅ MCP N8N Service initialized")
+    logger.info("🚀 VERSSAI Backend startup complete")
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
     logger.info("VERSSAI VC Intelligence Platform shutting down...")
+
+# Server startup
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        "server:app",
+        host="0.0.0.0",
+        port=8080,
+        reload=True,
+        log_level="info"
+    )

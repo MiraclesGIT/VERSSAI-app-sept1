@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 class FileBasedStorage:
     """File-based storage for VERSSAI data when PostgreSQL is unavailable"""
     
-    def __init__(self, storage_path: str = "/app/data"):
+    def __init__(self, storage_path: str = "./data"):
         self.storage_path = Path(storage_path)
         self.storage_path.mkdir(exist_ok=True)
         

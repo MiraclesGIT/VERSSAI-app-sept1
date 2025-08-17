@@ -34,7 +34,7 @@ class VERSSAIRAGService:
         try:
             # Initialize ChromaDB
             chroma_host = os.environ.get('CHROMA_HOST', 'localhost')
-            chroma_port = int(os.environ.get('CHROMA_PORT', '8000'))
+            chroma_port = int(os.environ.get('CHROMA_PORT', '8001'))
             
             # Try to connect to ChromaDB server, fallback to persistent client
             try:
@@ -48,7 +48,7 @@ class VERSSAIRAGService:
             except Exception as e:
                 logger.warning(f"ChromaDB server not available, using persistent client: {e}")
                 # Use persistent client as fallback
-                chroma_path = Path("/app/chroma_db")
+                chroma_path = Path("./chroma_db")
                 chroma_path.mkdir(exist_ok=True)
                 self.chroma_client = chromadb.PersistentClient(path=str(chroma_path))
             
