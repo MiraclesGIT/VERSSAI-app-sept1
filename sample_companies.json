@@ -1,0 +1,68 @@
+[
+  {
+    "id": "vistim_labs",
+    "name": "Vistim Labs",
+    "description": "MedTech diagnostic company that helps to detect, treat, and track neurological disorders using AI-powered brain imaging technology.",
+    "industry": "MedTech",
+    "stage": "Series C",
+    "valuation": 45000000,
+    "founder_names": [
+      "Dr. Sarah Chen",
+      "Dr. Michael Rodriguez"
+    ],
+    "founder_backgrounds": [
+      "PhD Neuroscience Stanford",
+      "MD/PhD Harvard Medical"
+    ],
+    "signal_scores": {
+      "founder_signal": 85,
+      "market_opportunity": 78,
+      "competitive_advantage": 82,
+      "overall": 81
+    }
+  },
+  {
+    "id": "synthetix_ai",
+    "name": "Synthetix AI",
+    "description": "AI-powered synthetic data generation platform for training machine learning models in privacy-sensitive industries.",
+    "industry": "AI/ML",
+    "stage": "Series A",
+    "valuation": 12000000,
+    "founder_names": [
+      "Alex Kim",
+      "Jordan Thompson"
+    ],
+    "founder_backgrounds": [
+      "PhD Computer Science MIT",
+      "Former Google AI Engineer"
+    ],
+    "signal_scores": {
+      "founder_signal": 72,
+      "market_opportunity": 88,
+      "competitive_advantage": 75,
+      "overall": 78
+    }
+  },
+  {
+    "id": "quantum_finance",
+    "name": "Quantum Finance",
+    "description": "Quantum computing applications for financial risk modeling and portfolio optimization using advanced algorithms.",
+    "industry": "Fintech",
+    "stage": "Seed",
+    "valuation": 3000000,
+    "founder_names": [
+      "Dr. Emily Zhang",
+      "David Wilson"
+    ],
+    "founder_backgrounds": [
+      "PhD Quantum Physics Caltech",
+      "Former Goldman Sachs Quant"
+    ],
+    "signal_scores": {
+      "founder_signal": 91,
+      "market_opportunity": 82,
+      "competitive_advantage": 89,
+      "overall": 87
+    }
+  }
+]

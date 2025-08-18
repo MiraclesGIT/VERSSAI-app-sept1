@@ -1,11 +1,29 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production builds
+/frontend/build
+/backend/dist
+
 # Environment files
-.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-backend/.env
-frontend/.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
 # Python
 __pycache__/
@@ -13,38 +31,20 @@ __pycache__/
 *$py.class
 *.so
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Virtual environments
-venv/
 env/
+venv/
 ENV/
-.venv/
-.env/
+env.bak/
+venv.bak/
 
-# IDE
+# IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -53,65 +53,24 @@ ENV/
 ehthumbs.db
 Thumbs.db
 
-# Logs
-*.log
-logs/
-backend/logs/
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
-data/
-chroma_db/
-
-# Uploads
-uploads/
-backend/uploads/
-
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-
-# React
-frontend/build/
-frontend/dist/
-
-# Testing
-.coverage
-.pytest_cache/
-htmlcov/
-.tox/
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-
-# Docker
-.dockerignore
+# N8N data (keep configs, not runtime data)
+n8n/data/
+n8n/.n8n/
 
 # Temporary files
 *.tmp
 *.temp
-*.bak
-*.backup
+.temp/
 
-# API Keys and Secrets
-secrets/
-keys/
-*.pem
-*.key
+# Large datasets (keep references, not actual files)
+*.xlsx
+*.csv
+*.json.bak
 
-# Backup files
-*.backup
-*.old
-*.orig
+# Service files
+*.pid
+verssai_services.pid
 
-# Local development
-local/
-dev/
-development/ 
+# Test outputs
+test_results/
+*.test.log

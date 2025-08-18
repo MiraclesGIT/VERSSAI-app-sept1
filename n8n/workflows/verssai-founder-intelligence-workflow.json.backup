@@ -1,0 +1,461 @@
+{
+  "name": "VERSSAI Founder Intelligence Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Webhook - Founder Analysis Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "id": "webhook-trigger",
+      "webhookId": "verssai-founder-analysis"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "founder-analysis",
+        "options": {}
+      },
+      "name": "Initialize Workflow",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "id": "initialize-workflow"
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8001/api/research/founder",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "founder_name",
+              "value": "={{ $node['Webhook - Founder Analysis Trigger'].json.founder_name }}"
+            },
+            {
+              "name": "company_name", 
+              "value": "={{ $node['Webhook - Founder Analysis Trigger'].json.company_name }}"
+            }
+          ]
+        }
+      },
+      "name": "Google Search Research",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [680, 300],
+      "id": "google-search-research",
+      "continueOnFail": true,
+      "retryOnFail": true,
+      "maxTries": 3
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8001/api/research/founder", 
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type", 
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "founder_name",
+              "value": "={{ $node['Webhook - Founder Analysis Trigger'].json.founder_name }}"
+            },
+            {
+              "name": "company_name",
+              "value": "={{ $node['Webhook - Founder Analysis Trigger'].json.company_name }}"
+            }
+          ]
+        }
+      },
+      "name": "Twitter Social Research",
+      "type": "n8n-nodes-base.httpRequest", 
+      "typeVersion": 1,
+      "position": [680, 480],
+      "id": "twitter-social-research",
+      "continueOnFail": true,
+      "retryOnFail": true,
+      "maxTries": 3
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "workflow_id",
+              "value": "={{ $node['Initialize Workflow'].json.workflow_id || $runIndex }}"
+            },
+            {
+              "name": "founder_name", 
+              "value": "={{ $node['Webhook - Founder Analysis Trigger'].json.founder_name }}"
+            },
+            {
+              "name": "company_name",
+              "value": "={{ $node['Webhook - Founder Analysis Trigger'].json.company_name }}"
+            },
+            {
+              "name": "google_research_status",
+              "value": "={{ $node['Google Search Research'].json ? 'completed' : 'failed' }}"
+            },
+            {
+              "name": "twitter_research_status", 
+              "value": "={{ $node['Twitter Social Research'].json ? 'completed' : 'failed' }}"
+            },
+            {
+              "name": "google_insights_count",
+              "value": "={{ $node['Google Search Research'].json.web_research?.key_insights?.length || 0 }}"
+            },
+            {
+              "name": "social_influence_score",
+              "value": "={{ $node['Twitter Social Research'].json.social_research?.social_analysis?.social_influence_score || 0 }}"
+            }
+          ],
+          "number": [
+            {
+              "name": "execution_timestamp",
+              "value": "={{ Date.now() }}"
+            }
+          ]
+        }
+      },
+      "name": "Compile Research Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [900, 390],
+      "id": "compile-research-data"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node['Compile Research Data'].json.google_research_status }}",
+              "operation": "equal",
+              "value2": "completed"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "name": "Check Research Quality",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1120, 390],
+      "id": "check-research-quality"
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8001/api/founder-signal/upload-deck",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "json",
+        "jsonParameters": {
+          "parameters": [
+            {
+              "name": "founder_data",
+              "value": "={{ $node['Compile Research Data'].json }}"
+            },
+            {
+              "name": "enhanced_research",
+              "value": "={{ { google_research: $node['Google Search Research'].json, twitter_research: $node['Twitter Social Research'].json } }}"
+            }
+          ]
+        }
+      },
+      "name": "AI Analysis with Enhanced Data",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [1340, 300],
+      "id": "ai-analysis-enhanced",
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "analysis_status",
+              "value": "high_quality"
+            },
+            {
+              "name": "research_sources",
+              "value": "={{ $node['Compile Research Data'].json.google_insights_count }}+ web insights, social influence score: {{ $node['Compile Research Data'].json.social_influence_score }}"
+            },
+            {
+              "name": "confidence_level",
+              "value": "high"
+            }
+          ]
+        }
+      },
+      "name": "High Quality Analysis Report",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1340, 180],
+      "id": "high-quality-report"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "analysis_status",
+              "value": "limited_data"
+            },
+            {
+              "name": "research_sources", 
+              "value": "Limited research data available"
+            },
+            {
+              "name": "confidence_level",
+              "value": "medium"
+            }
+          ]
+        }
+      },
+      "name": "Limited Data Report",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1340, 480],
+      "id": "limited-data-report"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "workflow_status",
+              "value": "completed"
+            },
+            {
+              "name": "execution_id",
+              "value": "={{ $node['Initialize Workflow'].json.workflow_id }}"
+            },
+            {
+              "name": "founder_name",
+              "value": "={{ $node['Webhook - Founder Analysis Trigger'].json.founder_name }}"
+            },
+            {
+              "name": "company_name", 
+              "value": "={{ $node['Webhook - Founder Analysis Trigger'].json.company_name }}"
+            },
+            {
+              "name": "total_execution_time",
+              "value": "={{ (Date.now() - $node['Compile Research Data'].json.execution_timestamp) / 1000 }}s"
+            },
+            {
+              "name": "research_quality",
+              "value": "={{ $node['Check Research Quality'].json ? $node['High Quality Analysis Report'].json.analysis_status : $node['Limited Data Report'].json.analysis_status }}"
+            }
+          ],
+          "number": [
+            {
+              "name": "completion_timestamp", 
+              "value": "={{ Date.now() }}"
+            }
+          ]
+        }
+      },
+      "name": "Final Workflow Report",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1560, 390],
+      "id": "final-workflow-report"
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8001/api/workflows/status",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "json",
+        "jsonParameters": {
+          "parameters": [
+            {
+              "name": "workflow_results",
+              "value": "={{ $node['Final Workflow Report'].json }}"
+            },
+            {
+              "name": "execution_logs",
+              "value": "={{ { google_search: $node['Google Search Research'].json, twitter_research: $node['Twitter Social Research'].json, ai_analysis: $node['AI Analysis with Enhanced Data'].json } }}"
+            }
+          ]
+        }
+      },
+      "name": "Store Workflow Results",
+      "type": "n8n-nodes-base.httpRequest", 
+      "typeVersion": 1,
+      "position": [1780, 390],
+      "id": "store-workflow-results"
+    }
+  ],
+  "connections": {
+    "Webhook - Founder Analysis Trigger": {
+      "main": [
+        [
+          {
+            "node": "Initialize Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Initialize Workflow": {
+      "main": [
+        [
+          {
+            "node": "Google Search Research", 
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Twitter Social Research",
+            "type": "main", 
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Search Research": {
+      "main": [
+        [
+          {
+            "node": "Compile Research Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Twitter Social Research": {
+      "main": [
+        [
+          {
+            "node": "Compile Research Data", 
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compile Research Data": {
+      "main": [
+        [
+          {
+            "node": "Check Research Quality",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Research Quality": {
+      "main": [
+        [
+          {
+            "node": "High Quality Analysis Report",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "AI Analysis with Enhanced Data",
+            "type": "main", 
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Limited Data Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Analysis with Enhanced Data": {
+      "main": [
+        [
+          {
+            "node": "Final Workflow Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "High Quality Analysis Report": {
+      "main": [
+        [
+          {
+            "node": "Final Workflow Report",
+            "type": "main", 
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limited Data Report": {
+      "main": [
+        [
+          {
+            "node": "Final Workflow Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Final Workflow Report": {
+      "main": [
+        [
+          {
+            "node": "Store Workflow Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "1",
+  "tags": []
+}

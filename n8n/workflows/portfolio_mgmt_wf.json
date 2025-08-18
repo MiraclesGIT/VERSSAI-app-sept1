@@ -1,0 +1,92 @@
+{
+  "name": "Portfolio Management",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "portfolio_mgmt_wf",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Portfolio Management with VERSSAI Analytics\nconst data = items[0].json;\nconst portfolioId = data.company_id || 'portfolio_001';\nconst timeframe = data.parameters?.timeframe || '12_months';\n\nconst portfolioManagement = {\n  portfolio_id: portfolioId,\n  workflow_type: 'portfolio_management',\n  execution_id: data.execution_id,\n  analysis_period: timeframe,\n  \n  // Portfolio Performance Overview\n  performance_summary: {\n    total_portfolio_value: Math.floor(Math.random() * 500000000) + 100000000,\n    unrealized_gains: Math.floor(Math.random() * 200000000) + 20000000,\n    realized_gains: Math.floor(Math.random() * 50000000) + 5000000,\n    total_invested: Math.floor(Math.random() * 150000000) + 75000000,\n    portfolio_irr: (Math.random() * 25 + 15).toFixed(1), // 15-40% IRR\n    multiple_on_invested_capital: (Math.random() * 2 + 1.5).toFixed(2), // 1.5-3.5x MOIC\n    number_of_investments: Math.floor(Math.random() * 30) + 15,\n    active_investments: Math.floor(Math.random() * 25) + 12,\n    exits_completed: Math.floor(Math.random() * 8) + 2\n  },\n  \n  // Company Performance Breakdown\n  company_performance: [\n    {\n      company_name: 'Vistim Labs',\n      investment_date: '2021-09-01',\n      investment_amount: 5000000,\n      current_valuation: 45000000,\n      ownership_percentage: 12.5,\n      current_value: 5625000,\n      multiple: 1.125,\n      status: 'Performing',\n      stage: 'Series C',\n      key_metrics: {\n        revenue_growth: 85,\n        burn_multiple: 2.1,\n        months_runway: 18,\n        team_size: 65\n      }\n    },\n    {\n      company_name: 'DataHarvest',\n      investment_date: '2023-10-15',\n      investment_amount: 2000000,\n      current_valuation: 18000000,\n      ownership_percentage: 15.0,\n      current_value: 2700000,\n      multiple: 1.35,\n      status: 'Outperforming',\n      stage: 'Seed',\n      key_metrics: {\n        revenue_growth: 120,\n        burn_multiple: 1.8,\n        months_runway: 24,\n        team_size: 25\n      }\n    },\n    {\n      company_name: 'AI Mentor',\n      investment_date: '2023-11-20',\n      investment_amount: 3500000,\n      current_valuation: 28000000,\n      ownership_percentage: 10.0,\n      current_value: 2800000,\n      multiple: 0.80,\n      status: 'Watch List',\n      stage: 'Series A',\n      key_metrics: {\n        revenue_growth: 45,\n        burn_multiple: 3.2,\n        months_runway: 12,\n        team_size: 42\n      }\n    }\n  ],\n  \n  // Risk Assessment by Company\n  risk_analysis: {\n    high_risk_companies: [\n      {\n        company: 'AI Mentor',\n        risk_factors: ['High burn rate', 'Competitive pressure', 'Limited runway'],\n        mitigation_actions: ['Bridge funding', 'Cost optimization', 'Revenue acceleration']\n      }\n    ],\n    medium_risk_companies: [\n      {\n        company: 'CloudScale',\n        risk_factors: ['Market timing', 'Team scaling'],\n        mitigation_actions: ['Market validation', 'Executive hiring']\n      }\n    ],\n    low_risk_companies: [\n      {\n        company: 'Vistim Labs',\n        risk_factors: ['Minor - Regulatory changes'],\n        mitigation_actions: ['Compliance monitoring']\n      },\n      {\n        company: 'DataHarvest', \n        risk_factors: ['Minor - Customer concentration'],\n        mitigation_actions: ['Customer diversification']\n      }\n    ]\n  },\n  \n  // Value Creation Opportunities\n  value_creation: {\n    revenue_optimization: [\n      {\n        company: 'Vistim Labs',\n        opportunity: 'International expansion',\n        potential_impact: '25% revenue increase',\n        timeline: '6-12 months',\n        resources_needed: 'Sales team expansion'\n      },\n      {\n        company: 'DataHarvest',\n        opportunity: 'Enterprise tier launch',\n        potential_impact: '40% revenue increase',\n        timeline: '3-6 months',\n        resources_needed: 'Product development'\n      }\n    ],\n    cost_optimization: [\n      {\n        company: 'AI Mentor',\n        opportunity: 'Infrastructure cost reduction',\n        potential_impact: '15% cost savings',\n        timeline: '1-3 months',\n        resources_needed: 'Technical optimization'\n      }\n    ]\n  },\n  \n  // Exit Planning & Opportunities\n  exit_analysis: {\n    near_term_exits: [\n      {\n        company: 'Vistim Labs',\n        exit_timeline: '12-18 months',\n        likely_exit_type: 'Strategic Acquisition',\n        estimated_valuation: '80-120M',\n        potential_acquirers: ['MedTech Giants', 'Healthcare Platforms'],\n        preparation_needed: ['Compliance audit', 'IP portfolio review']\n      }\n    ],\n    medium_term_exits: [\n      {\n        company: 'DataHarvest',\n        exit_timeline: '24-36 months',\n        likely_exit_type: 'IPO or Late-Stage Acquisition',\n        estimated_valuation: '200-350M',\n        preparation_needed: ['SOX compliance', 'Financial systems upgrade']\n      }\n    ]\n  },\n  \n  // Portfolio Metrics & KPIs\n  key_metrics: {\n    avg_revenue_growth: 75, // Portfolio average\n    avg_burn_multiple: 2.4,\n    avg_months_runway: 18,\n    portfolio_diversity_score: 0.78,\n    total_addressable_market: 15000000000,\n    market_leadership_companies: 2, // Number of companies in top 3 in their market\n    unicorn_potential: 1 // Companies with >$1B potential\n  },\n  \n  timestamp: new Date().toISOString()\n};\n\n// Portfolio Health Score Calculation\nconst healthFactors = {\n  performance_score: (portfolioManagement.performance_summary.portfolio_irr / 30) * 100, // Normalized to 30% IRR\n  risk_score: 100 - (portfolioManagement.risk_analysis.high_risk_companies.length * 25), // Penalty for high-risk companies\n  diversification_score: portfolioManagement.key_metrics.portfolio_diversity_score * 100,\n  exit_readiness_score: (portfolioManagement.exit_analysis.near_term_exits.length * 30) + (portfolioManagement.exit_analysis.medium_term_exits.length * 20)\n};\n\nportfolioManagement.portfolio_health_score = (\n  healthFactors.performance_score * 0.35 +\n  healthFactors.risk_score * 0.25 +\n  healthFactors.diversification_score * 0.20 +\n  healthFactors.exit_readiness_score * 0.20\n);\n\n// Strategic Recommendations\nif (portfolioManagement.portfolio_health_score >= 85) {\n  portfolioManagement.recommendation = 'Excellent Portfolio Health - Continue Current Strategy';\n  portfolioManagement.priority_actions = ['Prepare exit opportunities', 'Scale successful investments'];\n} else if (portfolioManagement.portfolio_health_score >= 70) {\n  portfolioManagement.recommendation = 'Good Portfolio Health - Minor Optimizations Needed';\n  portfolioManagement.priority_actions = ['Address medium-risk companies', 'Enhance value creation'];\n} else if (portfolioManagement.portfolio_health_score >= 55) {\n  portfolioManagement.recommendation = 'Moderate Portfolio Health - Significant Intervention Required';\n  portfolioManagement.priority_actions = ['Intensive company support', 'Risk mitigation focus'];\n} else {\n  portfolioManagement.recommendation = 'Poor Portfolio Health - Urgent Restructuring Needed';\n  portfolioManagement.priority_actions = ['Emergency company support', 'Portfolio restructuring'];\n}\n\nreturn [{ json: portfolioManagement }];"
+      },
+      "id": "portfolio-analysis",
+      "name": "VERSSAI Portfolio Analysis",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:8080/api/workflows/results",
+        "options": {
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        },
+        "requestMethod": "POST"
+      },
+      "id": "send-results",
+      "name": "Send Results to VERSSAI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "response",
+      "name": "Return Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "VERSSAI Portfolio Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VERSSAI Portfolio Analysis": {
+      "main": [
+        [
+          {
+            "node": "Send Results to VERSSAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Results to VERSSAI": {
+      "main": [
+        [
+          {
+            "node": "Return Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {},
+  "versionId": "1"
+}

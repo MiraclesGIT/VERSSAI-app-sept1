@@ -47,7 +47,7 @@
     },
     {
       "parameters": {
-        "url": "http://localhost:8001/api/research/company",
+        "url": "http://localhost:8080/api/research/company",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -82,7 +82,7 @@
     },
     {
       "parameters": {
-        "url": "http://localhost:8001/api/research/company",
+        "url": "http://localhost:8080/api/research/company",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -326,7 +326,7 @@
     },
     {
       "parameters": {
-        "url": "http://localhost:8001/api/workflows/status",
+        "url": "http://localhost:8080/api/workflows/status",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [

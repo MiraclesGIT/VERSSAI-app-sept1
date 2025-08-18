@@ -1,0 +1,524 @@
+/* VERSSAI Enhanced Dashboard Styles */
+/* Purple theme matching the original UI screenshots */
+
+.verssai-app {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Header Styles */
+.verssai-header {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(147, 51, 234, 0.1);
+}
+
+/* Button Styles */
+.btn-primary {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  border: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Card Styles */
+.verssai-card {
+  background: white;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(156, 163, 175, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.verssai-card:hover {
+  border-color: rgba(147, 51, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.1);
+}
+
+/* Company Cards */
+.company-card {
+  background: white;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(156, 163, 175, 0.2);
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.company-card:hover {
+  border-color: rgba(147, 51, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.1);
+  transform: translateY(-2px);
+}
+
+.company-avatar {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+/* Readiness Score Styles */
+.readiness-score {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.readiness-score.high {
+  color: #10b981;
+}
+
+.readiness-score.medium {
+  color: #f59e0b;
+}
+
+.readiness-score.low {
+  color: #ef4444;
+}
+
+/* Stage Badges */
+.stage-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.stage-badge.series-c {
+  background-color: rgba(147, 51, 234, 0.1);
+  color: #7c3aed;
+}
+
+.stage-badge.series-a {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+}
+
+.stage-badge.seed {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+}
+
+/* Workflow Cards */
+.workflow-card {
+  background: white;
+  border: 1px solid rgba(156, 163, 175, 0.2);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.workflow-card:hover {
+  background: rgba(249, 250, 251, 1);
+  border-color: rgba(147, 51, 234, 0.3);
+}
+
+.workflow-card:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.workflow-card h4 {
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.workflow-card p {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.workflow-card .success-rate {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+/* Status Indicators */
+.status-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-indicator.active {
+  background-color: #10b981;
+}
+
+.status-indicator.inactive {
+  background-color: #ef4444;
+}
+
+.status-indicator.warning {
+  background-color: #f59e0b;
+}
+
+/* RAG Layer Selector */
+.rag-selector {
+  background: rgba(249, 250, 251, 1);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(209, 213, 219, 1);
+}
+
+.rag-selector select {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(229, 231, 235, 1);
+  padding: 1.5rem;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+/* Upload Zone */
+.upload-zone {
+  border: 2px dashed #d1d5db;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.upload-zone:hover {
+  border-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.02);
+}
+
+.upload-zone.dragover {
+  border-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.05);
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 0.5rem;
+  background: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.progress-fill.success {
+  background: #10b981;
+}
+
+.progress-fill.error {
+  background: #ef4444;
+}
+
+.progress-fill.uploading {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+}
+
+/* MCP Console Styles */
+.mcp-console {
+  background: #f9fafb;
+}
+
+.console-card {
+  background: white;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(156, 163, 175, 0.2);
+  padding: 1.5rem;
+}
+
+.console-header {
+  display: flex;
+  align-items: center;
+  justify-content: between;
+  margin-bottom: 1rem;
+}
+
+.console-header h3 {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Activity Feed */
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+}
+
+.activity-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+.activity-indicator.blue {
+  background-color: #3b82f6;
+}
+
+.activity-indicator.green {
+  background-color: #10b981;
+}
+
+.activity-indicator.purple {
+  background-color: #8b5cf6;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-title {
+  font-weight: 500;
+  color: #111827;
+  font-size: 0.875rem;
+}
+
+.activity-time {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+/* Settings Panel */
+.settings-panel {
+  background: white;
+  box-shadow: -10px 0 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section {
+  border-bottom: 1px solid rgba(229, 231, 235, 1);
+  padding: 1.5rem 0;
+}
+
+.settings-section:last-child {
+  border-bottom: none;
+}
+
+.settings-section h4 {
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+/* RAG Layer Cards */
+.rag-layer-card {
+  background: white;
+  border: 1px solid rgba(209, 213, 219, 1);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.rag-layer-card.active {
+  border-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.02);
+}
+
+.rag-layer-card:hover {
+  border-color: #8b5cf6;
+}
+
+/* Stats Cards */
+.stats-card {
+  background: white;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(156, 163, 175, 0.2);
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.stats-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.stats-icon.purple {
+  color: #8b5cf6;
+}
+
+.stats-icon.blue {
+  color: #3b82f6;
+}
+
+.stats-icon.green {
+  color: #10b981;
+}
+
+.stats-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111827;
+}
+
+.stats-label {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Navigation */
+.nav-button {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.nav-button.active {
+  color: #8b5cf6;
+  border-bottom-color: #8b5cf6;
+}
+
+.nav-button:hover {
+  color: #111827;
+}
+
+/* Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .verssai-header {
+    padding: 1rem;
+  }
+  
+  .verssai-header .flex {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .dashboard-view {
+    padding: 1rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .workflow-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .settings-panel {
+    width: 100%;
+    right: 0;
+  }
+}
+
+/* Dark Mode Support (for future implementation) */
+@media (prefers-color-scheme: dark) {
+  .verssai-app {
+    background-color: #111827;
+    color: #f9fafb;
+  }
+  
+  .verssai-card {
+    background-color: #1f2937;
+    border-color: rgba(75, 85, 99, 0.3);
+  }
+  
+  .company-card {
+    background-color: #1f2937;
+    border-color: rgba(75, 85, 99, 0.3);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

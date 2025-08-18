@@ -19,7 +19,7 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Configuration
-BACKEND_URL = "https://vc-intelligence-1.preview.emergentagent.com/api"
+BACKEND_URL = "https://vc-intelligence-1.preview.localhost:8080/api"
 TEST_TIMEOUT = 30
 AI_PROCESSING_TIMEOUT = 60
 

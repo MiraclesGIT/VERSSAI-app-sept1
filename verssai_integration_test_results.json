@@ -1,0 +1,58 @@
+{
+  "timestamp": "2025-08-18T00:32:45.155964",
+  "tests": {
+    "backend_api": {
+      "status": "pass",
+      "version": "3.0.0",
+      "features": [
+        "3-Layer RAG/GRAPH Architecture",
+        "Enhanced MCP WebSocket Protocol",
+        "AI Chat Workflow Generation",
+        "SuperAdmin Workflow Management",
+        "Role-based Access Control",
+        "N8N Integration"
+      ]
+    },
+    "health": {
+      "status": "pass",
+      "services": {
+        "api": "running",
+        "enhanced_mcp_protocol": "ready",
+        "rag_graph_engine": "initializing",
+        "n8n_integration": "ready",
+        "active_websockets": 2,
+        "active_workflow_sessions": 0,
+        "active_chat_sessions": 0
+      }
+    },
+    "rag_engine": {
+      "status": "initializing",
+      "rag_status": "initializing"
+    },
+    "frontend": {
+      "status": "pass",
+      "accessible": true
+    },
+    "n8n_integration": {
+      "status": "pass",
+      "service_accessible": true,
+      "webhook_test": "success"
+    },
+    "websocket_mcp": {
+      "status": "fail",
+      "error": "BaseEventLoop.create_connection() got an unexpected keyword argument 'timeout'"
+    },
+    "workflow_trigger": {
+      "status": "fail",
+      "error": "BaseEventLoop.create_connection() got an unexpected keyword argument 'timeout'"
+    }
+  },
+  "overall_status": "NEEDS_ATTENTION",
+  "summary": {
+    "passed": 4,
+    "failed": 2,
+    "partial": 0,
+    "initializing": 1,
+    "total": 7
+  }
+}

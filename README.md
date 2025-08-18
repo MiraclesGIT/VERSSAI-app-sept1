@@ -1,329 +1,310 @@
 # 🚀 VERSSAI VC Intelligence Platform
 
-A comprehensive AI-powered venture capital intelligence platform that combines founder signal analysis, due diligence automation, portfolio management, and fund assessment capabilities.
+**Version 3.0** - Enhanced MCP Backend with 3-Layer RAG/GRAPH Architecture
 
-## 🏗️ Architecture Overview
+## 🎯 **System Overview**
 
-VERSSAI consists of 6 core frameworks:
+VERSSAI is a cutting-edge venture capital intelligence platform with AI-powered workflow automation. The platform features:
 
-1. **Founder Signal Fit Framework** - AI-powered founder analysis and scoring
-2. **Due Diligence Data Room Framework** - Automated document analysis and risk assessment
-3. **Portfolio Management Framework** - Real-time portfolio monitoring and KPI tracking
-4. **Fund Assessment & Backtesting Framework** - Historical performance analysis and simulation
-5. **Fund Allocation & Deployment Framework** - Monte Carlo optimization and risk management
-6. **Fund Vintage Management Framework** - Multi-fund performance comparison and LP reporting
+- **🧠 3-Layer RAG/GRAPH Engine** - Roof, VC, and Founder intelligence layers
+- **🔌 Enhanced MCP Protocol** - WebSocket-based workflow orchestration  
+- **⚡ 6 Core VC Workflows** - From founder assessment to LP communication
+- **🔐 Role-based Access Control** - SuperAdmin, VC_Partner, Analyst, Founder
+- **💬 AI Chat Workflow Generation** - Natural language workflow creation
+- **🏗️ Microservices Architecture** - Docker-based scalable infrastructure
 
-## 🛠️ Technology Stack
+## 🏗️ **Architecture**
 
-### Backend
-- **FastAPI** - High-performance Python web framework
-- **PostgreSQL** - Primary relational database
-- **MongoDB** - Document storage and caching
-- **ChromaDB** - Vector database for RAG (Retrieval-Augmented Generation)
-- **Google Gemini Pro** - AI analysis and document processing
-- **LangGraph** - Workflow orchestration and AI agent management
+### **Backend Services**
+- **FastAPI Server** (Port 8080) - Main API with MCP protocol
+- **PostgreSQL** (Port 5432) - Primary database  
+- **ChromaDB** (Port 8000) - Vector storage for RAG
+- **Redis** (Port 6379) - Caching and sessions
+- **Neo4j** (Port 7474/7687) - Graph database
+- **N8N** (Port 5678) - Workflow automation engine
 
-### Frontend
-- **React 19** - Modern React with hooks and context
-- **Tailwind CSS** - Utility-first CSS framework
-- **React Router** - Client-side routing
+### **Core Workflows**
+1. **Founder Signal Assessment** - AI personality analysis and success patterns
+2. **Due Diligence Automation** - Document analysis and risk assessment  
+3. **Portfolio Management** - Performance tracking and optimization
+4. **Competitive Intelligence** - Market analysis and positioning
+5. **Fund Allocation Optimization** - Investment allocation strategies
+6. **LP Communication Automation** - Automated reporting workflows
 
-### Infrastructure
-- **Docker & Docker Compose** - Containerization and orchestration
-- **N8N** - Workflow automation and integration
-- **ChromaDB** - Vector database for semantic search
+## 🚀 **Quick Start**
 
-## 🚀 Quick Start
-
-### Prerequisites
+### **Prerequisites**
 - Python 3.8+
-- Node.js 16+
 - Docker & Docker Compose
-- Git
+- Node.js 16+ (for frontend)
 
-### 1. Clone the Repository
+### **1. Start Infrastructure Services**
 ```bash
-git clone <repository-url>
-cd VERSSAI-engineAug10
+# Start all infrastructure services
+./start_infrastructure.sh
+
+# Or manually with Docker Compose
+docker-compose up -d postgres chromadb redis neo4j n8n
 ```
 
-### 2. Run Setup Script
+### **2. Start VERSSAI Backend**
 ```bash
-./setup.sh
+# Comprehensive startup with health checks
+python3 start_backend.py
+
+# Or direct startup
+cd backend && python3 enhanced_mcp_backend.py
 ```
 
-This script will:
-- Create necessary directories
-- Set up environment configuration files
-- Install dependencies
-- Generate secure secrets
-- Validate system requirements
-
-### 3. Configure Environment Variables
-
-#### Backend Configuration (`backend/.env`)
+### **3. Check System Status**
 ```bash
-# Copy template and configure
-cp backend/env.template backend/.env
-
-# Edit with your actual values
-nano backend/.env
+# Comprehensive health check
+python3 check_status.py
 ```
 
-**Required API Keys:**
-- `GEMINI_API_KEY` - Google Gemini Pro API key
-- `OPENAI_API_KEY` - OpenAI API key (fallback)
-- `GOOGLE_API_KEY` - Google Custom Search API key
-- `TWITTER_BEARER_TOKEN` - Twitter API bearer token
-
-#### Frontend Configuration (`frontend/.env`)
-```bash
-# Copy template and configure
-cp frontend/env.template frontend/.env
-
-# Edit with your actual values
-nano frontend/.env
-```
-
-#### Docker Configuration (`.env`)
-```bash
-# Copy template and configure
-cp docker.env .env
-
-# Edit with your actual values
-nano .env
-```
-
-### 4. Start Services
-
-#### Start Infrastructure Services
-```bash
-docker-compose up -d
-```
-
-This starts:
-- PostgreSQL database
-- ChromaDB vector database
-- N8N workflow automation
-
-#### Start Backend
-```bash
-cd backend
-python3 server.py
-```
-
-#### Start Frontend
+### **4. Start Frontend (Optional)**
 ```bash
 cd frontend
+npm install
 npm start
 ```
 
-### 5. Access the Platform
+## 🔗 **Service URLs**
 
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:8000
-- **API Documentation**: http://localhost:8000/docs
-- **N8N Workflows**: http://localhost:5678
+| Service | URL | Credentials |
+|---------|-----|-------------|
+| **Main API** | http://localhost:8080 | None |
+| **API Health** | http://localhost:8080/health | None |
+| **MCP WebSocket** | ws://localhost:8080/mcp | None |
+| **RAG Status** | http://localhost:8080/api/rag/status | None |
+| **N8N Workflows** | http://localhost:5678 | verssai_admin / verssai_n8n_2024 |
+| **ChromaDB** | http://localhost:8000 | None |
+| **Neo4j Browser** | http://localhost:7474 | neo4j / verssai_neo4j_2024 |
+| **Frontend** | http://localhost:3000 | None |
 
-## 🔧 Configuration
+## 🧠 **RAG/GRAPH Engine**
 
-### Environment Variables
+### **3-Layer Architecture**
 
-#### Backend (`.env`)
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `POSTGRES_URL` | PostgreSQL connection string | `postgresql://verssai_user:password@localhost:5432/verssai_vc` |
-| `MONGO_URL` | MongoDB connection string | `mongodb://localhost:27017/verssai` |
-| `GEMINI_API_KEY` | Google Gemini Pro API key | Required |
-| `GOOGLE_API_KEY` | Google Custom Search API key | Required |
-| `TWITTER_BEARER_TOKEN` | Twitter API bearer token | Required |
-| `UPLOAD_PATH` | File upload directory | `/app/uploads` |
-| `CORS_ORIGINS` | Allowed CORS origins | `http://localhost:3000,http://localhost:3001` |
+**🏢 Roof Layer (Research Intelligence)**
+- Complete academic dataset (1,157 papers, 2,311 researchers)
+- Citation network analysis (38,016 citations)
+- Institution and collaboration mapping
 
-#### Frontend (`.env`)
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `REACT_APP_BACKEND_URL` | Backend API URL | `http://localhost:8000` |
-| `REACT_APP_API_VERSION` | API version | `v1` |
+**💼 VC Layer (Investor Intelligence)**  
+- Investment target identification
+- Market trend analysis
+- Risk assessment algorithms
 
-#### Docker (`.env`)
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `POSTGRES_PASSWORD` | PostgreSQL password | `verssai_secure_password_2024` |
-| `N8N_BASIC_AUTH_PASSWORD` | N8N admin password | `verssai_n8n_2024` |
+**🚀 Founder Layer (Startup Intelligence)**
+- Founder readiness scoring
+- Success pattern matching
+- Startup archetype classification
 
-## 🧪 Testing
+### **Query Examples**
+```python
+# Multi-layer query with weights
+await rag_engine.query_multi_layer(
+    "machine learning startup founder",
+    layer_weights={'roof': 0.4, 'vc': 0.3, 'founder': 0.3}
+)
+```
 
-### Run Backend Tests
+## 🔌 **MCP Protocol Usage**
+
+### **WebSocket Connection**
+```javascript
+const ws = new WebSocket('ws://localhost:8080/mcp?user_role=superadmin');
+
+// List available workflows
+ws.send(JSON.stringify({
+    "type": "list_workflows"
+}));
+
+// Trigger a workflow
+ws.send(JSON.stringify({
+    "type": "trigger_workflow",
+    "workflow_id": "founder_signal",
+    "data": {
+        "founder_name": "John Doe",
+        "company_name": "AI Startup Inc",
+        "industry": "Artificial Intelligence"
+    }
+}));
+```
+
+### **Available MCP Commands**
+- `ping` - Health check
+- `list_workflows` - Get available workflows
+- `trigger_workflow` - Start a workflow
+- `get_workflow_status` - Check workflow progress
+- `cancel_workflow` - Cancel running workflow
+- `ai_chat_workflow` - AI chat for workflow creation (SuperAdmin)
+- `rag_query` - Query RAG engine directly
+
+## 👥 **User Roles & Permissions**
+
+| Role | Permissions |
+|------|-------------|
+| **SuperAdmin** | Full access, workflow creation, AI chat, system admin |
+| **VC_Partner** | Trigger workflows, basic workflow creation, view results |
+| **Analyst** | Trigger workflows, view results |
+| **Founder** | Submit applications, view limited results |
+
+## 🔧 **Configuration**
+
+### **Environment Variables** (`.env`)
+```env
+# PostgreSQL
+POSTGRES_DB=verssai_vc
+POSTGRES_USER=verssai_user  
+POSTGRES_PASSWORD=verssai_secure_password_2024
+
+# N8N
+N8N_BASIC_AUTH_USER=verssai_admin
+N8N_BASIC_AUTH_PASSWORD=verssai_n8n_2024
+
+# Environment
+ENVIRONMENT=development
+```
+
+### **Backend Configuration**
+The backend automatically detects and uses the mock dataset for development:
+- **Dataset Location**: `./backend/uploads/VERSSAI_Massive_Dataset_Complete.xlsx`
+- **RAG Engine**: Auto-initializes on startup
+- **Workflow Templates**: 6 pre-configured VC workflows
+
+## 🛠️ **Development**
+
+### **Testing Backend Components**
 ```bash
-cd backend
-python3 -m pytest tests/
+# Run comprehensive component tests
+python3 test_backend_fixed.py
 ```
 
-### Run Frontend Tests
+### **Creating Custom Workflows**
+SuperAdmin users can create workflows via AI chat:
+```javascript
+// Connect as SuperAdmin
+const ws = new WebSocket('ws://localhost:8080/mcp?user_role=superadmin');
+
+// Start AI chat for workflow creation
+ws.send(JSON.stringify({
+    "type": "ai_chat_workflow",
+    "message": "Create a new workflow for market analysis",
+    "chat_session_id": "session_123"
+}));
+```
+
+### **Dataset Management**
 ```bash
-cd frontend
-npm test
+# Create mock dataset for development
+python3 create_mock_dataset.py
+
+# Integrate with real dataset
+python3 integrate_dataset.py
 ```
 
-### Run Stress Tests
+## 📊 **Monitoring & Logging**
+
+### **Health Checks**
+- **API Health**: `GET /health`
+- **RAG Status**: `GET /api/rag/status`  
+- **MCP Status**: `GET /api/mcp/status`
+
+### **Optional Monitoring Stack**
 ```bash
-python3 stress_test_runner.py
+# Start with monitoring (Prometheus + Grafana)
+docker-compose --profile monitoring up -d
+
+# Grafana: http://localhost:3001 (admin / verssai_grafana_2024)
+# Prometheus: http://localhost:9090
 ```
 
-## 🚨 Security Considerations
+## 🚨 **Troubleshooting**
 
-### Production Deployment
-1. **Change Default Passwords**: Update all default passwords in `.env` files
-2. **Secure API Keys**: Use environment-specific API keys
-3. **HTTPS**: Enable HTTPS in production
-4. **CORS**: Restrict CORS origins to your domain
-5. **Database Security**: Use strong database passwords and network isolation
-6. **Secrets Management**: Use proper secrets management (e.g., Kubernetes secrets, AWS Secrets Manager)
+### **Common Issues**
 
-### Environment Variables
-- Never commit `.env` files to version control
-- Use different API keys for development and production
-- Rotate API keys regularly
-- Monitor API usage and set rate limits
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-#### Database Connection Errors
+**❌ RAG Engine fails to initialize**
 ```bash
-# Check PostgreSQL status
-docker-compose ps postgres
+# Check dataset exists
+ls -la ./backend/uploads/VERSSAI_Massive_Dataset_Complete.xlsx
 
-# Check logs
-docker-compose logs postgres
-
-# Restart service
-docker-compose restart postgres
+# Regenerate mock dataset
+python3 create_mock_dataset.py
 ```
 
-#### API Key Issues
+**❌ N8N not accessible**
 ```bash
-# Check environment variables
-cd backend
-python3 -c "import os; print('GEMINI_API_KEY:', bool(os.environ.get('GEMINI_API_KEY')))"
+# Check N8N container
+docker-compose logs n8n
+
+# Restart N8N
+docker-compose restart n8n
 ```
 
-#### Port Conflicts
+**❌ WebSocket connection fails**
 ```bash
-# Check port usage
-lsof -i :8000  # Backend
-lsof -i :3000  # Frontend
-lsof -i :5432  # PostgreSQL
+# Check backend is running
+curl http://localhost:8080/health
+
+# Check firewall/port access
 ```
 
-### Logs
-- **Backend**: Check `backend/logs/` directory
-- **Docker**: `docker-compose logs [service-name]`
-- **Frontend**: Check browser console
+### **Logs & Debugging**
+```bash
+# Backend logs
+cd backend && python3 enhanced_mcp_backend.py
 
-## 📚 API Documentation
+# Docker service logs
+docker-compose logs [service_name]
 
-### Core Endpoints
-
-#### Founder Signal Analysis
-```http
-POST /api/founder-signal/analyze
-Content-Type: multipart/form-data
-
-file: [pitch_deck.pdf]
-company_name: "Example Corp"
+# System status check
+python3 check_status.py
 ```
 
-#### Due Diligence
-```http
-POST /api/due-diligence/upload
-Content-Type: multipart/form-data
+## 🔄 **Updates & Migration**
 
-files: [document1.pdf, document2.pdf]
-company_name: "Example Corp"
+### **Version 3.0 Features** 
+✅ Enhanced MCP Protocol with WebSocket support  
+✅ 3-Layer RAG/GRAPH Architecture  
+✅ AI Chat Workflow Generation  
+✅ Role-based Access Control  
+✅ Real-time progress monitoring  
+✅ Cross-layer intelligence insights  
+
+### **Previous Versions**
+- **v2.0**: Basic MCP integration, standard workflows
+- **v1.0**: Initial VC platform with basic automation
+
+## 📝 **API Documentation**
+
+### **Core Endpoints**
+```
+GET    /                    # Root endpoint with system info
+GET    /health              # Health check with service status
+GET    /api/rag/status      # RAG engine status and statistics
+POST   /api/rag/query       # Direct RAG query endpoint
+GET    /api/mcp/status      # MCP protocol status
+WS     /mcp                 # MCP WebSocket endpoint
+POST   /webhook/*           # N8N workflow webhooks
 ```
 
-#### Portfolio Management
-```http
-GET /api/portfolio/companies
-GET /api/portfolio/performance
-POST /api/portfolio/companies
-```
+### **Webhook Endpoints**
+- `/webhook/founder-signal-webhook`
+- `/webhook/due-diligence-webhook`  
+- `/webhook/portfolio-webhook`
+- `/webhook/competitive-intel-webhook`
+- `/webhook/fund-allocation-webhook`
+- `/webhook/lp-communication-webhook`
 
-### Authentication
-Currently, the platform uses basic authentication. JWT-based authentication is planned for future releases.
+## 📞 **Support**
 
-## 🔄 Development Workflow
-
-### Code Structure
-```
-VERSSAI-engineAug10/
-├── backend/                 # FastAPI backend
-│   ├── ai_agents.py        # AI agent implementations
-│   ├── database.py         # Database models and connections
-│   ├── rag_service.py      # RAG system implementation
-│   ├── server.py           # Main FastAPI application
-│   └── requirements.txt    # Python dependencies
-├── frontend/               # React frontend
-│   ├── src/               # Source code
-│   ├── package.json       # Node.js dependencies
-│   └── public/            # Static assets
-├── tests/                  # Test files
-├── docker-compose.yml      # Service orchestration
-└── setup.sh               # Setup script
-```
-
-### Adding New Features
-1. Create feature branch: `git checkout -b feature/new-feature`
-2. Implement changes following existing patterns
-3. Add tests for new functionality
-4. Update documentation
-5. Submit pull request
-
-## 📊 Performance Monitoring
-
-### Metrics to Monitor
-- API response times
-- Database query performance
-- AI processing latency
-- Memory and CPU usage
-- File upload/download speeds
-
-### Monitoring Tools
-- Built-in FastAPI metrics
-- Docker resource monitoring
-- Application logging
-- Performance testing scripts
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
-
-### Code Standards
-- Follow PEP 8 for Python code
-- Use ESLint for JavaScript/React code
-- Write comprehensive tests
-- Document new features
-- Follow existing naming conventions
-
-## 📄 License
-
-This project is proprietary software. All rights reserved.
-
-## 🆘 Support
-
-For support and questions:
-- Check the troubleshooting section
-- Review API documentation
-- Check existing issues
-- Contact the development team
+For technical support or questions:
+- Check system status: `python3 check_status.py`
+- Review logs in `./backend/logs/`
+- Test components: `python3 test_backend_fixed.py`
 
 ---
 
-**⚠️ Important**: This is a development version. Do not use in production without proper security review and configuration.
+**🎉 VERSSAI VC Intelligence Platform - Empowering Venture Capital with AI**

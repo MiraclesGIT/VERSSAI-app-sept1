@@ -1,0 +1,92 @@
+{
+  "name": "LP Communication Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lp_communication_wf",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "// LP Communication Automation with VERSSAI Intelligence\nconst data = items[0].json;\nconst reportType = data.parameters?.report_type || 'quarterly';\nconst lpSegment = data.parameters?.lp_segment || 'all';\n\nconst lpCommunication = {\n  fund_id: data.company_id || 'fund_001',\n  workflow_type: 'lp_communication_automation',\n  execution_id: data.execution_id,\n  report_type: reportType,\n  lp_segment: lpSegment,\n  \n  // Fund Performance Summary\n  fund_performance: {\n    fund_size: 150000000,\n    capital_called: 117000000,\n    capital_deployed: 89000000,\n    current_nav: 165000000,\n    distributed_to_date: 23000000,\n    total_value: 188000000,\n    net_irr: 24.8,\n    net_multiple: 1.25,\n    gross_irr: 28.3,\n    gross_multiple: 1.42,\n    fund_age_years: 3.2,\n    management_fees_paid: 4500000,\n    carry_accrued: 12500000\n  },\n  \n  // Portfolio Highlights\n  portfolio_highlights: {\n    total_companies: 18,\n    active_companies: 16,\n    successful_exits: 2,\n    company_valuations: {\n      up_rounds: 12,\n      flat_rounds: 3,\n      down_rounds: 1,\n      no_change: 2\n    },\n    notable_achievements: [\n      {\n        company: 'Vistim Labs',\n        achievement: 'Secured $25M Series C led by top-tier VC',\n        impact: '2.5x valuation increase',\n        date: '2024-10-15'\n      },\n      {\n        company: 'DataHarvest',\n        achievement: 'Reached $10M ARR milestone',\n        impact: 'Strong product-market fit validation',\n        date: '2024-11-01'\n      },\n      {\n        company: 'TechFlow',\n        achievement: 'Acquired by Microsoft for $120M',\n        impact: '4.2x return on investment',\n        date: '2024-09-30'\n      }\n    ]\n  },\n  \n  // Market Environment Analysis\n  market_environment: {\n    venture_market_conditions: {\n      fundraising_environment: 'Challenging but improving',\n      valuation_trends: 'Stabilizing after 2023 correction',\n      exit_market: 'IPO window gradually reopening',\n      competitive_landscape: 'Increased selectivity among investors'\n    },\n    sector_performance: {\n      ai_ml: {\n        performance: 'Outperforming',\n        outlook: 'Strong continued demand',\n        portfolio_exposure: '35%'\n      },\n      fintech: {\n        performance: 'Mixed',\n        outlook: 'Regulatory clarity improving',\n        portfolio_exposure: '25%'\n      },\n      healthtech: {\n        performance: 'Steady',\n        outlook: 'Positive demographic trends',\n        portfolio_exposure: '20%'\n      }\n    }\n  },\n  \n  // New Investments This Period\n  new_investments: [\n    {\n      company_name: 'NeuroTech AI',\n      investment_amount: 3500000,\n      round_size: 12000000,\n      stage: 'Series A',\n      sector: 'AI/Healthcare',\n      investment_thesis: 'Leading AI platform for neurological diagnostics with strong IP portfolio',\n      key_metrics: {\n        revenue_run_rate: 2400000,\n        growth_rate: 180,\n        team_size: 32\n      }\n    },\n    {\n      company_name: 'GreenFlow Energy',\n      investment_amount: 2000000,\n      round_size: 8000000,\n      stage: 'Seed',\n      sector: 'Climate Tech',\n      investment_thesis: 'Revolutionary battery technology for grid-scale energy storage',\n      key_metrics: {\n        patents_filed: 12,\n        pilot_customers: 3,\n        team_size: 18\n      }\n    }\n  ],\n  \n  // ESG & Impact Reporting\n  esg_reporting: {\n    diversity_metrics: {\n      female_founders_percentage: 33,\n      underrepresented_founders_percentage: 28,\n      diverse_board_seats_percentage: 45\n    },\n    environmental_impact: {\n      companies_with_climate_impact: 4,\n      carbon_footprint_tracking: 'Implemented across portfolio',\n      renewable_energy_adoption: '78% of portfolio companies'\n    },\n    governance_standards: {\n      board_independence: 'Majority independent boards across portfolio',\n      transparency_scoring: 85, // Out of 100\n      compliance_incidents: 0\n    }\n  },\n  \n  // Risk Management & Monitoring\n  risk_management: {\n    portfolio_risks: [\n      {\n        risk_category: 'Market Risk',\n        description: 'Potential economic downturn impact',\n        mitigation: 'Diversified portfolio, strong cash positions',\n        probability: 'Medium',\n        impact: 'Medium'\n      },\n      {\n        risk_category: 'Regulatory Risk',\n        description: 'AI regulation development',\n        mitigation: 'Proactive compliance, industry engagement',\n        probability: 'High',\n        impact: 'Low'\n      }\n    ],\n    concentration_analysis: {\n      top_5_companies_percentage: 67,\n      sector_concentration_max: 35,\n      stage_concentration_max: 40,\n      geographic_concentration: 'Primarily US with 25% international'\n    }\n  },\n  \n  // Benchmark Comparisons\n  benchmark_performance: {\n    cambridge_associates_benchmark: {\n      fund_performance_percentile: 78, // Top quartile\n      irr_vs_benchmark: '+3.2%',\n      multiple_vs_benchmark: '+0.15x'\n    },\n    peer_fund_comparison: {\n      vintage_year_ranking: '2nd quartile',\n      sector_focus_ranking: '1st quartile',\n      geographic_focus_ranking: '1st quartile'\n    }\n  },\n  \n  timestamp: new Date().toISOString()\n};\n\n// Generate Executive Summary\nlpCommunication.executive_summary = {\n  key_messages: [\n    `Fund continues to deliver strong performance with ${lpCommunication.fund_performance.net_irr}% net IRR`,\n    `Portfolio companies showing resilience with ${lpCommunication.portfolio_highlights.company_valuations.up_rounds} up rounds this period`,\n    `Successful exit of TechFlow delivered 4.2x return, demonstrating value creation capabilities`,\n    `New investments in AI and climate tech align with long-term macro trends`\n  ],\n  performance_highlights: [\n    `Net IRR of ${lpCommunication.fund_performance.net_irr}% places fund in top quartile`,\n    `${lpCommunication.fund_performance.total_value}M total value represents ${lpCommunication.fund_performance.net_multiple}x net multiple`,\n    `Strong portfolio momentum with majority of companies exceeding growth targets`\n  ],\n  outlook: [\n    'Market conditions stabilizing with improved exit environment',\n    'Portfolio positioned for multiple exits in next 18-24 months',\n    'Continued focus on AI and sustainable technology themes'\n  ]\n};\n\n// Communication Customization by LP Segment\nif (lpSegment === 'institutional') {\n  lpCommunication.institutional_focus = {\n    regulatory_compliance: 'Full SOX compliance across portfolio',\n    risk_management: 'Institutional-grade risk monitoring and reporting',\n    governance: 'Independent board oversight and fiduciary standards'\n  };\n} else if (lpSegment === 'family_office') {\n  lpCommunication.family_office_focus = {\n    tax_optimization: 'QSBS and tax-efficient structuring maximized',\n    impact_alignment: 'ESG integration across investment decisions',\n    accessibility: 'Regular informal updates and direct access to GP'\n  };\n} else if (lpSegment === 'corporate') {\n  lpCommunication.corporate_focus = {\n    strategic_synergies: 'Portfolio company partnerships with LP businesses',\n    innovation_insights: 'Early access to emerging technology trends',\n    co_investment_opportunities: 'Strategic co-investment in aligned deals'\n  };\n}\n\n// Report Generation Instructions\nlpCommunication.report_instructions = {\n  format: 'Professional PDF with executive summary',\n  distribution_list: lpSegment === 'all' ? 'Full LP base' : `${lpSegment} segment only`,\n  confidentiality: 'LP Confidential - Not for redistribution',\n  follow_up_actions: [\n    'Schedule individual LP calls for major investors',\n    'Prepare detailed backup materials for questions',\n    'Coordinate with portfolio companies for potential LP introductions'\n  ]\n};\n\nreturn [{ json: lpCommunication }];"
+      },
+      "id": "lp-communication",
+      "name": "VERSSAI LP Communication",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:8080/api/workflows/results",
+        "options": {
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        },
+        "requestMethod": "POST"
+      },
+      "id": "send-results",
+      "name": "Send Results to VERSSAI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "response",
+      "name": "Return Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "VERSSAI LP Communication",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VERSSAI LP Communication": {
+      "main": [
+        [
+          {
+            "node": "Send Results to VERSSAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Results to VERSSAI": {
+      "main": [
+        [
+          {
+            "node": "Return Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {},
+  "versionId": "1"
+}

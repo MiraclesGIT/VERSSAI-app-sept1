@@ -41,7 +41,7 @@ class Config:
     
     # ChromaDB Configuration
     CHROMA_HOST: str = os.environ.get('CHROMA_HOST', 'localhost')
-    CHROMA_PORT: int = int(os.environ.get('CHROMA_PORT', '8001'))
+    CHROMA_PORT: int = int(os.environ.get('CHROMA_PORT', '8000'))
     
     # File Upload Configuration
     UPLOAD_PATH: Path = Path(os.environ.get('UPLOAD_PATH', './uploads'))

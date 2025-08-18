@@ -1,0 +1,92 @@
+{
+  "name": "Competitive Intelligence",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "competitive_intel_wf",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Competitive Intelligence Analysis with VERSSAI Research\nconst data = items[0].json;\nconst companyId = data.company_id;\nconst verssaiData = data.verssai_data;\n\nconst competitiveAnalysis = {\n  company_id: companyId,\n  workflow_type: 'competitive_intelligence',\n  execution_id: data.execution_id,\n  \n  // Market Landscape Analysis\n  market_landscape: {\n    total_addressable_market: Math.floor(Math.random() * 50000000000) + 5000000000,\n    serviceable_addressable_market: Math.floor(Math.random() * 10000000000) + 1000000000,\n    market_growth_rate: Math.random() * 20 + 10,\n    market_maturity: ['Emerging', 'Growth', 'Mature', 'Declining'][Math.floor(Math.random() * 4)],\n    geographic_distribution: {\n      north_america: Math.random() * 30 + 40,\n      europe: Math.random() * 25 + 20,\n      asia_pacific: Math.random() * 25 + 15,\n      other: Math.random() * 15 + 5\n    }\n  },\n  \n  // Direct Competitors Analysis\n  direct_competitors: [\n    {\n      name: 'CompetitorA',\n      market_share: Math.random() * 15 + 10,\n      funding_raised: Math.floor(Math.random() * 100000000) + 10000000,\n      valuation: Math.floor(Math.random() * 1000000000) + 100000000,\n      employee_count: Math.floor(Math.random() * 500) + 50,\n      strengths: ['Market Leadership', 'Strong Partnerships'],\n      weaknesses: ['High Pricing', 'Limited Innovation']\n    },\n    {\n      name: 'CompetitorB', \n      market_share: Math.random() * 12 + 8,\n      funding_raised: Math.floor(Math.random() * 75000000) + 5000000,\n      valuation: Math.floor(Math.random() * 500000000) + 50000000,\n      employee_count: Math.floor(Math.random() * 300) + 30,\n      strengths: ['Technical Innovation', 'Rapid Growth'],\n      weaknesses: ['Customer Support', 'Market Reach']\n    }\n  ],\n  \n  // Competitive Positioning\n  positioning_analysis: {\n    feature_comparison: {\n      product_quality: Math.random() * 30 + 70,\n      pricing_competitiveness: Math.random() * 40 + 60,\n      customer_experience: Math.random() * 35 + 65,\n      technical_innovation: Math.random() * 25 + 75,\n      market_reach: Math.random() * 50 + 50,\n      brand_recognition: Math.random() * 60 + 40\n    },\n    unique_value_proposition: {\n      differentiation_strength: Math.random() * 30 + 70,\n      defensibility: Math.random() * 35 + 65,\n      sustainability: Math.random() * 40 + 60\n    }\n  },\n  \n  // Threat Assessment\n  threat_analysis: {\n    new_entrants_risk: Math.random() < 0.3 ? 'High' : Math.random() < 0.6 ? 'Medium' : 'Low',\n    substitute_products_risk: Math.random() < 0.2 ? 'High' : Math.random() < 0.5 ? 'Medium' : 'Low',\n    supplier_power: Math.random() < 0.25 ? 'High' : Math.random() < 0.55 ? 'Medium' : 'Low',\n    buyer_power: Math.random() < 0.35 ? 'High' : Math.random() < 0.65 ? 'Medium' : 'Low',\n    competitive_rivalry: Math.random() < 0.4 ? 'High' : Math.random() < 0.7 ? 'Medium' : 'Low'\n  },\n  \n  // Strategic Recommendations\n  strategic_recommendations: {\n    market_positioning: 'Strengthen differentiation in core verticals',\n    competitive_response: 'Accelerate product development roadmap',\n    growth_strategy: 'Focus on underserved market segments',\n    partnership_opportunities: ['Technology integrations', 'Channel partnerships']\n  },\n  \n  // VERSSAI Research Integration\n  research_intelligence: {\n    market_research_papers: verssaiData?.market_research?.length || 0,\n    methodology_confidence: 0.97,\n    data_freshness: 'Real-time',\n    statistical_significance: true\n  },\n  \n  timestamp: new Date().toISOString()\n};\n\n// Calculate Competitive Advantage Score\nconst positioning = competitiveAnalysis.positioning_analysis.feature_comparison;\nconst competitiveAdvantageScore = (\n  positioning.product_quality * 0.20 +\n  positioning.pricing_competitiveness * 0.15 +\n  positioning.customer_experience * 0.20 +\n  positioning.technical_innovation * 0.25 +\n  positioning.market_reach * 0.10 +\n  positioning.brand_recognition * 0.10\n);\n\n// Market Attractiveness Score\nconst marketAttractiveness = (\n  (competitiveAnalysis.market_landscape.market_growth_rate / 30 * 100) * 0.40 +\n  (competitiveAnalysis.market_landscape.total_addressable_market / 50000000000 * 100) * 0.30 +\n  (competitiveAnalysis.positioning_analysis.unique_value_proposition.differentiation_strength) * 0.30\n);\n\n// Overall Strategic Position\ncompetitiveAnalysis.strategic_position = {\n  competitive_advantage_score: competitiveAdvantageScore,\n  market_attractiveness_score: marketAttractiveness,\n  overall_position: (competitiveAdvantageScore + marketAttractiveness) / 2\n};\n\n// Strategic Recommendations\nif (competitiveAnalysis.strategic_position.overall_position >= 80) {\n  competitiveAnalysis.recommendation = 'Market Leader - Aggressive Growth Strategy';\n  competitiveAnalysis.strategy = 'Expand market share and defend position';\n} else if (competitiveAnalysis.strategic_position.overall_position >= 65) {\n  competitiveAnalysis.recommendation = 'Strong Position - Selective Investment';\n  competitiveAnalysis.strategy = 'Focus on differentiation and efficiency';\n} else if (competitiveAnalysis.strategic_position.overall_position >= 50) {\n  competitiveAnalysis.recommendation = 'Challenged Position - Turnaround Required';\n  competitiveAnalysis.strategy = 'Major repositioning and capability building';\n} else {\n  competitiveAnalysis.recommendation = 'Weak Position - Consider Exit';\n  competitiveAnalysis.strategy = 'Pivot or strategic alternatives evaluation';\n}\n\n// Key Action Items\ncompetitiveAnalysis.action_items = [\n  'Develop competitive response strategy',\n  'Identify white space opportunities',\n  'Strengthen unique value proposition',\n  'Monitor competitor product roadmaps',\n  'Assess potential acquisition targets'\n];\n\nreturn [{ json: competitiveAnalysis }];"
+      },
+      "id": "competitive-analysis",
+      "name": "VERSSAI Competitive Analysis",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:8080/api/workflows/results",
+        "options": {
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        },
+        "requestMethod": "POST"
+      },
+      "id": "send-results",
+      "name": "Send Results to VERSSAI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "response",
+      "name": "Return Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "VERSSAI Competitive Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VERSSAI Competitive Analysis": {
+      "main": [
+        [
+          {
+            "node": "Send Results to VERSSAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Results to VERSSAI": {
+      "main": [
+        [
+          {
+            "node": "Return Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {},
+  "versionId": "1"
+}

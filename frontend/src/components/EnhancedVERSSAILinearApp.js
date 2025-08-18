@@ -1,4 +1,4 @@
-// File: frontend/src/components/VERSSAILinearApp.tsx
+// Enhanced VERSSAI Linear App - JavaScript version
 // Linear-inspired VERSSAI VC Intelligence Platform
 
 import React, { useState, useEffect } from 'react';
@@ -17,114 +17,62 @@ import {
   BarChart3,
   MessageSquare,
   Monitor,
-  Activity
+  Activity,
+  Brain,
+  Database,
+  Layers,
+  Wifi,
+  WifiOff
 } from 'lucide-react';
 
-// Types for MCP Integration
-interface WorkflowStatus {
-  execution_id: string;
-  status: 'idle' | 'running' | 'completed' | 'failed';
-  progress: number;
-  results?: any;
-}
+// Import contexts
+import { useMultiTenant } from '../contexts/MultiTenantContext';
+import { useWorkflow } from '../contexts/WorkflowContext';
 
-interface User {
-  id: string;
-  role: 'SuperAdmin' | 'VC_Partner' | 'Analyst' | 'Founder';
-  name: string;
-  organization: string;
-  avatar?: string;
-}
-
-// MCP Service Integration
-class MCPService {
-  private baseUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080';
-  private ws: WebSocket | null = null;
-  
-  async triggerWorkflow(workflowType: string, parameters: any, user: User): Promise<WorkflowStatus> {
-    // For now, simulate workflow triggering since we're using WebSocket directly
-    const executionId = `exec_${Date.now()}`;
-    
-    // Send workflow trigger via WebSocket
-    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
-      this.ws.send(JSON.stringify({
-        type: "trigger_workflow",
-        workflow_id: workflowType,
-        data: parameters,
-        user_role: user.role.toLowerCase()
-      }));
-    }
-    
-    // Return mock response for now
-    return {
-      execution_id: executionId,
-      status: 'running',
-      progress: 0
-    };
-  }
-  
-  async getWorkflowStatus(executionId: string): Promise<WorkflowStatus> {
-    // For now, return mock status since we're using WebSocket directly
-    return {
-      execution_id: executionId,
-      status: 'running',
-      progress: 50
-    };
-  }
-  
-  connectWebSocket(userId: string, onMessage: (data: any) => void) {
-    const wsUrl = `ws://localhost:8080/ws/mcp`;
-    this.ws = new WebSocket(wsUrl);
-    
-    this.ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      onMessage(data);
-    };
-    
-    this.ws.onopen = () => console.log('MCP WebSocket connected');
-    this.ws.onerror = (error) => console.error('MCP WebSocket error:', error);
-  }
-  
-  subscribeToWorkflow(executionId: string) {
-    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
-      this.ws.send(JSON.stringify({
-        type: 'subscribe_workflow',
-        execution_id: executionId
-      }));
-    }
-  }
-}
-
-const VERSSAILinearApp: React.FC = () => {
+const EnhancedVERSSAILinearApp = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [workflowStatuses, setWorkflowStatuses] = useState<Record<string, WorkflowStatus>>({});
-  const [user] = useState<User>({
+  const [selectedRagLayer, setSelectedRagLayer] = useState('vc');
+  const [workflowStatuses, setWorkflowStatuses] = useState({});
+
+  // Mock contexts for now (will be replaced with real contexts when they're working)
+  const mockUser = {
     id: 'user_123',
-    role: 'SuperAdmin',
     name: 'Alex Chen',
-    organization: 'Sequoia Capital'
-  });
-  
-  const mcpService = new MCPService();
-  
-  // Initialize MCP WebSocket connection
-  useEffect(() => {
-    mcpService.connectWebSocket(user.id, (data) => {
-      if (data.type === 'workflow_update') {
-        setWorkflowStatuses(prev => ({
-          ...prev,
-          [data.execution_id]: data.data
-        }));
-      }
-    });
-  }, [user.id]);
-  
+    role: 'SuperAdmin',
+    organization: { name: 'Sequoia Capital', branding: { primaryColor: '#3b82f6' } },
+    permissions: ['*']
+  };
+
+  const mockRagLayers = [
+    {
+      id: 'roof',
+      name: 'Roof Layer - Global Intelligence',
+      description: 'VERSSAI global intelligence for ML/DL research and datasets',
+      status: 'active',
+      performance: { accuracy: 0.96, latency: 150, throughput: 1200 }
+    },
+    {
+      id: 'vc', 
+      name: 'VC Layer - Investor Experience',
+      description: 'Customized VC-specific intelligence and fund analytics',
+      status: 'active',
+      performance: { accuracy: 0.94, latency: 200, throughput: 800 }
+    },
+    {
+      id: 'startup',
+      name: 'Startup Layer - Founder Intelligence',
+      description: 'Founder-level insights and startup-specific analytics',
+      status: 'active',
+      performance: { accuracy: 0.92, latency: 250, throughput: 600 }
+    }
+  ];
+
   // Enhanced workflow steps with Linear-style design
   const workflowSteps = [
     {
       id: 'founder_signal',
-      title: 'Founder Signal Fit',
-      subtitle: 'AI-Powered Founder Assessment',
+      title: 'Founder Signal Assessment',
+      subtitle: 'AI-Powered Founder Analysis',
       icon: Target,
       color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
       bgColor: 'bg-gradient-to-br from-indigo-50 to-purple-50',
@@ -132,7 +80,8 @@ const VERSSAILinearApp: React.FC = () => {
       description: 'Deep personality analysis and success pattern matching using advanced ML models',
       features: ['Personality Assessment', 'Success Pattern Matching', 'Leadership Evaluation', 'Risk Profile Analysis'],
       accuracy: '96%',
-      estimatedTime: '5-10 min'
+      estimatedTime: '5-10 min',
+      ragLayer: 'startup'
     },
     {
       id: 'due_diligence',
@@ -145,7 +94,8 @@ const VERSSAILinearApp: React.FC = () => {
       description: 'Automated document processing with risk assessment and compliance checking',
       features: ['Document Analysis', 'Risk Assessment', 'Compliance Checking', 'Financial Validation'],
       accuracy: '94%',
-      estimatedTime: '15-30 min'
+      estimatedTime: '15-30 min',
+      ragLayer: 'vc'
     },
     {
       id: 'portfolio_management',
@@ -158,7 +108,8 @@ const VERSSAILinearApp: React.FC = () => {
       description: 'Portfolio analysis, performance tracking, and optimization recommendations',
       features: ['Performance Tracking', 'Risk Analysis', 'Optimization Recommendations', 'Scenario Modeling'],
       accuracy: '92%',
-      estimatedTime: '10-20 min'
+      estimatedTime: '10-20 min',
+      ragLayer: 'vc'
     },
     {
       id: 'competitive_intelligence',
@@ -171,12 +122,13 @@ const VERSSAILinearApp: React.FC = () => {
       description: 'Market analysis, competitor mapping, and strategic positioning insights',
       features: ['Competitor Analysis', 'Market Mapping', 'Strategic Positioning', 'Trend Analysis'],
       accuracy: '97%',
-      estimatedTime: '8-15 min'
+      estimatedTime: '8-15 min',
+      ragLayer: 'roof'
     },
     {
       id: 'fund_allocation',
-      title: 'Fund Allocation',
-      subtitle: 'Investment Optimization',
+      title: 'Fund Allocation Optimization',
+      subtitle: 'Investment Strategy',
       icon: Zap,
       color: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
       bgColor: 'bg-gradient-to-br from-yellow-50 to-orange-50',
@@ -184,7 +136,8 @@ const VERSSAILinearApp: React.FC = () => {
       description: 'Investment allocation analysis and risk-adjusted recommendations',
       features: ['Allocation Analysis', 'Risk Adjustment', 'ROI Optimization', 'Diversification Strategy'],
       accuracy: '89%',
-      estimatedTime: '12-25 min'
+      estimatedTime: '12-25 min',
+      ragLayer: 'vc'
     },
     {
       id: 'lp_communication',
@@ -197,63 +150,50 @@ const VERSSAILinearApp: React.FC = () => {
       description: 'Automated reporting and communication workflows for Limited Partners',
       features: ['Automated Reports', 'Performance Updates', 'Compliance Documentation', 'Communication Scheduling'],
       accuracy: '91%',
-      estimatedTime: '5-12 min'
+      estimatedTime: '5-12 min',
+      ragLayer: 'vc'
     }
   ];
-  
-  const handleTriggerWorkflow = async (workflowType: string, stepIndex: number) => {
+
+  // Handle workflow trigger
+  const handleTriggerWorkflow = async (workflowType, stepIndex) => {
     try {
-      const parameters = {
-        step_index: stepIndex,
-        timestamp: new Date().toISOString()
-      };
+      const step = workflowSteps[stepIndex];
       
-      const result = await mcpService.triggerWorkflow(workflowType, parameters, user);
-      
+      // Simulate workflow execution
       setWorkflowStatuses(prev => ({
         ...prev,
-        [result.execution_id]: result
+        [workflowType]: 'running'
       }));
       
-      // Subscribe to workflow updates
-      mcpService.subscribeToWorkflow(result.execution_id);
+      console.log(`🚀 Triggered workflow: ${step.title}`);
+      console.log(`📊 Using RAG Layer: ${step.ragLayer}`);
       
-      console.log(`Workflow ${workflowType} triggered:`, result);
+      // Simulate completion after 3 seconds
+      setTimeout(() => {
+        setWorkflowStatuses(prev => ({
+          ...prev,
+          [workflowType]: 'completed'
+        }));
+        console.log(`✅ Workflow completed: ${step.title}`);
+      }, 3000);
       
     } catch (error) {
       console.error('Failed to trigger workflow:', error);
+      setWorkflowStatuses(prev => ({
+        ...prev,
+        [workflowType]: 'failed'
+      }));
     }
   };
-  
-  const getStepStatus = (stepId: string) => {
-    const executions = Object.values(workflowStatuses).filter(
-      status => status.workflow_type === stepId
-    );
-    
-    if (executions.length === 0) return 'idle';
-    
-    const latest = executions[executions.length - 1];
-    return latest.status;
+
+  // Get workflow status
+  const getWorkflowStatus = (workflowId) => {
+    return workflowStatuses[workflowId] || 'idle';
   };
-  
-  const getStepProgress = (stepId: string) => {
-    const executions = Object.values(workflowStatuses).filter(
-      status => status.workflow_type === stepId
-    );
-    
-    if (executions.length === 0) return 0;
-    
-    const executions = Object.values(workflowStatuses).filter(
-      status => status.workflow_type === stepId
-    );
-    
-    if (executions.length === 0) return 0;
-    
-    const latest = executions[executions.length - 1];
-    return latest.progress || 0;
-  };
-  
-  const StatusIcon = ({ status }: { status: string }) => {
+
+  // Status icon component
+  const StatusIcon = ({ status }) => {
     switch (status) {
       case 'running':
         return <Clock className="w-5 h-5 text-blue-500 animate-spin" />;
@@ -265,36 +205,82 @@ const VERSSAILinearApp: React.FC = () => {
         return <Play className="w-5 h-5 text-gray-400" />;
     }
   };
-  
+
+  // RAG layer indicator
+  const RAGLayerIndicator = () => {
+    const currentLayer = mockRagLayers.find(layer => layer.id === selectedRagLayer);
+    
+    return (
+      <div className="flex items-center space-x-2 bg-white rounded-lg border border-gray-200 px-3 py-2">
+        <Layers className="w-4 h-4 text-gray-500" />
+        <span className="text-sm font-medium text-gray-700">RAG Layer:</span>
+        <select
+          value={selectedRagLayer}
+          onChange={(e) => setSelectedRagLayer(e.target.value)}
+          className="text-sm font-medium bg-transparent border-none outline-none cursor-pointer"
+        >
+          {mockRagLayers.map(layer => (
+            <option key={layer.id} value={layer.id}>
+              {layer.name.split(' - ')[0]}
+            </option>
+          ))}
+        </select>
+        <div className={`w-2 h-2 rounded-full ${
+          currentLayer?.status === 'active' ? 'bg-green-500' : 'bg-red-500'
+        }`} />
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Linear-style Header */}
+      {/* Enhanced Header */}
       <header className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">V</span>
+              <div 
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-white"
+                style={{ background: mockUser.organization?.branding?.primaryColor || '#3b82f6' }}
+              >
+                <span className="font-bold text-sm">V</span>
               </div>
-              <h1 className="text-xl font-semibold text-gray-900">VERSSAI</h1>
+              <div>
+                <h1 className="text-xl font-semibold text-gray-900">VERSSAI</h1>
+                <p className="text-xs text-gray-500">Enhanced v3.0.0</p>
+              </div>
             </div>
             <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
               VC Intelligence Platform
             </span>
+            
+            {/* MCP Connection Status */}
+            <div className="flex items-center space-x-1">
+              <Wifi className="w-4 h-4 text-green-500" />
+              <span className="text-xs text-green-600">Connected</span>
+            </div>
           </div>
           
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-600">{user.organization}</span>
+            {/* RAG Layer Indicator */}
+            <RAGLayerIndicator />
+            
+            {/* Organization Info */}
+            <span className="text-sm text-gray-600">{mockUser.organization?.name}</span>
+            
+            {/* User Info */}
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                 <span className="text-blue-600 font-medium text-sm">
-                  {user.name.split(' ').map(n => n[0]).join('')}
+                  {mockUser.name.split(' ').map(n => n[0]).join('')}
                 </span>
               </div>
-              <span className="text-sm font-medium text-gray-700">{user.name}</span>
-              <span className="text-xs text-gray-500 bg-purple-100 text-purple-700 px-2 py-1 rounded-full">
-                {user.role}
-              </span>
+              <div className="text-right">
+                <div className="text-sm font-medium text-gray-700">{mockUser.name}</div>
+                <span className="text-xs text-gray-500 bg-purple-100 text-purple-700 px-2 py-1 rounded-full">
+                  {mockUser.role}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -302,17 +288,44 @@ const VERSSAILinearApp: React.FC = () => {
       
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-8">
-        {/* Progress Overview */}
+        {/* Enhanced Progress Overview with RAG Layer Info */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">VC Analysis Workflow</h2>
-          <p className="text-gray-600 mb-6">
-            Comprehensive venture capital analysis powered by AI. Complete each step for full investment intelligence.
+          <p className="text-gray-600 mb-4">
+            Comprehensive venture capital analysis powered by 3-layer RAG architecture. 
+            Complete each step for full investment intelligence.
           </p>
+          
+          {/* RAG Layer Performance */}
+          <div className="grid grid-cols-3 gap-4 mb-6">
+            {mockRagLayers.map(layer => (
+              <div 
+                key={layer.id}
+                className={`p-4 rounded-lg border transition-all duration-200 ${
+                  layer.id === selectedRagLayer 
+                    ? 'border-blue-500 bg-blue-50' 
+                    : 'border-gray-200 bg-white'
+                }`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-medium text-gray-900">{layer.name.split(' - ')[0]}</h3>
+                  <div className={`w-2 h-2 rounded-full ${
+                    layer.status === 'active' ? 'bg-green-500' : 'bg-red-500'
+                  }`} />
+                </div>
+                <div className="text-sm text-gray-600 mb-2">{layer.description}</div>
+                <div className="flex justify-between text-xs text-gray-500">
+                  <span>Accuracy: {(layer.performance.accuracy * 100).toFixed(1)}%</span>
+                  <span>{layer.performance.latency}ms</span>
+                </div>
+              </div>
+            ))}
+          </div>
           
           {/* Linear-style Progress Bar */}
           <div className="flex items-center space-x-2 mb-8">
             {workflowSteps.map((step, index) => {
-              const status = getStepStatus(step.id);
+              const status = getWorkflowStatus(step.id);
               const isCompleted = status === 'completed';
               const isActive = index === currentStep;
               const isRunning = status === 'running';
@@ -349,11 +362,10 @@ const VERSSAILinearApp: React.FC = () => {
           </div>
         </div>
         
-        {/* Workflow Steps Grid */}
+        {/* Enhanced Workflow Steps Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {workflowSteps.map((step, index) => {
-            const status = getStepStatus(step.id);
-            const progress = getStepProgress(step.id);
+            const status = getWorkflowStatus(step.id);
             const IconComponent = step.icon;
             
             return (
@@ -368,8 +380,8 @@ const VERSSAILinearApp: React.FC = () => {
                 {status === 'running' && (
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gray-200 rounded-t-xl overflow-hidden">
                     <div 
-                      className="h-full bg-blue-500 transition-all duration-500 ease-out"
-                      style={{ width: `${progress}%` }}
+                      className="h-full bg-blue-500 transition-all duration-500 ease-out animate-pulse"
+                      style={{ width: '60%' }}
                     />
                   </div>
                 )}
@@ -389,7 +401,14 @@ const VERSSAILinearApp: React.FC = () => {
                         <p className="text-sm text-gray-600">{step.subtitle}</p>
                       </div>
                     </div>
-                    <StatusIcon status={status} />
+                    <div className="flex items-center space-x-2">
+                      <StatusIcon status={status} />
+                      {step.ragLayer && (
+                        <div className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+                          {step.ragLayer.charAt(0).toUpperCase() + step.ragLayer.slice(1)} Layer
+                        </div>
+                      )}
+                    </div>
                   </div>
                   
                   {/* Description */}
@@ -419,7 +438,7 @@ const VERSSAILinearApp: React.FC = () => {
                     </div>
                     {status === 'running' && (
                       <span className="text-xs text-blue-600 font-medium">
-                        {progress}% complete
+                        60% complete
                       </span>
                     )}
                   </div>
@@ -463,15 +482,18 @@ const VERSSAILinearApp: React.FC = () => {
           })}
         </div>
         
-        {/* SuperAdmin Controls */}
-        {user.role === 'SuperAdmin' && (
+        {/* Enhanced SuperAdmin Controls */}
+        {mockUser.role === 'SuperAdmin' && (
           <div className="mt-12 bg-white rounded-xl border border-gray-200 p-6">
             <div className="flex items-center space-x-3 mb-4">
               <Settings className="w-6 h-6 text-gray-600" />
               <h3 className="text-lg font-semibold text-gray-900">SuperAdmin Controls</h3>
+              <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">
+                Enhanced v3.0.0
+              </span>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <button className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                 <div className="flex items-center space-x-3">
                   <Monitor className="w-5 h-5 text-gray-600" />
@@ -482,8 +504,16 @@ const VERSSAILinearApp: React.FC = () => {
               
               <button className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                 <div className="flex items-center space-x-3">
-                  <Activity className="w-5 h-5 text-gray-600" />
-                  <span className="font-medium text-gray-900">System Monitoring</span>
+                  <Brain className="w-5 h-5 text-gray-600" />
+                  <span className="font-medium text-gray-900">RAG Management</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-gray-400" />
+              </button>
+              
+              <button className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                <div className="flex items-center space-x-3">
+                  <Database className="w-5 h-5 text-gray-600" />
+                  <span className="font-medium text-gray-900">Data Sources</span>
                 </div>
                 <ChevronRight className="w-4 h-4 text-gray-400" />
               </button>
@@ -496,6 +526,29 @@ const VERSSAILinearApp: React.FC = () => {
                 <ChevronRight className="w-4 h-4 text-gray-400" />
               </button>
             </div>
+            
+            {/* System Status */}
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <h4 className="text-sm font-medium text-gray-700 mb-3">System Status</h4>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">RAG Layers:</span>
+                  <span className="font-medium text-green-600">3/3 Active</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">N8N Workflows:</span>
+                  <span className="font-medium text-green-600">6 Ready</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Active Executions:</span>
+                  <span className="font-medium text-blue-600">0</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">MCP Status:</span>
+                  <span className="font-medium text-green-600">Connected</span>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </main>
@@ -503,4 +556,4 @@ const VERSSAILinearApp: React.FC = () => {
   );
 };
 
-export default VERSSAILinearApp;
+export default EnhancedVERSSAILinearApp;

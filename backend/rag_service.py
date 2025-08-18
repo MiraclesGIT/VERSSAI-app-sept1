@@ -34,7 +34,7 @@ class VERSSAIRAGService:
         try:
             # Initialize ChromaDB
             chroma_host = os.environ.get('CHROMA_HOST', 'localhost')
-            chroma_port = int(os.environ.get('CHROMA_PORT', '8001'))
+            chroma_port = int(os.environ.get('CHROMA_PORT', '8000'))
             
             # Try to connect to ChromaDB server, fallback to persistent client
             try:

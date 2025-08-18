@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 
 # Configuration
-BACKEND_URL = "https://vc-intelligence-1.preview.emergentagent.com/api"
+BACKEND_URL = "https://vc-intelligence-1.preview.localhost:8080/api"
 TEST_TIMEOUT = 10  # Shorter timeout for initial tests
 
 class EnhancedResearchTester:

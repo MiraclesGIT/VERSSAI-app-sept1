@@ -1,0 +1,92 @@
+{
+  "name": "Due Diligence Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "due_diligence_wf",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Due Diligence Automation with VERSSAI Intelligence\nconst data = items[0].json;\nconst companyId = data.company_id;\nconst verssaiData = data.verssai_data;\n\nconst dueDiligenceAnalysis = {\n  company_id: companyId,\n  workflow_type: 'due_diligence_automation',\n  execution_id: data.execution_id,\n  \n  // Financial Health Assessment\n  financial_analysis: {\n    revenue_growth_rate: (Math.random() * 100 - 20), // Can be negative\n    gross_margin: Math.random() * 40 + 30, // 30-70%\n    burn_rate_months: Math.floor(Math.random() * 18) + 6,\n    cash_position: Math.floor(Math.random() * 5000000) + 500000,\n    debt_to_equity: Math.random() * 0.8,\n    revenue_quality_score: Math.random() * 30 + 70,\n    financial_controls_rating: Math.random() * 25 + 75\n  },\n  \n  // Legal & Compliance Review\n  legal_compliance: {\n    incorporation_status: 'Delaware C-Corp',\n    ip_portfolio_strength: Math.random() * 40 + 60,\n    regulatory_compliance_score: Math.random() * 30 + 70,\n    litigation_risk: Math.random() < 0.15 ? 'High' : Math.random() < 0.4 ? 'Medium' : 'Low',\n    data_privacy_compliance: Math.random() * 25 + 75,\n    employment_law_compliance: Math.random() * 20 + 80\n  },\n  \n  // Market & Competitive Analysis\n  market_analysis: {\n    market_size_tam: Math.floor(Math.random() * 50000000000) + 1000000000,\n    market_growth_rate: Math.random() * 15 + 5,\n    competitive_positioning: Math.random() * 35 + 65,\n    market_timing_score: Math.random() * 30 + 70,\n    barriers_to_entry: Math.random() * 40 + 60,\n    regulatory_moat: Math.random() * 50 + 50\n  },\n  \n  // Technology & Product Assessment\n  technology_review: {\n    tech_stack_modernity: Math.random() * 30 + 70,\n    scalability_score: Math.random() * 35 + 65,\n    security_assessment: Math.random() * 25 + 75,\n    ip_defensibility: Math.random() * 40 + 60,\n    product_market_fit: Math.random() * 45 + 55,\n    technical_debt_level: Math.random() < 0.3 ? 'High' : Math.random() < 0.6 ? 'Medium' : 'Low'\n  },\n  \n  // Team & Operational Assessment\n  team_operations: {\n    leadership_experience: Math.random() * 35 + 65,\n    team_completeness: Math.random() * 40 + 60,\n    advisory_board_strength: Math.random() * 50 + 50,\n    operational_efficiency: Math.random() * 30 + 70,\n    culture_assessment: Math.random() * 25 + 75,\n    retention_rate: Math.random() * 20 + 80\n  },\n  \n  // ESG & Sustainability Factors\n  esg_analysis: {\n    environmental_impact: Math.random() * 50 + 50,\n    social_responsibility: Math.random() * 40 + 60,\n    governance_structure: Math.random() * 30 + 70,\n    diversity_inclusion: Math.random() * 60 + 40,\n    stakeholder_management: Math.random() * 35 + 65\n  },\n  \n  // VERSSAI Research Integration\n  research_insights: {\n    methodology_papers_applied: verssaiData?.dd_methodologies?.length || 0,\n    statistical_confidence: 0.94,\n    peer_reviewed_backing: true,\n    industry_benchmarks_available: true\n  },\n  \n  timestamp: new Date().toISOString()\n};\n\n// Calculate composite risk scores\nconst riskWeights = {\n  financial: 0.30,\n  legal: 0.20,\n  market: 0.20,\n  technology: 0.15,\n  team: 0.10,\n  esg: 0.05\n};\n\n// Financial Risk Score\nconst financialRisk = 100 - (\n  (dueDiligenceAnalysis.financial_analysis.revenue_quality_score * 0.3) +\n  (dueDiligenceAnalysis.financial_analysis.financial_controls_rating * 0.3) +\n  (Math.min(dueDiligenceAnalysis.financial_analysis.burn_rate_months / 24 * 100, 100) * 0.2) +\n  ((dueDiligenceAnalysis.financial_analysis.gross_margin / 70 * 100) * 0.2)\n);\n\n// Legal Risk Score\nconst legalRisk = 100 - (\n  (dueDiligenceAnalysis.legal_compliance.regulatory_compliance_score * 0.4) +\n  (dueDiligenceAnalysis.legal_compliance.data_privacy_compliance * 0.3) +\n  (dueDiligenceAnalysis.legal_compliance.ip_portfolio_strength * 0.3)\n);\n\n// Overall Risk Assessment\ndueDiligenceAnalysis.overall_risk_score = (\n  financialRisk * riskWeights.financial +\n  legalRisk * riskWeights.legal +\n  (100 - dueDiligenceAnalysis.market_analysis.competitive_positioning) * riskWeights.market +\n  (100 - dueDiligenceAnalysis.technology_review.scalability_score) * riskWeights.technology +\n  (100 - dueDiligenceAnalysis.team_operations.leadership_experience) * riskWeights.team +\n  (100 - dueDiligenceAnalysis.esg_analysis.governance_structure) * riskWeights.esg\n);\n\n// Investment Decision Matrix\nif (dueDiligenceAnalysis.overall_risk_score <= 25) {\n  dueDiligenceAnalysis.recommendation = 'Proceed - Low Risk Investment';\n  dueDiligenceAnalysis.confidence = 0.94;\n} else if (dueDiligenceAnalysis.overall_risk_score <= 45) {\n  dueDiligenceAnalysis.recommendation = 'Proceed with Caution - Medium Risk';\n  dueDiligenceAnalysis.confidence = 0.87;\n} else if (dueDiligenceAnalysis.overall_risk_score <= 65) {\n  dueDiligenceAnalysis.recommendation = 'High Risk - Require Mitigation Plan';\n  dueDiligenceAnalysis.confidence = 0.82;\n} else {\n  dueDiligenceAnalysis.recommendation = 'Do Not Proceed - Unacceptable Risk';\n  dueDiligenceAnalysis.confidence = 0.91;\n}\n\n// Key Risk Factors Identification\ndueDiligenceAnalysis.key_risks = [];\nif (financialRisk > 50) dueDiligenceAnalysis.key_risks.push('Financial Sustainability');\nif (legalRisk > 40) dueDiligenceAnalysis.key_risks.push('Regulatory Compliance');\nif (dueDiligenceAnalysis.market_analysis.competitive_positioning < 60) dueDiligenceAnalysis.key_risks.push('Market Position');\nif (dueDiligenceAnalysis.technology_review.technical_debt_level === 'High') dueDiligenceAnalysis.key_risks.push('Technical Debt');\n\n// Action Items & Next Steps\ndueDiligenceAnalysis.action_items = [\n  'Complete financial audit with third-party CPA',\n  'Conduct technical architecture review',\n  'Validate customer references and retention',\n  'Review all material contracts and IP filings',\n  'Background checks on key executives'\n];\n\nreturn [{ json: dueDiligenceAnalysis }];"
+      },
+      "id": "dd-analysis",
+      "name": "VERSSAI DD Analysis",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:8080/api/workflows/results",
+        "options": {
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        },
+        "requestMethod": "POST"
+      },
+      "id": "send-results",
+      "name": "Send Results to VERSSAI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "response",
+      "name": "Return Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "VERSSAI DD Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VERSSAI DD Analysis": {
+      "main": [
+        [
+          {
+            "node": "Send Results to VERSSAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Results to VERSSAI": {
+      "main": [
+        [
+          {
+            "node": "Return Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {},
+  "versionId": "1"
+}

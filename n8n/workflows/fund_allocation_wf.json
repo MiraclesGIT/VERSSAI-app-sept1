@@ -1,0 +1,92 @@
+{
+  "name": "Fund Allocation Optimization",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fund_allocation_wf",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Fund Allocation Optimization with VERSSAI AI\nconst data = items[0].json;\nconst portfolioData = data.parameters || {};\nconst fundSize = portfolioData.fund_size || 100000000; // Default $100M\nconst riskTolerance = portfolioData.risk_tolerance || 'moderate';\n\nconst allocationOptimization = {\n  fund_id: data.company_id || 'portfolio_001',\n  workflow_type: 'fund_allocation_optimization',\n  execution_id: data.execution_id,\n  fund_size: fundSize,\n  risk_profile: riskTolerance,\n  \n  // Stage-Based Allocation Strategy\n  stage_allocation: {\n    pre_seed: {\n      allocation_percentage: 15,\n      amount: fundSize * 0.15,\n      check_size_range: '50K - 250K',\n      number_of_investments: Math.floor((fundSize * 0.15) / 150000),\n      expected_failure_rate: 0.85,\n      expected_return_multiple: 0.5\n    },\n    seed: {\n      allocation_percentage: 25,\n      amount: fundSize * 0.25,\n      check_size_range: '250K - 1M',\n      number_of_investments: Math.floor((fundSize * 0.25) / 625000),\n      expected_failure_rate: 0.75,\n      expected_return_multiple: 1.2\n    },\n    series_a: {\n      allocation_percentage: 35,\n      amount: fundSize * 0.35,\n      check_size_range: '1M - 5M',\n      number_of_investments: Math.floor((fundSize * 0.35) / 3000000),\n      expected_failure_rate: 0.60,\n      expected_return_multiple: 2.8\n    },\n    series_b_plus: {\n      allocation_percentage: 20,\n      amount: fundSize * 0.20,\n      check_size_range: '5M - 15M',\n      number_of_investments: Math.floor((fundSize * 0.20) / 10000000),\n      expected_failure_rate: 0.45,\n      expected_return_multiple: 4.2\n    },\n    reserves: {\n      allocation_percentage: 5,\n      amount: fundSize * 0.05,\n      purpose: 'Follow-on investments and reserves'\n    }\n  },\n  \n  // Sector Diversification Strategy\n  sector_allocation: {\n    ai_ml: {\n      allocation_percentage: 30,\n      amount: fundSize * 0.30,\n      rationale: 'High growth potential, VERSSAI expertise',\n      risk_level: 'Medium-High',\n      expected_return: 5.2\n    },\n    fintech: {\n      allocation_percentage: 20,\n      amount: fundSize * 0.20,\n      rationale: 'Proven market, regulatory clarity improving',\n      risk_level: 'Medium',\n      expected_return: 3.8\n    },\n    healthtech: {\n      allocation_percentage: 15,\n      amount: fundSize * 0.15,\n      rationale: 'Large TAM, demographic trends',\n      risk_level: 'Medium',\n      expected_return: 4.1\n    },\n    enterprise_saas: {\n      allocation_percentage: 20,\n      amount: fundSize * 0.20,\n      rationale: 'Predictable revenue, strong margins',\n      risk_level: 'Low-Medium',\n      expected_return: 3.2\n    },\n    climate_tech: {\n      allocation_percentage: 10,\n      amount: fundSize * 0.10,\n      rationale: 'Emerging opportunity, ESG alignment',\n      risk_level: 'High',\n      expected_return: 6.1\n    },\n    other: {\n      allocation_percentage: 5,\n      amount: fundSize * 0.05,\n      rationale: 'Opportunistic investments',\n      risk_level: 'Varies',\n      expected_return: 2.5\n    }\n  },\n  \n  // Geographic Allocation\n  geographic_allocation: {\n    north_america: {\n      allocation_percentage: 60,\n      amount: fundSize * 0.60,\n      focus_markets: ['SF Bay Area', 'NYC', 'Boston', 'Austin'],\n      risk_adjustment: 1.0\n    },\n    europe: {\n      allocation_percentage: 25,\n      amount: fundSize * 0.25,\n      focus_markets: ['London', 'Berlin', 'Paris', 'Stockholm'],\n      risk_adjustment: 1.15\n    },\n    asia_pacific: {\n      allocation_percentage: 10,\n      amount: fundSize * 0.10,\n      focus_markets: ['Singapore', 'Sydney', 'Tel Aviv'],\n      risk_adjustment: 1.30\n    },\n    emerging: {\n      allocation_percentage: 5,\n      amount: fundSize * 0.05,\n      focus_markets: ['São Paulo', 'Bangalore', 'Mexico City'],\n      risk_adjustment: 1.50\n    }\n  },\n  \n  // Risk-Return Optimization\n  risk_return_analysis: {\n    portfolio_beta: riskTolerance === 'conservative' ? 0.8 : riskTolerance === 'aggressive' ? 1.4 : 1.1,\n    expected_portfolio_return: riskTolerance === 'conservative' ? 2.8 : riskTolerance === 'aggressive' ? 5.2 : 3.9,\n    volatility: riskTolerance === 'conservative' ? 0.25 : riskTolerance === 'aggressive' ? 0.55 : 0.40,\n    sharpe_ratio: riskTolerance === 'conservative' ? 1.2 : riskTolerance === 'aggressive' ? 1.8 : 1.5,\n    maximum_drawdown: riskTolerance === 'conservative' ? 0.15 : riskTolerance === 'aggressive' ? 0.35 : 0.25\n  },\n  \n  // ESG Integration\n  esg_considerations: {\n    esg_screening: 'Negative screening for harmful industries',\n    impact_allocation: fundSize * 0.15, // 15% for impact investments\n    diversity_targets: {\n      female_founders: 0.30,\n      underrepresented_founders: 0.25,\n      diverse_teams: 0.40\n    },\n    climate_commitment: 'Net-zero portfolio by 2030'\n  },\n  \n  timestamp: new Date().toISOString()\n};\n\n// Calculate Expected Fund Performance\nlet expectedReturns = 0;\nObject.keys(allocationOptimization.sector_allocation).forEach(sector => {\n  const allocation = allocationOptimization.sector_allocation[sector];\n  expectedReturns += (allocation.allocation_percentage / 100) * allocation.expected_return;\n});\n\nallocationOptimization.portfolio_projections = {\n  expected_fund_multiple: expectedReturns,\n  expected_irr: (Math.pow(expectedReturns, 1/7) - 1) * 100, // 7-year fund life\n  total_expected_return: fundSize * expectedReturns,\n  risk_adjusted_return: expectedReturns / allocationOptimization.risk_return_analysis.volatility,\n  probability_of_success: 0.72 // Based on historical VC performance\n};\n\n// Strategic Recommendations\nallocationOptimization.recommendations = {\n  primary_strategy: riskTolerance === 'aggressive' ? \n    'Focus on high-growth sectors with concentrated bets' :\n    riskTolerance === 'conservative' ?\n    'Diversified approach with proven business models' :\n    'Balanced growth with risk mitigation',\n  \n  key_actions: [\n    'Establish sector-specific expertise and deal flow',\n    'Build strategic partnerships for co-investment',\n    'Implement ESG screening and impact measurement',\n    'Develop follow-on investment framework',\n    'Create portfolio company value creation program'\n  ]\n};\n\nreturn [{ json: allocationOptimization }];"
+      },
+      "id": "allocation-optimization",
+      "name": "VERSSAI Allocation Optimization",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:8080/api/workflows/results",
+        "options": {
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        },
+        "requestMethod": "POST"
+      },
+      "id": "send-results",
+      "name": "Send Results to VERSSAI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "response",
+      "name": "Return Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "VERSSAI Allocation Optimization",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VERSSAI Allocation Optimization": {
+      "main": [
+        [
+          {
+            "node": "Send Results to VERSSAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Results to VERSSAI": {
+      "main": [
+        [
+          {
+            "node": "Return Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {},
+  "versionId": "1"
+}

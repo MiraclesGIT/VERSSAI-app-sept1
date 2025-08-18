@@ -12,7 +12,7 @@ from datetime import datetime
 # Disable SSL warnings for testing
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-BACKEND_URL = "https://vc-intelligence-1.preview.emergentagent.com/api"
+BACKEND_URL = "https://vc-intelligence-1.preview.localhost:8080/api"
 TEST_TIMEOUT = 30
 
 class QuickResearchTester:

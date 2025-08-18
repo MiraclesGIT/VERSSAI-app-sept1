@@ -64,7 +64,7 @@ class PerformanceMetrics:
 class VERSSAIStressTest:
     """Main stress test orchestrator"""
     
-    def __init__(self, base_url: str = "http://localhost:8001"):
+    def __init__(self, base_url: str = "http://localhost:8080"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.results: List[TestResult] = []
@@ -461,7 +461,7 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser(description="VERSSAI Stress Test Runner")
     parser.add_argument("--scenario", default="all", help="Scenario to run (all, deal_flow_crunch, api_stress)")
-    parser.add_argument("--base-url", default="http://localhost:8001", help="VERSSAI base URL")
+    parser.add_argument("--base-url", default="http://localhost:8080", help="VERSSAI base URL")
     
     args = parser.parse_args()
     

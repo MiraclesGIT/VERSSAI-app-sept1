@@ -1,0 +1,517 @@
+{
+  "name": "VERSSAI Company Intelligence & Due Diligence Workflow", 
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Webhook - Company Analysis Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "id": "webhook-company-trigger",
+      "webhookId": "verssai-company-analysis"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "workflow_id",
+              "value": "={{ 'COMP_' + Date.now() + '_' + $runIndex }}"
+            },
+            {
+              "name": "company_name",
+              "value": "={{ $node['Webhook - Company Analysis Trigger'].json.company_name }}"
+            },
+            {
+              "name": "industry",
+              "value": "={{ $node['Webhook - Company Analysis Trigger'].json.industry || 'Unknown' }}"
+            },
+            {
+              "name": "deck_id",
+              "value": "={{ $node['Webhook - Company Analysis Trigger'].json.deck_id }}"
+            }
+          ],
+          "number": [
+            {
+              "name": "start_timestamp",
+              "value": "={{ Date.now() }}"
+            }
+          ]
+        }
+      },
+      "name": "Initialize Company Analysis",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "id": "initialize-company-analysis"
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8001/api/research/company",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "company_name",
+              "value": "={{ $node['Initialize Company Analysis'].json.company_name }}"
+            },
+            {
+              "name": "industry",
+              "value": "={{ $node['Initialize Company Analysis'].json.industry }}"
+            }
+          ]
+        }
+      },
+      "name": "Web Intelligence Gathering",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [680, 200],
+      "id": "web-intelligence-gathering",
+      "continueOnFail": true,
+      "retryOnFail": true,
+      "maxTries": 3
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8001/api/research/company",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type", 
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "company_name",
+              "value": "={{ $node['Initialize Company Analysis'].json.company_name }}"
+            }
+          ]
+        }
+      },
+      "name": "Social Sentiment Analysis",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [680, 400],
+      "id": "social-sentiment-analysis",
+      "continueOnFail": true,
+      "retryOnFail": true,
+      "maxTries": 3
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "funding_status",
+              "value": "={{ $node['Web Intelligence Gathering'].json.web_research?.funding_information?.length > 0 ? 'funding_detected' : 'no_funding_info' }}"
+            },
+            {
+              "name": "recent_news_count",
+              "value": "={{ $node['Web Intelligence Gathering'].json.web_research?.recent_developments?.length || 0 }}"
+            },
+            {
+              "name": "competitive_mentions",
+              "value": "={{ $node['Web Intelligence Gathering'].json.web_research?.competitive_analysis?.length || 0 }}"
+            },
+            {
+              "name": "social_sentiment",
+              "value": "={{ $node['Social Sentiment Analysis'].json.social_research?.sentiment_analysis?.overall_sentiment || 'neutral' }}"
+            },
+            {
+              "name": "social_mentions",
+              "value": "={{ $node['Social Sentiment Analysis'].json.social_research?.mentions?.total_mentions || 0 }}"
+            }
+          ],
+          "number": [
+            {
+              "name": "market_validation_score",
+              "value": "={{ (\n  ($node['Web Intelligence Gathering'].json.web_research?.funding_information?.length > 0 ? 3 : 0) +\n  ($node['Web Intelligence Gathering'].json.web_research?.recent_developments?.length > 2 ? 2 : 0) +\n  ($node['Social Sentiment Analysis'].json.social_research?.sentiment_analysis?.overall_sentiment === 'positive' ? 2 : 0) +\n  ($node['Social Sentiment Analysis'].json.social_research?.mentions?.total_mentions > 10 ? 1 : 0)\n) }}"
+            }
+          ]
+        }
+      },
+      "name": "Market Validation Analysis",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [900, 300],
+      "id": "market-validation-analysis"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $node['Market Validation Analysis'].json.market_validation_score }}",
+              "operation": "largerEqual",
+              "value2": 5
+            }
+          ]
+        }
+      },
+      "name": "Strong Market Signals?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1120, 300],
+      "id": "strong-market-signals"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "investment_recommendation",
+              "value": "STRONG_BUY"
+            },
+            {
+              "name": "recommendation_reason",
+              "value": "Strong market validation signals detected"
+            },
+            {
+              "name": "confidence_level",
+              "value": "high"
+            },
+            {
+              "name": "key_strengths",
+              "value": "={{ \n  [\n    ($node['Market Validation Analysis'].json.funding_status === 'funding_detected' ? 'Recent funding activity' : null),\n    ($node['Market Validation Analysis'].json.recent_news_count > 2 ? 'Active media presence' : null),\n    ($node['Market Validation Analysis'].json.social_sentiment === 'positive' ? 'Positive market sentiment' : null),\n    ($node['Market Validation Analysis'].json.social_mentions > 10 ? 'Strong social visibility' : null)\n  ].filter(Boolean).join(', ')\n}}"
+            }
+          ]
+        }
+      },
+      "name": "Strong Buy Recommendation",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1340, 200],
+      "id": "strong-buy-recommendation"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $node['Market Validation Analysis'].json.market_validation_score }}",
+              "operation": "largerEqual", 
+              "value2": 2
+            }
+          ]
+        }
+      },
+      "name": "Moderate Market Signals?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1340, 400],
+      "id": "moderate-market-signals"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "investment_recommendation",
+              "value": "BUY"
+            },
+            {
+              "name": "recommendation_reason", 
+              "value": "Moderate market validation with growth potential"
+            },
+            {
+              "name": "confidence_level",
+              "value": "medium"
+            },
+            {
+              "name": "risk_factors",
+              "value": "Limited market validation signals - requires deeper due diligence"
+            }
+          ]
+        }
+      },
+      "name": "Buy Recommendation",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1560, 320],
+      "id": "buy-recommendation"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "investment_recommendation",
+              "value": "PASS"
+            },
+            {
+              "name": "recommendation_reason",
+              "value": "Insufficient market validation signals"
+            },
+            {
+              "name": "confidence_level", 
+              "value": "high"
+            },
+            {
+              "name": "risk_factors",
+              "value": "Low market validation score, limited funding activity, weak social signals"
+            }
+          ]
+        }
+      },
+      "name": "Pass Recommendation",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1560, 480],
+      "id": "pass-recommendation"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "workflow_status", 
+              "value": "completed"
+            },
+            {
+              "name": "execution_id",
+              "value": "={{ $node['Initialize Company Analysis'].json.workflow_id }}"
+            },
+            {
+              "name": "company_name",
+              "value": "={{ $node['Initialize Company Analysis'].json.company_name }}"
+            },
+            {
+              "name": "industry",
+              "value": "={{ $node['Initialize Company Analysis'].json.industry }}"
+            },
+            {
+              "name": "final_recommendation",
+              "value": "={{ $node['Strong Buy Recommendation'].json.investment_recommendation || $node['Buy Recommendation'].json.investment_recommendation || $node['Pass Recommendation'].json.investment_recommendation }}"
+            },
+            {
+              "name": "confidence_level",
+              "value": "={{ $node['Strong Buy Recommendation'].json.confidence_level || $node['Buy Recommendation'].json.confidence_level || $node['Pass Recommendation'].json.confidence_level }}"
+            }
+          ],
+          "number": [
+            {
+              "name": "total_execution_time",
+              "value": "={{ (Date.now() - $node['Initialize Company Analysis'].json.start_timestamp) / 1000 }}"
+            },
+            {
+              "name": "market_validation_score",
+              "value": "={{ $node['Market Validation Analysis'].json.market_validation_score }}"
+            },
+            {
+              "name": "completion_timestamp",
+              "value": "={{ Date.now() }}"
+            }
+          ]
+        }
+      },
+      "name": "Comprehensive Analysis Report",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [1780, 300],
+      "id": "comprehensive-analysis-report"
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8001/api/workflows/status",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "json",
+        "jsonParameters": {
+          "parameters": [
+            {
+              "name": "workflow_results",
+              "value": "={{ $node['Comprehensive Analysis Report'].json }}"
+            },
+            {
+              "name": "detailed_research",
+              "value": "={{ {\n  web_intelligence: $node['Web Intelligence Gathering'].json,\n  social_sentiment: $node['Social Sentiment Analysis'].json,\n  market_validation: $node['Market Validation Analysis'].json,\n  recommendation_details: ($node['Strong Buy Recommendation'].json || $node['Buy Recommendation'].json || $node['Pass Recommendation'].json)\n} }}"
+            },
+            {
+              "name": "execution_metadata",
+              "value": "={{ {\n  workflow_type: 'company_intelligence',\n  total_api_calls: 2,\n  research_quality: ($node['Market Validation Analysis'].json.market_validation_score >= 5 ? 'high' : 'medium'),\n  data_sources: ['google_search', 'twitter_api'],\n  workflow_version: '2.0'\n} }}"
+            }
+          ]
+        }
+      },
+      "name": "Store Analysis Results",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [2000, 300],
+      "id": "store-analysis-results"
+    }
+  ],
+  "connections": {
+    "Webhook - Company Analysis Trigger": {
+      "main": [
+        [
+          {
+            "node": "Initialize Company Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Initialize Company Analysis": {
+      "main": [
+        [
+          {
+            "node": "Web Intelligence Gathering",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Social Sentiment Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Web Intelligence Gathering": {
+      "main": [
+        [
+          {
+            "node": "Market Validation Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Social Sentiment Analysis": {
+      "main": [
+        [
+          {
+            "node": "Market Validation Analysis",
+            "type": "main", 
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Market Validation Analysis": {
+      "main": [
+        [
+          {
+            "node": "Strong Market Signals?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Strong Market Signals?": {
+      "main": [
+        [
+          {
+            "node": "Strong Buy Recommendation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Moderate Market Signals?",
+            "type": "main", 
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Strong Buy Recommendation": {
+      "main": [
+        [
+          {
+            "node": "Comprehensive Analysis Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Moderate Market Signals?": {
+      "main": [
+        [
+          {
+            "node": "Buy Recommendation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Pass Recommendation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buy Recommendation": {
+      "main": [
+        [
+          {
+            "node": "Comprehensive Analysis Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pass Recommendation": {
+      "main": [
+        [
+          {
+            "node": "Comprehensive Analysis Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Comprehensive Analysis Report": {
+      "main": [
+        [
+          {
+            "node": "Store Analysis Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "2",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "2",
+  "tags": []
+}

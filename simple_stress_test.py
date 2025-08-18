@@ -18,7 +18,7 @@ def run_stress_test():
     print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
     
-    base_url = "http://localhost:8001/api"
+    base_url = "http://localhost:8080/api"
     results = []
     
     # Test 1: System Health Check

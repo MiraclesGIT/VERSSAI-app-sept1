@@ -1,0 +1,36 @@
+{
+  "founder_signal_test": {
+    "founder_name": "Dr. Sarah Chen",
+    "company_name": "Vistim Labs",
+    "linkedin_profile": "https://linkedin.com/in/sarah-chen-md",
+    "previous_experience": [
+      "Stanford Research",
+      "Google Health",
+      "McKinsey"
+    ],
+    "education_background": "PhD Neuroscience Stanford, MD Harvard"
+  },
+  "due_diligence_test": {
+    "company_name": "Synthetix AI",
+    "documents": [
+      "pitch_deck.pdf",
+      "financial_statements.xlsx",
+      "legal_docs.pdf"
+    ],
+    "financial_statements": [
+      "2023_financials.xlsx",
+      "2024_projections.xlsx"
+    ],
+    "market_research": {
+      "tam": 50000000000,
+      "sam": 5000000000,
+      "som": 500000000
+    }
+  },
+  "competitive_intelligence_test": {
+    "target_company": "Quantum Finance",
+    "industry_sector": "Fintech",
+    "geographic_scope": "North America",
+    "analysis_depth": "comprehensive"
+  }
+}

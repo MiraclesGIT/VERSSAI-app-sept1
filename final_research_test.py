@@ -9,7 +9,7 @@ import json
 from datetime import datetime
 
 # Configuration
-BACKEND_URL = "https://vc-intelligence-1.preview.emergentagent.com/api"
+BACKEND_URL = "https://vc-intelligence-1.preview.localhost:8080/api"
 
 def test_research_api_status():
     """Test and report on research API status"""
