@@ -1,29 +1,38 @@
+# VERSSAI .gitignore
+
 # Dependencies
 node_modules/
-.pnp
-.pnp.js
-
-# Production builds
-/frontend/build
-/backend/dist
-
-# Environment files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Logs
+*/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-*.log
+
+# Production builds
+build/
+dist/
+*.tgz
+*.tar.gz
 
 # Runtime data
 pids
 *.pid
 *.seed
 *.pid.lock
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Python
 __pycache__/
@@ -37,40 +46,35 @@ ENV/
 env.bak/
 venv.bak/
 
-# IDEs
+# Database
+*.db
+*.sqlite3
+
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS generated files
+# OS
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 
-# N8N data (keep configs, not runtime data)
-n8n/data/
-n8n/.n8n/
-
-# Temporary files
-*.tmp
-*.temp
-.temp/
-
-# Large datasets (keep references, not actual files)
-*.xlsx
-*.csv
-*.json.bak
-
-# Service files
+# Development Safety System
+backups/*.tar.gz
+auto-version.log
 *.pid
 verssai_services.pid
 
-# Test outputs
-test_results/
-*.test.log
+# Temporary files
+temp/
+tmp/
+*.tmp
+
+# Docker
+.dockerignore
+
+# Local configuration
+local_settings.py
+config_local.py

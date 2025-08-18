@@ -1,0 +1,21 @@
+{
+  "version": "2.1.0",
+  "initialized": "2025-08-18T06:21:58Z",
+  "project": {
+    "name": "VERSSAI VC Intelligence Platform",
+    "repository": "MiraclesGIT/VERSSAI-engineAug10",
+    "environments": ["development", "staging", "production"]
+  },
+  "safety": {
+    "auto_backup_enabled": true,
+    "auto_versioning_enabled": true,
+    "github_auto_push": true,
+    "safety_checks": true
+  },
+  "metrics": {
+    "total_backups": 0,
+    "total_versions": 0,
+    "last_backup": null,
+    "last_deploy": null
+  }
+}
