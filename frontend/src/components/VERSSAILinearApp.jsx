@@ -28,7 +28,13 @@ import {
   Calendar,
   ChevronDown,
   Building2,
-  PieChart
+  PieChart,
+  Edit3,
+  MoreHorizontal,
+  Eye,
+  Trash2,
+  Save,
+  X
 } from 'lucide-react';
 
 // Enhanced MCP Service Integration
@@ -191,6 +197,9 @@ const VERSSAILinearApp = () => {
   const [workflowStatuses, setWorkflowStatuses] = useState({});
   const [isConnected, setIsConnected] = useState(false);
   const [analyticsData, setAnalyticsData] = useState(null);
+  const [editingSection, setEditingSection] = useState(null);
+  const [editingValues, setEditingValues] = useState({});
+  const [showActionsMenu, setShowActionsMenu] = useState(null);
   const [user] = useState({
     id: 'user_123',
     role: 'SuperAdmin',
@@ -236,6 +245,20 @@ const VERSSAILinearApp = () => {
       mcpService.disconnect();
     };
   }, [user.id]);
+
+  // Close actions menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showActionsMenu && !event.target.closest('[data-actions-menu]')) {
+        setShowActionsMenu(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showActionsMenu]);
   
   // Enhanced main sections with refined menu structure
   const mainSections = [
@@ -407,6 +430,55 @@ const VERSSAILinearApp = () => {
     )[0];
     
     return latest.progress || 0;
+  };
+  
+  // Editing functionality handlers
+  const handleEditSection = (sectionId) => {
+    const section = mainSections.find(s => s.id === sectionId) || 
+                   mainSections.find(s => s.subMenus?.some(sub => sub.id === sectionId))?.subMenus?.find(sub => sub.id === sectionId);
+    
+    setEditingSection(sectionId);
+    setEditingValues({
+      title: section?.title || '',
+      subtitle: section?.subtitle || '',
+      description: section?.description || '',
+      estimatedTime: section?.estimatedTime || '',
+      accuracy: section?.accuracy || ''
+    });
+    setShowActionsMenu(null);
+  };
+  
+  const handleSaveEdit = () => {
+    // In a real app, this would make an API call to save the changes
+    console.log('Saving section changes:', editingSection, editingValues);
+    
+    // Here you would typically call an API to update the section
+    // For demo purposes, we'll just show a success message
+    alert('Changes saved successfully!');
+    
+    setEditingSection(null);
+    setEditingValues({});
+  };
+  
+  const handleCancelEdit = () => {
+    setEditingSection(null);
+    setEditingValues({});
+  };
+  
+  const handleDeleteSection = (sectionId) => {
+    if (window.confirm('Are you sure you want to delete this section? This action cannot be undone.')) {
+      // In a real app, this would make an API call to delete the section
+      console.log('Deleting section:', sectionId);
+      alert('Section deleted successfully!');
+    }
+    setShowActionsMenu(null);
+  };
+  
+  const handleDuplicateSection = (sectionId) => {
+    // In a real app, this would duplicate the section
+    console.log('Duplicating section:', sectionId);
+    alert('Section duplicated successfully!');
+    setShowActionsMenu(null);
   };
   
   const StatusIcon = ({ status }) => {
@@ -618,25 +690,112 @@ const VERSSAILinearApp = () => {
                       <div className="p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl">
                         {/* Header */}
                         <div className="flex items-start justify-between mb-4">
-                          <div className="flex items-center space-x-3">
+                          <div className="flex items-center space-x-3 flex-1">
                             <div 
                               className="w-12 h-12 rounded-xl flex items-center justify-center text-white"
                               style={{ background: 'linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)' }}
                             >
                               <IconComponent className="w-6 h-6" />
                             </div>
-                            <div>
-                              <h3 className="text-lg font-semibold text-gray-900">{subMenu.title}</h3>
-                              <p className="text-sm text-gray-600">{subMenu.subtitle}</p>
+                            <div className="flex-1">
+                              {editingSection === subMenu.id ? (
+                                <div className="space-y-2">
+                                  <input
+                                    type="text"
+                                    value={editingValues.title}
+                                    onChange={(e) => setEditingValues(prev => ({ ...prev, title: e.target.value }))}
+                                    className="text-lg font-semibold text-gray-900 bg-white border border-gray-300 rounded px-2 py-1 w-full"
+                                    placeholder="Title"
+                                  />
+                                  <input
+                                    type="text"
+                                    value={editingValues.subtitle}
+                                    onChange={(e) => setEditingValues(prev => ({ ...prev, subtitle: e.target.value }))}
+                                    className="text-sm text-gray-600 bg-white border border-gray-300 rounded px-2 py-1 w-full"
+                                    placeholder="Subtitle"
+                                  />
+                                </div>
+                              ) : (
+                                <div>
+                                  <h3 className="text-lg font-semibold text-gray-900">{subMenu.title}</h3>
+                                  <p className="text-sm text-gray-600">{subMenu.subtitle}</p>
+                                </div>
+                              )}
                             </div>
                           </div>
-                          <StatusIcon status={status} />
+                          
+                          <div className="flex items-center space-x-2">
+                            {editingSection === subMenu.id ? (
+                              <div className="flex items-center space-x-2">
+                                <button
+                                  onClick={handleSaveEdit}
+                                  className="p-1 text-green-600 hover:bg-green-100 rounded"
+                                  title="Save changes"
+                                >
+                                  <Save className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={handleCancelEdit}
+                                  className="p-1 text-gray-600 hover:bg-gray-100 rounded"
+                                  title="Cancel editing"
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
+                            ) : (
+                              <div className="relative" data-actions-menu>
+                                <button
+                                  onClick={() => setShowActionsMenu(showActionsMenu === subMenu.id ? null : subMenu.id)}
+                                  className="p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded"
+                                  title="More actions"
+                                >
+                                  <MoreHorizontal className="w-4 h-4" />
+                                </button>
+                                
+                                {showActionsMenu === subMenu.id && (
+                                  <div className="absolute right-0 top-8 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-10">
+                                    <button
+                                      onClick={() => handleEditSection(subMenu.id)}
+                                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                                    >
+                                      <Edit3 className="w-4 h-4" />
+                                      <span>Edit Section</span>
+                                    </button>
+                                    <button
+                                      onClick={() => handleDuplicateSection(subMenu.id)}
+                                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                                    >
+                                      <Eye className="w-4 h-4" />
+                                      <span>Duplicate</span>
+                                    </button>
+                                    <button
+                                      onClick={() => handleDeleteSection(subMenu.id)}
+                                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-2"
+                                    >
+                                      <Trash2 className="w-4 h-4" />
+                                      <span>Delete</span>
+                                    </button>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                            <StatusIcon status={status} />
+                          </div>
                         </div>
                         
                         {/* Description */}
-                        <p className="text-gray-700 mb-4 text-sm leading-relaxed">
-                          {subMenu.description}
-                        </p>
+                        {editingSection === subMenu.id ? (
+                          <textarea
+                            value={editingValues.description}
+                            onChange={(e) => setEditingValues(prev => ({ ...prev, description: e.target.value }))}
+                            className="w-full text-gray-700 mb-4 text-sm leading-relaxed bg-white border border-gray-300 rounded px-3 py-2 min-h-[60px]"
+                            placeholder="Description"
+                          />
+                        ) : (
+                          <p className="text-gray-700 mb-4 text-sm leading-relaxed">
+                            {subMenu.description}
+                          </p>
+                        )}
                         
                         {/* Features */}
                         <div className="grid grid-cols-2 gap-2 mb-4">
@@ -661,12 +820,39 @@ const VERSSAILinearApp = () => {
                         {/* Metrics */}
                         <div className="flex items-center justify-between mb-6">
                           <div className="flex items-center space-x-4">
-                            <span className="text-xs text-gray-500">
-                              Accuracy: <span className="font-medium text-green-600">{subMenu.accuracy}</span>
-                            </span>
-                            <span className="text-xs text-gray-500">
-                              Time: <span className="font-medium">{subMenu.estimatedTime}</span>
-                            </span>
+                            {editingSection === subMenu.id ? (
+                              <div className="flex items-center space-x-4">
+                                <div className="flex items-center space-x-2">
+                                  <span className="text-xs text-gray-500">Accuracy:</span>
+                                  <input
+                                    type="text"
+                                    value={editingValues.accuracy}
+                                    onChange={(e) => setEditingValues(prev => ({ ...prev, accuracy: e.target.value }))}
+                                    className="text-xs font-medium text-green-600 bg-white border border-gray-300 rounded px-2 py-1 w-16"
+                                    placeholder="96%"
+                                  />
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                  <span className="text-xs text-gray-500">Time:</span>
+                                  <input
+                                    type="text"
+                                    value={editingValues.estimatedTime}
+                                    onChange={(e) => setEditingValues(prev => ({ ...prev, estimatedTime: e.target.value }))}
+                                    className="text-xs font-medium bg-white border border-gray-300 rounded px-2 py-1 w-20"
+                                    placeholder="5-10 min"
+                                  />
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="flex items-center space-x-4">
+                                <span className="text-xs text-gray-500">
+                                  Accuracy: <span className="font-medium text-green-600">{subMenu.accuracy}</span>
+                                </span>
+                                <span className="text-xs text-gray-500">
+                                  Time: <span className="font-medium">{subMenu.estimatedTime}</span>
+                                </span>
+                              </div>
+                            )}
                           </div>
                           {status === 'running' && (
                             <span className="text-xs text-blue-600 font-medium">
@@ -753,25 +939,112 @@ const VERSSAILinearApp = () => {
                     <div className={`p-6 ${section.bgColor} rounded-xl`}>
                       {/* Header */}
                       <div className="flex items-start justify-between mb-4">
-                        <div className="flex items-center space-x-3">
+                        <div className="flex items-center space-x-3 flex-1">
                           <div 
                             className="w-12 h-12 rounded-xl flex items-center justify-center text-white"
                             style={{ background: section.color }}
                           >
                             <IconComponent className="w-6 h-6" />
                           </div>
-                          <div>
-                            <h3 className="text-lg font-semibold text-gray-900">{section.title}</h3>
-                            <p className="text-sm text-gray-600">{section.subtitle}</p>
+                          <div className="flex-1">
+                            {editingSection === section.id ? (
+                              <div className="space-y-2">
+                                <input
+                                  type="text"
+                                  value={editingValues.title}
+                                  onChange={(e) => setEditingValues(prev => ({ ...prev, title: e.target.value }))}
+                                  className="text-lg font-semibold text-gray-900 bg-white border border-gray-300 rounded px-2 py-1 w-full"
+                                  placeholder="Title"
+                                />
+                                <input
+                                  type="text"
+                                  value={editingValues.subtitle}
+                                  onChange={(e) => setEditingValues(prev => ({ ...prev, subtitle: e.target.value }))}
+                                  className="text-sm text-gray-600 bg-white border border-gray-300 rounded px-2 py-1 w-full"
+                                  placeholder="Subtitle"
+                                />
+                              </div>
+                            ) : (
+                              <div>
+                                <h3 className="text-lg font-semibold text-gray-900">{section.title}</h3>
+                                <p className="text-sm text-gray-600">{section.subtitle}</p>
+                              </div>
+                            )}
                           </div>
                         </div>
-                        <StatusIcon status={status} />
+                        
+                        <div className="flex items-center space-x-2">
+                          {editingSection === section.id ? (
+                            <div className="flex items-center space-x-2">
+                              <button
+                                onClick={handleSaveEdit}
+                                className="p-1 text-green-600 hover:bg-green-100 rounded"
+                                title="Save changes"
+                              >
+                                <Save className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={handleCancelEdit}
+                                className="p-1 text-gray-600 hover:bg-gray-100 rounded"
+                                title="Cancel editing"
+                              >
+                                <X className="w-4 h-4" />
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="relative">
+                              <button
+                                onClick={() => setShowActionsMenu(showActionsMenu === section.id ? null : section.id)}
+                                className="p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded"
+                                title="More actions"
+                              >
+                                <MoreHorizontal className="w-4 h-4" />
+                              </button>
+                              
+                              {showActionsMenu === section.id && (
+                                <div className="absolute right-0 top-8 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-10">
+                                  <button
+                                    onClick={() => handleEditSection(section.id)}
+                                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                                  >
+                                    <Edit3 className="w-4 h-4" />
+                                    <span>Edit Section</span>
+                                  </button>
+                                  <button
+                                    onClick={() => handleDuplicateSection(section.id)}
+                                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                                  >
+                                    <Eye className="w-4 h-4" />
+                                    <span>Duplicate</span>
+                                  </button>
+                                  <button
+                                    onClick={() => handleDeleteSection(section.id)}
+                                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-2"
+                                  >
+                                    <Trash2 className="w-4 h-4" />
+                                    <span>Delete</span>
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                          <StatusIcon status={status} />
+                        </div>
                       </div>
                       
                       {/* Description */}
-                      <p className="text-gray-700 mb-4 text-sm leading-relaxed">
-                        {section.description}
-                      </p>
+                      {editingSection === section.id ? (
+                        <textarea
+                          value={editingValues.description}
+                          onChange={(e) => setEditingValues(prev => ({ ...prev, description: e.target.value }))}
+                          className="w-full text-gray-700 mb-4 text-sm leading-relaxed bg-white border border-gray-300 rounded px-3 py-2 min-h-[60px]"
+                          placeholder="Description"
+                        />
+                      ) : (
+                        <p className="text-gray-700 mb-4 text-sm leading-relaxed">
+                          {section.description}
+                        </p>
+                      )}
                       
                       {/* Features */}
                       <div className="grid grid-cols-2 gap-2 mb-4">
@@ -798,12 +1071,39 @@ const VERSSAILinearApp = () => {
                       {/* Metrics */}
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center space-x-4">
-                          <span className="text-xs text-gray-500">
-                            Accuracy: <span className="font-medium text-green-600">{section.accuracy}</span>
-                          </span>
-                          <span className="text-xs text-gray-500">
-                            Time: <span className="font-medium">{section.estimatedTime}</span>
-                          </span>
+                          {editingSection === section.id ? (
+                            <div className="flex items-center space-x-4">
+                              <div className="flex items-center space-x-2">
+                                <span className="text-xs text-gray-500">Accuracy:</span>
+                                <input
+                                  type="text"
+                                  value={editingValues.accuracy}
+                                  onChange={(e) => setEditingValues(prev => ({ ...prev, accuracy: e.target.value }))}
+                                  className="text-xs font-medium text-green-600 bg-white border border-gray-300 rounded px-2 py-1 w-16"
+                                  placeholder="97%"
+                                />
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <span className="text-xs text-gray-500">Time:</span>
+                                <input
+                                  type="text"
+                                  value={editingValues.estimatedTime}
+                                  onChange={(e) => setEditingValues(prev => ({ ...prev, estimatedTime: e.target.value }))}
+                                  className="text-xs font-medium bg-white border border-gray-300 rounded px-2 py-1 w-20"
+                                  placeholder="10-20 min"
+                                />
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="flex items-center space-x-4">
+                              <span className="text-xs text-gray-500">
+                                Accuracy: <span className="font-medium text-green-600">{section.accuracy}</span>
+                              </span>
+                              <span className="text-xs text-gray-500">
+                                Time: <span className="font-medium">{section.estimatedTime}</span>
+                              </span>
+                            </div>
+                          )}
                         </div>
                         {status === 'running' && (
                           <span className="text-xs text-blue-600 font-medium">
@@ -869,7 +1169,7 @@ const VERSSAILinearApp = () => {
               <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">MCP Integration</span>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <a 
                 href={process.env.REACT_APP_N8N_URL || 'http://localhost:5678'} 
                 target="_blank" 
@@ -882,6 +1182,17 @@ const VERSSAILinearApp = () => {
                 </div>
                 <ChevronRight className="w-4 h-4 text-gray-400" />
               </a>
+              
+              <button 
+                onClick={() => window.location.href = '/dev-safety'}
+                className="flex items-center justify-between p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+              >
+                <div className="flex items-center space-x-3">
+                  <Shield className="w-5 h-5 text-green-600" />
+                  <span className="font-medium text-gray-900">Development Safety</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-gray-400" />
+              </button>
               
               <button className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                 <div className="flex items-center space-x-3">

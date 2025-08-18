@@ -3,10 +3,10 @@ import {
   Search, Filter, Upload, Download, Edit, Eye, ExternalLink, Plus,
   FileText, Folder, Users, TrendingUp, BarChart3, Target, Shield,
   Brain, Database, Layers, Monitor, Activity, MessageSquare, Zap, 
-  Share, X, MoreHorizontal, ChevronDown, ChevronRight, Globe,
+  Share, X, MoreHorizontal, ChevronDown, ChevronRight, ChevronLeft, Globe,
   Calendar, MapPin, Building, User, Award, CheckCircle, Bell,
   Settings, Menu, Play, Clock, AlertCircle, Sparkles, RefreshCw,
-  ArrowUpRight, DollarSign, PieChart, TestTube, Lightbulb
+  ArrowUpRight, DollarSign, PieChart, TestTube, Lightbulb, Edit3, Save, Trash2
 } from 'lucide-react';
 
 // Enhanced MCP Service for VERSSAI N8N Integration
@@ -150,8 +150,117 @@ const VERSSAIExactDashboard = () => {
   const [realStartups, setRealStartups] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [showRightPanel, setShowRightPanel] = useState(false);
+  const [uploadType, setUploadType] = useState(null); // 'single' or 'bulk'
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
   
   const mcpService = useRef(new VERSSAIRealMCPService());
+
+  // Upload handling functions
+  const handleUploadClick = () => {
+    setShowUploadModal(true);
+  };
+
+  const handleUploadTypeSelect = (type) => {
+    setUploadType(type);
+    setShowUploadModal(false);
+    // Open file selector
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.pdf,.ppt,.pptx';
+    input.multiple = type === 'bulk';
+    input.onchange = (e) => handleFileUpload(e.target.files, type);
+    input.click();
+  };
+
+  const handleFileUpload = async (files, type) => {
+    setIsUploading(true);
+    setUploadProgress(0);
+
+    try {
+      const fileArray = Array.from(files);
+      let uploadedStartups = [];
+
+      for (let i = 0; i < fileArray.length; i++) {
+        const file = fileArray[i];
+        setUploadProgress(((i + 1) / fileArray.length) * 100);
+
+        // Simulate upload processing
+        const result = await mcpService.current.uploadStartupDeck(file, {
+          name: file.name.replace(/\.(pdf|ppt|pptx)$/i, ''),
+          type: type
+        });
+
+        // Create startup object from upload
+        const newStartup = {
+          id: `startup-${Date.now()}-${i}`,
+          name: file.name.replace(/\.(pdf|ppt|pptx)$/i, ''),
+          founder: 'To be analyzed',
+          coFounders: [],
+          stage: 'Analysis pending',
+          stageColor: 'bg-gray-100 text-gray-700',
+          location: 'TBD',
+          industry: 'Analyzing...',
+          foundedDate: 'TBD',
+          readinessScore: 0,
+          scoreColor: 'text-gray-600',
+          avatar: file.name.substring(0, 2).toUpperCase(),
+          avatarColor: 'bg-indigo-500',
+          description: 'Currently being analyzed by VERSSAI AI',
+          website: 'TBD',
+          uploadedFile: file.name,
+          uploadedAt: new Date().toISOString()
+        };
+
+        uploadedStartups.push(newStartup);
+      }
+
+      // Add uploaded startups to the list
+      setRealStartups(prev => [...uploadedStartups, ...(Array.isArray(prev) ? prev : [])]);
+      
+      // Show success notification
+      setNotifications(prev => [...prev, {
+        id: Date.now(),
+        type: 'success',
+        title: `${uploadedStartups.length} startup${uploadedStartups.length > 1 ? 's' : ''} uploaded successfully`,
+        message: 'AI analysis has started. Results will be available in the AI Scouting section.',
+        timestamp: new Date().toISOString()
+      }]);
+
+    } catch (error) {
+      console.error('Upload failed:', error);
+      setNotifications(prev => [...prev, {
+        id: Date.now(),
+        type: 'error',
+        title: 'Upload failed',
+        message: 'There was an error uploading your files. Please try again.',
+        timestamp: new Date().toISOString()
+      }]);
+    } finally {
+      setIsUploading(false);
+      setUploadProgress(0);
+    }
+  };
+
+  const handleStartupRowClick = (startup) => {
+    setSelectedCompany(startup.id);
+    setShowRightPanel(true);
+  };
+
+  const handleCompanyNameClick = (startup, e) => {
+    e.stopPropagation();
+    // Close the right panel and navigate to startup detail page
+    setShowRightPanel(false);
+    
+    // Create a new view state for startup detail
+    setCurrentView('startup-detail');
+    setSelectedCompany(startup.id);
+    
+    // Optional: For future implementation with React Router
+    // navigate(`/startup/${startup.id}`);
+  };
 
   // Real dashboard stats
   const dashboardStats = {
@@ -324,7 +433,27 @@ const VERSSAIExactDashboard = () => {
     { id: 'lp-communication', label: 'LP Communication Automation', icon: MessageSquare, active: false },
     { id: 'saved', label: 'Saved', icon: Award, badge: '13', active: false },
     { id: 'applications', label: 'Applications', icon: FileText, badge: '2', active: false },
-    { id: 'inbox', label: 'Inbox', icon: Bell, active: false }
+    { id: 'inbox', label: 'Inbox', icon: Bell, active: false },
+    { 
+      id: 'settings', 
+      label: 'Settings', 
+      icon: Settings, 
+      active: false,
+      subItems: [
+        { 
+          id: 'general-settings', 
+          label: 'General Settings', 
+          active: currentView === 'general-settings',
+          description: 'User preferences, notifications, and account settings'
+        },
+        { 
+          id: 'superadmin-settings', 
+          label: 'SuperAdmin Settings', 
+          active: currentView === 'superadmin-settings',
+          description: 'Advanced system configuration and user management'
+        }
+      ]
+    }
   ];
 
   // Initialize MCP connection
@@ -336,8 +465,13 @@ const VERSSAIExactDashboard = () => {
         addNotification('success', 'Connected to VERSSAI backend');
         
         // Load real startups data
-        const startupsData = await mcpService.current.fetchStartups();
-        setRealStartups(startupsData);
+        try {
+          const startupsData = await mcpService.current.fetchStartups();
+          setRealStartups(Array.isArray(startupsData) ? startupsData : []);
+        } catch (startupError) {
+          console.warn('Could not load startups data:', startupError);
+          setRealStartups([]);
+        }
         
         // Setup real-time handlers
         mcpService.current.onMessage((data) => {
@@ -629,7 +763,10 @@ const VERSSAIExactDashboard = () => {
         {/* Upload Button */}
         <div className="p-4 border-t border-gray-200">
           {!sidebarCollapsed && (
-            <button className="w-full flex items-center space-x-3 px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-medium text-gray-700 transition-colors">
+            <button 
+              onClick={handleUploadClick}
+              className="w-full flex items-center space-x-3 px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-medium text-gray-700 transition-colors"
+            >
               <Plus className="w-4 h-4" />
               <span>UPLOAD YOUR STARTUPS</span>
             </button>
@@ -818,10 +955,10 @@ const VERSSAIExactDashboard = () => {
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
-                        {startups.map((startup) => (
+                        {[...(realStartups || []), ...startups].map((startup) => (
                           <tr 
                             key={startup.id}
-                            onClick={() => setSelectedCompany(startup.id)}
+                            onClick={() => handleStartupRowClick(startup)}
                             className={`hover:bg-gray-50 cursor-pointer transition-colors
                               ${selectedCompany === startup.id ? 'bg-purple-50 border-l-4 border-purple-500' : ''}
                             `}
@@ -832,7 +969,12 @@ const VERSSAIExactDashboard = () => {
                                   {startup.avatar}
                                 </div>
                                 <div>
-                                  <p className="font-medium text-gray-900">{startup.name}</p>
+                                  <p 
+                                    className="font-medium text-gray-900 hover:text-purple-600 transition-colors cursor-pointer"
+                                    onClick={(e) => handleCompanyNameClick(startup, e)}
+                                  >
+                                    {startup.name}
+                                  </p>
                                   <p className="text-sm text-gray-500">{startup.founder}</p>
                                 </div>
                               </div>
@@ -1304,8 +1446,732 @@ const VERSSAIExactDashboard = () => {
             </div>
           )}
 
+          {/* Startup Detail View */}
+          {currentView === 'startup-detail' && selectedCompany && (() => {
+            const startup = [...(realStartups || []), ...startups].find(s => s.id === selectedCompany);
+            return startup ? (
+              <div className="p-6">
+                <div className="max-w-6xl mx-auto">
+                  {/* Header with back button */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center space-x-4">
+                      <button
+                        onClick={() => {setCurrentView('ai-scouting'); setShowRightPanel(false);}}
+                        className="text-gray-500 hover:text-gray-700 transition-colors"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <div className="flex items-center space-x-4">
+                        <div className={`w-16 h-16 ${startup.avatarColor} rounded-xl flex items-center justify-center text-white font-bold text-xl`}>
+                          {startup.avatar}
+                        </div>
+                        <div>
+                          <h1 className="text-3xl font-bold text-gray-900">{startup.name}</h1>
+                          <p className="text-lg text-gray-600">{startup.founder}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <span className={`px-4 py-2 rounded-full text-sm font-medium ${startup.stageColor}`}>
+                        {startup.stage}
+                      </span>
+                      <div className="text-right">
+                        <p className="text-sm text-gray-500">Readiness Score</p>
+                        <p className={`text-2xl font-bold ${startup.scoreColor}`}>
+                          {startup.readinessScore}%
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Main Content Grid */}
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {/* Left Column - Main Info */}
+                    <div className="lg:col-span-2 space-y-6">
+                      {/* Company Overview */}
+                      <div className="bg-white rounded-xl border border-gray-200 p-6">
+                        <h2 className="text-xl font-semibold text-gray-900 mb-4">Company Overview</h2>
+                        <div className="grid grid-cols-2 gap-4 mb-4">
+                          <div>
+                            <p className="text-sm text-gray-500 uppercase font-medium">Location</p>
+                            <p className="text-lg text-gray-900">{startup.location}</p>
+                          </div>
+                          <div>
+                            <p className="text-sm text-gray-500 uppercase font-medium">Industry</p>
+                            <p className="text-lg text-gray-900">{startup.industry}</p>
+                          </div>
+                          <div>
+                            <p className="text-sm text-gray-500 uppercase font-medium">Founded</p>
+                            <p className="text-lg text-gray-900">{startup.foundedDate}</p>
+                          </div>
+                          {startup.website && startup.website !== 'TBD' && (
+                            <div>
+                              <p className="text-sm text-gray-500 uppercase font-medium">Website</p>
+                              <p className="text-lg text-blue-600 hover:text-blue-800 cursor-pointer">{startup.website}</p>
+                            </div>
+                          )}
+                        </div>
+                        {startup.description && (
+                          <div>
+                            <p className="text-sm text-gray-500 uppercase font-medium mb-2">Description</p>
+                            <p className="text-gray-700 leading-relaxed">{startup.description}</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Team Information */}
+                      <div className="bg-white rounded-xl border border-gray-200 p-6">
+                        <h2 className="text-xl font-semibold text-gray-900 mb-4">Team</h2>
+                        <div className="space-y-3">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+                              <User className="w-5 h-5 text-gray-600" />
+                            </div>
+                            <div>
+                              <p className="font-medium text-gray-900">{startup.founder}</p>
+                              <p className="text-sm text-gray-500">Founder & CEO</p>
+                            </div>
+                          </div>
+                          {startup.coFounders && startup.coFounders.length > 0 && (
+                            startup.coFounders.map((coFounder, index) => (
+                              <div key={index} className="flex items-center space-x-3">
+                                <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+                                  <User className="w-5 h-5 text-gray-600" />
+                                </div>
+                                <div>
+                                  <p className="font-medium text-gray-900">{coFounder}</p>
+                                  <p className="text-sm text-gray-500">Co-Founder</p>
+                                </div>
+                              </div>
+                            ))
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Column - Stats & Actions */}
+                    <div className="space-y-6">
+                      {/* Quick Stats */}
+                      <div className="bg-white rounded-xl border border-gray-200 p-6">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Stats</h3>
+                        <div className="space-y-4">
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-600">Stage</span>
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${startup.stageColor}`}>
+                              {startup.stage}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-600">Readiness</span>
+                            <span className={`font-bold ${startup.scoreColor}`}>
+                              {startup.readinessScore}%
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-600">Industry</span>
+                            <span className="text-gray-900">{startup.industry}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Actions */}
+                      <div className="bg-white rounded-xl border border-gray-200 p-6">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Actions</h3>
+                        <div className="space-y-3">
+                          <button className="w-full bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium">
+                            Start Due Diligence
+                          </button>
+                          <button className="w-full bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors font-medium">
+                            Add to Portfolio
+                          </button>
+                          <button className="w-full bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors font-medium">
+                            Schedule Meeting
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Upload Information */}
+                      {startup.uploadedFile && (
+                        <div className="bg-blue-50 rounded-xl border border-blue-200 p-6">
+                          <h3 className="text-lg font-semibold text-blue-900 mb-2">Upload Info</h3>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-blue-600">File:</span>
+                              <span className="text-blue-900">{startup.uploadedFile}</span>
+                            </div>
+                            {startup.uploadedAt && (
+                              <div className="flex justify-between">
+                                <span className="text-blue-600">Uploaded:</span>
+                                <span className="text-blue-900">
+                                  {new Date(startup.uploadedAt).toLocaleDateString()}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center h-64">
+                <div className="text-center">
+                  <p className="text-gray-600 text-lg">Startup not found</p>
+                  <button
+                    onClick={() => setCurrentView('ai-scouting')}
+                    className="mt-4 text-purple-600 hover:text-purple-700 font-medium"
+                  >
+                    Back to AI Scouting
+                  </button>
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* General Settings View */}
+          {currentView === 'general-settings' && (
+            <div className="p-6">
+              <div className="max-w-4xl mx-auto">
+                <div className="mb-6">
+                  <h1 className="text-3xl font-bold text-gray-900">General Settings</h1>
+                  <p className="text-gray-600 mt-2">Manage your account preferences and notifications</p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  {/* Settings Navigation */}
+                  <div className="lg:col-span-1">
+                    <div className="bg-white rounded-xl border border-gray-200 p-4">
+                      <h2 className="font-semibold text-gray-900 mb-4">Settings</h2>
+                      <nav className="space-y-2">
+                        <button className="w-full text-left px-3 py-2 rounded-lg bg-purple-50 text-purple-700 font-medium">
+                          Account & Profile
+                        </button>
+                        <button className="w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50">
+                          Notifications
+                        </button>
+                        <button className="w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50">
+                          Privacy & Security
+                        </button>
+                        <button className="w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50">
+                          API Keys
+                        </button>
+                        <button 
+                          onClick={() => setCurrentView('superadmin-settings')}
+                          className="w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50"
+                        >
+                          SuperAdmin Settings
+                        </button>
+                      </nav>
+                    </div>
+                  </div>
+
+                  {/* Settings Content */}
+                  <div className="lg:col-span-2 space-y-6">
+                    {/* Account & Profile */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Account & Profile</h3>
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" defaultValue="VERSSAI" />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" defaultValue="User" />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                          <input type="email" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" defaultValue="admin@verssai.com" />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Company</label>
+                          <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" defaultValue="VERSSAI Ventures" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Notification Preferences */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Notification Preferences</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="font-medium text-gray-900">Email Notifications</p>
+                            <p className="text-sm text-gray-500">Receive email updates for new startups and due diligence</p>
+                          </div>
+                          <label className="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" defaultChecked className="sr-only peer" />
+                            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                          </label>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="font-medium text-gray-900">Desktop Notifications</p>
+                            <p className="text-sm text-gray-500">Show browser notifications for real-time updates</p>
+                          </div>
+                          <label className="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" className="sr-only peer" />
+                            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                          </label>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="font-medium text-gray-900">Weekly Reports</p>
+                            <p className="text-sm text-gray-500">Get weekly summary of startup activity and metrics</p>
+                          </div>
+                          <label className="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" defaultChecked className="sr-only peer" />
+                            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* API Configuration */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">API Configuration</h3>
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">API Key</label>
+                          <div className="flex space-x-2">
+                            <input 
+                              type="password" 
+                              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" 
+                              value="****-****-****-****" 
+                              readOnly
+                            />
+                            <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                              Regenerate
+                            </button>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1">Keep your API key secure and don't share it publicly</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Save Button */}
+                    <div className="flex justify-end">
+                      <button className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium">
+                        Save Changes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* SuperAdmin Settings View */}
+          {currentView === 'superadmin-settings' && (
+            <div className="p-6">
+              <div className="max-w-6xl mx-auto">
+                <div className="mb-6">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                      <Shield className="w-5 h-5 text-red-600" />
+                    </div>
+                    <div>
+                      <h1 className="text-3xl font-bold text-gray-900">SuperAdmin Settings</h1>
+                      <p className="text-gray-600">Advanced system configuration and user management</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                  {/* SuperAdmin Navigation */}
+                  <div className="lg:col-span-1">
+                    <div className="bg-white rounded-xl border border-gray-200 p-4">
+                      <h2 className="font-semibold text-gray-900 mb-4">Admin Panel</h2>
+                      <nav className="space-y-2">
+                        <button className="w-full text-left px-3 py-2 rounded-lg bg-purple-50 text-purple-700 font-medium">
+                          System Configuration
+                        </button>
+                        <button className="w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50">
+                          User Management
+                        </button>
+                        <button className="w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50">
+                          Company Settings
+                        </button>
+                        <button className="w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50">
+                          Integration Settings
+                        </button>
+                        <button className="w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50">
+                          Security & Permissions
+                        </button>
+                        <button className="w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50">
+                          Version Management
+                        </button>
+                        <button 
+                          onClick={() => setCurrentView('general-settings')}
+                          className="w-full text-left px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50"
+                        >
+                          ← Back to General
+                        </button>
+                      </nav>
+                    </div>
+                  </div>
+
+                  {/* SuperAdmin Content */}
+                  <div className="lg:col-span-3 space-y-6">
+                    {/* System Configuration */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">System Configuration</h3>
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Backend API URL</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" defaultValue="http://localhost:8080" />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">N8N Webhook URL</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" defaultValue="https://versatil.app.n8n.cloud" />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">ChromaDB URL</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" defaultValue="http://localhost:8001" />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Upload Path</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" defaultValue="./uploads" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* User Management */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">User Management</h3>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <p className="font-medium text-gray-900">Total Users</p>
+                            <p className="text-2xl font-bold text-purple-600">47</p>
+                          </div>
+                          <button className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                            Add New User
+                          </button>
+                        </div>
+                        <div className="border-t border-gray-200 pt-4">
+                          <div className="space-y-3">
+                            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                              <div className="flex items-center space-x-3">
+                                <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                                  <span className="text-white font-medium text-sm">VC</span>
+                                </div>
+                                <div>
+                                  <p className="font-medium text-gray-900">admin@verssai.com</p>
+                                  <p className="text-sm text-gray-500">SuperAdmin</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Active</span>
+                                <button className="text-gray-400 hover:text-gray-600">
+                                  <MoreHorizontal className="w-4 h-4" />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Integration Settings */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Integration Settings</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                              <Database className="w-5 h-5 text-purple-600" />
+                            </div>
+                            <div>
+                              <p className="font-medium text-gray-900">N8N Automation Platform</p>
+                              <p className="text-sm text-gray-500">Workflow automation and startup processing</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Connected</span>
+                            <button className="text-purple-600 hover:text-purple-700 font-medium text-sm">Configure</button>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                              <Layers className="w-5 h-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <p className="font-medium text-gray-900">ChromaDB Vector Database</p>
+                              <p className="text-sm text-gray-500">AI embeddings and vector search</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Connected</span>
+                            <button className="text-purple-600 hover:text-purple-700 font-medium text-sm">Configure</button>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                              <Brain className="w-5 h-5 text-green-600" />
+                            </div>
+                            <div>
+                              <p className="font-medium text-gray-900">VERSSAI AI Engine</p>
+                              <p className="text-sm text-gray-500">Startup analysis and scoring engine</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Online</span>
+                            <button className="text-purple-600 hover:text-purple-700 font-medium text-sm">Monitor</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* System Status */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">System Status</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <div className="flex items-center space-x-2">
+                            <CheckCircle className="w-5 h-5 text-green-600" />
+                            <p className="font-medium text-green-900">System Healthy</p>
+                          </div>
+                          <p className="text-sm text-green-700 mt-1">All services operational</p>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="flex items-center space-x-2">
+                            <Activity className="w-5 h-5 text-blue-600" />
+                            <p className="font-medium text-blue-900">CPU Usage</p>
+                          </div>
+                          <p className="text-sm text-blue-700 mt-1">23% - Normal</p>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded-lg">
+                          <div className="flex items-center space-x-2">
+                            <Database className="w-5 h-5 text-purple-600" />
+                            <p className="font-medium text-purple-900">Storage</p>
+                          </div>
+                          <p className="text-sm text-purple-700 mt-1">2.3GB / 10GB used</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Version Management */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-xl font-semibold text-gray-900">Version Management</h3>
+                        <div className="flex items-center space-x-2">
+                          <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Up to date</span>
+                        </div>
+                      </div>
+
+                      {/* Current Version Info */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <div className="bg-purple-50 p-4 rounded-lg">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Activity className="w-5 h-5 text-purple-600" />
+                            <p className="font-medium text-purple-900">Frontend</p>
+                          </div>
+                          <p className="text-2xl font-bold text-purple-600">v1.4.2</p>
+                          <p className="text-sm text-purple-700">Build 2024.08.18</p>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Database className="w-5 h-5 text-blue-600" />
+                            <p className="font-medium text-blue-900">Backend API</p>
+                          </div>
+                          <p className="text-2xl font-bold text-blue-600">v2.1.0</p>
+                          <p className="text-sm text-blue-700">Build 2024.08.15</p>
+                        </div>
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Brain className="w-5 h-5 text-green-600" />
+                            <p className="font-medium text-green-900">AI Engine</p>
+                          </div>
+                          <p className="text-2xl font-bold text-green-600">v3.0.1</p>
+                          <p className="text-sm text-green-700">Build 2024.08.17</p>
+                        </div>
+                        <div className="bg-orange-50 p-4 rounded-lg">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Zap className="w-5 h-5 text-orange-600" />
+                            <p className="font-medium text-orange-900">N8N Workflows</p>
+                          </div>
+                          <p className="text-2xl font-bold text-orange-600">v1.8.5</p>
+                          <p className="text-sm text-orange-700">Updated 3d ago</p>
+                        </div>
+                      </div>
+
+                      {/* Version History */}
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-gray-900 mb-3">Recent Updates</h4>
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                              <div>
+                                <p className="font-medium text-gray-900">Frontend v1.4.2 - UI Enhancement Update</p>
+                                <p className="text-sm text-gray-500">Added startup upload functionality and improved dashboard - Aug 18, 2024</p>
+                              </div>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Current</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                              <div>
+                                <p className="font-medium text-gray-900">AI Engine v3.0.1 - Performance Optimization</p>
+                                <p className="text-sm text-gray-500">Improved startup analysis speed by 40% - Aug 17, 2024</p>
+                              </div>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Deployed</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                              <div>
+                                <p className="font-medium text-gray-900">Backend API v2.1.0 - Security Enhancement</p>
+                                <p className="text-sm text-gray-500">Enhanced authentication and added new endpoints - Aug 15, 2024</p>
+                              </div>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <span className="px-2 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">Stable</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Deployment Controls */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-3">Deployment Actions</h4>
+                          <div className="space-y-3">
+                            <button className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                              <div className="flex items-center space-x-3">
+                                <RefreshCw className="w-5 h-5 text-blue-600" />
+                                <div className="text-left">
+                                  <p className="font-medium text-gray-900">Check for Updates</p>
+                                  <p className="text-sm text-gray-500">Scan for new versions</p>
+                                </div>
+                              </div>
+                              <ArrowUpRight className="w-4 h-4 text-gray-400" />
+                            </button>
+                            <button className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                              <div className="flex items-center space-x-3">
+                                <Download className="w-5 h-5 text-green-600" />
+                                <div className="text-left">
+                                  <p className="font-medium text-gray-900">Download Backup</p>
+                                  <p className="text-sm text-gray-500">Create system backup</p>
+                                </div>
+                              </div>
+                              <ArrowUpRight className="w-4 h-4 text-gray-400" />
+                            </button>
+                            <button className="w-full flex items-center justify-between p-3 border border-red-200 rounded-lg hover:bg-red-50 transition-colors">
+                              <div className="flex items-center space-x-3">
+                                <AlertCircle className="w-5 h-5 text-red-600" />
+                                <div className="text-left">
+                                  <p className="font-medium text-red-900">Emergency Rollback</p>
+                                  <p className="text-sm text-red-500">Revert to previous version</p>
+                                </div>
+                              </div>
+                              <ArrowUpRight className="w-4 h-4 text-gray-400" />
+                            </button>
+                          </div>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-3">Environment Info</h4>
+                          <div className="space-y-3">
+                            <div className="p-3 bg-gray-50 rounded-lg">
+                              <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-600">Environment</span>
+                                <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Production</span>
+                              </div>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded-lg">
+                              <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-600">Last Deployment</span>
+                                <span className="text-sm font-medium text-gray-900">Aug 18, 2024 14:23</span>
+                              </div>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded-lg">
+                              <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-600">Uptime</span>
+                                <span className="text-sm font-medium text-gray-900">72h 15m</span>
+                              </div>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded-lg">
+                              <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-600">Auto-Updates</span>
+                                <label className="relative inline-flex items-center cursor-pointer">
+                                  <input type="checkbox" defaultChecked className="sr-only peer" />
+                                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Changelog */}
+                      <div className="mt-6 pt-6 border-t border-gray-200">
+                        <div className="flex items-center justify-between mb-3">
+                          <h4 className="font-semibold text-gray-900">Full Changelog</h4>
+                          <button className="text-purple-600 hover:text-purple-700 font-medium text-sm">
+                            View All Releases
+                          </button>
+                        </div>
+                        <div className="bg-gray-50 rounded-lg p-4">
+                          <div className="text-sm space-y-2">
+                            <div className="flex items-start space-x-2">
+                              <span className="text-green-600 font-mono">+</span>
+                              <span className="text-gray-700">Added startup upload functionality with single/bulk options</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                              <span className="text-green-600 font-mono">+</span>
+                              <span className="text-gray-700">Implemented right-side panel for startup details</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                              <span className="text-blue-600 font-mono">~</span>
+                              <span className="text-gray-700">Improved navigation between AI Scouting and startup pages</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                              <span className="text-blue-600 font-mono">~</span>
+                              <span className="text-gray-700">Enhanced settings interface with SuperAdmin controls</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                              <span className="text-orange-600 font-mono">!</span>
+                              <span className="text-gray-700">Fixed realStartups iteration bug</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Save Button */}
+                    <div className="flex justify-end space-x-3">
+                      <button className="bg-gray-100 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors font-medium">
+                        Reset to Defaults
+                      </button>
+                      <button className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium">
+                        Save Configuration
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Other Views Placeholder */}
-          {!['ai-scouting', 'due-diligence'].includes(currentView) && (
+          {!['ai-scouting', 'due-diligence', 'startup-detail', 'general-settings', 'superadmin-settings'].includes(currentView) && (
             <div className="flex items-center justify-center h-64">
               <div className="text-center">
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -1323,6 +2189,240 @@ const VERSSAIExactDashboard = () => {
             </div>
           )}
         </main>
+
+        {/* Right Side Panel */}
+        {showRightPanel && (
+          <div className="fixed inset-y-0 right-0 w-96 bg-white shadow-2xl z-50 transform transition-transform duration-300">
+            <div className="flex flex-col h-full">
+              {/* Panel Header */}
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-900">Startup Details</h2>
+                <button
+                  onClick={() => setShowRightPanel(false)}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Panel Content */}
+              <div className="flex-1 overflow-y-auto p-6">
+                {selectedCompany && (() => {
+                  const startup = [...(realStartups || []), ...startups].find(s => s.id === selectedCompany);
+                  return startup ? (
+                    <div className="space-y-6">
+                      {/* Company Header */}
+                      <div className="flex items-center space-x-4">
+                        <div className={`w-12 h-12 ${startup.avatarColor} rounded-lg flex items-center justify-center text-white font-bold`}>
+                          {startup.avatar}
+                        </div>
+                        <div>
+                          <h3 
+                            className="text-lg font-semibold text-gray-900 hover:text-purple-600 cursor-pointer transition-colors"
+                            onClick={(e) => handleCompanyNameClick(startup, e)}
+                          >
+                            {startup.name}
+                          </h3>
+                          <p className="text-sm text-gray-500">{startup.founder}</p>
+                        </div>
+                      </div>
+
+                      {/* Quick Stats */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <p className="text-xs text-gray-500 uppercase font-medium">Stage</p>
+                          <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium mt-1 ${startup.stageColor}`}>
+                            {startup.stage}
+                          </span>
+                        </div>
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <p className="text-xs text-gray-500 uppercase font-medium">Readiness Score</p>
+                          <p className={`font-bold text-lg ${startup.scoreColor}`}>
+                            {startup.readinessScore}%
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Company Info */}
+                      <div className="space-y-4">
+                        <div>
+                          <p className="text-xs text-gray-500 uppercase font-medium mb-2">Location</p>
+                          <p className="text-sm text-gray-900">{startup.location}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500 uppercase font-medium mb-2">Industry</p>
+                          <p className="text-sm text-gray-900">{startup.industry}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500 uppercase font-medium mb-2">Founded</p>
+                          <p className="text-sm text-gray-900">{startup.foundedDate}</p>
+                        </div>
+                        {startup.website && startup.website !== 'TBD' && (
+                          <div>
+                            <p className="text-xs text-gray-500 uppercase font-medium mb-2">Website</p>
+                            <p className="text-sm text-blue-600">{startup.website}</p>
+                          </div>
+                        )}
+                        {startup.uploadedFile && (
+                          <div>
+                            <p className="text-xs text-gray-500 uppercase font-medium mb-2">Uploaded File</p>
+                            <p className="text-sm text-gray-900">{startup.uploadedFile}</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Description */}
+                      {startup.description && (
+                        <div>
+                          <p className="text-xs text-gray-500 uppercase font-medium mb-2">Description</p>
+                          <p className="text-sm text-gray-700 leading-relaxed">{startup.description}</p>
+                        </div>
+                      )}
+
+                      {/* Actions */}
+                      <div className="pt-4 border-t border-gray-200">
+                        <button
+                          onClick={(e) => handleCompanyNameClick(startup, e)}
+                          className="w-full bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium"
+                        >
+                          View Full Startup Page
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center text-gray-500">
+                      <p>Startup not found</p>
+                    </div>
+                  );
+                })()}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Upload Modal */}
+        {showUploadModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-xl max-w-md w-full mx-4 p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-gray-900">Upload Startups</h2>
+                <button
+                  onClick={() => setShowUploadModal(false)}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                <p className="text-gray-600 text-sm mb-6">
+                  Choose how you'd like to upload startup decks to VERSSAI for AI analysis.
+                </p>
+
+                {/* Single Upload Option */}
+                <button
+                  onClick={() => handleUploadTypeSelect('single')}
+                  className="w-full p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-colors group"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                      <FileText className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <div className="text-left">
+                      <h3 className="font-medium text-gray-900">Single Deck Upload</h3>
+                      <p className="text-sm text-gray-500">Upload one pitch deck (PDF, PPT, PPTX)</p>
+                    </div>
+                  </div>
+                </button>
+
+                {/* Bulk Upload Option */}
+                <button
+                  onClick={() => handleUploadTypeSelect('bulk')}
+                  className="w-full p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-colors group"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                      <Folder className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <div className="text-left">
+                      <h3 className="font-medium text-gray-900">Bulk Upload</h3>
+                      <p className="text-sm text-gray-500">Upload multiple pitch decks at once</p>
+                    </div>
+                  </div>
+                </button>
+              </div>
+
+              <div className="mt-6 text-xs text-gray-500 text-center">
+                Supported formats: PDF, PPT, PPTX • Max file size: 25MB
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Upload Progress Modal */}
+        {isUploading && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-xl max-w-md w-full mx-4 p-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Upload className="w-6 h-6 text-purple-600" />
+                </div>
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Uploading Startups...</h2>
+                <p className="text-gray-600 text-sm mb-4">
+                  AI analysis will begin once upload is complete.
+                </p>
+                
+                {/* Progress Bar */}
+                <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+                  <div 
+                    className="bg-purple-600 h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${uploadProgress}%` }}
+                  ></div>
+                </div>
+                <p className="text-sm text-gray-500">{Math.round(uploadProgress)}% Complete</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Notification Toast */}
+        {notifications.length > 0 && (
+          <div className="fixed top-4 right-4 z-50 space-y-2">
+            {notifications.slice(-3).map((notification) => (
+              <div
+                key={notification.id}
+                className={`max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 ${
+                  notification.type === 'success' ? 'border-l-4 border-green-400' :
+                  notification.type === 'error' ? 'border-l-4 border-red-400' :
+                  'border-l-4 border-blue-400'
+                }`}
+              >
+                <div className="p-4">
+                  <div className="flex items-start">
+                    <div className="ml-3 w-0 flex-1">
+                      <p className="text-sm font-medium text-gray-900">
+                        {notification.title}
+                      </p>
+                      <p className="mt-1 text-sm text-gray-500">
+                        {notification.message}
+                      </p>
+                    </div>
+                    <div className="ml-4 flex-shrink-0 flex">
+                      <button
+                        className="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500"
+                        onClick={() => {
+                          setNotifications(prev => prev.filter(n => n.id !== notification.id));
+                        }}
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

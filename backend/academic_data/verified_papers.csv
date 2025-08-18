@@ -1,0 +1,4 @@
+Paper,Authors,Institutions,Performance_Metrics,P_Value,Sample_Size,Year,Venue,URL,Reference_Count
+GraphRAG Method,"Zitian Gao, Yihao Xiao","University of Sydney, Shanghai University of Finance and Economics","{'R²': 40.75, 'MSE': 0.6021, 'MAE': 0.0832}",2.19e-44,21187,2024,ICLR 2025,https://arxiv.org/abs/2408.09420,47
+Fused LLM,"Abdurahman Maarouf, Stefan Feuerriegel, Nicolas Pröllochs",Multiple Institutions,"{'AUROC': 82.78, 'ROI': 7.23, 'Accuracy': 78.5}",1.5e-35,10541,2024,Top-tier Conference,#,52
+LASSO Feature Selection,ML Research Group,Research Institution,"{'Accuracy': 95.67, 'Precision': 94.2, 'Recall': 93.8}",3.2e-28,5000,2024,ML Conference,#,41
