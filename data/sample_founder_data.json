@@ -1,0 +1,104 @@
+
+[
+  {
+    "founder": {
+      "id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      "full_name": "Dr. Elena Vance",
+      "linkedin_url": "https://linkedin.com/in/elenavance",
+      "twitter_handle": "evance_ai",
+      "github_username": "evance",
+      "bio": "AI researcher turned entrepreneur, focused on creating ethical AI for complex systems. PhD from MIT."
+    },
+    "education": [
+      {
+        "institution_name": "Massachusetts Institute of Technology",
+        "degree": "PhD",
+        "field_of_study": "Computer Science",
+        "start_year": 2012,
+        "end_year": 2016
+      },
+      {
+        "institution_name": "Stanford University",
+        "degree": "B.S.",
+        "field_of_study": "Symbolic Systems",
+        "start_year": 2008,
+        "end_year": 2012
+      }
+    ],
+    "work_experience": [
+      {
+        "company": {
+          "id": "c1d2e3f4-a5b6-c7d8-e9f0-a1b2c3d4e5f6",
+          "name": "Nexus AI",
+          "website": "https://nexusai.com",
+          "description": "An AI platform for predictive analytics in supply chain management.",
+          "founded_date": "2019-01-15"
+        },
+        "title": "Founder & CEO",
+        "start_date": "2019-01-15",
+        "end_date": null,
+        "is_founder_role": true
+      },
+      {
+        "company": {
+          "id": "f0e9d8c7-b6a5-f4e3-d2c1-b0a9f8e7d6c5",
+          "name": "Google",
+          "website": "https://google.com",
+          "description": "Search engine and technology company.",
+          "founded_date": "1998-09-04"
+        },
+        "title": "Research Scientist, AI",
+        "start_date": "2016-07-01",
+        "end_date": "2018-12-31",
+        "is_founder_role": false
+      }
+    ]
+  },
+  {
+    "founder": {
+      "id": "f6e5d4c3-b2a1-0987-6543-210987fedcba",
+      "full_name": "Ben Carter",
+      "linkedin_url": "https://linkedin.com/in/bencarterdev",
+      "twitter_handle": "bencarter",
+      "github_username": "bcarter",
+      "bio": "Full-stack developer and product leader with two prior successful exits in the SaaS space."
+    },
+    "education": [
+      {
+        "institution_name": "University of Waterloo",
+        "degree": "B.S.",
+        "field_of_study": "Software Engineering",
+        "start_year": 2005,
+        "end_year": 2010
+      }
+    ],
+    "work_experience": [
+      {
+        "company": {
+          "id": "b1a2c3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6",
+          "name": "FlowState Analytics",
+          "website": "https://flowstate.io",
+          "description": "A real-time data analytics platform for developers.",
+          "founded_date": "2021-03-01"
+        },
+        "title": "Co-founder & CTO",
+        "start_date": "2021-03-01",
+        "end_date": null,
+        "is_founder_role": true
+      },
+      {
+        "company": {
+          "id": "d6c5b4a3-f2e1-d0c9-b8a7-f6e5d4c3b2a1",
+          "name": "ConnectSphere (Acquired by Salesforce)",
+          "website": null,
+          "description": "A customer engagement platform for B2B companies.",
+          "founded_date": "2015-06-01"
+        },
+        "title": "Founder & CEO",
+        "start_date": "2015-06-01",
+        "end_date": "2020-10-31",
+        "is_founder_role": true
+      }
+    ]
+  }
+]
