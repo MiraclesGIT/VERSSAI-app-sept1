@@ -74,3 +74,4 @@ verssai_services.pid
 # Test outputs
 test_results/
 *.test.log
+*.env
