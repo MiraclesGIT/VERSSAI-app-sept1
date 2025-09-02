@@ -4,7 +4,7 @@ echo "Starting VERSSAI full development environment..."
 # Start backend
 echo "Starting backend server..."
 cd backend
-python server.py &
+python3 server.py &
 BACKEND_PID=$!
 
 # Start frontend
