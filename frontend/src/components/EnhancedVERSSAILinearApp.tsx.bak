@@ -160,7 +160,7 @@ const EnhancedVERSSAILinearApp: React.FC = () => {
   const getWorkflowStatus = (workflowId: string) => {
     const workflowExecutions = executions.filter(
       exec => exec.workflowType === workflowId && 
-      ((exec as any).user_id || (exec as any).userId) === currentUser?.id
+      exec.user_id === currentUser?.id
     );
     
     if (workflowExecutions.length === 0) return 'idle';
@@ -172,7 +172,7 @@ const EnhancedVERSSAILinearApp: React.FC = () => {
   const getWorkflowProgress = (workflowId: string) => {
     const workflowExecutions = executions.filter(
       exec => exec.workflowType === workflowId && 
-      ((exec as any).user_id || (exec as any).userId) === currentUser?.id
+      exec.user_id === currentUser?.id
     );
     
     if (workflowExecutions.length === 0) return 0;
