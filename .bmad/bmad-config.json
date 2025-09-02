@@ -1,0 +1,15 @@
+{
+  "project": "VERSSAI-FINAL",
+  "framework_version": "1.0",
+  "sync": {
+    "github": true,
+    "cursor": true,
+    "claude_desktop": true
+  },
+  "workflow": {
+    "session_init": true,
+    "file_monitor": true,
+    "pattern_learning": true,
+    "auto_sync": true
+  }
+}

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VERSSAI Integrated Project Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .dashboard-header {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .phase-tabs {
+            display: flex;
+            gap: 20px;
+            margin: 20px auto;
+            max-width: 1400px;
+            padding: 0 20px;
+        }
+        
+        .phase-tab {
+            flex: 1;
+            padding: 15px;
+            background: #1a1a2e;
+            border: 2px solid #2a2a4e;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .phase-tab.active {
+            background: #2a2a4e;
+            border-color: #61dafb;
+            box-shadow: 0 0 20px rgba(97, 218, 251, 0.3);
+        }
+        
+        .phase-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: none;
+        }
+        
+        .phase-content.active {
+            display: block;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: #1a1a2e;
+            border: 1px solid #2a2a4e;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #61dafb;
+        }
+        
+        .metric-label {
+            color: #888;
+            margin-top: 5px;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: #2a2a4e;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #61dafb, #4fa8c5);
+            transition: width 0.5s ease;
+        }
+        
+        .status-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-indicator.active {
+            background: #4CAF50;
+        }
+        
+        .status-indicator.warning {
+            background: #ff9800;
+        }
+        
+        .status-indicator.error {
+            background: #f44336;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .data-table {
+            background: #1a1a2e;
+            border: 1px solid #2a2a4e;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .data-table h3 {
+            margin-top: 0;
+            color: #61dafb;
+        }
+        
+        .table-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #2a2a4e;
+        }
+        
+        .duplicate-warning {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid #f44336;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        .real-time-log {
+            background: #0a0a0a;
+            border: 1px solid #2a2a4e;
+            border-radius: 8px;
+            padding: 15px;
+            height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        
+        .log-entry {
+            padding: 5px 0;
+            color: #888;
+        }
+        
+        .log-entry.change {
+            color: #ff9800;
+        }
+        
+        .log-entry.success {
+            color: #4CAF50;
+        }
+        
+        .log-entry.error {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <div class="header-content">
+            <div>
+                <h1>VERSSAI Integrated Project Dashboard</h1>
+                <p>Real-time PRD → Development → QA Status</p>
+            </div>
+            <div id="connection-status">
+                <span class="status-indicator active"></span>
+                Connected
+            </div>
+        </div>
+    </div>
+    
+    <div class="phase-tabs">
+        <div class="phase-tab active" data-phase="prd">
+            <h3>📋 PRD</h3>
+            <div id="prd-progress">Loading...</div>
+        </div>
+        <div class="phase-tab" data-phase="dev">
+            <h3>💻 Development</h3>
+            <div id="dev-progress">Loading...</div>
+        </div>
+        <div class="phase-tab" data-phase="qa">
+            <h3>🧪 QA</h3>
+            <div id="qa-progress">Loading...</div>
+        </div>
+        <div class="phase-tab" data-phase="overview">
+            <h3>📊 Overview</h3>
+            <div id="overview-status">Loading...</div>
+        </div>
+    </div>
+    
+    <!-- PRD Phase -->
+    <div class="phase-content active" id="prd-content">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value" id="prd-completion">0%</div>
+                <div class="metric-label">Requirements Complete</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="prd-progress-bar"></div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="prd-features">0</div>
+                <div class="metric-label">Total Features</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="prd-specs">0</div>
+                <div class="metric-label">Specifications</div>
+            </div>
+        </div>
+        
+        <div class="data-table">
+            <h3>Feature Status</h3>
+            <div id="prd-features-list"></div>
+        </div>
+    </div>
+    
+    <!-- Development Phase -->
+    <div class="phase-content" id="dev-content">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value" id="dev-components">0/84</div>
+                <div class="metric-label">Components Migrated</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="dev-progress-bar"></div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="dev-commits">0</div>
+                <div class="metric-label">Recent Commits</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="dev-duplicates">0</div>
+                <div class="metric-label">Duplicate Files</div>
+                <span class="status-indicator warning" id="dup-indicator"></span>
+            </div>
+        </div>
+        
+        <div class="data-table">
+            <h3>⚠️ Duplicate Detection</h3>
+            <div id="duplicates-list"></div>
+        </div>
+        
+        <div class="data-table">
+            <h3>📦 Recent Commits</h3>
+            <div id="commits-list"></div>
+        </div>
+    </div>
+    
+    <!-- QA Phase -->
+    <div class="phase-content" id="qa-content">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value" id="qa-coverage">0%</div>
+                <div class="metric-label">Test Coverage</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="qa-progress-bar"></div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="qa-tests">0/0</div>
+                <div class="metric-label">Tests Passing</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="qa-bugs">0</div>
+                <div class="metric-label">Open Issues</div>
+            </div>
+        </div>
+        
+        <div class="data-table">
+            <h3>🐛 Issues & TODOs</h3>
+            <div id="bugs-list"></div>
+        </div>
+        
+        <div class="data-table">
+            <h3>⚡ Performance Metrics</h3>
+            <div id="performance-metrics"></div>
+        </div>
+    </div>
+    
+    <!-- Overview -->
+    <div class="phase-content" id="overview-content">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <canvas id="phase-chart"></canvas>
+            </div>
+            <div class="metric-card">
+                <h3>Integration Status</h3>
+                <div id="integration-status"></div>
+            </div>
+        </div>
+        
+        <div class="data-table">
+            <h3>Real-time Activity Log</h3>
+            <div class="real-time-log" id="activity-log"></div>
+        </div>
+    </div>
+
+    <script>
+        let ws;
+        let phaseChart;
+        
+        // Tab switching
+        document.querySelectorAll('.phase-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.phase-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const phase = tab.getAttribute('data-phase');
+                document.getElementById(`${phase}-content`).classList.add('active');
+                
+                if (phase === 'overview' && !phaseChart) {
+                    initializeChart();
+                }
+            });
+        });
+        
+        // Fetch and update data
+        async function fetchProjectData() {
+            try {
+                const response = await fetch('http://localhost:8765/api/project-status');
+                const data = await response.json();
+                updateDashboard(data);
+            } catch (error) {
+                console.error('Failed to fetch data:', error);
+                document.getElementById('connection-status').innerHTML = 
+                    '<span class="status-indicator error"></span> Disconnected';
+            }
+        }
+        
+        function updateDashboard(data) {
+            // PRD Updates
+            if (data.prd) {
+                const completion = Math.round(data.prd.completionStatus || 0);
+                document.getElementById('prd-completion').textContent = `${completion}%`;
+                document.getElementById('prd-progress-bar').style.width = `${completion}%`;
+                document.getElementById('prd-features').textContent = data.prd.features.length;
+                document.getElementById('prd-progress').textContent = `${completion}% Complete`;
+                
+                // Features list
+                const featuresList = document.getElementById('prd-features-list');
+                featuresList.innerHTML = data.prd.features.map(f => `
+                    <div class="table-row">
+                        <span>${f.name}</span>
+                        <span style="color: ${f.status === 'completed' ? '#4CAF50' : 
+                                             f.status === 'in-progress' ? '#ff9800' : '#888'}">
+                            ${f.status}
+                        </span>
+                    </div>
+                `).join('');
+            }
+            
+            // Development Updates
+            if (data.dev) {
+                const migrated = data.dev.components.migrated;
+                const total = data.dev.components.total;
+                const progress = Math.round((migrated / total) * 100);
+                
+                document.getElementById('dev-components').textContent = `${migrated}/${total}`;
+                document.getElementById('dev-progress-bar').style.width = `${progress}%`;
+                document.getElementById('dev-progress').textContent = `${progress}% Complete`;
+                document.getElementById('dev-commits').textContent = data.dev.commits.length;
+                
+                // Duplicates
+                const dupCount = data.dev.duplicates.reduce((sum, d) => sum + d.count, 0);
+                document.getElementById('dev-duplicates').textContent = dupCount;
+                document.getElementById('dup-indicator').style.display = dupCount > 0 ? 'block' : 'none';
+                
+                const duplicatesList = document.getElementById('duplicates-list');
+                duplicatesList.innerHTML = data.dev.duplicates.map(d => `
+                    <div class="duplicate-warning">
+                        <strong>${d.pattern}:</strong> ${d.files.join(', ')} (${d.count} files)
+                    </div>
+                `).join('') || '<div style="color: #4CAF50">No duplicates found! ✅</div>';
+                
+                // Commits
+                const commitsList = document.getElementById('commits-list');
+                commitsList.innerHTML = data.dev.commits.slice(0, 5).map(c => `
+                    <div class="table-row">
+                        <span style="font-family: monospace">${c}</span>
+                    </div>
+                `).join('');
+            }
+            
+            // QA Updates
+            if (data.qa) {
+                const coverage = Math.round(data.qa.coverage || 0);
+                document.getElementById('qa-coverage').textContent = `${coverage}%`;
+                document.getElementById('qa-progress-bar').style.width = `${coverage}%`;
+                document.getElementById('qa-progress').textContent = `${coverage}% Coverage`;
+                
+                if (data.dev && data.dev.tests) {
+                    const tests = data.dev.tests;
+                    document.getElementById('qa-tests').textContent = `${tests.passing}/${tests.total}`;
+                }
+                
+                document.getElementById('qa-bugs').textContent = data.qa.bugs.length;
+                
+                // Bugs list
+                const bugsList = document.getElementById('bugs-list');
+                bugsList.innerHTML = data.qa.bugs.slice(0, 10).map(b => `
+                    <div class="table-row">
+                        <span>${b.file}</span>
+                        <span style="color: ${b.type === 'bug' ? '#f44336' : '#ff9800'}">
+                            ${b.content.substring(0, 50)}...
+                        </span>
+                    </div>
+                `).join('');
+                
+                // Performance
+                const perfMetrics = document.getElementById('performance-metrics');
+                if (data.qa.performance) {
+                    perfMetrics.innerHTML = `
+                        <div class="table-row">
+                            <span>Build Time</span>
+                            <span>${data.qa.performance.buildTime ? 
+                                    Math.round(data.qa.performance.buildTime / 1000) + 's' : 'N/A'}</span>
+                        </div>
+                        <div class="table-row">
+                            <span>Bundle Size</span>
+                            <span>${data.qa.performance.bundleSize ? 
+                                    Math.round(data.qa.performance.bundleSize / 1024 / 1024) + 'MB' : 'N/A'}</span>
+                        </div>
+                        ${data.qa.performance.lighthouse ? `
+                            <div class="table-row">
+                                <span>Lighthouse Score</span>
+                                <span>Performance: ${data.qa.performance.lighthouse.performance}</span>
+                            </div>
+                        ` : ''}
+                    `;
+                }
+            }
+            
+            // Integration status
+            if (data.integrations) {
+                const integrationStatus = document.getElementById('integration-status');
+                integrationStatus.innerHTML = `
+                    <div class="table-row">
+                        <span>GitHub</span>
+                        <span style="color: ${data.integrations.github.connected ? '#4CAF50' : '#f44336'}">
+                            ${data.integrations.github.connected ? 'Connected' : 'Disconnected'}
+                        </span>
+                    </div>
+                    <div class="table-row">
+                        <span>N8N</span>
+                        <span style="color: ${data.integrations.n8n.active ? '#4CAF50' : '#f44336'}">
+                            ${data.integrations.n8n.workflows} workflows
+                        </span>
+                    </div>
+                    <div class="table-row">
+                        <span>MCP</span>
+                        <span style="color: ${data.integrations.mcp.status === 'active' ? '#4CAF50' : '#f44336'}">
+                            ${data.integrations.mcp.tools} tools
+                        </span>
+                    </div>
+                `;
+            }
+            
+            // Update overview status
+            const totalProgress = Math.round(
+                ((data.prd?.completionStatus || 0) * 0.3 +
+                 ((data.dev?.components.migrated / data.dev?.components.total) || 0) * 100 * 0.4 +
+                 (data.qa?.coverage || 0) * 0.3)
+            );
+            document.getElementById('overview-status').textContent = `${totalProgress}% Overall`;
+        }
+        
+        // Initialize chart
+        function initializeChart() {
+            const ctx = document.getElementById('phase-chart').getContext('2d');
+            phaseChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['PRD', 'Development', 'QA'],
+                    datasets: [{
+                        data: [30, 50, 20],
+                        backgroundColor: ['#61dafb', '#ff9800', '#4CAF50']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+        
+        // WebSocket for real-time updates
+        function connectWebSocket() {
+            ws = new WebSocket('ws://localhost:8766');
+            
+            ws.onopen = () => {
+                document.getElementById('connection-status').innerHTML = 
+                    '<span class="status-indicator active"></span> Connected';
+            };
+            
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                const log = document.getElementById('activity-log');
+                const entry = document.createElement('div');
+                entry.className = `log-entry ${data.type}`;
+                entry.textContent = `${new Date(data.timestamp).toLocaleTimeString()} - ${data.type}: ${data.path}`;
+                log.insertBefore(entry, log.firstChild);
+                
+                // Trim log
+                while (log.children.length > 50) {
+                    log.removeChild(log.lastChild);
+                }
+                
+                // Refresh data on file change
+                if (data.type === 'file-change') {
+                    fetchProjectData();
+                }
+            };
+            
+            ws.onerror = ws.onclose = () => {
+                document.getElementById('connection-status').innerHTML = 
+                    '<span class="status-indicator error"></span> Disconnected';
+                // Reconnect after 5 seconds
+                setTimeout(connectWebSocket, 5000);
+            };
+        }
+        
+        // Initialize
+        fetchProjectData();
+        connectWebSocket();
+        setInterval(fetchProjectData, 10000); // Refresh every 10 seconds
+    </script>
+</body>
+</html>

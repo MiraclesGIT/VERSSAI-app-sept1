@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VERSSAI Vibe Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .card { border: 1px solid #ddd; padding: 20px; margin: 10px 0; }
+        .alert { background: #ffcccc; padding: 10px; margin: 5px 0; }
+        .success { background: #ccffcc; padding: 10px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>VERSSAI Vibe Coding Dashboard</h1>
+    
+    <div class="card">
+        <h2>Status</h2>
+        <div id="status">Loading...</div>
+    </div>
+    
+    <div class="card">
+        <h2>Duplicate Files</h2>
+        <div id="duplicates">Loading...</div>
+    </div>
+    
+    <div class="card">
+        <h2>Recent Decisions</h2>
+        <div id="decisions">Loading...</div>
+    </div>
+
+    <script>
+        async function loadData() {
+            try {
+                const response = await fetch('http://localhost:8765/vibe-status');
+                const data = await response.json();
+                
+                document.getElementById('status').innerHTML = 
+                    `<div class="${data.health === 'healthy' ? 'success' : 'alert'}">
+                        Status: ${data.health}
+                    </div>`;
+                
+                document.getElementById('duplicates').innerHTML = 
+                    data.duplicates.map(d => `<div class="alert">${d}</div>`).join('');
+                    
+                document.getElementById('decisions').innerHTML = 
+                    data.recentDecisions.map(d => 
+                        `<div>${d.timestamp} - ${d.decision}</div>`
+                    ).join('');
+                    
+            } catch (error) {
+                document.getElementById('status').innerHTML = 
+                    `<div class="alert">Error: ${error.message}</div>`;
+            }
+        }
+        
+        loadData();
+        setInterval(loadData, 5000);
+    </script>
+</body>
+</html>

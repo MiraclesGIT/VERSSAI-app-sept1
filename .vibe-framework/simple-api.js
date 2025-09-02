@@ -1,0 +1,1 @@
+const express=require('express');const fs=require('fs');const os=require('os');const path=require('path');const app=express();app.use(express.json());app.post('/bmad-sync',(req,res)=>{fs.appendFileSync(path.join(os.homedir(),'agents.md'),`\n\n# N8N Sync: ${new Date().toISOString()}\n`);res.json({status:'success'})});app.listen(8765,()=>console.log('API on :8765'));
