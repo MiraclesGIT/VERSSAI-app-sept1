@@ -1,0 +1,81 @@
+{
+  "timestamp": "2025-09-03T16:51:48.122718",
+  "system_info": {
+    "os": "Linux",
+    "platform": "Linux-6.11.0-1018-azure-x86_64-with-glibc2.39",
+    "python_version": "3.12.3",
+    "architecture": "x86_64",
+    "hostname": "pkrvm7jw40e0xgp",
+    "working_directory": "/home/runner/work/VERSSAI-app-sept1/VERSSAI-app-sept1"
+  },
+  "overall_health": "GOOD",
+  "health_score": 87.5,
+  "total_checks": 8,
+  "passed_checks": 7,
+  "failed_checks": 1,
+  "results": {
+    "System Information": {
+      "success": true,
+      "message": "System info collected",
+      "details": [],
+      "recommendations": [],
+      "timestamp": "2025-09-03T16:51:47.704129"
+    },
+    "Project Structure": {
+      "success": true,
+      "message": "Structure check: 8 critical items checked",
+      "details": [],
+      "recommendations": [],
+      "timestamp": "2025-09-03T16:51:47.704881"
+    },
+    "Environment Configuration": {
+      "success": true,
+      "message": "Environment files: 3/3 found",
+      "details": [],
+      "recommendations": [],
+      "timestamp": "2025-09-03T16:51:47.705138"
+    },
+    "Dependencies": {
+      "success": false,
+      "message": "System tools: 4/5 available",
+      "details": [
+        "Docker Compose"
+      ],
+      "recommendations": [
+        "Install missing system dependencies:",
+        "- Docker: https://docs.docker.com/get-docker/",
+        "- Node.js: https://nodejs.org/",
+        "- Git: https://git-scm.com/"
+      ],
+      "timestamp": "2025-09-03T16:51:47.791447"
+    },
+    "Docker Services": {
+      "success": true,
+      "message": "Running services: 4/5",
+      "details": [],
+      "recommendations": [],
+      "timestamp": "2025-09-03T16:51:47.893884"
+    },
+    "Network Connectivity": {
+      "success": true,
+      "message": "Services accessible: 3/5",
+      "details": [],
+      "recommendations": [],
+      "timestamp": "2025-09-03T16:51:48.122277"
+    },
+    "File Permissions": {
+      "success": true,
+      "message": "Executable scripts: 5/5",
+      "details": [],
+      "recommendations": [],
+      "timestamp": "2025-09-03T16:51:48.122594"
+    },
+    "Disk Space": {
+      "success": true,
+      "message": "Sufficient space: 22.3 GB available",
+      "details": [],
+      "recommendations": [],
+      "timestamp": "2025-09-03T16:51:48.122706"
+    }
+  }
+}
